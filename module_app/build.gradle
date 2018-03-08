@@ -1,0 +1,84 @@
+apply plugin: 'com.android.application'
+apply from: 'tinker-support.gradle'
+android {
+
+    signingConfigs {
+        debug {
+            keyAlias DEBUG_KEYALIAS
+            keyPassword DEBUG_KEYPASSWORD
+            storeFile file(DEBUG_KEYFILE)
+            storePassword DEBUG_KEYPASSWORD
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+        release {
+            keyAlias RELASE_KEYALIAS
+            keyPassword RELASE_KEYPASSWORD
+            storeFile file(RELASE_KEYFILE)
+            storePassword RELASE_KEYPASSWORD
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+
+
+    compileSdkVersion compileSdk as int
+    defaultConfig {
+        applicationId applicationId
+        minSdkVersion minSdk as int
+        targetSdkVersion targetSdk as int
+        versionCode versionCode
+        versionName versionName
+        signingConfig signingConfigs.debug
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+        ndk {
+            //设置支持的SO库架构
+            abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            versionNameSuffix "-debug"
+            zipAlignEnabled false
+            shrinkResources false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            zipAlignEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.release
+        }
+    }
+
+
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':lib_base')
+    if (!isModule.toBoolean()) {
+        implementation project(':module_main')
+        implementation project(':module_test')
+    }
+    implementation "com.android.support:multidex:${android_multidex_lib_version}"
+    annotationProcessor "com.alibaba:arouter-compiler:${android_arouter_compiler_version}"
+}
