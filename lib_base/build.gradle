@@ -61,5 +61,7 @@ dependencies {
     //升级SDK已经集成crash上报功能，已经集成Bugly的用户需要注释掉原来Bugly的jcenter库； 已经配置过符号表的Bugly用户保留原有符号表配置
     api "com.tencent.bugly:crashreport_upgrade:${android_bugly_crashreport_upgrade_version}"
     api "com.tencent.bugly:nativecrashreport:${android_bugly_nativecrashreport_version}"
+    api "me.yokeyword:fragmentation:${android_yokeyword_fragmentation_version}"
+    api "org.greenrobot:eventbus:${android_greenrobot_eventbus_version}"
 
 }

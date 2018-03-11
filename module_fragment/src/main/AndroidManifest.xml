@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="org.gmfbilu.superapp.module_fragment">
+
+    <application
+        android:theme="@style/fragment_AppTheme">
+        <activity android:name=".module.MainActivity">
+        </activity>
+    </application>
+
+</manifest>

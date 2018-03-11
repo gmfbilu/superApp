@@ -1,0 +1,41 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="fragment_AppTheme" parent="Theme.AppCompat.Light.NoActionBar" >
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/fragment_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/fragment_colorPrimaryDark</item>
+        <item name="colorAccent">@color/fragment_colorAccent</item>
+    </style>
+
+    <style name="fragment_AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="fragment_AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="fragment_AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+
+    <style name="fragment_Toolbar_TextAppearance_White">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="fragment_Toolbar_TextAppearance_Expanded">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="fragment_AppTheme.NoActionBar.AppBarOverlay"
+           parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="fragment_AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+
+    <style name="fragment_tab_appearance">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+</resources>
