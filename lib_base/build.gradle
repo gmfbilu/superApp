@@ -63,5 +63,6 @@ dependencies {
     api "com.tencent.bugly:nativecrashreport:${android_bugly_nativecrashreport_version}"
     api "me.yokeyword:fragmentation:${android_yokeyword_fragmentation_version}"
     api "org.greenrobot:eventbus:${android_greenrobot_eventbus_version}"
+    api "com.leon.channel:helper:${android_leon_channel_version}"
 
 }

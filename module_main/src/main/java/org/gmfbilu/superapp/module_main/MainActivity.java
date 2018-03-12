@@ -3,8 +3,10 @@ package org.gmfbilu.superapp.module_main;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.view.View;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.leon.channel.helper.ChannelReaderUtil;
 
 import org.gmfbilu.lib_base.ARouterPath;
 import org.gmfbilu.lib_base.base.BaseActivity;
@@ -17,6 +19,8 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_main);
+        String channel = ChannelReaderUtil.getChannel(getApplicationContext());
+        Toast.makeText(this,channel,Toast.LENGTH_LONG).show();
         findViewById(R.id.main_module_test).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

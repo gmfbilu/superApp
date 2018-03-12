@@ -1,5 +1,29 @@
 apply plugin: 'com.android.application'
 apply from: 'tinker-support.gradle'
+apply plugin: 'channel'
+
+static def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
+//直接编译生成多渠道包,gradle channelRelease
+channel{
+    channelFile = file("..channel.txt")
+    baseOutputDir = new File(project.buildDir,"channel")
+    apkNameFormat ='${flavorName}_${buildType}_${appName}_${versionName}_${versionCode}_'+"${releaseTime()}"
+    isFastMode = false
+}
+//根据已有基础包重新生成多渠道包,gradle rebuildChannel
+rebuildChannel{
+    channelFile = file("..channel.txt")
+   // baseDebugApk = new File(project.projectDir, "baseApk/v1-base-debug.apk")
+    baseReleaseApk = new File(project.projectDir, "baseApk/v2-base-debug.apk")
+   // debugOutputDir =new File(project.buildDir, "rebuildChannel/debug")
+    releaseOutputDir = new File(project.buildDir, "rebuildChannel/release")
+    isFastMode = false
+}
+
+
 android {
 
     signingConfigs {
@@ -72,18 +96,19 @@ android {
         }
     }
 
-
-
 }
+
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:multidex:${android_multidex_lib_version}"
+    annotationProcessor "com.alibaba:arouter-compiler:${android_arouter_compiler_version}"
     implementation project(':lib_base')
     if (!isModule.toBoolean()) {
         implementation project(':module_main')
         implementation project(':module_fragment')
         implementation project(':module_test')
     }
-    implementation "com.android.support:multidex:${android_multidex_lib_version}"
-    annotationProcessor "com.alibaba:arouter-compiler:${android_arouter_compiler_version}"
+
 }

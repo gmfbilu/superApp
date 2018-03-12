@@ -1,11 +1,2 @@
-wandoujia
-tencentyyb
-c360
-baidu
-huawei
-xiaomi
-oppo
-vivo
-leovo
-sougou
-meizu
+google
+tencent
