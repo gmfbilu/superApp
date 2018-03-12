@@ -56,10 +56,10 @@ public class TabOnePageFragment extends SupportFragment implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.fragment_tv_pageOne:
-                ((MainFragment) getParentFragment().getParentFragment()).startBrotherFragment(NewFeatureFragment.newInstance());
-                break;
+        int i = v.getId();
+        if (i == R.id.fragment_tv_pageOne) {
+            ((MainFragment) getParentFragment().getParentFragment()).startBrotherFragment(NewFeatureFragment.newInstance());
+
         }
     }
 }

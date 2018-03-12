@@ -5,17 +5,23 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Process;
 import android.support.multidex.MultiDex;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.beta.interfaces.BetaPatchListener;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.tinker.loader.app.DefaultApplicationLike;
 
 import org.gmfbilu.lib_base.utils.Utils;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Locale;
 
 /**
@@ -40,8 +46,26 @@ public class ApplicationLike extends DefaultApplicationLike {
     @Override
     public void onCreate() {
         super.onCreate();
+        Utils.init(getApplication());
         initARouter();
         initBuglyHotFix();
+        initCrashReport();
+    }
+
+    private void initCrashReport() {
+        // 获取当前包名
+        String packageName = getApplication().getPackageName();
+        // 获取当前进程名
+        String processName = getProcessName(Process.myPid());
+        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplication());
+        // 设置是否为上报进程,如果App使用了多进程且各个进程都会初始化Bugly.那么每个进程下的Bugly都会进行数据上报，造成不必要的资源浪费.只在主进程下上报数据
+        strategy.setUploadProcess(processName == null || processName.equals(packageName));
+        strategy.setAppChannel("myChannel");  //设置渠道
+        strategy.setAppVersion("1.0.1");      //App的版本
+        strategy.setAppPackageName(packageName);  //App的包名
+        strategy.setAppReportDelay(10000);   //Bugly会在启动10s后联网同步数据
+        CrashReport.initCrashReport(getApplication(), "e5ab76a7fa", org.gmfbilu.lib_base.BuildConfig.DEBUG, strategy);
+        CrashReport.setIsDevelopmentDevice(getApplication(), org.gmfbilu.lib_base.BuildConfig.DEBUG);
     }
 
     private void initBuglyHotFix() {
@@ -97,7 +121,7 @@ public class ApplicationLike extends DefaultApplicationLike {
         };
 
         // 设置开发设备，默认为false，上传补丁如果下发范围指定为“开发设备”，需要调用此接口来标识开发设备
-        Bugly.setIsDevelopmentDevice(getApplication(), true);
+        //Bugly.setIsDevelopmentDevice(getApplication(), true);
         // 多渠道需求塞入
         // String channel = WalleChannelReader.getChannel(getApplication());
         // Bugly.setAppChannel(getApplication(), channel);
@@ -136,6 +160,36 @@ public class ApplicationLike extends DefaultApplicationLike {
     public void onTerminate() {
         super.onTerminate();
         Beta.unInit();
+    }
+
+
+    /**
+     * 获取进程号对应的进程名
+     *
+     * @param pid 进程号
+     * @return 进程名
+     */
+    private static String getProcessName(int pid) {
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader("/proc/" + pid + "/cmdline"));
+            String processName = reader.readLine();
+            if (!TextUtils.isEmpty(processName)) {
+                processName = processName.trim();
+            }
+            return processName;
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+        return null;
     }
 
 }

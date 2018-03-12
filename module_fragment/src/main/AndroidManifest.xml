@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="org.gmfbilu.superapp.module_fragment">
 
     <application
+        tools:replace="android:theme"
         android:theme="@style/fragment_AppTheme">
         <activity android:name=".module.MainActivity">
         </activity>

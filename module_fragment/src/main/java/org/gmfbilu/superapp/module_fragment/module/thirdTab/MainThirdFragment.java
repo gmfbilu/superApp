@@ -55,10 +55,10 @@ public class MainThirdFragment extends SupportFragment implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.fragment_tv_tab3:
-                ((MainFragment) getParentFragment()).startBrotherFragment(DetailFragment.newInstance("Android 0 Develop......"));
-                break;
+        int i = v.getId();
+        if (i == R.id.fragment_tv_tab3) {
+            ((MainFragment) getParentFragment()).startBrotherFragment(DetailFragment.newInstance("Android 0 Develop......"));
+
         }
     }
 }

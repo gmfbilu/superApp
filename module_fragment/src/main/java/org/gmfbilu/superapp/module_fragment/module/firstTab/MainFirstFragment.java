@@ -63,10 +63,10 @@ public class MainFirstFragment extends BaseMainFragment implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.fragment_tv_go:
-                ((MainFragment) getParentFragment()).startBrotherFragment(OneLayerFragment.newInstance(new Message("hello")));
-                break;
+        int i = v.getId();
+        if (i == R.id.fragment_tv_go) {
+            ((MainFragment) getParentFragment()).startBrotherFragment(OneLayerFragment.newInstance(new Message("hello")));
+
         }
     }
 
