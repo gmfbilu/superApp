@@ -65,6 +65,7 @@ public class DetailFragment extends SupportFragment {
     }
 
     private void initToolbarNav() {
+
     }
 
     /**
@@ -76,19 +77,10 @@ public class DetailFragment extends SupportFragment {
      */
     @Override
     public void onEnterAnimationEnd(Bundle savedInstanceState) {
-        initDelayView();
-    }
-
-    private void initDelayView() {
         mTvContent.setText(R.string.large_text);
-
-        mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startForResult(ModifyDetailFragment.newInstance(mTitle), REQ_MODIFY_FRAGMENT);
-            }
-        });
+        mFab.setOnClickListener(v -> startForResult(ModifyDetailFragment.newInstance(mTitle), REQ_MODIFY_FRAGMENT));
     }
+
 
     @Override
     public void onFragmentResult(int requestCode, int resultCode, Bundle data) {
