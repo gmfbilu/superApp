@@ -2,6 +2,9 @@ package org.gmfbilu.superapp.module_fragment.module;
 
 import android.os.Bundle;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+
+import org.gmfbilu.lib_base.ARouterPath;
 import org.gmfbilu.superapp.module_fragment.R;
 
 import me.yokeyword.fragmentation.SupportActivity;
@@ -12,6 +15,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
  * 主界面Activity
  */
 
+@Route(path = ARouterPath.MODULE_FRAGMENT)
 public class MainActivity extends SupportActivity {
 
     @Override

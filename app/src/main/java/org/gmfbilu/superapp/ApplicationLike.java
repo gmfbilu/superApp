@@ -4,6 +4,8 @@ import android.annotation.TargetApi;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Process;
 import android.support.multidex.MultiDex;
@@ -11,6 +13,7 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.leon.channel.helper.ChannelReaderUtil;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.beta.interfaces.BetaPatchListener;
@@ -33,20 +36,27 @@ import java.util.Locale;
 
 public class ApplicationLike extends DefaultApplicationLike {
 
+    private Application application = getApplication();
+
 
     public static final String TAG = "Tinker.SampleApplicationLike";
 
     public ApplicationLike(Application application, int tinkerFlags,
                            boolean tinkerLoadVerifyFlag, long applicationStartElapsedTime,
                            long applicationStartMillisTime, Intent tinkerResultIntent) {
-        super(application, tinkerFlags, tinkerLoadVerifyFlag, applicationStartElapsedTime, applicationStartMillisTime, tinkerResultIntent);
+        super(application,
+                tinkerFlags,
+                tinkerLoadVerifyFlag,
+                applicationStartElapsedTime,
+                applicationStartMillisTime,
+                tinkerResultIntent);
     }
 
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Utils.init(getApplication());
+        Utils.init(application);
         initARouter();
         initBuglyHotFix();
         initCrashReport();
@@ -57,11 +67,13 @@ public class ApplicationLike extends DefaultApplicationLike {
         String packageName = getApplication().getPackageName();
         // 获取当前进程名
         String processName = getProcessName(Process.myPid());
+        //获取渠道名
+        String channel = ChannelReaderUtil.getChannel(getApplication());
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplication());
         // 设置是否为上报进程,如果App使用了多进程且各个进程都会初始化Bugly.那么每个进程下的Bugly都会进行数据上报，造成不必要的资源浪费.只在主进程下上报数据
         strategy.setUploadProcess(processName == null || processName.equals(packageName));
-        strategy.setAppChannel("myChannel");  //设置渠道
-        strategy.setAppVersion("1.0.1");      //App的版本
+        strategy.setAppChannel(channel);  //设置渠道
+        strategy.setAppVersion(getVersionCode());      //App的版本
         strategy.setAppPackageName(packageName);  //App的包名
         strategy.setAppReportDelay(10000);   //Bugly会在启动10s后联网同步数据
         CrashReport.initCrashReport(getApplication(), "e5ab76a7fa", org.gmfbilu.lib_base.BuildConfig.DEBUG, strategy);
@@ -76,17 +88,17 @@ public class ApplicationLike extends DefaultApplicationLike {
         // 设置是否自动合成补丁，默认为true
         Beta.canAutoPatch = true;
         // 设置是否提示用户重启，默认为false
-        Beta.canNotifyUserRestart = true;
+        Beta.canNotifyUserRestart = false;
         // 补丁回调接口
         Beta.betaPatchListener = new BetaPatchListener() {
             @Override
             public void onPatchReceived(String patchFile) {
-                Toast.makeText(getApplication(), "补丁下载地址" + patchFile, Toast.LENGTH_SHORT).show();
+                Toast.makeText(application, "补丁下载地址" + patchFile, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onDownloadReceived(long savedLength, long totalLength) {
-                Toast.makeText(getApplication(),
+                Toast.makeText(application,
                         String.format(Locale.getDefault(), "%s %d%%",
                                 Beta.strNotificationDownloading,
                                 (int) (totalLength == 0 ? 0 : savedLength * 100 / totalLength)),
@@ -95,23 +107,23 @@ public class ApplicationLike extends DefaultApplicationLike {
 
             @Override
             public void onDownloadSuccess(String msg) {
-                Toast.makeText(getApplication(), "补丁下载成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(application, "补丁下载成功", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onDownloadFailure(String msg) {
-                Toast.makeText(getApplication(), "补丁下载失败", Toast.LENGTH_SHORT).show();
+                Toast.makeText(application, "补丁下载失败", Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onApplySuccess(String msg) {
-                Toast.makeText(getApplication(), "补丁应用成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(application, "补丁应用成功", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onApplyFailure(String msg) {
-                Toast.makeText(getApplication(), "补丁应用失败", Toast.LENGTH_SHORT).show();
+                Toast.makeText(application, "补丁应用失败", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -126,7 +138,7 @@ public class ApplicationLike extends DefaultApplicationLike {
         // String channel = WalleChannelReader.getChannel(getApplication());
         // Bugly.setAppChannel(getApplication(), channel);
         //是否开启debug模式
-        Bugly.init(getApplication(), "e5ab76a7fa", false);
+        Bugly.init(application, "e5ab76a7fa", true);
     }
 
     private void initARouter() {
@@ -135,7 +147,7 @@ public class ApplicationLike extends DefaultApplicationLike {
             ARouter.openDebug();
             ARouter.openLog();
         }
-        ARouter.init(getApplication());
+        ARouter.init(application);
     }
 
 
@@ -190,6 +202,20 @@ public class ApplicationLike extends DefaultApplicationLike {
             }
         }
         return null;
+    }
+
+
+    private String getVersionCode() {
+        PackageManager packageManager = application.getPackageManager();
+        PackageInfo packageInfo;
+        String versionCode = "";
+        try {
+            packageInfo = packageManager.getPackageInfo(application.getPackageName(), 0);
+            versionCode = packageInfo.versionCode + "";
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return versionCode;
     }
 
 }

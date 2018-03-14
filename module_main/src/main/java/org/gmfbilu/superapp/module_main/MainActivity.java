@@ -20,8 +20,8 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_main);
         String channel = ChannelReaderUtil.getChannel(getApplicationContext());
-        Toast.makeText(this,channel,Toast.LENGTH_LONG).show();
-        findViewById(R.id.main_module_test).setOnClickListener(new View.OnClickListener() {
+        Toast.makeText(this,channel+"",Toast.LENGTH_LONG).show();
+        findViewById(R.id.main_test).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -50,6 +50,13 @@ public class MainActivity extends BaseActivity {
 
 
 
+            }
+        });
+
+        findViewById(R.id.main_fragment).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build(ARouterPath.MODULE_FRAGMENT).navigation();
             }
         });
     }

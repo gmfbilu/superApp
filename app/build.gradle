@@ -2,23 +2,33 @@ apply plugin: 'com.android.application'
 apply from: 'tinker-support.gradle'
 apply plugin: 'channel'
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file("gradle.properties").newDataInputStream())
+String versionNameP = properties.getProperty("versionName")
+int versionCodeP = Integer.parseInt(properties.getProperty("versionCode"))
+
 static def releaseTime() {
     return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
 }
 
 //直接编译生成多渠道包,gradle channelRelease
-channel{
+/*channel{
     channelFile = file("..channel.txt")
-    baseOutputDir = new File(project.buildDir,"channel")
+    baseOutputDir = new File(project.buildDir,"vasDolly")
     apkNameFormat ='${flavorName}_${buildType}_${appName}_${versionName}_${versionCode}_'+"${releaseTime()}"
     isFastMode = false
-}
+}*/
 //根据已有基础包重新生成多渠道包,gradle rebuildChannel
 rebuildChannel{
+    //指定渠道文件
     channelFile = file("..channel.txt")
-   // baseDebugApk = new File(project.projectDir, "baseApk/v1-base-debug.apk")
-    baseReleaseApk = new File(project.projectDir, "baseApk/v2-base-debug.apk")
-   // debugOutputDir =new File(project.buildDir, "rebuildChannel/debug")
+    //已有Debug APK
+    baseDebugApk = new File(project.projectDir, "baseApk/debug.apk")
+    //已有Release APK
+    baseReleaseApk = new File(project.projectDir, "baseApk/release.apk")
+    //Debug渠道包输出目录
+    debugOutputDir =new File(project.buildDir, "rebuildChannel/debug")
+    //Release渠道包输出目录
     releaseOutputDir = new File(project.buildDir, "rebuildChannel/release")
     isFastMode = false
 }
@@ -51,8 +61,8 @@ android {
         applicationId applicationId
         minSdkVersion minSdk as int
         targetSdkVersion targetSdk as int
-        versionCode versionCode
-        versionName versionName
+        versionCode versionCodeP
+        versionName versionNameP
         signingConfig signingConfigs.debug
         javaCompileOptions {
             annotationProcessorOptions {
@@ -93,6 +103,12 @@ android {
             zipAlignEnabled true
             shrinkResources true
             signingConfig signingConfigs.release
+        }
+    }
+
+    sourceSets{
+        main{
+            jniLibs.srcDirs=['libs']
         }
     }
 
