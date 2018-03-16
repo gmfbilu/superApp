@@ -20,7 +20,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_main);
         String channel = ChannelReaderUtil.getChannel(getApplicationContext());
-        Toast.makeText(this,channel+"",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,channel+"好爱好爱你",Toast.LENGTH_LONG).show();
         findViewById(R.id.main_test).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
