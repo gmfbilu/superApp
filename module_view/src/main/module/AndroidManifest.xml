@@ -11,7 +11,7 @@
         tools:replace="android:theme"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/base_AppTheme">
+        android:theme="@style/view_AppTheme">
         <activity android:name=".MainActivity">
 
         </activity>

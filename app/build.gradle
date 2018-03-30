@@ -116,8 +116,8 @@ dependencies {
     annotationProcessor "com.alibaba:arouter-compiler:${android_arouter_compiler_version}"
     implementation project(':lib_base')
     if (!isModule.toBoolean()) {
-        implementation project(':module_main')
         implementation project(':module_test')
+        implementation project(':module_main')
         implementation project(':module_fragment')
         implementation project(':module_googlelibrary')
         implementation project(':module_view')
