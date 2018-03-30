@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:id="@+id/googlelibrary_tv_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/base_colorAccent"
+        android:text="Guideline!"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"/>
+
+    <TextView
+        android:id="@+id/googlelibrary_tv_baseline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/base_colorPrimary"
+        android:text="Baseline!"
+        app:layout_constraintTop_toBottomOf="@+id/googlelibrary_tv_guideline"/>
+
+
+    <TextView
+        android:id="@+id/googlelibrary_tv_bias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/base_colorPrimary"
+        android:text="Bias!"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/googlelibrary_tv_baseline"/>
+
+    <TextView
+        android:id="@+id/googlelibrary_tv_dimenRadio"
+        android:layout_width="120dp"
+        android:layout_height="0dp"
+        android:background="@color/base_colorPrimary"
+        android:text="dimenRadio!"
+        app:layout_constraintDimensionRatio="3:2"
+        app:layout_constraintTop_toBottomOf="@+id/googlelibrary_tv_bias"/>
+
+    <TextView
+        android:id="@+id/googlelibrary_tv_percent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/base_colorAccent"
+        android:text="PercentDimension!"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintTop_toBottomOf="@+id/googlelibrary_tv_dimenRadio"
+        app:layout_constraintWidth_percent="0.5"/>
+
+    <TextView
+        android:id="@+id/googlelibrary_tv_barrierText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/base_colorPrimary"
+        android:text="Barrier,Barrier,Barrier!"
+        app:layout_constraintTop_toBottomOf="@+id/googlelibrary_tv_percent"/>
+
+    <TextView
+        android:id="@+id/googlelibrary_tv_barrierText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/base_colorAccent"
+        android:text="Barrier,Barrier,Barrier,Barrier!"
+        app:layout_constraintTop_toBottomOf="@+id/googlelibrary_tv_barrierText1"/>
+
+    <!--不管text1 和 text2有多长，或者哪个更长，它们的end属性都不会越过Barrier,而text3因为约束在Barrier的后面，所以也就保证了text3总是在text1 和 text2后面-->
+    <android.support.constraint.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="googlelibrary_tv_barrierText1,googlelibrary_tv_barrierText2"/>
+
+    <TextView
+        android:id="@+id/googlelibrary_tv_barrierText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:background="@color/base_colorPrimary"
+        android:text="Note: ConstraintLayout is available as a support library that you can use on Android systems starting with API level 9 (Gingerbread). As such, we are planning on enriching its API and capabilities over time. This documentation will reflect those changes!"
+        app:layout_constraintLeft_toRightOf="@+id/barrier"
+        app:layout_constraintTop_toBottomOf="@+id/googlelibrary_tv_percent"/>
+
+    <TextView
+        android:id="@+id/googlelibrary_tv_groupText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/base_colorAccent"
+        android:text="group!"
+        app:layout_constraintTop_toBottomOf="@+id/googlelibrary_tv_barrierText3"/>
+
+    <TextView
+        android:id="@+id/googlelibrary_tv_groupText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/base_colorPrimary"
+        android:text="group!"
+        app:layout_constraintTop_toBottomOf="@+id/googlelibrary_tv_groupText1"/>
+
+    <android.support.constraint.Group
+        android:id="@+id/group"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="googlelibrary_tv_groupText1,googlelibrary_tv_groupText2"/>
+</android.support.constraint.ConstraintLayout>

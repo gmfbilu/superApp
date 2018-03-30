@@ -1,24 +1,19 @@
 package org.gmfbilu.superapp.module_fragment.module.secondTab;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
+import org.gmfbilu.lib_base.base.BaseFragment;
+import org.gmfbilu.lib_base.base.eventbusactivityscope.event.TabSelectedEvent;
 import org.gmfbilu.superapp.module_fragment.R;
-import org.gmfbilu.superapp.module_fragment.eventbusactivityscope.EventBusActivityScope;
-import org.gmfbilu.superapp.module_fragment.eventbusactivityscope.TabSelectedEvent;
 import org.gmfbilu.superapp.module_fragment.module.MainFragment;
 import org.greenrobot.eventbus.Subscribe;
-
-import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * Created by gmfbilu on 18-3-11.
  */
 
-public class TabOnePageFragment extends SupportFragment implements View.OnClickListener {
+public class TabOnePageFragment extends BaseFragment implements View.OnClickListener {
 
     public static TabOnePageFragment newInstance() {
         Bundle args = new Bundle();
@@ -27,18 +22,17 @@ public class TabOnePageFragment extends SupportFragment implements View.OnClickL
         return fragment;
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_fragment_tab_second_pager_one, container, false);
-        initView(view);
-        return view;
-    }
 
-    private void initView(View view) {
-        EventBusActivityScope.getDefault(_mActivity).register(this);
+    @Override
+    public void findViewById_setOnClickListener(View view) {
         view.findViewById(R.id.fragment_tv_pageOne).setOnClickListener(this);
     }
+
+    @Override
+    public int setLayout() {
+        return R.layout.fragment_fragment_tab_second_pager_one;
+    }
+
 
     /**
      * Reselected Tab
@@ -51,15 +45,15 @@ public class TabOnePageFragment extends SupportFragment implements View.OnClickL
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        EventBusActivityScope.getDefault(_mActivity).unregister(this);
     }
 
     @Override
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.fragment_tv_pageOne) {
-            ((MainFragment) getParentFragment().getParentFragment()).startBrotherFragment(NewFeatureFragment.newInstance());
-
+            // 通知MainFragment跳转至NewFeatureFragment,NewFeatureFragment是和MainFragment同级的
+            //TabOnePageFragment的父Fragment是MainSecondFragment，而MainSecondFragment的父Fragment又是MainFragment
+            ((MainFragment) getParentFragment().getParentFragment()).start(NewFeatureFragment.newInstance());
         }
     }
 }

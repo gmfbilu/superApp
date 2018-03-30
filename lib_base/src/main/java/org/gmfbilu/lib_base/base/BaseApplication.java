@@ -4,6 +4,10 @@ import android.app.Application;
 import android.os.Process;
 import android.text.TextUtils;
 
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.FormatStrategy;
+import com.orhanobut.logger.Logger;
+import com.orhanobut.logger.PrettyFormatStrategy;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import org.gmfbilu.lib_base.BuildConfig;
@@ -12,6 +16,8 @@ import org.gmfbilu.lib_base.utils.Utils;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
+import me.yokeyword.fragmentation.Fragmentation;
 
 /**
  * Created by gmfbilu on 2018/3/2.
@@ -29,6 +35,35 @@ public class BaseApplication extends Application {
         super.onCreate();
         Utils.init(this);
         initCrashReport();
+        initFragmentation();
+        initLogger();
+    }
+
+    private void initLogger() {
+        FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
+                .showThreadInfo(true)  // (Optional) Whether to show thread info or not. Default true
+                .methodCount(2)         // (Optional) How many method line to show. Default 2
+                .methodOffset(7)        // (Optional) Hides internal method calls up to offset. Default 5
+                //.logStrategy() // (Optional) Changes the log strategy to print out. Default LogCat
+                .tag("SuperApp")   // (Optional) Global tag for every log. Default PRETTY_LOGGER
+                .build();
+        Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
+    }
+
+    private void initFragmentation() {
+        Fragmentation.builder()
+                // 设置 栈视图 模式为 （默认）悬浮球模式   SHAKE: 摇一摇唤出  NONE：隐藏， 仅在Debug环境生效
+                .stackViewMode(Fragmentation.BUBBLE)
+                .debug(BuildConfig.DEBUG) // 实际场景建议.debug(BuildConfig.DEBUG)
+                /**
+                 * 可以获取到{@link me.yokeyword.fragmentation.exception.AfterSaveStateTransactionWarning}
+                 * 在遇到After onSaveInstanceState时，不会抛出异常，会回调到下面的ExceptionHandler
+                 */
+                .handleException(e -> {
+                    // 以Bugtags为例子: 把捕获到的 Exception 传到 Bugtags 后台。
+                    // Bugtags.sendException(e);
+                })
+                .install();
     }
 
     private void initCrashReport() {
@@ -46,7 +81,6 @@ public class BaseApplication extends Application {
         CrashReport.initCrashReport(this, "e5ab76a7fa", BuildConfig.DEBUG, strategy);
         CrashReport.setIsDevelopmentDevice(this, BuildConfig.DEBUG);
     }
-
 
 
     /**

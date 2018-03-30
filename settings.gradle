@@ -1,1 +1,1 @@
-include ':app', ':lib_base', ':module_test', ':module_main', ':module_fragment'
+include ':app', ':lib_base', ':module_test', ':module_main', ':module_fragment', ':module_view', ':module_googlelibrary'

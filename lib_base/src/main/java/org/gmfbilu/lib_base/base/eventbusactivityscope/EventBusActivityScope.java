@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_fragment.eventbusactivityscope;
+package org.gmfbilu.lib_base.base.eventbusactivityscope;
 
 import android.app.Activity;
 import android.app.Application;
@@ -14,8 +14,14 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * Created by gmfbilu on 2018/3/22.
+ * Activity作用域的EventBus，更安全，可有效避免after onSavenInstanceState()异常
+ * 主要用于Activity，Fragment之间的相互通信
+ */
 
 public class EventBusActivityScope {
+
     private static final String TAG = EventBusActivityScope.class.getSimpleName();
 
     private static AtomicBoolean sInitialized = new AtomicBoolean(false);

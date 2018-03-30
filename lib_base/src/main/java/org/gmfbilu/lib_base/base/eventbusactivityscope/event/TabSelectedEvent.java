@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_fragment.eventbusactivityscope;
+package org.gmfbilu.lib_base.base.eventbusactivityscope.event;
 
 
 public class TabSelectedEvent {

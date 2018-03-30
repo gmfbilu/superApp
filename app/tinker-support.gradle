@@ -7,7 +7,7 @@ def bakPath = file("${buildDir}/TinkerbakApk/")
  * 每次生成的基本包和mapping以及R都要保存下来
  * 这里生成的一个补丁包就适用于各个渠道包
  */
-def baseApkDir = "app-0316-15-37-57"
+def baseApkDir = "app-0329-17-14-36"
 tinkerSupport {
     enable = true
     // 指定归档目录，默认值当前module的子目录tinker

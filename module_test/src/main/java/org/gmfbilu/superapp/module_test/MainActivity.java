@@ -1,19 +1,29 @@
 package org.gmfbilu.superapp.module_test;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 
 import org.gmfbilu.lib_base.ARouterPath;
+import org.gmfbilu.lib_base.base.BaseActivity;
 
 @Route(path = ARouterPath.MODULE_TEST)
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.test_activity_main);
+    public void findViewById_setOnClickListener(Bundle savedInstanceState) {
         long key1 = getIntent().getLongExtra("key1", 0);
+
+    }
+
+    @Override
+    public int setLayout() {
+        return R.layout.test_activity_main;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

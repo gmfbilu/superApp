@@ -1,20 +1,16 @@
 package org.gmfbilu.superapp.module_fragment.module.secondTab;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
+import org.gmfbilu.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_fragment.R;
-
-import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * Created by gmfbilu on 18-3-11.
  */
 
-public class ViewFragment extends SupportFragment {
+public class ViewFragment extends BaseFragment {
 
     public static ViewFragment newInstance() {
         Bundle bundle = new Bundle();
@@ -23,10 +19,18 @@ public class ViewFragment extends SupportFragment {
         return viewFragment;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_fragment_new_feature_view, container, false);
-        return view;
+    public void findViewById_setOnClickListener(View view) {
+
+    }
+
+    @Override
+    public int setLayout() {
+        return R.layout.fragment_fragment_new_feature_view;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

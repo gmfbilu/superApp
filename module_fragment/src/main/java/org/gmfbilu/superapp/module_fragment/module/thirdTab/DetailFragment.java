@@ -2,23 +2,19 @@ package org.gmfbilu.superapp.module_fragment.module.thirdTab;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.gmfbilu.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_fragment.R;
-
-import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * Created by gmfbilu on 18-3-11.
  */
 
-public class DetailFragment extends SupportFragment {
+public class DetailFragment extends BaseFragment {
 
     public static final String TAG = DetailFragment.class.getSimpleName();
     private static final int REQ_MODIFY_FRAGMENT = 100;
@@ -28,7 +24,6 @@ public class DetailFragment extends SupportFragment {
 
     private Toolbar mToolbar;
     private TextView mTvContent;
-    private FloatingActionButton mFab;
     private String mTitle;
 
     public static DetailFragment newInstance(String title) {
@@ -48,25 +43,20 @@ public class DetailFragment extends SupportFragment {
         }
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_fragment_tab_third_detail, container, false);
-        initView(view);
-        return view;
-    }
 
-    private void initView(View view) {
+    @Override
+    public void findViewById_setOnClickListener(View view) {
         mToolbar = view.findViewById(R.id.toolbar);
-        mFab =  view.findViewById(R.id.fab);
+        view.findViewById(R.id.fab).setOnClickListener(this);
         mTvContent = view.findViewById(R.id.fragment_tv_content);
         mToolbar.setTitle(mTitle);
-        initToolbarNav();
     }
 
-    private void initToolbarNav() {
-
+    @Override
+    public int setLayout() {
+        return R.layout.fragment_fragment_tab_third_detail;
     }
+
 
     /**
      * 这里演示:
@@ -78,7 +68,6 @@ public class DetailFragment extends SupportFragment {
     @Override
     public void onEnterAnimationEnd(Bundle savedInstanceState) {
         mTvContent.setText(R.string.large_text);
-        mFab.setOnClickListener(v -> startForResult(ModifyDetailFragment.newInstance(mTitle), REQ_MODIFY_FRAGMENT));
     }
 
 
@@ -91,6 +80,15 @@ public class DetailFragment extends SupportFragment {
             // 保存被改变的 title
             getArguments().putString(ARG_TITLE, mTitle);
             Toast.makeText(_mActivity, "修改标题成功！", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        if (id == R.id.fab) {
+            //ModifyDetailFragment和DetailFragment位于同一层
+            startForResult(ModifyDetailFragment.newInstance(mTitle), REQ_MODIFY_FRAGMENT);
         }
     }
 }

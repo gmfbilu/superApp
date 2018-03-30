@@ -1,0 +1,11 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="googleLibrary_AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/googleLibrary_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/googleLibrary_colorPrimaryDark</item>
+        <item name="colorAccent">@color/googleLibrary_colorAccent</item>
+    </style>
+
+</resources>

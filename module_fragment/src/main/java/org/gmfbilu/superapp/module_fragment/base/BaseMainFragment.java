@@ -2,12 +2,12 @@ package org.gmfbilu.superapp.module_fragment.base;
 
 import android.widget.Toast;
 
-import me.yokeyword.fragmentation.SupportFragment;
+import org.gmfbilu.lib_base.base.BaseFragment;
 
 /**
  * 懒加载基类Fragment
  */
-public abstract class BaseMainFragment extends SupportFragment {
+public abstract class BaseMainFragment extends BaseFragment {
     // 再点一次退出程序时间设置
     private static final long WAIT_TIME = 2000L;
     private long TOUCH_TIME = 0;

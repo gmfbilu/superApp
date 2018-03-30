@@ -7,6 +7,7 @@ package org.gmfbilu.lib_base;
 public interface ARouterPath {
 
     String MODULE_TEST="/module_test/main";
-
     String MODULE_FRAGMENT="/module_fragment/main";
+    String MODULE_GOOGLELIBRARY="/module_googleLibrary/main";
+    String MODULE_VIEWS="/module_views/main";
 }

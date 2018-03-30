@@ -2,10 +2,14 @@
 
     <!-- Base application theme. -->
     <style name="fragment_AppTheme" parent="Theme.AppCompat.Light.NoActionBar" >
-        <!-- Customize your theme here. -->
+        <item name="android:textAllCaps">false</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
         <item name="colorPrimary">@color/fragment_colorPrimary</item>
         <item name="colorPrimaryDark">@color/fragment_colorPrimaryDark</item>
         <item name="colorAccent">@color/fragment_colorAccent</item>
+        <item name="android:windowIsTranslucent">false</item>
     </style>
 
     <style name="fragment_AppTheme.NoActionBar">
