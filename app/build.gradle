@@ -121,5 +121,6 @@ dependencies {
         implementation project(':module_fragment')
         implementation project(':module_googlelibrary')
         implementation project(':module_view')
+        implementation project(':module_util')
     }
 }

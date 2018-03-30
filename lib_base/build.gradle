@@ -56,13 +56,21 @@ dependencies {
     api "com.android.support.constraint:constraint-layout:${android_constraint_lib_version}"
 
 
+    //路由
     api "com.alibaba:arouter-api:${android_arouter_api_version}"
+    //日志
     api "com.orhanobut:logger:${android_logger_version}"
     //升级SDK已经集成crash上报功能，已经集成Bugly的用户需要注释掉原来Bugly的jcenter库； 已经配置过符号表的Bugly用户保留原有符号表配置
     api "com.tencent.bugly:crashreport_upgrade:${android_bugly_crashreport_upgrade_version}"
     api "com.tencent.bugly:nativecrashreport:${android_bugly_nativecrashreport_version}"
+    //fragment
     api "me.yokeyword:fragmentation:${android_yokeyword_fragmentation_version}"
+    //事件总线
     api "org.greenrobot:eventbus:${android_greenrobot_eventbus_version}"
+    //多渠道打包
     api "com.leon.channel:helper:${android_leon_channel_version}"
+    //权限申请
+    api "com.github.hotchemi:permissionsdispatcher:${android_hotchemi_permissionsdispatcher_version}"
+    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:${android_hotchemi_permissionsdispatcher_version}"
 
 }

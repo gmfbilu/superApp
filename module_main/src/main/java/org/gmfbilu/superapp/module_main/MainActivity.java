@@ -49,6 +49,8 @@ public class MainActivity extends BaseActivity {
             ARouter.getInstance().build(ARouterPath.MODULE_GOOGLELIBRARY).navigation();
         } else if (id == R.id.module_views) {
             ARouter.getInstance().build(ARouterPath.MODULE_VIEWS).navigation();
+        }else if (id==R.id.module_util){
+            ARouter.getInstance().build(ARouterPath.MODULE_Util).navigation();
         }
     }
 }

@@ -2,6 +2,7 @@ package debug;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import org.gmfbilu.lib_base.base.BaseActivity;
@@ -30,5 +31,10 @@ public class LauncherActivity extends BaseActivity {
     @Override
     public int setLayout() {
         return 0;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }
