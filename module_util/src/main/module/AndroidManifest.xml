@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="org.gmfbilu.superapp.module_util">
+
+    <application
+        android:name="debug.UtilApplication"
+        android:icon="@mipmap/lib_base_ic_launcher"
+        android:label="@string/module_util_app_name"
+        android:roundIcon="@mipmap/lib_base_ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/lib_base_AppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning"
+        tools:replace="android:theme">
+
+        <!--android N 以上收回对文件访问的权限 ，因此要在此声明权限
+            android:exported="false"  表示对其他应用不可用
+            android:grantUriPermissions="true"  授予临时权限
+        -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="org.gmfbilu.superapp.module_util.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/lib_base_provider_path"/>
+        </provider>
+
+        <activity android:name=".MainActivity">
+
+        </activity>
+
+        <activity android:name="debug.LauncherActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>

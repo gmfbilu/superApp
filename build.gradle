@@ -5,9 +5,9 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.0-alpha08'
-        classpath "com.tencent.bugly:tinker-support:1.1.1"
-        classpath 'com.leon.channel:plugin:1.1.7'
+        classpath "com.android.tools.build:gradle:${android_gradle_version}"
+        classpath "com.tencent.bugly:tinker-support:${android_bugly_tinker_support_version}"
+        classpath "com.leon.channel:plugin:${android_leon_channel_version}"
     }
 }
 

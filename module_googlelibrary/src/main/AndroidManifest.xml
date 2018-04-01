@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="org.gmfbilu.superapp.module_googlelibrary">
+
+    <application
+        tools:replace="android:theme"
+        android:theme="@style/lib_base_AppTheme">
+        <activity android:name=".MainActivity">
+        </activity>
+    </application>
+
+</manifest>

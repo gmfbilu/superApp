@@ -1,6 +1,0 @@
-<resources>
-    <string name="main_app_name">module_main</string>
-    <string name="main_title_home">Home</string>
-    <string name="main_title_dashboard">Dashboard</string>
-    <string name="main_title_notifications">Notifications</string>
-</resources>

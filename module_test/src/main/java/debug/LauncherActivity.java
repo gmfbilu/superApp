@@ -2,9 +2,10 @@ package debug;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
-import org.gmfbilu.lib_base.base.BaseActivity;
+import org.gmfbilu.superapp.lib_base.base.BaseActivity;
 import org.gmfbilu.superapp.module_test.MainActivity;
 
 /**
@@ -15,14 +16,25 @@ import org.gmfbilu.superapp.module_test.MainActivity;
 
 public class LauncherActivity extends BaseActivity {
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void findViewById_setOnClickListener(Bundle savedInstanceState) {
         //在这里传值给需要调试的Activity
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("key1",116);
+        intent.putExtra("key1", 116);
         startActivity(intent);
         finish();
-        Toast.makeText(this,"LauncherActivity",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "LauncherActivity", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public int setLayout() {
+        return 0;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

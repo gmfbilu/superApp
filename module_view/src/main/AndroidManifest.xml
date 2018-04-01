@@ -4,7 +4,7 @@
           package="org.gmfbilu.superapp.module_view">
 
     <application
-        android:theme="@style/view_AppTheme"
+        android:theme="@style/lib_base_AppTheme"
         tools:replace="android:theme">
         <activity android:name=".MainActivity">
         </activity>

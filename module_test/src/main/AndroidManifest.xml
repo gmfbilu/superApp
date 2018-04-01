@@ -5,7 +5,7 @@
 
     <application
         tools:replace="android:theme"
-        android:theme="@style/test_AppTheme">
+        android:theme="@style/lib_base_AppTheme">
         <activity android:name=".MainActivity">
 
         </activity>

@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 
 android {
+    resourcePrefix "lib_base_"
     compileSdkVersion compileSdk as int
     defaultConfig {
         minSdkVersion minSdk as int
@@ -14,21 +15,15 @@ android {
         }
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    buildTypes {
-        release {
-            buildConfigField "boolean", "LOG_DEBUG", "true"
-            zipAlignEnabled false
-            shrinkResources false
-            minifyEnabled false
-            debuggable true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
 
 }
 
@@ -47,22 +42,30 @@ dependencies {
      * 注解处理器（AbstractProcess）+代码处理（javaPoet）+处理器注册（AutoService）+apt
      */
     api fileTree(include: ['*.jar'], dir: 'libs')
-    testApi "junit:junit:${android_junit_lib_version}"
-    androidTestApi "com.android.support.test:runner:${android_test_runner_lib_version}"
-    androidTestApi "com.android.support.test.espresso:espresso-core:${android_test_espresso_lib_version}"
+    testImplementation "junit:junit:${android_junit_lib_version}"
+    androidTestImplementation "com.android.support.test:runner:${android_test_runner_lib_version}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:${android_test_espresso_lib_version}"
     api "com.android.support:appcompat-v7:${android_support_lib_version}"
     api "com.android.support:cardview-v7:${android_support_lib_version}"
     api "com.android.support:design:${android_support_lib_version}"
     api "com.android.support.constraint:constraint-layout:${android_constraint_lib_version}"
 
 
+    //路由
     api "com.alibaba:arouter-api:${android_arouter_api_version}"
+    //日志
     api "com.orhanobut:logger:${android_logger_version}"
     //升级SDK已经集成crash上报功能，已经集成Bugly的用户需要注释掉原来Bugly的jcenter库； 已经配置过符号表的Bugly用户保留原有符号表配置
     api "com.tencent.bugly:crashreport_upgrade:${android_bugly_crashreport_upgrade_version}"
     api "com.tencent.bugly:nativecrashreport:${android_bugly_nativecrashreport_version}"
+    //fragment
     api "me.yokeyword:fragmentation:${android_yokeyword_fragmentation_version}"
+    //事件总线
     api "org.greenrobot:eventbus:${android_greenrobot_eventbus_version}"
+    //多渠道打包
     api "com.leon.channel:helper:${android_leon_channel_version}"
+    //权限申请
+    api "com.github.hotchemi:permissionsdispatcher:${android_hotchemi_permissionsdispatcher_version}"
+    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:${android_hotchemi_permissionsdispatcher_version}"
 
 }

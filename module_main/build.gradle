@@ -11,7 +11,7 @@ int versionCodeP = Integer.parseInt(properties.getProperty("versionCode"))
 
 
 android {
-    resourcePrefix "main_"
+    resourcePrefix "module_main_"
     compileSdkVersion compileSdk as int
     defaultConfig {
         minSdkVersion minSdk as int
@@ -41,7 +41,24 @@ android {
                     exclude 'debug/**'
                 }
             }
+
+            res.srcDirs =
+                    [
+                            'src/main/res/layouts/activities',
+                            'src/main/res/layouts/fragments',
+                            'src/main/res/layouts/recycleviews',
+                            'src/main/res/layouts/contents',
+                            'src/main/res/layouts',
+                            'src/main/res'
+                    ]
         }
+
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+
+    lintOptions {
+        abortOnError false
     }
 
     buildTypes {

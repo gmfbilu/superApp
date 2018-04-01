@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import org.gmfbilu.superapp.module_fragment.R;
 import org.gmfbilu.superapp.module_fragment.base.BaseMainFragment;
@@ -29,19 +27,17 @@ public class MainSecondFragment extends BaseMainFragment {
     }
 
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_fragment_tab_second, container, false);
-        initView(view);
-        return view;
+    public void findViewById_setOnClickListener(View view) {
+        mTab = view.findViewById(R.id.module_fragment_tab);
+        mViewPager = view.findViewById(R.id.module_fragment_viewPager);
+        mTab.addTab(mTab.newTab());
+        mTab.addTab(mTab.newTab());
     }
 
-    private void initView(View view) {
-        mTab = view.findViewById(R.id.tab);
-        mViewPager = view.findViewById(R.id.viewPager);
-        mTab.addTab(mTab.newTab());
-        mTab.addTab(mTab.newTab());
+    @Override
+    public int setLayout() {
+        return R.layout.module_fragment_fragment_tab_second;
     }
 
     @Override
@@ -51,4 +47,8 @@ public class MainSecondFragment extends BaseMainFragment {
         mTab.setupWithViewPager(mViewPager);
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }

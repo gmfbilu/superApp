@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/module_util_appBarLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/module_util_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <ImageView
+        android:id="@+id/module_util_iv_pic"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:background="@color/lib_base_colorAccent"
+        android:scaleType="fitXY"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/module_util_appBarLayout"/>
+
+    <Button
+        android:id="@+id/module_util_bt_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="系统相机"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/module_util_iv_pic"/>
+
+    <Button
+        android:id="@+id/module_util_bt_album"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="系统相册"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/module_util_bt_camera"/>
+
+    <Button
+        android:id="@+id/module_util_bt_surfaceview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SurfaceView!"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/module_util_bt_album"/>
+</android.support.constraint.ConstraintLayout>

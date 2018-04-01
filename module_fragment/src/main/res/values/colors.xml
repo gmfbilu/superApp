@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="fragment_colorPrimary">#3F51B5</color>
-    <color name="fragment_colorPrimaryDark">#303F9F</color>
-    <color name="fragment_colorAccent">#FF4081</color>
-
-    <color name="fragment_tab_unselected">#c9c9c9</color>
-</resources>

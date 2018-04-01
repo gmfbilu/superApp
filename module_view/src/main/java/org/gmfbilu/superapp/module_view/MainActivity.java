@@ -1,13 +1,32 @@
 package org.gmfbilu.superapp.module_view;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+import com.alibaba.android.arouter.facade.annotation.Route;
+
+import org.gmfbilu.superapp.lib_base.ARouterPath;
+import org.gmfbilu.superapp.lib_base.base.BaseActivity;
+
+
+@Route(path = ARouterPath.MODULE_VIEWS)
+public class MainActivity extends BaseActivity {
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_activity_main);
+    public void findViewById_setOnClickListener(Bundle savedInstanceState) {
+        if (findFragment(MainFragment.class) == null) {
+            loadRootFragment(R.id.module_view_fl_container, MainFragment.newInstance());
+        }
+    }
+
+    @Override
+    public int setLayout() {
+        return R.layout.module_view_activity_main;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

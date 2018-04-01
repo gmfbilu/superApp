@@ -6,12 +6,13 @@
     <application
         android:name="debug.TestApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/test_app_name"
+        android:icon="@mipmap/lib_base_ic_launcher"
+        android:label="@string/module_test_app_name"
         tools:replace="android:theme"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/lib_base_ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/test_AppTheme">
+        android:theme="@style/lib_base_AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".MainActivity">
 
         </activity>

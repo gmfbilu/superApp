@@ -11,20 +11,14 @@ static def releaseTime() {
     return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
 }
 
-//直接编译生成多渠道包,gradle channelRelease
-/*channel{
-    channelFile = file("..channel.txt")
-    baseOutputDir = new File(project.buildDir,"vasDolly")
-    apkNameFormat ='${flavorName}_${buildType}_${appName}_${versionName}_${versionCode}_'+"${releaseTime()}"
-    isFastMode = false
-}*/
+
 //根据已有基础包重新生成多渠道包,gradle rebuildChannel
 rebuildChannel{
     //指定渠道文件
     channelFile = file("..channel.txt")
     //已有Debug APK
     baseDebugApk = new File(project.projectDir, "baseApk/debug.apk")
-    //已有Release APK
+    //已有Release APK，注意此目录位于app/baseApk
     baseReleaseApk = new File(project.projectDir, "baseApk/release.apk")
     //Debug渠道包输出目录
     debugOutputDir =new File(project.buildDir, "rebuildChannel/debug")
@@ -90,18 +84,18 @@ android {
         debug {
             buildConfigField "boolean", "LOG_DEBUG", "true"
             versionNameSuffix "-debug"
-            zipAlignEnabled false
-            shrinkResources false
-            minifyEnabled false
+            zipAlignEnabled true
+            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
         }
         release {
             buildConfigField "boolean", "LOG_DEBUG", "false"
-            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             zipAlignEnabled true
             shrinkResources true
+            minifyEnabled true
             signingConfig signingConfigs.release
         }
     }
@@ -123,9 +117,10 @@ dependencies {
     implementation project(':lib_base')
     if (!isModule.toBoolean()) {
         implementation project(':module_main')
-        implementation project(':module_fragment')
-        implementation project(':module_view')
         implementation project(':module_test')
+        implementation project(':module_fragment')
+        implementation project(':module_googlelibrary')
+        implementation project(':module_view')
+        implementation project(':module_util')
     }
-
 }

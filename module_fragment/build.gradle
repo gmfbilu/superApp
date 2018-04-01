@@ -14,7 +14,7 @@ static def releaseTime() {
 }
 
 android {
-    resourcePrefix "fragment_"
+    resourcePrefix "module_fragment_"
     compileSdkVersion compileSdk as int
     defaultConfig {
         minSdkVersion minSdk as int
@@ -26,6 +26,10 @@ android {
                 arguments = [ moduleName : project.getName() ]
             }
         }
+    }
+
+    lintOptions {
+        abortOnError false
     }
 
     compileOptions {

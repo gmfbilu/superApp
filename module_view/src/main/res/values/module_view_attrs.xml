@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="module_view_CircleProgressBar">
+        <attr name="module_view_progressWidth" format="dimension"/>
+        <attr name="module_view_progressColor" format="color"/>
+        <attr name="module_view_circleAnimationDuration" format="integer"/>
+        <attr name="module_view_isDrawCenterProgressText" format="boolean"/>
+    </declare-styleable>
+
+</resources>

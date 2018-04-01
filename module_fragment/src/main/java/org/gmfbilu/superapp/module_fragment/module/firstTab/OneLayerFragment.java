@@ -2,20 +2,17 @@ package org.gmfbilu.superapp.module_fragment.module.firstTab;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_fragment.R;
-
-import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * Created by gmfbilu on 18-3-11.
  */
 
-public class OneLayerFragment extends SupportFragment {
+public class OneLayerFragment extends BaseFragment {
 
     private static final String ARG_MSG = "arg_msg";
     private TextView fragment_tv_message;
@@ -36,21 +33,26 @@ public class OneLayerFragment extends SupportFragment {
         mag = getArguments().getParcelable(ARG_MSG);
     }
 
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_fragment_tab_first_onelayer, container, false);
-        initView(view);
-        return view;
+    public void findViewById_setOnClickListener(View view) {
+        fragment_tv_message = view.findViewById(R.id.module_fragment_tv_message);
     }
 
-    private void initView(View view) {
-        fragment_tv_message = view.findViewById(R.id.fragment_tv_message);
+    @Override
+    public int setLayout() {
+        return R.layout.module_fragment_fragment_tab_first_onelayer;
     }
+
 
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         fragment_tv_message.setText(mag.mesage);
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

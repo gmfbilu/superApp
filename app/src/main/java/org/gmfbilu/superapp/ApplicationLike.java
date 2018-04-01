@@ -20,7 +20,8 @@ import com.tencent.bugly.beta.interfaces.BetaPatchListener;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.tinker.loader.app.DefaultApplicationLike;
 
-import org.gmfbilu.lib_base.utils.Utils;
+import org.gmfbilu.superapp.lib_base.app.Constant;
+import org.gmfbilu.superapp.lib_base.utils.Utils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -76,8 +77,8 @@ public class ApplicationLike extends DefaultApplicationLike {
         strategy.setAppVersion(getVersionCode());      //App的版本
         strategy.setAppPackageName(packageName);  //App的包名
         strategy.setAppReportDelay(10000);   //Bugly会在启动10s后联网同步数据
-        CrashReport.initCrashReport(getApplication(), "e5ab76a7fa", org.gmfbilu.lib_base.BuildConfig.DEBUG, strategy);
-        CrashReport.setIsDevelopmentDevice(getApplication(), org.gmfbilu.lib_base.BuildConfig.DEBUG);
+        CrashReport.initCrashReport(getApplication(), "e5ab76a7fa", !Constant.ISRELEASE, strategy);
+        CrashReport.setIsDevelopmentDevice(getApplication(), !Constant.ISRELEASE);
     }
 
     private void initBuglyHotFix() {
