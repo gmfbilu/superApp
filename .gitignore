@@ -18,8 +18,6 @@ out/
 build/
 /*/build/
 
-# Local configuration file (sdk path, etc)
-local.properties
 
 # Windows thumbnail db
 Thumbs.db
@@ -27,15 +25,40 @@ Thumbs.db
 # OSX files
 .DS_Store
 
-# Android Studio
-*.iml
-.idea
-
-# Local IDEA workspace
-.idea/workspace.xml
-
-# Gradle cache
-.gradle
 
 #NDK
 obj/
+
+
+
+.gradle
+.idea
+build/
+*.iml
+local.properties
+
+app/build
+app/*.iml
+app/release
+
+lib_base/build
+lib_base/*.iml
+
+module_fragment/build
+module_fragment/*.iml
+
+module_googlelibrary/build
+module_googlelibrary/*.iml
+
+module_main/build
+module_main/*.iml
+
+module_test/build
+module_test/*.iml
+
+module_util/build
+module_util/*.iml
+
+module_view/build
+module_view/*.iml
+
