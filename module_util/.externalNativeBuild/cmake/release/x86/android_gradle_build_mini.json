@@ -1,0 +1,16 @@
+{
+  "buildFiles": [
+    "/home/gmfbilu/Work/Android/Projects/superApp/module_util/CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/x86 --target clean"
+  ],
+  "libraries": {
+    "jniDemo-Release-x86": {
+      "artifactName": "jniDemo",
+      "buildCommand": "/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/x86 --target jniDemo",
+      "abi": "x86",
+      "output": "/home/gmfbilu/Work/Android/Projects/superApp/module_util/build/intermediates/cmake/release/obj/x86/libjniDemo.so"
+    }
+  }
+}

@@ -97,7 +97,7 @@
         android:layout_marginLeft="10dp"
         android:background="@color/lib_base_colorPrimary"
         android:text="Note: ConstraintLayout is available as a support library that you can use on Android systems starting with API level 9 (Gingerbread). As such, we are planning on enriching its API and capabilities over time. This documentation will reflect those changes!"
-        app:layout_constraintLeft_toRightOf="@+id/barrier"
+        app:layout_constraintLeft_toRightOf="@+id/module_googlelibrary_barrier"
         app:layout_constraintTop_toBottomOf="@+id/module_googlelibrary_tv_percent"/>
 
     <TextView

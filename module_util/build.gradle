@@ -22,7 +22,20 @@ android {
                 arguments = [ moduleName : project.getName() ]
             }
         }
+        externalNativeBuild{
+            cmake{
+                cppFlags ""
+            }
+        }
+
     }
+
+    externalNativeBuild{
+        cmake{
+           path "CMakeLists.txt"
+        }
+    }
+
 
     lintOptions {
         abortOnError false
@@ -59,6 +72,12 @@ android {
         debug.setRoot('build-types/debug')
         release.setRoot('build-types/release')
     }
+    externalNativeBuild {
+        cmake {
+            path 'CMakeLists.txt'
+        }
+    }
+
 
 }
 

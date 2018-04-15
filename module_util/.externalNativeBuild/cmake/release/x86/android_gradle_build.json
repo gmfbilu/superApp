@@ -1,0 +1,41 @@
+
+{
+	"buildFiles" : 
+	[
+		"/home/gmfbilu/Work/Android/Projects/superApp/module_util/CMakeLists.txt"
+	],
+	"cleanCommands" : 
+	[
+		"/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/x86 --target clean"
+	],
+	"cppFileExtensions" : [ "cpp" ],
+	"libraries" : 
+	{
+		"jniDemo-Release-x86" : 
+		{
+			"abi" : "x86",
+			"artifactName" : "jniDemo",
+			"buildCommand" : "/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/x86 --target jniDemo",
+			"buildType" : "release",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=i686-none-linux-android --gcc-toolchain=/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/linux-x86_64 --sysroot=/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sysroot  -DjniDemo_EXPORTS -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/android/support/include -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sysroot/usr/include/i686-linux-android -D__ANDROID_API__=16 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/gmfbilu/Work/Android/Projects/superApp/module_util/src/main/cpp/jniDemo.cpp",
+					"workingDirectory" : "/home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/x86"
+				}
+			],
+			"output" : "/home/gmfbilu/Work/Android/Projects/superApp/module_util/build/intermediates/cmake/release/obj/x86/libjniDemo.so",
+			"toolchain" : "8962518858468697716"
+		}
+	},
+	"toolchains" : 
+	{
+		"8962518858468697716" : 
+		{
+			"cCompilerExecutable" : "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/clang",
+			"cppCompilerExecutable" : "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++"
+		}
+	}
+}

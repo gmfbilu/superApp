@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
+import org.gmfbilu.superapp.module_util.camera.CameraFragment;
+import org.gmfbilu.superapp.module_util.jni.JniFragment;
 
 
 public class MainFragment extends BaseFragment {
@@ -19,6 +21,7 @@ public class MainFragment extends BaseFragment {
     @Override
     public void findViewById_setOnClickListener(View view) {
         view.findViewById(R.id.module_util_bt_camera).setOnClickListener(this);
+        view.findViewById(R.id.module_util_bt_jni).setOnClickListener(this);
     }
 
     @Override
@@ -32,6 +35,8 @@ public class MainFragment extends BaseFragment {
         int id = v.getId();
         if (id==R.id.module_util_bt_camera){
             start(CameraFragment.newInstance());
+        }else if (id==R.id.module_util_bt_jni){
+            start(JniFragment.newInstance());
         }
     }
 }

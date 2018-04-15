@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_util;
+package org.gmfbilu.superapp.module_util.camera;
 
 import android.annotation.SuppressLint;
 import android.content.ContentUris;

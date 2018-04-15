@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_util;
+package org.gmfbilu.superapp.module_util.camera;
 
 import android.Manifest;
 import android.content.Intent;
@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 import org.gmfbilu.superapp.lib_base.utils.ToastUtils;
+import org.gmfbilu.superapp.module_util.R;
 
 import java.io.File;
 

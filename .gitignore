@@ -17,6 +17,8 @@ gen/
 out/
 build/
 /*/build/
+/*/build
+/*/*.iml
 
 
 # Windows thumbnail db
@@ -37,28 +39,6 @@ build/
 *.iml
 local.properties
 
-app/build
-app/*.iml
 app/release
 
-lib_base/build
-lib_base/*.iml
-
-module_fragment/build
-module_fragment/*.iml
-
-module_googlelibrary/build
-module_googlelibrary/*.iml
-
-module_main/build
-module_main/*.iml
-
-module_test/build
-module_test/*.iml
-
-module_util/build
-module_util/*.iml
-
-module_view/build
-module_view/*.iml
 

@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_util;
+package org.gmfbilu.superapp.module_util.camera;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
+import org.gmfbilu.superapp.module_util.R;
 
 
 public class SurfaceViewFragment extends BaseFragment {
