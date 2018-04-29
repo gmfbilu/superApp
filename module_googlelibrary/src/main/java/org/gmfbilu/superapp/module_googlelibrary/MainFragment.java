@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
+import org.gmfbilu.superapp.module_googlelibrary.constraintlayout.ConstraintLayoutFragment;
+import org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference.Switch_CheckBox_ListPreferenceFragment;
 
 
 /**
@@ -25,6 +27,7 @@ public class MainFragment extends BaseFragment {
     @Override
     public void findViewById_setOnClickListener(View view) {
         view.findViewById(R.id.module_googlelibrary_bt_constraintlayout).setOnClickListener(this);
+        view.findViewById(R.id.module_googlelibrary_bt_switch_checkbox_listpreference).setOnClickListener(this);
     }
 
     @Override
@@ -38,6 +41,8 @@ public class MainFragment extends BaseFragment {
         int id = v.getId();
         if (id==R.id.module_googlelibrary_bt_constraintlayout){
             start(ConstraintLayoutFragment.newInstance());
+        }else if (id==R.id.module_googlelibrary_bt_switch_checkbox_listpreference){
+            start(Switch_CheckBox_ListPreferenceFragment.newInstance());
         }
     }
 }

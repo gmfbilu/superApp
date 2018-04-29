@@ -23,4 +23,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
+    <Button
+        android:id="@+id/module_util_bt_aidl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AIDL!"
+        app:layout_constraintTop_toBottomOf="@+id/module_util_bt_jni"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
 </android.support.constraint.ConstraintLayout>

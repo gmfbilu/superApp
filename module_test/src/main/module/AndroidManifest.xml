@@ -8,7 +8,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/lib_base_ic_launcher"
         android:label="@string/module_test_app_name"
-        tools:replace="android:theme"
+        tools:replace="android:theme,android:label"
         android:roundIcon="@mipmap/lib_base_ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/lib_base_AppTheme"

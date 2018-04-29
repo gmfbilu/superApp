@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="org.gmfbilu.superapp.lib_base">
 
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
@@ -12,8 +13,19 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.PHONE_STATE"/>
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+
+    <application
+        tools:replace="android:label"
+        android:label="@string/lib_base_app_name">
+        <service android:name=".app.ApplicationIntentService">
+            <intent-filter>
+                <action android:name="org.gmfbilu.superapp.lib_base"/>
+            </intent-filter>
+        </service>
+    </application>
 
 </manifest>

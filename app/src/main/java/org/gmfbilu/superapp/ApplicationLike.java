@@ -4,28 +4,29 @@ import android.annotation.TargetApi;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.os.Build;
-import android.os.Process;
 import android.support.multidex.MultiDex;
-import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.leon.channel.helper.ChannelReaderUtil;
+import com.orhanobut.logger.Logger;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.beta.interfaces.BetaPatchListener;
-import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.tinker.loader.app.DefaultApplicationLike;
+import com.umeng.commonsdk.UMConfigure;
+import com.umeng.message.IUmengRegisterCallback;
+import com.umeng.message.PushAgent;
+import com.umeng.message.UmengNotificationClickHandler;
+import com.umeng.message.entity.UMessage;
 
+import org.gmfbilu.superapp.lib_base.ARouterPath;
+import org.gmfbilu.superapp.lib_base.app.ApplicationIntentService;
 import org.gmfbilu.superapp.lib_base.app.Constant;
-import org.gmfbilu.superapp.lib_base.utils.Utils;
+import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Locale;
 
 /**
@@ -40,11 +41,12 @@ public class ApplicationLike extends DefaultApplicationLike {
     private Application application = getApplication();
 
 
-    public static final String TAG = "Tinker.SampleApplicationLike";
-
-    public ApplicationLike(Application application, int tinkerFlags,
-                           boolean tinkerLoadVerifyFlag, long applicationStartElapsedTime,
-                           long applicationStartMillisTime, Intent tinkerResultIntent) {
+    public ApplicationLike(Application application,
+                           int tinkerFlags,
+                           boolean tinkerLoadVerifyFlag,
+                           long applicationStartElapsedTime,
+                           long applicationStartMillisTime,
+                           Intent tinkerResultIntent) {
         super(application,
                 tinkerFlags,
                 tinkerLoadVerifyFlag,
@@ -57,29 +59,62 @@ public class ApplicationLike extends DefaultApplicationLike {
     @Override
     public void onCreate() {
         super.onCreate();
-        Utils.init(application);
-        initARouter();
+        ApplicationIntentService.start(getApplication(), "ApplicationLike");
         initBuglyHotFix();
-        initCrashReport();
+        /**
+         * 并不是所有的第三方库都可以放在IntentService中
+         */
+        initPush();
+        Log.d(Constant.LOG_NAME, getClass().getName() + "---> start");
+
     }
 
-    private void initCrashReport() {
-        // 获取当前包名
-        String packageName = getApplication().getPackageName();
-        // 获取当前进程名
-        String processName = getProcessName(Process.myPid());
-        //获取渠道名
-        String channel = ChannelReaderUtil.getChannel(getApplication());
-        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplication());
-        // 设置是否为上报进程,如果App使用了多进程且各个进程都会初始化Bugly.那么每个进程下的Bugly都会进行数据上报，造成不必要的资源浪费.只在主进程下上报数据
-        strategy.setUploadProcess(processName == null || processName.equals(packageName));
-        strategy.setAppChannel(channel);  //设置渠道
-        strategy.setAppVersion(getVersionCode());      //App的版本
-        strategy.setAppPackageName(packageName);  //App的包名
-        strategy.setAppReportDelay(10000);   //Bugly会在启动10s后联网同步数据
-        CrashReport.initCrashReport(getApplication(), "e5ab76a7fa", !Constant.ISRELEASE, strategy);
-        CrashReport.setIsDevelopmentDevice(getApplication(), !Constant.ISRELEASE);
+    private void initPush() {
+        UMConfigure.init(getApplication(), Constant.PUSH_APPKEY, AppUtils.getChannelName(getApplication()), UMConfigure.DEVICE_TYPE_PHONE, Constant.PUSH_SECRET);
+        UMConfigure.setLogEnabled(Constant.ISSHOWLOG);
+        PushAgent mPushAgent = PushAgent.getInstance(getApplication());
+        /**
+         * 注册推送服务，每次调用register方法都会回调该接口
+         */
+        mPushAgent.register(new IUmengRegisterCallback() {
+            @Override
+            public void onSuccess(String deviceToken) {
+                //注册成功会返回device token
+                Log.d(Constant.LOG_NAME, "推送服务注册成功，deviceToken：" + deviceToken);
+            }
+
+            @Override
+            public void onFailure(String s, String s1) {
+                Log.d(Constant.LOG_NAME, "推送服务注册失败，错误信息：" + s + ", " + s1);
+            }
+        });
+        /**
+         * 自定义通知打开动作
+         * 自定义行为的数据放在UMessage.custom字段
+         */
+        UmengNotificationClickHandler notificationClickHandler = new UmengNotificationClickHandler() {
+
+            @Override
+            public void dealWithCustomAction(Context context, UMessage uMessage) {
+                super.dealWithCustomAction(context, uMessage);
+                Logger.d(uMessage.custom);
+                switch (uMessage.custom) {
+                    case "module_main_googleLibrary":
+                        //打开Activity
+                        ARouter.getInstance()
+                                .build(ARouterPath.MODULE_GOOGLELIBRARY)
+                                //.withFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK)
+                                .navigation();
+
+                        break;
+
+                }
+            }
+        };
+        mPushAgent.setNotificationClickHandler(notificationClickHandler);
+
     }
+
 
     private void initBuglyHotFix() {
         // 设置是否开启热更新能力，默认为true
@@ -142,15 +177,6 @@ public class ApplicationLike extends DefaultApplicationLike {
         Bugly.init(application, "e5ab76a7fa", true);
     }
 
-    private void initARouter() {
-        if (Utils.isAppDebug()) {
-            //开启InstantRun之后，一定要在ARouter.init之前调用openDebug
-            ARouter.openDebug();
-            ARouter.openLog();
-        }
-        ARouter.init(application);
-    }
-
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     @Override
@@ -158,7 +184,6 @@ public class ApplicationLike extends DefaultApplicationLike {
         super.onBaseContextAttached(base);
         // you must install multiDex whatever tinker is installed!
         MultiDex.install(base);
-
         // 安装tinker
         // TinkerManager.installTinker(this); 替换成下面Bugly提供的方法
         Beta.installTinker(this);
@@ -171,52 +196,30 @@ public class ApplicationLike extends DefaultApplicationLike {
 
     @Override
     public void onTerminate() {
+        // 程序终止的时候执行
+        Logger.d(getClass().getName() + "---> onTerminate");
         super.onTerminate();
         Beta.unInit();
     }
 
-
-    /**
-     * 获取进程号对应的进程名
-     *
-     * @param pid 进程号
-     * @return 进程名
-     */
-    private static String getProcessName(int pid) {
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new FileReader("/proc/" + pid + "/cmdline"));
-            String processName = reader.readLine();
-            if (!TextUtils.isEmpty(processName)) {
-                processName = processName.trim();
-            }
-            return processName;
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        } finally {
-            try {
-                if (reader != null) {
-                    reader.close();
-                }
-            } catch (IOException exception) {
-                exception.printStackTrace();
-            }
-        }
-        return null;
+    @Override
+    public void onLowMemory() {
+        // 低内存的时候执行
+        Logger.d(getClass().getName() + "---> onLowMemory");
+        super.onLowMemory();
     }
 
+    @Override
+    public void onTrimMemory(int level) {
+        // 程序在内存清理的时候执行
+        Logger.d(getClass().getName() + "---> onTrimMemory");
+        super.onTrimMemory(level);
+    }
 
-    private String getVersionCode() {
-        PackageManager packageManager = application.getPackageManager();
-        PackageInfo packageInfo;
-        String versionCode = "";
-        try {
-            packageInfo = packageManager.getPackageInfo(application.getPackageName(), 0);
-            versionCode = packageInfo.versionCode + "";
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        return versionCode;
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        Logger.d(getClass().getName() + "---> onConfigurationChanged");
+        super.onConfigurationChanged(newConfig);
     }
 
 }

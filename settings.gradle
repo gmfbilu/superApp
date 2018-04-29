@@ -5,4 +5,5 @@ include ':app',
         ':module_util',
         ':module_fragment',
         ':module_view',
-        ':module_googlelibrary'
+        ':module_googlelibrary',
+        ':module_java'

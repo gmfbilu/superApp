@@ -6,8 +6,7 @@
         android:theme="@style/lib_base_AppTheme">
 
         <activity
-            android:name=".MainActivity"
-            android:label="@string/module_main_app_name">
+            android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

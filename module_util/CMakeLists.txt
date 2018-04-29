@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.4.1)
 add_library( # Sets the name of the library.cpp文件名
              jniDemo
 
-             # Sets the library as a shared library.
+             # 设置这个so库为共享
              SHARED
 
              # Provides a relative path to your source file(s).cpp文件地址
@@ -13,3 +13,11 @@ target_link_libraries(
                         jniDemo
                         android
                         log)
+
+add_library(jniDemo2
+            SHARED
+            src/main/cpp/jniDemo2.cpp )
+
+target_link_libraries(jniDemo2
+        android
+        log)

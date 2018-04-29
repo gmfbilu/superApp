@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+
+    <string-array name="spinner_array" tools:ignore="ResourceName">
+        <item>spinner item 1</item>
+        <item>spinner item 2</item>
+        <item>spinner item 3</item>
+        <item>spinner item 4</item>
+        <item>spinner item 5</item>
+    </string-array>
+
+    <string-array name="dialog_choice_array" tools:ignore="ResourceName">
+        <item>New York</item>
+        <item>Los Angeles</item>
+        <item>San Francisco</item>
+        <item>Paris</item>
+        <item>London</item>
+    </string-array>
+
+</resources>

@@ -24,6 +24,14 @@
 
         <activity android:name=".MainActivity">
         </activity>
+        <service
+            android:name=".aidl.AIDLService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="org.gmfbilu.superapp.module_util.aidl"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

@@ -28,6 +28,24 @@
 			],
 			"output" : "/home/gmfbilu/Work/Android/Projects/superApp/module_util/build/intermediates/cmake/release/obj/arm64-v8a/libjniDemo.so",
 			"toolchain" : "8962518858468697716"
+		},
+		"jniDemo2-Release-arm64-v8a" : 
+		{
+			"abi" : "arm64-v8a",
+			"artifactName" : "jniDemo2",
+			"buildCommand" : "/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/arm64-v8a --target jniDemo2",
+			"buildType" : "release",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=aarch64-none-linux-android --gcc-toolchain=/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64 --sysroot=/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sysroot  -DjniDemo2_EXPORTS -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/android/support/include -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sysroot/usr/include/aarch64-linux-android -D__ANDROID_API__=21 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/gmfbilu/Work/Android/Projects/superApp/module_util/src/main/cpp/jniDemo2.cpp",
+					"workingDirectory" : "/home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/arm64-v8a"
+				}
+			],
+			"output" : "/home/gmfbilu/Work/Android/Projects/superApp/module_util/build/intermediates/cmake/release/obj/arm64-v8a/libjniDemo2.so",
+			"toolchain" : "8962518858468697716"
 		}
 	},
 	"toolchains" : 

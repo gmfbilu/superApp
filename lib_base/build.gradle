@@ -10,7 +10,7 @@ android {
         versionName versionName
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ moduleName : project.getName() ]
+                arguments = [moduleName: project.getName()]
             }
         }
     }
@@ -50,7 +50,6 @@ dependencies {
     api "com.android.support:design:${android_support_lib_version}"
     api "com.android.support.constraint:constraint-layout:${android_constraint_lib_version}"
 
-
     //路由
     api "com.alibaba:arouter-api:${android_arouter_api_version}"
     //日志
@@ -67,5 +66,25 @@ dependencies {
     //权限申请
     api "com.github.hotchemi:permissionsdispatcher:${android_hotchemi_permissionsdispatcher_version}"
     annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:${android_hotchemi_permissionsdispatcher_version}"
+    //PushSDK
+    api "com.umeng.sdk:common:${android_push_common_version}"
+    api "com.umeng.sdk:utdid:${android_push_utdid_version}"
+    api "com.umeng.sdk:push:${android_push_version}"
+    //RxJava2
+    api "io.reactivex.rxjava2:rxjava:${android_rxjava_version}"
+    //RxAndroid2
+    api "io.reactivex.rxjava2:rxandroid:${android_rxandroid_version}"
+    //Retrofit2
+    api "com.squareup.retrofit2:retrofit:${android_retrofit2_version}"
+    //okhttp3
+    api "com.squareup.okhttp3:okhttp:${android_okhttp3_version}"
+    //logging-interceptor
+    api "com.squareup.okhttp3:logging-interceptor:${android_okhttp_logging_version}"
+    //gson
+    api "com.google.code.gson:gson:${android_gson_version}"
+    //converter-gson
+    api "com.squareup.retrofit2:converter-gson:${android_converter_gson_version}"
+    //adapter-rxjava
+    api "com.squareup.retrofit2:adapter-rxjava2:${android_adapter_rxjava_version}"
 
 }

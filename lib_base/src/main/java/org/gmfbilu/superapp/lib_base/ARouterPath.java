@@ -11,4 +11,5 @@ public interface ARouterPath {
     String MODULE_GOOGLELIBRARY="/module_googleLibrary/main";
     String MODULE_VIEWS="/module_views/main";
     String MODULE_UTIL="/module_util/main";
+    String MODULE_JAVA="/module_java/main";
 }

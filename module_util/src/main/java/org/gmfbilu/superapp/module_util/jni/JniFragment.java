@@ -14,7 +14,10 @@ public class JniFragment extends BaseFragment {
     static {
         //这个名字和src/main/cpp/中文件名一致
         System.loadLibrary("jniDemo");
+        System.loadLibrary("jniDemo2");
     }
+
+    public native String getJniString();
 
     private Toolbar mToolbar;
 
@@ -41,7 +44,7 @@ public class JniFragment extends BaseFragment {
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.module_util_bt_hello) {
-            Toast.makeText(_mActivity, JniDemoLib.getString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(_mActivity, JniDemoLib.getString()+"---"+getJniString(), Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -11,9 +11,8 @@ static def releaseTime() {
     return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
 }
 
-
 //根据已有基础包重新生成多渠道包,gradle rebuildChannel
-rebuildChannel{
+rebuildChannel {
     //指定渠道文件
     channelFile = file("..channel.txt")
     //已有Debug APK
@@ -21,7 +20,7 @@ rebuildChannel{
     //已有Release APK，注意此目录位于app/baseApk
     baseReleaseApk = new File(project.projectDir, "baseApk/release.apk")
     //Debug渠道包输出目录
-    debugOutputDir =new File(project.buildDir, "rebuildChannel/debug")
+    debugOutputDir = new File(project.buildDir, "rebuildChannel/debug")
     //Release渠道包输出目录
     releaseOutputDir = new File(project.buildDir, "rebuildChannel/release")
     isFastMode = false
@@ -65,7 +64,7 @@ android {
         }
         ndk {
             //设置支持的SO库架构
-           // abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+            // abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
         }
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -76,7 +75,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    dexOptions{
+    dexOptions {
         jumboMode = true
     }
 
@@ -84,27 +83,29 @@ android {
         debug {
             buildConfigField "boolean", "LOG_DEBUG", "true"
             versionNameSuffix "-debug"
-            zipAlignEnabled true
-            shrinkResources true
-            minifyEnabled true
+            zipAlignEnabled false
+            shrinkResources false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
         }
         release {
             buildConfigField "boolean", "LOG_DEBUG", "false"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            zipAlignEnabled true
-            shrinkResources true
-            minifyEnabled true
+            zipAlignEnabled false
+            shrinkResources false
+            minifyEnabled false
             signingConfig signingConfigs.release
         }
     }
 
+    /*
+    设置此目录的情况下so文件就要放在libs下
     sourceSets{
-        main{
-            jniLibs.srcDirs=['libs']
-        }
-    }
+           main{
+               jniLibs.srcDirs=['libs']
+           }
+       }*/
 
 }
 
@@ -122,5 +123,6 @@ dependencies {
         implementation project(':module_googlelibrary')
         implementation project(':module_view')
         implementation project(':module_util')
+        implementation project(':module_java')
     }
 }

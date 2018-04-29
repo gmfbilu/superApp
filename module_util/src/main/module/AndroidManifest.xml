@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="org.gmfbilu.superapp.module_util">
-
+    <!--icon和roundIcon以及theme用base的，label用本地的-->
     <application
         android:name="debug.UtilApplication"
         android:icon="@mipmap/lib_base_ic_launcher"
@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/lib_base_AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
-        tools:replace="android:theme">
+        tools:replace="android:theme,android:label">
 
         <!--android N 以上收回对文件访问的权限 ，因此要在此声明权限
             android:exported="false"  表示对其他应用不可用
@@ -38,6 +38,15 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".aidl.AIDLService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="org.gmfbilu.superapp.module_util.aidl"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </service>
 
     </application>
 

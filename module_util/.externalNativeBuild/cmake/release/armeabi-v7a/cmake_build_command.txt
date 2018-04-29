@@ -3,7 +3,7 @@ arguments :
 -H/home/gmfbilu/Work/Android/Projects/superApp/module_util
 -B/home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/armeabi-v7a
 -DANDROID_ABI=armeabi-v7a
--DANDROID_PLATFORM=android-16
+-DANDROID_PLATFORM=android-21
 -DCMAKE_LIBRARY_OUTPUT_DIRECTORY=/home/gmfbilu/Work/Android/Projects/superApp/module_util/build/intermediates/cmake/release/obj/armeabi-v7a
 -DCMAKE_BUILD_TYPE=Release
 -DANDROID_NDK=/home/gmfbilu/Work/Android/Sdk/ndk-bundle

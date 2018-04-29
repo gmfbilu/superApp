@@ -49,12 +49,42 @@ build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
   restat = 1
 build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
+# Object build statements for SHARED_LIBRARY target jniDemo2
+
+build CMakeFiles/jniDemo2.dir/src/main/cpp/jniDemo2.cpp.o: CXX_COMPILER__jniDemo2 ../../../../src/main/cpp/jniDemo2.cpp
+  DEFINES = -DjniDemo2_EXPORTS
+  DEP_FILE = CMakeFiles/jniDemo2.dir/src/main/cpp/jniDemo2.cpp.o.d
+  FLAGS = -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=21 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -O0 -fno-limit-debug-info  -fPIC
+  INCLUDES = -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/android/support/include -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include
+  IN_ABS = /home/gmfbilu/Work/Android/Projects/superApp/module_util/src/main/cpp/jniDemo2.cpp
+  OBJECT_DIR = CMakeFiles/jniDemo2.dir
+  OBJECT_FILE_DIR = CMakeFiles/jniDemo2.dir/src/main/cpp
+
+# =============================================================================
+# Link build statements for SHARED_LIBRARY target jniDemo2
+
+
+#############################################
+# Link the shared library ../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo2.so
+
+build ../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo2.so: CXX_SHARED_LIBRARY_LINKER__jniDemo2 CMakeFiles/jniDemo2.dir/src/main/cpp/jniDemo2.cpp.o
+  LANGUAGE_COMPILE_FLAGS = -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=21 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -O0 -fno-limit-debug-info
+  LINK_FLAGS = -Wl,--exclude-libs,libgcc.a -Wl,--exclude-libs,libatomic.a -nostdlib++ --sysroot /home/gmfbilu/Work/Android/Sdk/ndk-bundle/platforms/android-21/arch-arm -Wl,--build-id -Wl,--warn-shared-textrel -Wl,--fatal-warnings -Wl,--fix-cortex-a8 -Wl,--exclude-libs,libunwind.a -L/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/armeabi-v7a -Wl,--no-undefined -Wl,-z,noexecstack -Qunused-arguments -Wl,-z,relro -Wl,-z,now
+  LINK_LIBRARIES = -landroid -llog -latomic -lm "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/armeabi-v7a/libc++_static.a" "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/armeabi-v7a/libc++abi.a" "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/armeabi-v7a/libunwind.a" "-ldl"
+  OBJECT_DIR = CMakeFiles/jniDemo2.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  SONAME = libjniDemo2.so
+  SONAME_FLAG = -Wl,-soname,
+  TARGET_FILE = ../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo2.so
+  TARGET_PDB = jniDemo2.so.dbg
+# =============================================================================
 # Object build statements for SHARED_LIBRARY target jniDemo
 
 build CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o: CXX_COMPILER__jniDemo ../../../../src/main/cpp/jniDemo.cpp
   DEFINES = -DjniDemo_EXPORTS
   DEP_FILE = CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o.d
-  FLAGS = -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=16 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -O0 -fno-limit-debug-info  -fPIC
+  FLAGS = -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=21 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -O0 -fno-limit-debug-info  -fPIC
   INCLUDES = -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/android/support/include -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include
   IN_ABS = /home/gmfbilu/Work/Android/Projects/superApp/module_util/src/main/cpp/jniDemo.cpp
   OBJECT_DIR = CMakeFiles/jniDemo.dir
@@ -68,9 +98,9 @@ build CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o: CXX_COMPILER__jniDemo .
 # Link the shared library ../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo.so
 
 build ../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo.so: CXX_SHARED_LIBRARY_LINKER__jniDemo CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o
-  LANGUAGE_COMPILE_FLAGS = -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=16 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -O0 -fno-limit-debug-info
-  LINK_FLAGS = -Wl,--exclude-libs,libgcc.a -Wl,--exclude-libs,libatomic.a -nostdlib++ --sysroot /home/gmfbilu/Work/Android/Sdk/ndk-bundle/platforms/android-16/arch-arm -Wl,--build-id -Wl,--warn-shared-textrel -Wl,--fatal-warnings -Wl,--fix-cortex-a8 -Wl,--exclude-libs,libunwind.a -L/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/armeabi-v7a -Wl,--no-undefined -Wl,-z,noexecstack -Qunused-arguments -Wl,-z,relro -Wl,-z,now
-  LINK_LIBRARIES = -landroid -llog -latomic -lm "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/armeabi-v7a/libc++_static.a" "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/armeabi-v7a/libc++abi.a" "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/armeabi-v7a/libandroid_support.a" "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/armeabi-v7a/libunwind.a" "-ldl"
+  LANGUAGE_COMPILE_FLAGS = -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=21 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -O0 -fno-limit-debug-info
+  LINK_FLAGS = -Wl,--exclude-libs,libgcc.a -Wl,--exclude-libs,libatomic.a -nostdlib++ --sysroot /home/gmfbilu/Work/Android/Sdk/ndk-bundle/platforms/android-21/arch-arm -Wl,--build-id -Wl,--warn-shared-textrel -Wl,--fatal-warnings -Wl,--fix-cortex-a8 -Wl,--exclude-libs,libunwind.a -L/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/armeabi-v7a -Wl,--no-undefined -Wl,-z,noexecstack -Qunused-arguments -Wl,-z,relro -Wl,-z,now
+  LINK_LIBRARIES = -landroid -llog -latomic -lm "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/armeabi-v7a/libc++_static.a" "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/armeabi-v7a/libc++abi.a" "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/armeabi-v7a/libunwind.a" "-ldl"
   OBJECT_DIR = CMakeFiles/jniDemo.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -82,7 +112,9 @@ build ../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo.so:
 # Target aliases.
 
 build jniDemo: phony ../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo.so
+build jniDemo2: phony ../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo2.so
 build libjniDemo.so: phony ../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo.so
+build libjniDemo2.so: phony ../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo2.so
 # =============================================================================
 # Folder targets.
 
@@ -94,7 +126,7 @@ build libjniDemo.so: phony ../../../../build/intermediates/cmake/debug/obj/armea
 #############################################
 # The main all target.
 
-build all: phony ../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo.so
+build all: phony ../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo2.so ../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo.so
 
 #############################################
 # Make the all target the default.

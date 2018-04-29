@@ -4,12 +4,14 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Environment;
 import android.text.TextUtils;
 
 import com.leon.channel.helper.ChannelReaderUtil;
-import com.orhanobut.logger.Logger;
 
+import org.gmfbilu.superapp.lib_base.app.ActivitiesManager;
 import org.gmfbilu.superapp.lib_base.app.Constant;
 
 import java.io.BufferedReader;
@@ -38,17 +40,16 @@ public class AppUtils {
      *
      * @return
      */
-    public static String getPackageName() {
+    public static String getPackageName(Context context) {
         //当前应用pid
         int pid = android.os.Process.myPid();
         //任务管理类
-        ActivityManager manager = (ActivityManager) Utils.getContext().getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         //遍历所有应用
         List<ActivityManager.RunningAppProcessInfo> infos = Objects.requireNonNull(manager).getRunningAppProcesses();
         for (ActivityManager.RunningAppProcessInfo info : infos) {
             if (info.pid == pid)//得到当前应用
-                Logger.d(info.processName);
-            return info.processName;//返回包名
+                return info.processName;//返回包名
         }
         return Constant.BASE_PACKAGENAME;
     }
@@ -58,9 +59,9 @@ public class AppUtils {
      *
      * @return
      */
-    public static String getAppVersion() {
-        PackageManager packageManager = Utils.getContext().getPackageManager();
-        String packageName = getPackageName();
+    public static String getAppVersion(Context context) {
+        PackageManager packageManager = context.getPackageManager();
+        String packageName = getPackageName(context);
         String name;
         try {
             PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
@@ -107,12 +108,43 @@ public class AppUtils {
      *
      * @return
      */
-    public static String getChannelName() {
-        String name = ChannelReaderUtil.getChannel(Utils.getContext());
+    public static String getChannelName(Context context) {
+        String name = ChannelReaderUtil.getChannel(context);
         if (TextUtils.isEmpty(name)) {
             name = Constant.BASE_CHANNEL;
         }
         return name;
     }
+
+
+    public static void AppExit(Context context) {
+        try {
+            ActivitiesManager.removeAllActivity();
+            ActivityManager activityManager = (android.app.ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+            activityManager.restartPackage(getPackageName(context));
+            System.exit(0);
+        } catch (Exception e) {
+
+        }
+    }
+
+    /**
+     * 判断是否有网络连接
+     *
+     * @param context
+     * @return
+     */
+    public static boolean isNetworkConnected(Context context) {
+        if (context != null) {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+            if (mNetworkInfo != null) {
+                return mNetworkInfo.isAvailable();
+            }
+        }
+        return false;
+    }
+
 
 }
