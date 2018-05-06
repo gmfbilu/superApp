@@ -14,12 +14,6 @@
 
 ### main组件功能（业务组件）：
 1. 声明应用的launcherActivity----->android.intent.category.LAUNCHER；
-2. 添加SplashActivity;
-3. 添加LoginActivity；
-4. 添加MainActivity；
-
-### girls/news组件功能（业务组件）：
-1. 这两个组件都是业务组件，根据产品的业务逻辑独立成一个组件；
 
 ### common组件功能（功能组件）：
 1. common组件是基础库，添加一些公用的类；

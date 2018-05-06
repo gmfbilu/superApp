@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.lib_base;
+package org.gmfbilu.superapp.lib_base.app;
 
 /**
  * Created by gmfbilu on 2018/3/7.

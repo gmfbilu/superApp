@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 
-import org.gmfbilu.superapp.lib_base.ARouterPath;
+import org.gmfbilu.superapp.lib_base.app.ARouterPath;
 import org.gmfbilu.superapp.lib_base.base.BaseActivity;
 import org.gmfbilu.superapp.lib_base.bean.TestBean;
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;

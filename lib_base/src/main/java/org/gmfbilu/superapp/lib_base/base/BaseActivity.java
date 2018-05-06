@@ -55,27 +55,27 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
     @Override
     protected void onRestart() {
         super.onRestart();
-        Logger.d(getClass().getName() + "---> onRestart");
+       // Logger.d(getClass().getName() + "---> onRestart");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Logger.d(getClass().getName() + "---> onResume");
+        //Logger.d(getClass().getName() + "---> onResume");
     }
 
 
     @Override
     protected void onPause() {
         super.onPause();
-        Logger.d(getClass().getName() + "---> onPause");
+        //Logger.d(getClass().getName() + "---> onPause");
     }
 
 
     @Override
     protected void onStop() {
         super.onStop();
-        Logger.d(getClass().getName() + "---> onStop");
+        //Logger.d(getClass().getName() + "---> onStop");
     }
 
     @Override

@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_util.camera;
+package org.gmfbilu.superapp.module_util.surfaceView;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

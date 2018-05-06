@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_java.retrofit_rxjava;
+package org.gmfbilu.superapp.lib_base.http;
 
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
@@ -10,7 +10,6 @@ import java.lang.reflect.Type;
 
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
-
 
 
 class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
@@ -26,10 +25,11 @@ class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
     public T convert(ResponseBody value) throws IOException {
         String response = value.string();
         HttpResult httpResult = gson.fromJson(response, HttpResult.class);
-        String respCode = httpResult.RespCode;
-        Logger.json(response);
+        String respCode = httpResult.code;
+        //Logger.json(response);
+        Logger.d(response);
         if (!respCode.equals(Constant.CODE_RESPONSE_SUCCEED)) {
-            throw new ApiException(respCode, httpResult.RespDesc,httpResult.RespData);
+            throw new ApiException(respCode, httpResult.message,httpResult.data);
         }
         return gson.fromJson(response, type);
     }

@@ -64,8 +64,7 @@ dependencies {
     //多渠道打包
     api "com.leon.channel:helper:${android_leon_channel_version}"
     //权限申请
-    api "com.github.hotchemi:permissionsdispatcher:${android_hotchemi_permissionsdispatcher_version}"
-    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:${android_hotchemi_permissionsdispatcher_version}"
+    api "com.tbruyelle.rxpermissions2:rxpermissions:${android_rxpermissions2_version}"
     //PushSDK
     api "com.umeng.sdk:common:${android_push_common_version}"
     api "com.umeng.sdk:utdid:${android_push_utdid_version}"
@@ -86,5 +85,8 @@ dependencies {
     api "com.squareup.retrofit2:converter-gson:${android_converter_gson_version}"
     //adapter-rxjava
     api "com.squareup.retrofit2:adapter-rxjava2:${android_adapter_rxjava_version}"
+    //autodispose
+    api "com.uber.autodispose:autodispose:${android_autodispose_version}"
+    api "com.uber.autodispose:autodispose-android-archcomponents:${android_autodispose_android_archcomponents_version}"
 
 }

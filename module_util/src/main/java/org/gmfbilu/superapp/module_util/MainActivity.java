@@ -5,12 +5,10 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 
-import org.gmfbilu.superapp.lib_base.ARouterPath;
+import org.gmfbilu.superapp.lib_base.app.ARouterPath;
 import org.gmfbilu.superapp.lib_base.base.BaseActivity;
 
-import permissions.dispatcher.RuntimePermissions;
 
-@RuntimePermissions
 @Route(path = ARouterPath.MODULE_UTIL)
 public class MainActivity extends BaseActivity {
 

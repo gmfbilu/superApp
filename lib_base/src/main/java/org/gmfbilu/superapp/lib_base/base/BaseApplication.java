@@ -1,6 +1,7 @@
 package org.gmfbilu.superapp.lib_base.base;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.util.Log;
 
@@ -19,11 +20,19 @@ import org.gmfbilu.superapp.lib_base.app.Constant;
 
 public class BaseApplication extends Application {
 
+    public static Context sApplicationContext;
+
+
+    public static Context getInstance() {
+        return sApplicationContext;
+    }
+
 
     @Override
     public void onCreate() {
         super.onCreate();
-        ApplicationIntentService.start(this,getClass().getSimpleName());
+        sApplicationContext = this;
+        ApplicationIntentService.start(this, getClass().getSimpleName());
         Log.d(Constant.LOG_NAME, getClass().getName() + "---> start");
     }
 

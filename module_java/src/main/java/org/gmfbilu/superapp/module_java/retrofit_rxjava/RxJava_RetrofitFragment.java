@@ -4,8 +4,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
+import org.gmfbilu.superapp.lib_base.bean.request.GetDictionaryDatReq;
+import org.gmfbilu.superapp.lib_base.bean.request.GetProductsByTypeReq;
+import org.gmfbilu.superapp.lib_base.bean.request.LoginReq;
+import org.gmfbilu.superapp.lib_base.bean.response.AddJJMergeRes;
+import org.gmfbilu.superapp.lib_base.bean.response.LoginRes;
+import org.gmfbilu.superapp.lib_base.http.HttpMethods;
+import org.gmfbilu.superapp.lib_base.http.MessiObserver;
 import org.gmfbilu.superapp.module_java.R;
 
 public class RxJava_RetrofitFragment extends BaseFragment {
@@ -23,6 +31,8 @@ public class RxJava_RetrofitFragment extends BaseFragment {
     @Override
     public void findViewById_setOnClickListener(View view) {
         mToolbar = view.findViewById(R.id.module_java_toolbar);
+        view.findViewById(R.id.module_java_bt_singleRequest).setOnClickListener(this);
+        view.findViewById(R.id.module_java_bt_multiRequest).setOnClickListener(this);
     }
 
     @Override
@@ -32,7 +42,12 @@ public class RxJava_RetrofitFragment extends BaseFragment {
 
     @Override
     public void onClick(View v) {
-
+        int id = v.getId();
+        if (id == R.id.module_java_bt_singleRequest) {
+            singleRequest();
+        } else if (id == R.id.module_java_bt_multiRequest) {
+            multiRequest();
+        }
     }
 
 
@@ -58,5 +73,32 @@ public class RxJava_RetrofitFragment extends BaseFragment {
     @Override
     public void onEnterAnimationEnd(Bundle savedInstanceState) {
         super.onEnterAnimationEnd(savedInstanceState);
+    }
+
+
+    private void singleRequest() {
+        LoginReq loginReq = new LoginReq();
+        loginReq.login_name = "admin";
+        loginReq.password = "123456";
+        HttpMethods.getInstance().login(new MessiObserver<LoginRes>() {
+
+            @Override
+            public void onNext(LoginRes loginRes) {
+                super.onNext(loginRes);
+                Toast.makeText(_mActivity, loginRes.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }, loginReq, this);
+    }
+
+    private void multiRequest() {
+        GetDictionaryDatReq getDictionaryDatReq = new GetDictionaryDatReq();
+        GetProductsByTypeReq getProductsByTypeReq = new GetProductsByTypeReq();
+        HttpMethods.getInstance().addJJMerge(new MessiObserver<AddJJMergeRes>() {
+            @Override
+            public void onNext(AddJJMergeRes addJJMergeRes) {
+                super.onNext(addJJMergeRes);
+                Toast.makeText(_mActivity, addJJMergeRes.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }, getDictionaryDatReq, getProductsByTypeReq, this);
     }
 }

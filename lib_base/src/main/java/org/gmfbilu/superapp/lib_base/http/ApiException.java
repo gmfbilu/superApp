@@ -1,8 +1,7 @@
-package org.gmfbilu.superapp.module_java.retrofit_rxjava;
+package org.gmfbilu.superapp.lib_base.http;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 
 
 public class ApiException extends RuntimeException implements Parcelable {
@@ -36,7 +35,7 @@ public class ApiException extends RuntimeException implements Parcelable {
         this.ResponseMessageError = in.readString();
     }
 
-    public static final Parcelable.Creator<ApiException> CREATOR = new Parcelable.Creator<ApiException>() {
+    public static final Creator<ApiException> CREATOR = new Creator<ApiException>() {
         @Override
         public ApiException createFromParcel(Parcel source) {
             return new ApiException(source);

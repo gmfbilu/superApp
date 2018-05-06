@@ -8,11 +8,13 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Environment;
 import android.text.TextUtils;
+import android.util.TypedValue;
 
 import com.leon.channel.helper.ChannelReaderUtil;
 
 import org.gmfbilu.superapp.lib_base.app.ActivitiesManager;
 import org.gmfbilu.superapp.lib_base.app.Constant;
+import org.gmfbilu.superapp.lib_base.base.BaseApplication;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -144,6 +146,14 @@ public class AppUtils {
             }
         }
         return false;
+    }
+
+    public static int dp2px(int dpValue) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, BaseApplication.getInstance().getResources().getDisplayMetrics());
+    }
+
+    public static int sp2px(int spValue) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, BaseApplication.getInstance().getResources().getDisplayMetrics());
     }
 
 

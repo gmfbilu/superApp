@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_util.camera;
+package org.gmfbilu.superapp.module_util.surfaceView;
 
 import android.content.Context;
 import android.graphics.Canvas;

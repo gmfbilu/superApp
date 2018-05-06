@@ -1,18 +1,30 @@
-package org.gmfbilu.superapp.module_java.retrofit_rxjava;
+package org.gmfbilu.superapp.lib_base.http;
 
+import android.arch.lifecycle.LifecycleOwner;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
+import com.uber.autodispose.AutoDispose;
+import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
 import org.gmfbilu.superapp.lib_base.app.Constant;
+import org.gmfbilu.superapp.lib_base.base.BaseApplication;
+import org.gmfbilu.superapp.lib_base.bean.request.GetDictionaryDatReq;
+import org.gmfbilu.superapp.lib_base.bean.request.GetProductsByTypeReq;
+import org.gmfbilu.superapp.lib_base.bean.request.LoginReq;
+import org.gmfbilu.superapp.lib_base.bean.response.AddJJMergeRes;
+import org.gmfbilu.superapp.lib_base.bean.response.GetDictionaryDatRes;
+import org.gmfbilu.superapp.lib_base.bean.response.GetProductsByTypeRes;
+import org.gmfbilu.superapp.lib_base.bean.response.GetSaleManListRes;
+import org.gmfbilu.superapp.lib_base.bean.response.LoginRes;
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-import debug.JavaApplication;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -59,7 +71,7 @@ public class HttpMethods {
         Request request = chain.request();
 
         // 在这里统一配置请求头缓存策略以及响应头缓存策略
-        if (AppUtils.isNetworkConnected(JavaApplication.getInstance())) {
+        if (AppUtils.isNetworkConnected(BaseApplication.getInstance())) {
             // 在有网的情况下CACHE_AGE_SEC秒内读缓存，大于CACHE_AGE_SEC秒后会重新请求数据
             request = request.newBuilder().removeHeader("Pragma").removeHeader("Cache-Control").header("Cache-Control", "public, max-age=" + CACHE_AGE_SEC).build();
             Response response = chain.proceed(request);
@@ -79,14 +91,14 @@ public class HttpMethods {
         initRetrofit();
     }
 
-    public void initRetrofit() {
+    private void initRetrofit() {
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
         //日志打印
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
             public void log(String message) {
                 if (Constant.ISSHOWLOG) {
-                    Log.d("HttpMethods", message);
+                    Log.d(Constant.LOG_NAME, message);
                 }
             }
         });
@@ -94,7 +106,7 @@ public class HttpMethods {
         httpClientBuilder.addInterceptor(loggingInterceptor);
         httpClientBuilder.addNetworkInterceptor(mRewriteCacheControlInterceptor);
 
-        Cache cache = new Cache(new File(JavaApplication.getInstance().getExternalCacheDir(), "ExampleHttpCache"), 1024 * 1024 * 100);
+        Cache cache = new Cache(new File(BaseApplication.getInstance().getExternalCacheDir(), "ExampleHttpCache"), 1024 * 1024 * 100);
         httpClientBuilder.cache(cache);
         httpClientBuilder.retryOnConnectionFailure(true);
         httpClientBuilder.connectTimeout(Constant.DEFAULT_TIMEOUT, TimeUnit.SECONDS);
@@ -113,27 +125,28 @@ public class HttpMethods {
         mApiService = retrofit.create(ApiService.class);
     }
 
-
     private class HttpResultFunc<T> implements Function<HttpResult<T>, T> {
 
         @Override
         public T apply(HttpResult<T> httpResult) throws Exception {
-            String respCode = httpResult.RespCode;
+            String respCode = httpResult.code;
             if (!respCode.equals(Constant.CODE_RESPONSE_SUCCEED)) {
-                throw new ApiException(respCode, httpResult.RespCode, httpResult.RespData);
+                throw new ApiException(respCode, httpResult.code, httpResult.data);
             }
-            if (httpResult.RespCode != null) {
-                return httpResult.RespData;
+            if (httpResult.code != null) {
+                return httpResult.data;
             }
             return null;
         }
     }
 
 
-    private <T> void toSubscribe(Observable<T> o, Observer<T> s) {
+    private <T> void toSubscribe(Observable<T> o, Observer<T> s, LifecycleOwner lifecycleOwner) {
         o.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                //自动管理生命周期
+                .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(lifecycleOwner)))
                 .subscribe(s);
     }
 
@@ -148,11 +161,38 @@ public class HttpMethods {
     }
 
 
+    /**
+     * 单个请求
+     *
+     * @param messiObserver
+     * @param loginReq
+     */
+    public void login(MessiObserver<LoginRes> messiObserver, LoginReq loginReq, LifecycleOwner lifecycleOwner) {
+        Observable<LoginRes> observable = mApiService.login(getBody(loginReq)).map(new HttpResultFunc<>());
+        toSubscribe(observable, messiObserver, lifecycleOwner);
+    }
 
-/*    public void moneyStatistic(SucceedSubscribe<MoneyStatisticRes> succeedSubscribe, MoneyStatisticReq moneyStatisticReq) {
-        Observable<MoneyStatisticRes> observable = mApiService.moneyStatistic(getBody(moneyStatisticReq)).map(new HttpResultFunc<>());
-        toSubscribe(observable, succeedSubscribe);
-    }*/
 
+    /**
+     * 多个请求合并
+     *
+     * @param messiObserver
+     * @param getDictionaryDatReq
+     * @param getProductsByTypeReq
+     */
+    public void addJJMerge(MessiObserver<AddJJMergeRes> messiObserver, GetDictionaryDatReq getDictionaryDatReq, GetProductsByTypeReq getProductsByTypeReq, LifecycleOwner lifecycleOwner) {
+        Observable<ArrayList<GetDictionaryDatRes>> map = mApiService.GetDictionaryDat(getBody(getDictionaryDatReq)).map(new HttpResultFunc<>());
+        Observable<ArrayList<GetProductsByTypeRes>> map1 = mApiService.GetProductsByType(getBody(getProductsByTypeReq)).map(new HttpResultFunc<>());
+        Observable<ArrayList<GetSaleManListRes>> map2 = mApiService.GetSaleManList().map(new HttpResultFunc<>());
+        Observable<AddJJMergeRes> zip = Observable
+                .zip(map, map1, map2, (getDictionaryDatRes, getProductsByTypeRes, getSaleManListRes) -> {
+                    AddJJMergeRes addJJMergeRes = new AddJJMergeRes();
+                    addJJMergeRes.productTypeList = getDictionaryDatRes;
+                    addJJMergeRes.productNameList = getProductsByTypeRes;
+                    addJJMergeRes.salesManList = getSaleManListRes;
+                    return addJJMergeRes;
+                });
+        toSubscribe(zip, messiObserver, lifecycleOwner);
+    }
 
 }

@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_java.retrofit_rxjava;
+package org.gmfbilu.superapp.lib_base.http;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,10 +14,6 @@ import okhttp3.ResponseBody;
 import okio.Buffer;
 import okio.BufferedSource;
 
-
-/**
- * 判断Token是否过期的拦截器
- */
 
 public class TokenInterceptor implements Interceptor {
 

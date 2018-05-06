@@ -22,7 +22,7 @@ import com.umeng.message.PushAgent;
 import com.umeng.message.UmengNotificationClickHandler;
 import com.umeng.message.entity.UMessage;
 
-import org.gmfbilu.superapp.lib_base.ARouterPath;
+import org.gmfbilu.superapp.lib_base.app.ARouterPath;
 import org.gmfbilu.superapp.lib_base.app.ApplicationIntentService;
 import org.gmfbilu.superapp.lib_base.app.Constant;
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
