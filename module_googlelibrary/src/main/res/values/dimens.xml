@@ -10,5 +10,9 @@
     <dimen name="main_card_margin_vertical" tools:ignore="ResourceName">8dp</dimen>
     <dimen name="main_card_margin_horizontal_big_activity" tools:ignore="ResourceName">8dp</dimen>
 
-
+    <dimen name="WheelItemTextSize" tools:ignore="ResourceName">19sp</dimen>
+    <dimen name="WheelItemSpace" tools:ignore="ResourceName">0dp</dimen>
+    <dimen name="WheelIndicatorSize" tools:ignore="ResourceName">1.5dp</dimen>
+    <dimen name="WheelMargins" tools:ignore="ResourceName">0dp</dimen>
+    <dimen name="wheel_spacing" tools:ignore="ResourceName">5dp</dimen>
 </resources>

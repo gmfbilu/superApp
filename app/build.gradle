@@ -19,7 +19,7 @@ rebuildChannel {
     baseDebugApk = new File(project.projectDir, "baseApk/debug.apk")
     //已有Release APK，注意此目录位于app/baseApk
     baseReleaseApk = new File(project.projectDir, "baseApk/release.apk")
-    //Debug渠道包输出目录
+    //Debug渠道包输出目录，注意此目录位于app/build/rebuildChannel
     debugOutputDir = new File(project.buildDir, "rebuildChannel/debug")
     //Release渠道包输出目录
     releaseOutputDir = new File(project.buildDir, "rebuildChannel/release")
@@ -79,6 +79,11 @@ android {
         jumboMode = true
     }
 
+    lintOptions{
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
     buildTypes {
         debug {
             buildConfigField "boolean", "LOG_DEBUG", "true"
@@ -113,8 +118,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:multidex:${android_multidex_lib_version}"
-    annotationProcessor "com.alibaba:arouter-compiler:${android_arouter_compiler_version}"
+    implementation "com.android.support:multidex:${multidex_lib_version}"
+    annotationProcessor "com.alibaba:arouter-compiler:${arouter_compiler_version}"
     implementation project(':lib_base')
     if (!isModule.toBoolean()) {
         implementation project(':module_main')

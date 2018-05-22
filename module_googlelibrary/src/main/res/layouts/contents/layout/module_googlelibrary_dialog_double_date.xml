@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_beginTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/TextViewOne"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/TextViewOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="至"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_beginTime"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_beginTime"/>
+
+    <TextView
+        android:id="@+id/tv_endTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_beginTime"
+        app:layout_constraintLeft_toRightOf="@+id/TextViewOne"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_beginTime"/>
+
+
+    <View
+        android:id="@+id/ViewThree"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="10dp"
+        android:background="#e5e5e5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_beginTime"/>
+
+    <org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference.doubleDatePicker.ScrollChoice
+        android:id="@+id/ScrollChoiceYear"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/ScrollChoiceMonth"
+        app:layout_constraintTop_toBottomOf="@id/ViewThree"
+        app:scroll_atmospheric="true"
+        app:scroll_indicator="true"
+        app:scroll_indicator_color="@android:color/transparent"
+        app:scroll_indicator_size="1dp"
+        app:scroll_item_align="center"
+        app:scroll_item_text_size="17sp"
+        app:scroll_selected_item_background="#FFF8F1"
+        app:scroll_selected_item_text_color="#3F51B5"/>
+
+    <org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference.doubleDatePicker.ScrollChoice
+        android:id="@+id/ScrollChoiceMonth"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ScrollChoiceYear"
+        app:layout_constraintLeft_toRightOf="@+id/ScrollChoiceYear"
+        app:layout_constraintRight_toLeftOf="@+id/ScrollChoiceDay"
+        app:layout_constraintTop_toTopOf="@+id/ScrollChoiceYear"
+        app:scroll_atmospheric="true"
+        app:scroll_indicator="true"
+        app:scroll_indicator_color="@android:color/transparent"
+        app:scroll_indicator_size="1dp"
+        app:scroll_item_align="center"
+        app:scroll_item_text_size="17sp"
+        app:scroll_selected_item_background="#FFF8F1"
+        app:scroll_selected_item_text_color="#3F51B5"/>
+
+    <org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference.doubleDatePicker.ScrollChoice
+        android:id="@+id/ScrollChoiceDay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ScrollChoiceYear"
+        app:layout_constraintLeft_toRightOf="@+id/ScrollChoiceMonth"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ViewThree"
+        app:layout_constraintTop_toTopOf="@+id/ScrollChoiceYear"
+        app:scroll_atmospheric="true"
+        app:scroll_indicator="true"
+        app:scroll_indicator_color="@android:color/transparent"
+        app:scroll_indicator_size="1dp"
+        app:scroll_item_align="center"
+        app:scroll_item_text_size="17sp"
+        app:scroll_selected_item_background="#FFF8F1"
+        app:scroll_selected_item_text_color="#3F51B5"/>
+
+
+    <View
+        android:id="@+id/ViewOne"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:background="#e5e5e5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ScrollChoiceYear"/>
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="取消"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/ViewTwo"
+        app:layout_constraintTop_toBottomOf="@+id/ViewOne"/>
+
+    <View
+        android:id="@+id/ViewTwo"
+        android:layout_width="0.5dp"
+        android:layout_height="0dp"
+        android:background="#e5e5e5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/tv_cancel"
+        app:layout_constraintRight_toLeftOf="@+id/tv_sure"
+        app:layout_constraintTop_toBottomOf="@+id/ViewOne"/>
+
+
+    <TextView
+        android:id="@+id/tv_sure"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="确认"
+        android:textColor="#FFA52C"
+        app:layout_constraintLeft_toRightOf="@+id/ViewTwo"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ViewOne"/>
+
+</android.support.constraint.ConstraintLayout>

@@ -12,7 +12,6 @@ import android.util.TypedValue;
 
 import com.leon.channel.helper.ChannelReaderUtil;
 
-import org.gmfbilu.superapp.lib_base.app.ActivitiesManager;
 import org.gmfbilu.superapp.lib_base.app.Constant;
 import org.gmfbilu.superapp.lib_base.base.BaseApplication;
 
@@ -118,17 +117,6 @@ public class AppUtils {
         return name;
     }
 
-
-    public static void AppExit(Context context) {
-        try {
-            ActivitiesManager.removeAllActivity();
-            ActivityManager activityManager = (android.app.ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-            activityManager.restartPackage(getPackageName(context));
-            System.exit(0);
-        } catch (Exception e) {
-
-        }
-    }
 
     /**
      * 判断是否有网络连接

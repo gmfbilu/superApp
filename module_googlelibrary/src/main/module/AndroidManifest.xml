@@ -11,6 +11,7 @@
         android:label="@string/module_googlelibrary_app_name"
         android:roundIcon="@mipmap/lib_base_ic_launcher_round"
         android:supportsRtl="true"
+
         android:theme="@style/lib_base_AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".MainActivity">

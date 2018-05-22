@@ -73,6 +73,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':lib_base')
-    annotationProcessor "com.alibaba:arouter-compiler:${android_arouter_compiler_version}"
+    annotationProcessor "com.alibaba:arouter-compiler:${arouter_compiler_version}"
 
 }

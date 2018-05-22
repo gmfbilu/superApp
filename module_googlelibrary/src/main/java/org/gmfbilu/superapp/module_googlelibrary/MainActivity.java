@@ -25,8 +25,10 @@ public class MainActivity extends BaseActivity {
         return R.layout.module_googlelibrary_activity_main;
     }
 
+
     @Override
     public void onClick(View v) {
 
     }
+
 }

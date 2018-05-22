@@ -1,0 +1,11 @@
+# ninja log v5
+0	819	0	CMakeFiles/jniDemo2.dir/src/main/cpp/jniDemo2.cpp.o	c6484b1ff4987783
+820	914	0	../../../../build/intermediates/cmake/debug/obj/x86/libjniDemo2.so	fcab8160e00ceb9f
+0	367	0	CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o	876addabca20316a
+367	406	0	../../../../build/intermediates/cmake/debug/obj/x86/libjniDemo.so	46755e6cda797994
+1	81	0	../../../../build/intermediates/cmake/debug/obj/x86/libjniDemo2.so	fcab8160e00ceb9f
+0	84	0	../../../../build/intermediates/cmake/debug/obj/x86/libjniDemo.so	46755e6cda797994
+9	550	0	CMakeFiles/jniDemo2.dir/src/main/cpp/jniDemo2.cpp.o	c6484b1ff4987783
+550	635	0	../../../../build/intermediates/cmake/debug/obj/x86/libjniDemo2.so	fcab8160e00ceb9f
+1	436	0	CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o	876addabca20316a
+436	472	0	../../../../build/intermediates/cmake/debug/obj/x86/libjniDemo.so	46755e6cda797994

@@ -39,9 +39,9 @@ public class MainFragment extends BaseFragment {
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id==R.id.module_googlelibrary_bt_constraintlayout){
+        if (id == R.id.module_googlelibrary_bt_constraintlayout) {
             start(ConstraintLayoutFragment.newInstance());
-        }else if (id==R.id.module_googlelibrary_bt_switch_checkbox_listpreference){
+        } else if (id == R.id.module_googlelibrary_bt_switch_checkbox_listpreference) {
             start(Switch_CheckBox_ListPreferenceFragment.newInstance());
         }
     }

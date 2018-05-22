@@ -9,7 +9,6 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import org.gmfbilu.superapp.lib_base.app.ARouterPath;
 import org.gmfbilu.superapp.lib_base.base.BaseActivity;
 import org.gmfbilu.superapp.lib_base.bean.TestBean;
-import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 
 
 public class MainActivity extends BaseActivity {
@@ -56,9 +55,4 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    @Override
-    public void onBackPressedSupport() {
-        super.onBackPressedSupport();
-        AppUtils.AppExit(this);
-    }
 }

@@ -7,7 +7,7 @@ def bakPath = file("${buildDir}/TinkerbakApk/")
  * 每次生成的基本包和mapping以及R都要保存下来
  * 这里生成的一个补丁包就适用于各个渠道包
  */
-def baseApkDir = "org.gmfbilu.superapp.lib_base.app-0329-17-14-36"
+def baseApkDir = "app-0401-19-14-46"
 tinkerSupport {
     enable = true
     // 指定归档目录，默认值当前module的子目录tinker
@@ -20,11 +20,11 @@ tinkerSupport {
     // 编译补丁包时，必需指定基线版本的apk，默认值为空
     // 如果为空，则表示不是进行补丁包的编译
     // @{link tinkerPatch.oldApk }
-    baseApk = "${bakPath}/${baseApkDir}/org.gmfbilu.superapp.lib_base.app-release.apk"
+    baseApk = "${bakPath}/${baseApkDir}/app-release.apk"
     // 对应tinker插件applyMapping
-    baseApkProguardMapping = "${bakPath}/${baseApkDir}/org.gmfbilu.superapp.lib_base.app-release-mapping.txt"
+    baseApkProguardMapping = "${bakPath}/${baseApkDir}/app-release-mapping.txt"
     // 对应tinker插件applyResourceMapping
-    baseApkResourceMapping = "${bakPath}/${baseApkDir}/org.gmfbilu.superapp.lib_base.app-release-R.txt"
+    baseApkResourceMapping = "${bakPath}/${baseApkDir}/app-release-R.txt"
     // 构建基准包和补丁包都要指定不同的tinkerId，并且必须保证唯一性,基准包是base前缀，补丁包是patch前缀
     //tinkerId主要作用是区分当前打出的补丁包是基于哪个版本的apk，也就是说当前打出的补丁包能修复哪个版本的bug。每次发布版本需要保证tinkerId一定是要唯一性的，Tiker官方推荐使用git版本号或者versionName作为tinkerId
     //tinkerId = "patch-${versionName}"
