@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
-import android.os.Process;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -18,10 +17,8 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
-import com.tencent.bugly.crashreport.CrashReport;
 
 import org.gmfbilu.superapp.lib_base.BuildConfig;
-import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 
 /**
  * 我们多次启动IntentService，但IntentService的实例只有一个，这跟传统的Service是一样的，最终IntentService会去调用onHandleIntent执行异步任务
@@ -80,7 +77,6 @@ public class ApplicationIntentService extends IntentService {
         initLogger();
         initLocalCrashReport();
         initARouter();
-        initCrashReport();
         Log.d(Constant.LOG_NAME, "ApplicationIntentService ---> onHandleIntent");
     }
 
@@ -111,20 +107,6 @@ public class ApplicationIntentService extends IntentService {
         ARouter.init(getApplication());
     }
 
-
-    private void initCrashReport() {
-        String packageName = AppUtils.getPackageName(getApplicationContext());
-        String processName = AppUtils.getProcessName(Process.myPid());
-        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
-        // 设置是否为上报进程,如果App使用了多进程且各个进程都会初始化Bugly.那么每个进程下的Bugly都会进行数据上报，造成不必要的资源浪费.只在主进程下上报数据
-        strategy.setUploadProcess(processName == null || processName.equals(packageName));
-        strategy.setAppChannel(AppUtils.getChannelName(getApplicationContext()));  //设置渠道
-        strategy.setAppVersion(AppUtils.getAppVersion(getApplicationContext()));      //App的版本
-        strategy.setAppPackageName(packageName);  //App的包名
-        strategy.setAppReportDelay(10000);   //Bugly会在启动10s后联网同步数据
-        CrashReport.initCrashReport(getApplicationContext(), Constant.BUGLY_APPID, !Constant.ISRELEASE, strategy);
-        CrashReport.setIsDevelopmentDevice(getApplicationContext(), !Constant.ISRELEASE);
-    }
 
     private void initLocalCrashReport() {
         CrashHandler.getInstance().init(getApplicationContext());

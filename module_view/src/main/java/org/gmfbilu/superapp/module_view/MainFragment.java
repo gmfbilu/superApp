@@ -24,7 +24,7 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void findViewById_setOnClickListener(View view) {
-        view.findViewById(R.id.module_view_bt_circleProgressBar).setOnClickListener(this);
+        view.findViewById(R.id.module_view_bt_generalview).setOnClickListener(this);
     }
 
     @Override
@@ -36,8 +36,8 @@ public class MainFragment extends BaseFragment {
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id==R.id.module_view_bt_circleProgressBar){
-            start(ProgressBarFragment.newInstance());
+        if (id==R.id.module_view_bt_generalview){
+            start(GeneralViewFragment.newInstance());
         }
     }
 }

@@ -1,7 +1,7 @@
 set(CMAKE_C_COMPILER "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/clang")
 set(CMAKE_C_COMPILER_ARG1 "")
 set(CMAKE_C_COMPILER_ID "Clang")
-set(CMAKE_C_COMPILER_VERSION "3.8")
+set(CMAKE_C_COMPILER_VERSION "7.0")
 set(CMAKE_C_COMPILER_WRAPPER "")
 set(CMAKE_C_STANDARD_COMPUTED_DEFAULT "11")
 set(CMAKE_C_COMPILE_FEATURES "c_function_prototypes;c_restrict;c_variadic_macros;c_static_assert")
@@ -63,5 +63,5 @@ endif()
 
 
 set(CMAKE_C_IMPLICIT_LINK_LIBRARIES "dl;c;dl")
-set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/arm64-v8a;/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/6.0.2/lib/linux/aarch64;/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64/lib/gcc/aarch64-linux-android/4.9.x;/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64/aarch64-linux-android/lib64;/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64/aarch64-linux-android/lib;/home/gmfbilu/Work/Android/Sdk/ndk-bundle/platforms/android-21/arch-arm64/usr/lib")
+set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/arm64-v8a;/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/7.0.2/lib/linux/aarch64;/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64/lib/gcc/aarch64-linux-android/4.9.x;/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64/aarch64-linux-android/lib64;/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64/aarch64-linux-android/lib;/home/gmfbilu/Work/Android/Sdk/ndk-bundle/platforms/android-21/arch-arm64/usr/lib")
 set(CMAKE_C_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")

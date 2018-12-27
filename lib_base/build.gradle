@@ -54,10 +54,6 @@ dependencies {
     api "com.alibaba:arouter-api:${arouter_api_version}"
     //日志
     api "com.orhanobut:logger:${logger_version}"
-    //升级SDK已经集成crash上报功能，已经集成Bugly的用户需要注释掉原来Bugly的jcenter库； 已经配置过符号表的Bugly用户保留原有符号表配置
-    api "com.tencent.bugly:crashreport_upgrade:${bugly_crashreport_upgrade_version}"
-    api "com.tencent.bugly:nativecrashreport:${bugly_nativecrashreport_version}"
-    api "com.tencent.tinker:tinker-android-lib:${tinker_android_lib_version}"
     //fragment
     api "me.yokeyword:fragmentation:${yokeyword_fragmentation_version}"
     //事件总线

@@ -1,24 +1,104 @@
 package org.gmfbilu.superapp;
 
-import com.tencent.tinker.loader.app.TinkerApplication;
-import com.tencent.tinker.loader.shareutil.ShareConstants;
+import android.app.Application;
+import android.content.Context;
+import android.content.res.Configuration;
+import android.util.Log;
+
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.orhanobut.logger.Logger;
+import com.umeng.commonsdk.UMConfigure;
+import com.umeng.message.IUmengRegisterCallback;
+import com.umeng.message.PushAgent;
+import com.umeng.message.UmengNotificationClickHandler;
+import com.umeng.message.entity.UMessage;
+
+import org.gmfbilu.superapp.lib_base.app.ARouterPath;
+import org.gmfbilu.superapp.lib_base.app.ApplicationIntentService;
+import org.gmfbilu.superapp.lib_base.app.Constant;
+import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 
 /**
  * Created by gmfbilu on 2018/3/2.
  */
 
-public class SuperApplication extends TinkerApplication {
+public class SuperApplication extends Application {
 
 
-    public SuperApplication() {
-        //参数1：tinkerFlags 表示Tinker支持的类型 dex only、library only or all suuport，default: TINKER_ENABLE_ALL
-        //参数2：delegateClassName Application代理类 这里填写你自定义的ApplicationLike
-        //参数3：delegateClassName Application代理类 这里填写你自定义的ApplicationLike
-        //参数4：tinkerLoadVerifyFlag 加载dex或者lib是否验证md5，默认为false
-        super(ShareConstants.TINKER_ENABLE_ALL,
-                "org.gmfbilu.superapp.ApplicationLike",
-                "com.tencent.tinker.loader.TinkerLoader",
-                false);
+
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        ApplicationIntentService.start(this, "ApplicationLike");
+        /**
+         * 并不是所有的第三方库都可以放在IntentService中
+         */
+        initPush();
+        Log.d(Constant.LOG_NAME, getClass().getName() + "---> start");
+
+    }
+
+    private void initPush() {
+        UMConfigure.init(this, Constant.PUSH_APPKEY, AppUtils.getChannelName(this), UMConfigure.DEVICE_TYPE_PHONE, Constant.PUSH_SECRET);
+        UMConfigure.setLogEnabled(Constant.ISSHOWLOG);
+        PushAgent mPushAgent = PushAgent.getInstance(this);
+        /**
+         * 注册推送服务，每次调用register方法都会回调该接口
+         */
+        mPushAgent.register(new IUmengRegisterCallback() {
+            @Override
+            public void onSuccess(String deviceToken) {
+                //注册成功会返回device token
+                Log.d(Constant.LOG_NAME, "推送服务注册成功，deviceToken：" + deviceToken);
+            }
+
+            @Override
+            public void onFailure(String s, String s1) {
+                Log.d(Constant.LOG_NAME, "推送服务注册失败，错误信息：" + s + ", " + s1);
+            }
+        });
+        /**
+         * 自定义通知打开动作
+         * 自定义行为的数据放在UMessage.custom字段
+         */
+        UmengNotificationClickHandler notificationClickHandler = new UmengNotificationClickHandler() {
+
+            @Override
+            public void dealWithCustomAction(Context context, UMessage uMessage) {
+                super.dealWithCustomAction(context, uMessage);
+                Logger.d(uMessage.custom);
+                switch (uMessage.custom) {
+                    case "module_main_googleLibrary":
+                        //打开Activity
+                        ARouter.getInstance()
+                                .build(ARouterPath.MODULE_GOOGLELIBRARY)
+                                //.withFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK)
+                                .navigation();
+
+                        break;
+
+                }
+            }
+        };
+        mPushAgent.setNotificationClickHandler(notificationClickHandler);
+
+    }
+
+
+
+
+    @Override
+    public void onTrimMemory(int level) {
+        // 程序在内存清理的时候执行
+        Logger.d(getClass().getName() + "---> onTrimMemory");
+        super.onTrimMemory(level);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        Logger.d(getClass().getName() + "---> onConfigurationChanged");
+        super.onConfigurationChanged(newConfig);
     }
 
 

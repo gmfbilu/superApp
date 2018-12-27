@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="org.gmfbilu.superapp.module_main">
 
-    <application
-        android:theme="@style/lib_base_AppTheme">
+    <application>
 
         <activity
             android:name=".MainActivity">

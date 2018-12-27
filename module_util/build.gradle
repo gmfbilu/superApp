@@ -4,6 +4,7 @@ if (isModule.toBoolean()) {
     apply plugin: 'com.android.library'
 }
 
+
 Properties properties = new Properties()
 properties.load(project.rootProject.file("gradle.properties").newDataInputStream())
 String versionNameP = properties.getProperty("versionName")
@@ -19,20 +20,20 @@ android {
         versionName versionNameP
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ moduleName : project.getName() ]
+                arguments = [moduleName: project.getName()]
             }
         }
-        externalNativeBuild{
-            cmake{
+        externalNativeBuild {
+            cmake {
                 cppFlags ""
             }
         }
 
     }
 
-    externalNativeBuild{
-        cmake{
-           path "CMakeLists.txt"
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
         }
     }
 
@@ -74,18 +75,83 @@ android {
         debug.setRoot('build-types/debug')
         release.setRoot('build-types/release')
     }
-    externalNativeBuild {
-        cmake {
-            path 'CMakeLists.txt'
-        }
-    }
 
 
 }
+
+//AOP begin
+import org.aspectj.bridge.IMessage
+import org.aspectj.bridge.MessageHandler
+import org.aspectj.tools.ajc.Main
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.aspectj:aspectjtools:1.8.13'
+        classpath 'org.aspectj:aspectjweaver:1.8.9'
+    }
+}
+repositories {
+    mavenCentral()
+}
+final def log = project.logger
+def variants
+if (isModule.toBoolean()) {
+    variants = project.android.applicationVariants
+} else {
+    variants = project.android.libraryVariants
+}
+
+variants.all { variant ->
+    if (!variant.buildType.isDebuggable()) {
+        log.debug("Skipping non-debuggable build type '${variant.buildType.name}'.")
+        return
+    }
+
+
+    JavaCompile javaCompile = variant.javaCompile
+    javaCompile.doLast {
+        String[] args = ["-showWeaveInfo",
+                         "-1.8",
+                         "-inpath", javaCompile.destinationDir.toString(),
+                         "-aspectpath", javaCompile.classpath.asPath,
+                         "-d", javaCompile.destinationDir.toString(),
+                         "-classpath", javaCompile.classpath.asPath,
+                         "-bootclasspath", project.android.bootClasspath.join(File.pathSeparator)]
+        log.debug "ajc args: " + Arrays.toString(args)
+
+        MessageHandler handler = new MessageHandler(true)
+        new Main().run(args, handler)
+        for (IMessage message : handler.getMessages(null, true)) {
+            switch (message.getKind()) {
+                case IMessage.ABORT:
+                case IMessage.ERROR:
+                case IMessage.FAIL:
+                    log.error message.message, message.thrown
+                    break
+                case IMessage.WARNING:
+                    log.warn message.message, message.thrown
+                    break
+                case IMessage.INFO:
+                    log.info message.message, message.thrown
+                    break
+                case IMessage.DEBUG:
+                    log.debug message.message, message.thrown
+                    break
+            }
+        }
+    }
+}
+//AOP ends
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':lib_base')
     annotationProcessor "com.alibaba:arouter-compiler:${arouter_compiler_version}"
+    //AOP
+    implementation 'org.aspectj:aspectjrt:1.8.9'
 
 }

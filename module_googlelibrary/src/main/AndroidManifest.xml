@@ -4,7 +4,6 @@
           package="org.gmfbilu.superapp.module_googlelibrary">
 
     <application
-        tools:replace="android:theme"
         android:theme="@style/lib_base_AppTheme">
         <activity android:name=".MainActivity">
         </activity>

@@ -6,8 +6,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.0-alpha15'
-        classpath "com.tencent.bugly:tinker-support:${bugly_tinker_support_version}"
+        classpath 'com.android.tools.build:gradle:3.2.1'
         classpath "com.leon.channel:plugin:${leon_channel_version}"
     }
 }

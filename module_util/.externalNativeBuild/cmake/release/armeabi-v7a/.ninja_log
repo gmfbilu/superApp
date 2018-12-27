@@ -1,5 +1,0 @@
-# ninja log v5
-0	453	0	CMakeFiles/jniDemo2.dir/src/main/cpp/jniDemo2.cpp.o	a73b611144913150
-454	582	0	../../../../build/intermediates/cmake/release/obj/armeabi-v7a/libjniDemo2.so	734b1d529b97a416
-0	329	0	CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o	d5792cc95c533497
-329	366	0	../../../../build/intermediates/cmake/release/obj/armeabi-v7a/libjniDemo.so	16ac4832c2d7c49d
