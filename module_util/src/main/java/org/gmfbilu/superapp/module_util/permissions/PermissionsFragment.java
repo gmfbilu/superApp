@@ -31,7 +31,7 @@ public class PermissionsFragment extends BaseFragment {
     @Override
     public void findViewById_setOnClickListener(View view) {
         view.findViewById(R.id.module_util_bt_camera_permission).setOnClickListener(this);
-        view.findViewById(R.id.module_util_bt_camera_read$external$storage_permission).setOnClickListener(this);
+        view.findViewById(R.id.module_util_bt_camera_read_external_storage_permission).setOnClickListener(this);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class PermissionsFragment extends BaseFragment {
         int id = v.getId();
         if (id == R.id.module_util_bt_camera_permission) {
             requestCameraPermissions();
-        } else if (id == R.id.module_util_bt_camera_read$external$storage_permission) {
+        } else if (id == R.id.module_util_bt_camera_read_external_storage_permission) {
             requestCameraAndExternal_storagePermissions();
         }
     }

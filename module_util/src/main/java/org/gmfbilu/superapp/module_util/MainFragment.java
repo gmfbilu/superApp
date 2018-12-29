@@ -10,6 +10,7 @@ import org.gmfbilu.superapp.module_util.camera.CameraFragment;
 import org.gmfbilu.superapp.module_util.dynamicLayout.DynamicLayoutFragment;
 import org.gmfbilu.superapp.module_util.jni.JniFragment;
 import org.gmfbilu.superapp.module_util.permissions.PermissionsFragment;
+import org.gmfbilu.superapp.module_util.recyclerView.RecyclerViewFragment;
 import org.gmfbilu.superapp.module_util.shape.ShapeFragment;
 import org.gmfbilu.superapp.module_util.surfaceView.SurfaceViewFragment;
 import org.gmfbilu.superapp.module_util.thirdCamera.ThirdCameraFragment;
@@ -36,6 +37,7 @@ public class MainFragment extends BaseFragment {
         view.findViewById(R.id.module_util_bt_dynamicLayout).setOnClickListener(this);
         view.findViewById(R.id.module_util_bt_shape).setOnClickListener(this);
         view.findViewById(R.id.module_util_bt_aop).setOnClickListener(this);
+        view.findViewById(R.id.module_util_bt_recyclerview).setOnClickListener(this);
     }
 
     @Override
@@ -65,6 +67,8 @@ public class MainFragment extends BaseFragment {
             start(ShapeFragment.newInstance());
         } else if (id == R.id.module_util_bt_aop) {
             start(AOPFragment.newInstance());
+        }else if (id==R.id.module_util_bt_recyclerview){
+            start(RecyclerViewFragment.newInstance());
         }
     }
 }

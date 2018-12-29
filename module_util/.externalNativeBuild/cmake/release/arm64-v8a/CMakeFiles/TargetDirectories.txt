@@ -1,4 +1,4 @@
-/home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/arm64-v8a/CMakeFiles/edit_cache.dir
-/home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/arm64-v8a/CMakeFiles/rebuild_cache.dir
-/home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/arm64-v8a/CMakeFiles/jniDemo2.dir
-/home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/arm64-v8a/CMakeFiles/jniDemo.dir
+D:/software/Android/projects/githubProjects/superApp/module_util/.externalNativeBuild/cmake/release/arm64-v8a/CMakeFiles/jniDemo2.dir
+D:/software/Android/projects/githubProjects/superApp/module_util/.externalNativeBuild/cmake/release/arm64-v8a/CMakeFiles/jniDemo.dir
+D:/software/Android/projects/githubProjects/superApp/module_util/.externalNativeBuild/cmake/release/arm64-v8a/CMakeFiles/edit_cache.dir
+D:/software/Android/projects/githubProjects/superApp/module_util/.externalNativeBuild/cmake/release/arm64-v8a/CMakeFiles/rebuild_cache.dir
