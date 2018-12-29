@@ -148,4 +148,25 @@ public class DynamicLayoutFragment extends BaseFragment {
     public void onClick(View v) {
 
     }
+
+    /**
+     *          content为xml文件中的约束布局
+     *          View view = new View(this);
+     *         view.setBackgroundColor(Color.WHITE);
+     *         view.setId(view.generateViewId());
+     *         content.addView(view);
+     *         ConstraintLayout.LayoutParams view_layoutParams = new ConstraintLayout.LayoutParams(0, Utils.dip2px(this, 44f));
+     *         view_layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+     *         view_layoutParams.rightToRight = ConstraintLayout.LayoutParams.PARENT_ID;
+     *         view_layoutParams.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
+     *         view.setLayoutParams(view_layoutParams);
+     *         ConstraintLayout.LayoutParams recyclerview_layoutParams = new ConstraintLayout.LayoutParams(0, 0);
+     *         recyclerview_layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+     *         recyclerview_layoutParams.rightToRight = ConstraintLayout.LayoutParams.PARENT_ID;
+     *         View childAt = content.getChildAt(0);
+     *         childAt.setId(childAt.generateViewId());
+     *         recyclerview_layoutParams.topToBottom = childAt.getId();
+     *         recyclerview_layoutParams.bottomToTop = view.getId();
+     *         mBaseRecyclerView.setLayoutParams(recyclerview_layoutParams);
+     */
 }

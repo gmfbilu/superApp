@@ -3,8 +3,8 @@ package org.gmfbilu.superapp.module_util.recyclerView.headerFooter;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.gmfbilu.superapp.lib_base.base.baseRecyclerView.adapter.BaseViewHolder;
 import org.gmfbilu.superapp.module_util.R;
-import org.gmfbilu.superapp.module_util.recyclerView.baseRecyclerView.adapter.BaseViewHolder;
 import org.gmfbilu.superapp.module_util.recyclerView.simple.SimpleBeen;
 
 public class HeaderViewHolder extends BaseViewHolder<SimpleBeen> {

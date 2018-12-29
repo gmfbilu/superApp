@@ -3,8 +3,7 @@ package org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.jude.easyrecyclerview.adapter.BaseViewHolder;
-
+import org.gmfbilu.superapp.lib_base.base.baseRecyclerView.adapter.BaseViewHolder;
 import org.gmfbilu.superapp.module_googlelibrary.R;
 
 

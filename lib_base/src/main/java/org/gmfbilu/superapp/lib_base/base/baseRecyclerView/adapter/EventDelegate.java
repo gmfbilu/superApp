@@ -1,7 +1,6 @@
-package org.gmfbilu.superapp.module_util.recyclerView.baseRecyclerView.adapter;
+package org.gmfbilu.superapp.lib_base.base.baseRecyclerView.adapter;
 
 import android.view.View;
-
 
 
 public interface EventDelegate {

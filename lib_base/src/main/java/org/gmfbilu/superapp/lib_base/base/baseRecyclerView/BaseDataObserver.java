@@ -1,8 +1,8 @@
-package org.gmfbilu.superapp.module_util.recyclerView.baseRecyclerView;
+package org.gmfbilu.superapp.lib_base.base.baseRecyclerView;
 
 import android.support.v7.widget.RecyclerView;
 
-import org.gmfbilu.superapp.module_util.recyclerView.baseRecyclerView.adapter.RecyclerArrayAdapter;
+import org.gmfbilu.superapp.lib_base.base.baseRecyclerView.adapter.RecyclerArrayAdapter;
 
 
 public class BaseDataObserver extends RecyclerView.AdapterDataObserver {

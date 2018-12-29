@@ -3,8 +3,9 @@ package org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference
 import android.content.Context;
 import android.view.ViewGroup;
 
-import com.jude.easyrecyclerview.adapter.BaseViewHolder;
-import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
+import org.gmfbilu.superapp.lib_base.base.baseRecyclerView.adapter.BaseViewHolder;
+import org.gmfbilu.superapp.lib_base.base.baseRecyclerView.adapter.RecyclerArrayAdapter;
+
 
 public class SearchAdapter extends RecyclerArrayAdapter<String> {
 

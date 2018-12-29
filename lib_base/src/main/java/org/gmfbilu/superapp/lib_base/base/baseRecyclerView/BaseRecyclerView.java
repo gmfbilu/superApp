@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_util.recyclerView.baseRecyclerView;
+package org.gmfbilu.superapp.lib_base.base.baseRecyclerView;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -12,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import org.gmfbilu.superapp.module_util.R;
-import org.gmfbilu.superapp.module_util.recyclerView.baseRecyclerView.adapter.RecyclerArrayAdapter;
-import org.gmfbilu.superapp.module_util.recyclerView.baseRecyclerView.swipe.SwipeRefreshLayout;
+import org.gmfbilu.superapp.lib_base.R;
+import org.gmfbilu.superapp.lib_base.base.baseRecyclerView.adapter.RecyclerArrayAdapter;
+import org.gmfbilu.superapp.lib_base.base.baseRecyclerView.swipe.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 
@@ -96,7 +96,7 @@ public class BaseRecyclerView extends FrameLayout {
             return;
         }
         //生成主View
-        View v = LayoutInflater.from(getContext()).inflate(R.layout.module_util_recyclerview_progress, this);
+        View v = LayoutInflater.from(getContext()).inflate(R.layout.recyclerview_progress, this);
         mPtrLayout = (SwipeRefreshLayout) v.findViewById(R.id.ptr_layout);
         mPtrLayout.setEnabled(false);
 

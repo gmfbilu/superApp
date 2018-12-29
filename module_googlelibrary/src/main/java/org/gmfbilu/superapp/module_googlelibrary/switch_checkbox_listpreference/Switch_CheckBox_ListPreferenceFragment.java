@@ -21,11 +21,11 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.jude.easyrecyclerview.EasyRecyclerView;
-import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.orhanobut.logger.Logger;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
+import org.gmfbilu.superapp.lib_base.base.baseRecyclerView.BaseRecyclerView;
+import org.gmfbilu.superapp.lib_base.base.baseRecyclerView.adapter.RecyclerArrayAdapter;
 import org.gmfbilu.superapp.module_googlelibrary.R;
 import org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference.doubleDatePicker.ScrollChoice;
 import org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference.locationLinkage.WheelView;
@@ -698,7 +698,7 @@ public class Switch_CheckBox_ListPreferenceFragment extends BaseFragment {
         SearchView.SearchAutoComplete searchAutoComplete = (SearchView.SearchAutoComplete) searchView.findViewById(R.id.search_src_text);
         searchAutoComplete.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
         searchView.setIconified(false);
-        EasyRecyclerView recyclerView = layout.findViewById(R.id.RecyclerView);
+        BaseRecyclerView recyclerView = layout.findViewById(R.id.RecyclerView);
         SearchAdapter searchAdapter = new SearchAdapter(_mActivity);
         recyclerView.setRefreshing(false, false);
         recyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));

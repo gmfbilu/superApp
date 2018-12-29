@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_util.recyclerView.baseRecyclerView.adapter;
+package org.gmfbilu.superapp.lib_base.base.baseRecyclerView.adapter;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import org.gmfbilu.superapp.module_util.recyclerView.baseRecyclerView.BaseRecyclerView;
+import org.gmfbilu.superapp.lib_base.base.baseRecyclerView.BaseRecyclerView;
 
 
 public class DefaultEventDelegate implements EventDelegate {

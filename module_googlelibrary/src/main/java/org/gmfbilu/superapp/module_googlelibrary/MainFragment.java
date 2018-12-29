@@ -28,6 +28,7 @@ public class MainFragment extends BaseFragment {
     public void findViewById_setOnClickListener(View view) {
         view.findViewById(R.id.module_googlelibrary_bt_constraintlayout).setOnClickListener(this);
         view.findViewById(R.id.module_googlelibrary_bt_switch_checkbox_listpreference).setOnClickListener(this);
+        view.findViewById(R.id.module_googlelibrary_bt_dialogfragment).setOnClickListener(this);
     }
 
     @Override
@@ -43,6 +44,8 @@ public class MainFragment extends BaseFragment {
             start(ConstraintLayoutFragment.newInstance());
         } else if (id == R.id.module_googlelibrary_bt_switch_checkbox_listpreference) {
             start(Switch_CheckBox_ListPreferenceFragment.newInstance());
+        }else if (id==R.id.module_googlelibrary_bt_dialogfragment){
+            start(DialogFragment.newInstance());
         }
     }
 }

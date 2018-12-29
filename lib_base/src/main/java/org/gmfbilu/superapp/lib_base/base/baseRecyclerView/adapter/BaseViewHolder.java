@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_util.recyclerView.baseRecyclerView.adapter;
+package org.gmfbilu.superapp.lib_base.base.baseRecyclerView.adapter;
 
 import android.content.Context;
 import android.support.annotation.IdRes;
@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 
 import java.lang.reflect.Field;
 

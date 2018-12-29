@@ -11,13 +11,12 @@ import android.widget.CheckBox;
 import android.widget.Toast;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
+import org.gmfbilu.superapp.lib_base.base.baseRecyclerView.BaseRecyclerView;
+import org.gmfbilu.superapp.lib_base.base.baseRecyclerView.adapter.BaseViewHolder;
+import org.gmfbilu.superapp.lib_base.base.baseRecyclerView.adapter.RecyclerArrayAdapter;
+import org.gmfbilu.superapp.lib_base.base.baseRecyclerView.decoration.DividerDecoration;
 import org.gmfbilu.superapp.lib_base.utils.Utils;
 import org.gmfbilu.superapp.module_util.R;
-import org.gmfbilu.superapp.module_util.recyclerView.baseRecyclerView.BaseRecyclerView;
-import org.gmfbilu.superapp.module_util.recyclerView.baseRecyclerView.adapter.BaseViewHolder;
-import org.gmfbilu.superapp.module_util.recyclerView.baseRecyclerView.adapter.RecyclerArrayAdapter;
-import org.gmfbilu.superapp.module_util.recyclerView.baseRecyclerView.decoration.DividerDecoration;
-import org.gmfbilu.superapp.module_util.recyclerView.headerFooter.HeaderFooterViewHolder;
 
 import java.util.ArrayList;
 
