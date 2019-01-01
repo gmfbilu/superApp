@@ -5,6 +5,7 @@ import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_googlelibrary.constraintlayout.ConstraintLayoutFragment;
+import org.gmfbilu.superapp.module_googlelibrary.dialogFragment.DialogFragment;
 import org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference.Switch_CheckBox_ListPreferenceFragment;
 
 

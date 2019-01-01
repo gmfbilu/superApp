@@ -49,7 +49,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
         long getHeaderId(int position);
 
         /**
-         * Creates a new header ViewHolder.
+         * Creates a new header DialogFragmentViewHolder.
          *
          * @param parent the header's view parent
          * @return a view holder for the created view

@@ -3,4 +3,5 @@
     <color name="lib_base_colorPrimary">#3F51B5</color>
     <color name="lib_base_colorPrimaryDark">#303F9F</color>
     <color name="lib_base_colorAccent">#FF4081</color>
+    <color name="lib_base_colorWhite">#ffffff</color>
 </resources>

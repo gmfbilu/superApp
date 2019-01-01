@@ -14,4 +14,13 @@
         <item name="android:windowNoTitle">true</item> <!-- 无标题 -->
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
+
+    <style name="RedPocketDialogFragmentEnterExitAnimation" parent="android:Animation" tools:ignore="ResourceName">
+        <item name="android:windowEnterAnimation">@anim/dialogfragment_redpocket_enter_anim</item>
+        <item name="android:windowExitAnimation">@anim/dialogfragment_redpocket_exit_anim</item>
+    </style>
+
+    <style name="LoadingDialogFragment" parent="lib_base_BaseDialogFragmentStyle" tools:ignore="ResourceName">
+        <item name="colorAccent">@color/lib_base_colorAccent</item>
+    </style>
 </resources>

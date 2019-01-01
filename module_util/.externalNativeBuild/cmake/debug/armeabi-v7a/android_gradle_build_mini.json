@@ -1,22 +1,22 @@
 {
   "buildFiles": [
-    "D:\\software\\Android\\projects\\githubProjects\\superApp\\module_util\\CMakeLists.txt"
+    "/home/gmfbilu/Work/Android/Projects/superApp/module_util/CMakeLists.txt"
   ],
   "cleanCommands": [
-    "D:\\software\\Android\\SDK\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\software\\Android\\projects\\githubProjects\\superApp\\module_util\\.externalNativeBuild\\cmake\\debug\\armeabi-v7a --target clean"
+    "/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/debug/armeabi-v7a --target clean"
   ],
   "libraries": {
     "jniDemo-Debug-armeabi-v7a": {
       "artifactName": "jniDemo",
-      "buildCommand": "D:\\software\\Android\\SDK\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\software\\Android\\projects\\githubProjects\\superApp\\module_util\\.externalNativeBuild\\cmake\\debug\\armeabi-v7a --target jniDemo",
+      "buildCommand": "/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/debug/armeabi-v7a --target jniDemo",
       "abi": "armeabi-v7a",
-      "output": "D:\\software\\Android\\projects\\githubProjects\\superApp\\module_util\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libjniDemo.so"
+      "output": "/home/gmfbilu/Work/Android/Projects/superApp/module_util/build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo.so"
     },
     "jniDemo2-Debug-armeabi-v7a": {
       "artifactName": "jniDemo2",
-      "buildCommand": "D:\\software\\Android\\SDK\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\software\\Android\\projects\\githubProjects\\superApp\\module_util\\.externalNativeBuild\\cmake\\debug\\armeabi-v7a --target jniDemo2",
+      "buildCommand": "/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/debug/armeabi-v7a --target jniDemo2",
       "abi": "armeabi-v7a",
-      "output": "D:\\software\\Android\\projects\\githubProjects\\superApp\\module_util\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libjniDemo2.so"
+      "output": "/home/gmfbilu/Work/Android/Projects/superApp/module_util/build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo2.so"
     }
   }
 }
