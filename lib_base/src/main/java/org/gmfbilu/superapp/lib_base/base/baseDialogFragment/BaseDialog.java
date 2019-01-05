@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.lib_base.base.BaseDialogFragment;
+package org.gmfbilu.superapp.lib_base.base.baseDialogFragment;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;

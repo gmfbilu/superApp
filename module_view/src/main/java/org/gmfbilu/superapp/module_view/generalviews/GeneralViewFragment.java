@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_view;
+package org.gmfbilu.superapp.module_view.generalviews;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,8 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
-import org.gmfbilu.superapp.module_view.generalviews.CircleProgressBar;
-import org.gmfbilu.superapp.module_view.generalviews.HorizontalProgressBar;
+import org.gmfbilu.superapp.module_view.R;
 
 /**
  * Created by gmfbilu on 2018/3/27.
@@ -17,7 +16,6 @@ public class GeneralViewFragment extends BaseFragment {
 
     private Toolbar mToolbar;
     private CircleProgressBar mCircleProgressBar;
-    private HorizontalProgressBar mHorizontalProgressBar;
 
     public static GeneralViewFragment newInstance() {
         Bundle args = new Bundle();
@@ -31,7 +29,6 @@ public class GeneralViewFragment extends BaseFragment {
     public void findViewById_setOnClickListener(View view) {
         mToolbar = view.findViewById(R.id.module_view_toolbar);
         mCircleProgressBar = view.findViewById(R.id.module_view_circleProgressBar);
-        mHorizontalProgressBar = view.findViewById(R.id.module_view_horizontalProgressBar);
     }
 
     @Override

@@ -85,5 +85,7 @@ dependencies {
     //autodispose
     api "com.uber.autodispose:autodispose:${autodispose_version}"
     api "com.uber.autodispose:autodispose-android-archcomponents:${autodispose_android_archcomponents_version}"
+    //glide
+    api "com.github.bumptech.glide:glide:${glide_version}"
 
 }

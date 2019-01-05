@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <org.gmfbilu.superapp.module_util.recyclerView.baseRecyclerView.BaseRecyclerView
+    <org.gmfbilu.superapp.lib_base.base.baseRecyclerView.BaseRecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"

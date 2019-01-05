@@ -82,11 +82,11 @@ public class ApplicationIntentService extends IntentService {
 
     private void initLogger() {
         FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
-                .showThreadInfo(false)  // (Optional) Whether to show thread info or not. Default true
-                // .methodCount(2)         // (Optional) How many method line to show. Default 2
-                //.methodOffset(5)        // (Optional) Hides internal method calls up to offset. Default 5
-                //.logStrategy() // (Optional) Changes the log strategy to print out. Default LogCat
-                .tag(Constant.LOG_NAME)   // (Optional) Global tag for every log. Default PRETTY_LOGGER
+                .showThreadInfo(true)
+                .methodCount(2)
+                .methodOffset(5)
+                //.logStrategy()
+                .tag(Constant.LOG_NAME)
                 .build();
         Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy) {
             @Override

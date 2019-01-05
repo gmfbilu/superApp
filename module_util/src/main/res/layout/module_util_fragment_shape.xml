@@ -1,18 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/shape_example_one"
-        android:gravity="center"
-        android:text="haha"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+        <View
+            android:id="@+id/ViewOne"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_line_solid"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/TextViewOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="实线"
+            app:layout_constraintBottom_toBottomOf="@+id/ViewOne"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ViewOne"/>
+
+        <View
+            android:id="@+id/ViewTwo"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_line_dashed"
+            android:layerType="software"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ViewOne"/>
+
+        <TextView
+            android:id="@+id/TextViewTwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="虚线"
+            app:layout_constraintBottom_toBottomOf="@+id/ViewTwo"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ViewTwo"/>
+
+        <TextView
+            android:id="@+id/TextViewThree"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_rect_solid_border"
+            android:gravity="center"
+            android:text="矩形实线边框+内部无填充"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ViewTwo"/>
+
+        <TextView
+            android:id="@+id/TextViewFour"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_rect_dashed_border"
+            android:gravity="center"
+            android:text="矩形虚线边框+内部无填充"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewThree"/>
+
+        <TextView
+            android:id="@+id/TextViewFive"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_rect_solid_border_fill"
+            android:gravity="center"
+            android:text="矩形实线边框+内部填充"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewFour"/>
+
+        <TextView
+            android:id="@+id/TextViewSix"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_rect_dashed_border_fill"
+            android:gravity="center"
+            android:text="矩形虚线边框+内部填充"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewFive"/>
+
+
+        <TextView
+            android:id="@+id/TextViewSeven"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_rect_rounded_border"
+            android:gravity="center"
+            android:text="圆角矩形，只有边框"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewSix"/>
+
+        <TextView
+            android:id="@+id/TextViewEight"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_rect_rounded_fill"
+            android:gravity="center"
+            android:text="圆角矩形无边框，只有内部填充"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewSeven"/>
+
+
+        <TextView
+            android:id="@+id/TextViewNine"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_rect_rounded_border_fill"
+            android:gravity="center"
+            android:text=" 圆角矩形-有边框有填充"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewEight"/>
+
+        <TextView
+            android:id="@+id/TextViewTen"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_rect_rounded_left_arc"
+            android:gravity="center"
+            android:text=" 圆角矩形-左边圆角为一个半圆弧"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewNine"/>
+
+        <TextView
+            android:id="@+id/TextViewEleven"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_rect_rounded_left_right_arc"
+            android:gravity="center"
+            android:text="圆角矩形-左右两边都是半圆弧"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewTen"/>
+
+        <TextView
+            android:id="@+id/TextViewTwelve"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_rect_rounded_left_right_arc_border"
+            android:gravity="center"
+            android:text="圆角矩形-左右两边都是半圆弧-带边框"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewEleven"/>
+
+        <TextView
+            android:id="@+id/TextViewThirteen"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_rect_rounded_top_bottom_arc"
+            android:gravity="center"
+            android:text="圆角矩形-上下两边半圆弧"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewTwelve"/>
+
+        <TextView
+            android:id="@+id/TextViewFourteen"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_rect_solid_fill_top_left_right"
+            android:gravity="center"
+            android:text="矩形无边框+内部填充+上面左右圆角"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewThirteen"/>
+
+        <TextView
+            android:id="@+id/TextViewFifteen"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_rect_solid_fill_bottom_left_right"
+            android:gravity="center"
+            android:text="矩形无边框+内部填充+底部左右圆角"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewFourteen"/>
+
+        <TextView
+            android:id="@+id/TextViewSixteen"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_rect_solid_fill"
+            android:gravity="center"
+            android:text="矩形无边框+内部填充"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewFifteen"/>
+
+        <TextView
+            android:id="@+id/TextViewSeventeen"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_rect_solid_fill_arc"
+            android:gravity="center"
+            android:text="矩形无边框+内部填充+左右半圆"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewSixteen"/>
+
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/shape_rect_rounded_ar"
+            android:gravity="center"
+            android:text="haha"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewSeventeen"/>
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>
+

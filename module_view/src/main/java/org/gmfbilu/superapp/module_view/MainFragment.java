@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
+import org.gmfbilu.superapp.module_view.generalviews.GeneralViewFragment;
+import org.gmfbilu.superapp.module_view.stepView.StepViewFragment;
 
 
 /**
@@ -25,6 +27,7 @@ public class MainFragment extends BaseFragment {
     @Override
     public void findViewById_setOnClickListener(View view) {
         view.findViewById(R.id.module_view_bt_generalview).setOnClickListener(this);
+        view.findViewById(R.id.module_view_bt_stepview).setOnClickListener(this);
     }
 
     @Override
@@ -38,6 +41,8 @@ public class MainFragment extends BaseFragment {
         int id = v.getId();
         if (id==R.id.module_view_bt_generalview){
             start(GeneralViewFragment.newInstance());
+        }else if (id==R.id.module_view_bt_stepview){
+            start(StepViewFragment.newInstance());
         }
     }
 }

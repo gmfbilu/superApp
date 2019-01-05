@@ -5,12 +5,15 @@ import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_util.aidl.AidlFragment;
+import org.gmfbilu.superapp.module_util.animation.AnimationFragment;
 import org.gmfbilu.superapp.module_util.aop.AOPFragment;
 import org.gmfbilu.superapp.module_util.camera.CameraFragment;
 import org.gmfbilu.superapp.module_util.dynamicLayout.DynamicLayoutFragment;
+import org.gmfbilu.superapp.module_util.glide.GlideFragment;
 import org.gmfbilu.superapp.module_util.jni.JniFragment;
 import org.gmfbilu.superapp.module_util.permissions.PermissionsFragment;
 import org.gmfbilu.superapp.module_util.recyclerView.RecyclerViewFragment;
+import org.gmfbilu.superapp.module_util.search.SearchFragment;
 import org.gmfbilu.superapp.module_util.shape.ShapeFragment;
 import org.gmfbilu.superapp.module_util.surfaceView.SurfaceViewFragment;
 import org.gmfbilu.superapp.module_util.thirdCamera.ThirdCameraFragment;
@@ -38,6 +41,9 @@ public class MainFragment extends BaseFragment {
         view.findViewById(R.id.module_util_bt_shape).setOnClickListener(this);
         view.findViewById(R.id.module_util_bt_aop).setOnClickListener(this);
         view.findViewById(R.id.module_util_bt_recyclerview).setOnClickListener(this);
+        view.findViewById(R.id.module_util_bt_glide).setOnClickListener(this);
+        view.findViewById(R.id.module_util_bt_search).setOnClickListener(this);
+        view.findViewById(R.id.module_util_bt_animation).setOnClickListener(this);
     }
 
     @Override
@@ -67,8 +73,14 @@ public class MainFragment extends BaseFragment {
             start(ShapeFragment.newInstance());
         } else if (id == R.id.module_util_bt_aop) {
             start(AOPFragment.newInstance());
-        }else if (id==R.id.module_util_bt_recyclerview){
+        } else if (id == R.id.module_util_bt_recyclerview) {
             start(RecyclerViewFragment.newInstance());
+        } else if (id == R.id.module_util_bt_glide) {
+            start(GlideFragment.newInstance());
+        } else if (id == R.id.module_util_bt_search) {
+            start(SearchFragment.newInstance());
+        }else if (id==R.id.module_util_bt_animation){
+            start(AnimationFragment.newInstance());
         }
     }
 }

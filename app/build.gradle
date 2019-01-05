@@ -119,6 +119,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.android.support:multidex:${multidex_lib_version}"
     annotationProcessor "com.alibaba:arouter-compiler:${arouter_compiler_version}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${glide_annotationProcessor_version}"
     implementation project(':lib_base')
     if (!isModule.toBoolean()) {
         implementation project(':module_main')

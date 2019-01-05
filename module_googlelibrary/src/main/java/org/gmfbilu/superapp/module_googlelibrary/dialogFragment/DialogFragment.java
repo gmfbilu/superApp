@@ -9,10 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.gmfbilu.superapp.lib_base.base.BaseDialogFragment.BaseDialog;
-import org.gmfbilu.superapp.lib_base.base.BaseDialogFragment.BaseDialogFragment;
-import org.gmfbilu.superapp.lib_base.base.BaseDialogFragment.DialogFragmentViewConvertListener;
-import org.gmfbilu.superapp.lib_base.base.BaseDialogFragment.DialogFragmentViewHolder;
+import org.gmfbilu.superapp.lib_base.base.baseDialogFragment.BaseDialog;
+import org.gmfbilu.superapp.lib_base.base.baseDialogFragment.BaseDialogFragment;
+import org.gmfbilu.superapp.lib_base.base.baseDialogFragment.DialogFragmentViewConvertListener;
+import org.gmfbilu.superapp.lib_base.base.baseDialogFragment.DialogFragmentViewHolder;
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_googlelibrary.R;
 

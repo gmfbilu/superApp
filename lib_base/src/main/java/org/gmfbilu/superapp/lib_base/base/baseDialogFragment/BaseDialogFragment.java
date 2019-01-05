@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.lib_base.base.BaseDialogFragment;
+package org.gmfbilu.superapp.lib_base.base.baseDialogFragment;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -119,18 +119,18 @@ public abstract class BaseDialogFragment extends DialogFragment {
 
             //设置dialog宽度
             if (width == 0) {
-                lp.width = Utils.getScreenWidth(getContext()) - 2 * Utils.dip2px(getContext(), margin);
+                lp.width = Utils.getScreenWidth(getContext()) - 2 * Utils.dp2px(getContext(), margin);
             } else if (width == -1) {
                 lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
             } else {
-                lp.width = Utils.dip2px(getContext(), width);
+                lp.width = Utils.dp2px(getContext(), width);
             }
 
             //设置dialog高度
             if (height == 0) {
                 lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
             } else {
-                lp.height = Utils.dip2px(getContext(), height);
+                lp.height = Utils.dp2px(getContext(), height);
             }
 
             //设置dialog进入、退出的动画

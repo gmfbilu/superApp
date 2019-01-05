@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 圆角矩形-左右两边都是半圆弧-带边框 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools"
+       android:shape="rectangle"
+       android:useLevel="true"
+       tools:ignore="ResourceName">
+
+    <size
+        android:width="50dp"
+        android:height="10dp" />
+
+    <stroke android:color="#ffff0000"
+            android:width="2dp"/>
+
+    <solid android:color="#8000ff00" />
+
+    <!-- 圆角半径是高度的一般就是一个圆弧了 -->
+    <corners android:radius="20dp" />
+
+</shape>

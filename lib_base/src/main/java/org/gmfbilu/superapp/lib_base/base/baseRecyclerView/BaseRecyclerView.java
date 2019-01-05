@@ -38,6 +38,7 @@ public class BaseRecyclerView extends FrameLayout {
     protected int mPaddingRight;
     protected int mScrollbarStyle;
     protected int mScrollbar;
+    protected int overScrollMode;
 
     protected RecyclerView.OnScrollListener mInternalOnScrollListener;
     protected RecyclerView.OnScrollListener mExternalOnScrollListener;
@@ -82,6 +83,7 @@ public class BaseRecyclerView extends FrameLayout {
             mPaddingRight = (int) a.getDimension(R.styleable.BaseRecyclerView_recyclerPaddingRight, 0.0f);
             mScrollbarStyle = a.getInteger(R.styleable.BaseRecyclerView_scrollbarStyle, -1);
             mScrollbar = a.getInteger(R.styleable.BaseRecyclerView_scrollbars, -1);
+            overScrollMode = a.getInteger(R.styleable.BaseRecyclerView_overScrollMode, -1);
 
             mEmptyId = a.getResourceId(R.styleable.BaseRecyclerView_layout_empty, 0);
             mProgressId = a.getResourceId(R.styleable.BaseRecyclerView_layout_progress, 0);
@@ -212,6 +214,18 @@ public class BaseRecyclerView extends FrameLayout {
                     setHorizontalScrollBarEnabled(false);
                     break;
             }
+            switch (overScrollMode){
+                case 0:
+                    mRecycler.setOverScrollMode(RecyclerView.OVER_SCROLL_IF_CONTENT_SCROLLS);
+                    break;
+                case 1:
+                    mRecycler.setOverScrollMode(RecyclerView.OVER_SCROLL_ALWAYS);
+                    break;
+                case 2:
+                    mRecycler.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+                    break;
+            }
+
         }
     }
 

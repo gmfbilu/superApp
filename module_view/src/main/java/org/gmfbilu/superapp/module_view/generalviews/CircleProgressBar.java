@@ -28,7 +28,7 @@ public class CircleProgressBar extends View {
      */
     private Context mContext;
     /**
-     * view默认宽高，就是设置wrap_content的时候
+     * view默认宽高，，默认宽高200dp。就是设置wrap_content的时候
      */
     private int mViewDefaultWidth = dp2px(200), mViewDefaultHeight = dp2px(200);
     /**

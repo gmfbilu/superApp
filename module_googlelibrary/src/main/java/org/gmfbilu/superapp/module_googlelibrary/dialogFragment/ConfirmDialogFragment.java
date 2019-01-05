@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import org.gmfbilu.superapp.lib_base.base.BaseDialogFragment.BaseDialogFragment;
-import org.gmfbilu.superapp.lib_base.base.BaseDialogFragment.DialogFragmentViewHolder;
+import org.gmfbilu.superapp.lib_base.base.baseDialogFragment.BaseDialogFragment;
+import org.gmfbilu.superapp.lib_base.base.baseDialogFragment.DialogFragmentViewHolder;
 import org.gmfbilu.superapp.module_googlelibrary.R;
 
 public class ConfirmDialogFragment extends BaseDialogFragment {

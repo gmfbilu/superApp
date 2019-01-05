@@ -62,7 +62,7 @@ public class HeaderFooterRecyclerViewFragment extends BaseFragment {
         mBaseRecyclerView.setRefreshingColorResources(R.color.lib_base_colorPrimaryDark);
         mBaseRecyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
         mBaseRecyclerView.setAdapterWithProgress(mHeaderFooterAdapter = new HeaderFooterAdapter(_mActivity));
-        DividerDecoration itemDecoration = new DividerDecoration(Color.GRAY, Utils.dip2px(_mActivity, 16f), 0, 0);
+        DividerDecoration itemDecoration = new DividerDecoration(Color.GRAY, Utils.dp2px(_mActivity, 16f), 0, 0);
         itemDecoration.setDrawLastItem(false);
         mBaseRecyclerView.addItemDecoration(itemDecoration);
 
@@ -71,7 +71,7 @@ public class HeaderFooterRecyclerViewFragment extends BaseFragment {
             @Override
             public View onCreateView(ViewGroup parent) {
                 TextView tv = new TextView(_mActivity);
-                tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Utils.dip2px(_mActivity, 56)));
+                tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0));
                 tv.setGravity(Gravity.CENTER);
                 tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
                 tv.setText("第一个Header");
@@ -96,7 +96,7 @@ public class HeaderFooterRecyclerViewFragment extends BaseFragment {
                     }
                 };
                 recyclerView.setLayoutManager(new LinearLayoutManager(parent.getContext(), LinearLayoutManager.HORIZONTAL, false));
-                recyclerView.addItemDecoration(new SpaceDecoration(Utils.dip2px(_mActivity, 8)));
+                recyclerView.addItemDecoration(new SpaceDecoration(Utils.dp2px(_mActivity, 8)));
                 recyclerView.setHorizontalScrollBarEnabled(false);
                 recyclerView.setAdapterWithProgress(mAdapter = new RecyclerArrayAdapter<SimpleBeen>(_mActivity) {
                     @Override

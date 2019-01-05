@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 矩形无边框+内部填充+底下左右圆角 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools"
+       android:shape="rectangle"
+       android:useLevel="true"
+       tools:ignore="ResourceName">
+
+    <solid android:color="#ffffffff"/>
+
+    <corners
+        android:bottomLeftRadius="8dp"
+        android:bottomRightRadius="8dp"/>
+</shape>
