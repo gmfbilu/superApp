@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_util.dynamicLayout;
+package org.gmfbilu.superapp.module_view.dynamicLayout;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
-import org.gmfbilu.superapp.module_util.R;
+import org.gmfbilu.superapp.module_view.R;
 
 /**
  * 1. xml中引入的根布局通过getLayoutParams获取的LayoutParams默认是FrameLayout.LayoutParams.
@@ -70,11 +70,11 @@ public class DynamicLayoutFragment extends BaseFragment {
         layoutParams.setMargins(0, 100, 0, 0);
         content.setLayoutParams(layoutParams);
         //给View配置ID,id在values下的ids文件中
-        content.setId(R.id.module_util_dynamicLayout_content);
+        content.setId(R.id.module_view_dynamicLayout_content);
 
 
         AppBarLayout appBarLayout = new AppBarLayout(_mActivity);
-        appBarLayout.setId(R.id.module_util_dynamicLayout_appBarLayout);
+        appBarLayout.setId(R.id.module_view_dynamicLayout_appBarLayout);
         content.addView(appBarLayout);
         //约束布局既可以使用LayoutParams配置参数又可以使用ConstraintSet配置参数，ConstraintSet更为强大，可以配置动画
         ConstraintLayout.LayoutParams ConstraintLayout_LayoutParams = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -83,7 +83,7 @@ public class DynamicLayoutFragment extends BaseFragment {
 
 
         Toolbar toolbar = new Toolbar(_mActivity);
-        toolbar.setId(R.id.module_util_toolbar);
+        toolbar.setId(R.id.module_view_toolbar);
         appBarLayout.addView(toolbar);
         AppBarLayout.LayoutParams AppBarLayout_LayoutParams = new AppBarLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         toolbar.setLayoutParams(AppBarLayout_LayoutParams);
@@ -95,7 +95,7 @@ public class DynamicLayoutFragment extends BaseFragment {
         toolbar.setTitleTextColor(Color.WHITE);
 
         TextView tv_guideline = new TextView(_mActivity);
-        tv_guideline.setId(R.id.module_util_tv_guideline);
+        tv_guideline.setId(R.id.module_view_tv_guideline);
         content.addView(tv_guideline);
         //使用ConstraintSet
         ConstraintSet constraintSet = new ConstraintSet();
@@ -107,7 +107,7 @@ public class DynamicLayoutFragment extends BaseFragment {
         tv_guideline.setBackgroundColor(Color.parseColor("#FF4081"));
 
         TextView tv_baseline = new TextView(_mActivity);
-        tv_baseline.setId(R.id.module_util_tv_baseline);
+        tv_baseline.setId(R.id.module_view_tv_baseline);
         content.addView(tv_baseline);
         ConstraintLayout.LayoutParams layoutParams_tv_baseline = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams_tv_baseline.topToBottom = tv_guideline.getId();
@@ -116,7 +116,7 @@ public class DynamicLayoutFragment extends BaseFragment {
         tv_baseline.setBackgroundColor(Color.parseColor("#3F51B5"));
 
         TextView tv_bias = new TextView(_mActivity);
-        tv_bias.setId(R.id.module_util_tv_bias);
+        tv_bias.setId(R.id.module_view_tv_bias);
         content.addView(tv_bias);
         ConstraintLayout.LayoutParams layoutParams_tv_bias = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams_tv_bias.topToBottom = tv_baseline.getId();
@@ -128,7 +128,7 @@ public class DynamicLayoutFragment extends BaseFragment {
         tv_bias.setBackgroundColor(Color.parseColor("#3F51B5"));
 
         TextView tv_dimenRadio = new TextView(_mActivity);
-        tv_dimenRadio.setId(R.id.module_util_tv_dimenRadio);
+        tv_dimenRadio.setId(R.id.module_view_tv_dimenRadio);
         content.addView(tv_dimenRadio);
         ConstraintLayout.LayoutParams layoutParams_tv_dimenRadio = new ConstraintLayout.LayoutParams(AppUtils.dp2px(120), 0);
         layoutParams_tv_dimenRadio.topToBottom = tv_bias.getId();

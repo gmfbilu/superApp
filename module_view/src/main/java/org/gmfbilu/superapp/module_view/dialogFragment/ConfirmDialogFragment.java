@@ -1,12 +1,13 @@
-package org.gmfbilu.superapp.module_googlelibrary.dialogFragment;
+package org.gmfbilu.superapp.module_view.dialogFragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import org.gmfbilu.superapp.lib_base.base.baseDialogFragment.BaseDialogFragment;
-import org.gmfbilu.superapp.lib_base.base.baseDialogFragment.DialogFragmentViewHolder;
-import org.gmfbilu.superapp.module_googlelibrary.R;
+import org.gmfbilu.superapp.lib_base.view.dialogFragment.BaseDialogFragment;
+import org.gmfbilu.superapp.lib_base.view.dialogFragment.DialogFragmentViewHolder;
+import org.gmfbilu.superapp.module_view.R;
+
 
 public class ConfirmDialogFragment extends BaseDialogFragment {
 
@@ -32,7 +33,7 @@ public class ConfirmDialogFragment extends BaseDialogFragment {
 
     @Override
     public int intLayoutId() {
-        return R.layout.module_googlelibrary_dialogfragment_confirm;
+        return R.layout.module_view_dialogfragment_confirm;
     }
 
     @Override

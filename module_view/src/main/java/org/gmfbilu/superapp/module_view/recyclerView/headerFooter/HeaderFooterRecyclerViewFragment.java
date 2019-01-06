@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_util.recyclerView.headerFooter;
+package org.gmfbilu.superapp.module_view.recyclerView.headerFooter;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,8 +19,8 @@ import org.gmfbilu.superapp.lib_base.view.recyclerView.adapter.BaseViewHolder;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.adapter.RecyclerArrayAdapter;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.decoration.DividerDecoration;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.decoration.SpaceDecoration;
-import org.gmfbilu.superapp.module_util.R;
-import org.gmfbilu.superapp.module_util.recyclerView.simple.SimpleBeen;
+import org.gmfbilu.superapp.module_view.R;
+import org.gmfbilu.superapp.module_view.recyclerView.simple.SimpleBeen;
 
 import java.util.ArrayList;
 
@@ -44,7 +44,7 @@ public class HeaderFooterRecyclerViewFragment extends BaseFragment {
 
     @Override
     public int setLayout() {
-        return R.layout.module_util_fragment_recyclerview_header_foot;
+        return R.layout.module_view_fragment_recyclerview_header_foot;
     }
 
     @Override
@@ -123,7 +123,7 @@ public class HeaderFooterRecyclerViewFragment extends BaseFragment {
             @Override
             public View onCreateView(ViewGroup parent) {
                 LayoutInflater layoutInflater = _mActivity.getLayoutInflater();
-                View inflate = layoutInflater.inflate(R.layout.module_util_recyclerview_inflate_footer, null);
+                View inflate = layoutInflater.inflate(R.layout.module_view_recyclerview_inflate_footer, null);
                 TextView tv = inflate.findViewById(R.id.tv);
                 tv.setText(" I AM A FOOTER");
                 return inflate;

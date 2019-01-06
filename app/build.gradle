@@ -122,10 +122,7 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:${glide_annotationProcessor_version}"
     implementation project(':lib_base')
     if (!isModule.toBoolean()) {
-        implementation project(':module_main')
         implementation project(':module_fragment')
-        implementation project(':module_test')
-        implementation project(':module_googlelibrary')
         implementation project(':module_view')
         implementation project(':module_util')
         implementation project(':module_java')

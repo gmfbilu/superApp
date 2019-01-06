@@ -1,18 +1,24 @@
-package com.zhy.view.flowlayout;
+package org.gmfbilu.superapp.lib_base.view.flowLayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.v4.text.TextUtilsCompat;
 import android.util.AttributeSet;
 import android.util.LayoutDirection;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.text.TextUtilsCompat;
+
+import org.gmfbilu.superapp.lib_base.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+
+/**
+ * https://github.com/hongyangAndroid/FlowLayout
+ */
 public class FlowLayout extends ViewGroup {
     private static final String TAG = "FlowLayout";
     private static final int LEFT = -1;

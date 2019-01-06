@@ -1,11 +1,10 @@
-package org.gmfbilu.superapp.module_util.shape;
+package org.gmfbilu.superapp.module_view.shape;
 
 import android.os.Bundle;
 import android.view.View;
 
-import org.gmfbilu.superapp.module_util.R;
-
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
+import org.gmfbilu.superapp.module_view.R;
 
 
 /**
@@ -99,7 +98,7 @@ public class ShapeFragment extends BaseFragment {
 
     @Override
     public int setLayout() {
-        return R.layout.module_util_fragment_shape;
+        return R.layout.module_view_fragment_shape;
     }
 
     @Override

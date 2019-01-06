@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.lib_base.base.baseDialogFragment;
+package org.gmfbilu.superapp.lib_base.view.dialogFragment;
 
 import android.util.SparseArray;
 import android.view.View;

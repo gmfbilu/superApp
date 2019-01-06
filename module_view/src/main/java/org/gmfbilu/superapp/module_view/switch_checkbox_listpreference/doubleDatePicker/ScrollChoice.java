@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference.doubleDatePicker;
+package org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.doubleDatePicker;
 
 import android.content.Context;
 import android.util.AttributeSet;

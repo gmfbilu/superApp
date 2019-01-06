@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
-    android:background="@color/lib_base_colorWhite">
+    android:background="#ffffffff">
 
     <org.gmfbilu.superapp.lib_base.view.recyclerView.BaseRecyclerView
         android:id="@+id/recyclerView"

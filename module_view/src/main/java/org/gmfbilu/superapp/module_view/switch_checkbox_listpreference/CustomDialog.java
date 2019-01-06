@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference;
+package org.gmfbilu.superapp.module_view.switch_checkbox_listpreference;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -11,7 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
-import org.gmfbilu.superapp.module_googlelibrary.R;
+import org.gmfbilu.superapp.module_view.R;
 
 public class CustomDialog extends Dialog {
 
@@ -28,7 +28,7 @@ public class CustomDialog extends Dialog {
     }
 
     public View setCalanderLayout() {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.module_googlelibrary_dialog_double_date, null);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.module_view_dialog_double_date, null);
         Window win = this.getWindow();
         int dp2px = AppUtils.dp2px(30);
         if (win != null) {
@@ -46,7 +46,7 @@ public class CustomDialog extends Dialog {
 
 
     public View setLocationLinkageLayout() {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.module_googlelibrary_dialog_location_linkage, null);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.module_view_dialog_location_linkage, null);
         Window win = this.getWindow();
         int dp2px = AppUtils.dp2px(30);
         if (win != null) {
@@ -64,7 +64,7 @@ public class CustomDialog extends Dialog {
 
 
     public View setSearchLayout() {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.module_googlelibrary_dialog_search, null);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.module_view_dialog_search, null);
         Window win = this.getWindow();
         int dp2px = AppUtils.dp2px(30);
         if (win != null) {

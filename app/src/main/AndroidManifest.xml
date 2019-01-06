@@ -7,18 +7,25 @@
         android:allowBackup="true"
         android:icon="@mipmap/lib_base_ic_launcher"
         android:label="@string/lib_base_app_name"
-        tools:replace="android:theme,android:label,android:icon,android:roundIcon"
         android:roundIcon="@mipmap/lib_base_ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/lib_base_AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:theme,android:label,android:icon,android:roundIcon">
+
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
 
         <provider
-            tools:replace="android:authorities"
             android:name="android.support.v4.content.FileProvider"
             android:authorities="org.gmfbilu.superapp.fileProvider"
             android:exported="false"
-            android:grantUriPermissions="true">
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/lib_base_provider_path"/>

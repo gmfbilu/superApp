@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference.locationLinkage;
+package org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.locationLinkage;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -16,7 +16,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import org.gmfbilu.superapp.module_googlelibrary.R;
+import org.gmfbilu.superapp.module_view.R;
 
 import java.util.ArrayList;
 
@@ -708,9 +708,7 @@ public class WheelView extends View {
          * @return
          */
         public boolean isInView() {
-            if (y + move > controlHeight || (y + move + unitHeight / 2 + textRect.height() / 2) < 0)
-                return false;
-            return true;
+            return !(y + move > controlHeight) && (y + move + unitHeight / 2 + textRect.height() / 2) >= 0;
         }
 
         /**
@@ -746,11 +744,8 @@ public class WheelView extends View {
                     && (y + move + unitHeight) <= controlHeight / 2 + unitHeight / 2 - lineHeight) {
                 return true;
             }
-            if ((y + move) <= controlHeight / 2 - unitHeight / 2 + lineHeight
-                    && (y + move + unitHeight) >= controlHeight / 2 + unitHeight / 2 - lineHeight) {
-                return true;
-            }
-            return false;
+            return (y + move) <= controlHeight / 2 - unitHeight / 2 + lineHeight
+                    && (y + move + unitHeight) >= controlHeight / 2 + unitHeight / 2 - lineHeight;
         }
 
         /**

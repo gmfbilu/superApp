@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_googlelibrary.constraintlayout;
+package org.gmfbilu.superapp.module_view.constraintlayout;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
-import org.gmfbilu.superapp.module_googlelibrary.R;
+import org.gmfbilu.superapp.module_view.R;
 
 
 /**
@@ -90,7 +90,7 @@ public class ConstraintLayoutFragment extends BaseFragment {
 
     @Override
     public int setLayout() {
-        return R.layout.module_googlelibrary_fragment_constraintlayout;
+        return R.layout.module_view_fragment_constraintlayout;
     }
 
     /**

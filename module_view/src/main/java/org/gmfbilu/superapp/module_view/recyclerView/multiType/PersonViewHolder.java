@@ -1,10 +1,10 @@
-package org.gmfbilu.superapp.module_util.recyclerView.multiType;
+package org.gmfbilu.superapp.module_view.recyclerView.multiType;
 
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.gmfbilu.superapp.lib_base.view.recyclerView.adapter.BaseViewHolder;
-import org.gmfbilu.superapp.module_util.R;
+import org.gmfbilu.superapp.module_view.R;
 
 public class PersonViewHolder extends BaseViewHolder<Person> {
 
@@ -13,7 +13,7 @@ public class PersonViewHolder extends BaseViewHolder<Person> {
 
 
     public PersonViewHolder(ViewGroup parent) {
-        super(parent, R.layout.module_util_recyclerview_item_multi_type_person);
+        super(parent, R.layout.module_view_recyclerview_item_multi_type_person);
         tv_name = $(R.id.tv_name);
         tv_age = $(R.id.tv_age);
     }

@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference.search;
+package org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.search;
 
 import android.app.Activity;
 import android.content.Context;

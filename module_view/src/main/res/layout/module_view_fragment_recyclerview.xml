@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/module_util_bt_easy"
+        android:id="@+id/module_view_bt_easy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="简单!"
@@ -15,21 +15,21 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
-        android:id="@+id/module_util_bt_header_footer"
+        android:id="@+id/module_view_bt_header_footer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="加头加尾!"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_util_bt_easy"/>
+        app:layout_constraintTop_toBottomOf="@+id/module_view_bt_easy"/>
 
     <Button
-        android:id="@+id/module_util_bt_multitype"
+        android:id="@+id/module_view_bt_multitype"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="多种类型item!"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_util_bt_header_footer"/>
+        app:layout_constraintTop_toBottomOf="@+id/module_view_bt_header_footer"/>
 
 </android.support.constraint.ConstraintLayout>

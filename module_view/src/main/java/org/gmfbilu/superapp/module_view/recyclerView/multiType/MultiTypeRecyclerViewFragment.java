@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_util.recyclerView.multiType;
+package org.gmfbilu.superapp.module_view.recyclerView.multiType;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,7 +7,7 @@ import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.BaseRecyclerView;
-import org.gmfbilu.superapp.module_util.R;
+import org.gmfbilu.superapp.module_view.R;
 
 import java.util.ArrayList;
 
@@ -31,7 +31,7 @@ public class MultiTypeRecyclerViewFragment extends BaseFragment {
 
     @Override
     public int setLayout() {
-        return R.layout.module_util_fragment_recyclerview_multi_type;
+        return R.layout.module_view_fragment_recyclerview_multi_type;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class MultiTypeRecyclerViewFragment extends BaseFragment {
 
     private void initRecyclerView() {
         mBaseRecyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
-        mBaseRecyclerView.setProgressView(R.layout.module_util_recyclerview_progress);
+        mBaseRecyclerView.setProgressView(R.layout.module_view_recyclerview_progress);
         mMultiTypeAdapter = new MultiTypeAdapter(_mActivity);
         ArrayList<Object> arrAll = new ArrayList<>();
         for (int i = 0; i < 15; i++) {

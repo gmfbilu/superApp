@@ -26,7 +26,7 @@ public class AsyncAspect {
     public void onAsyncMethod() {
     }
 
-    private void asyncMethod(final ProceedingJoinPoint joinPoint) throws Throwable {
+    private void asyncMethod(final ProceedingJoinPoint joinPoint) {
         Single.create(emitter -> {
             Looper.prepare();
             try {

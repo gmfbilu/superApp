@@ -128,7 +128,7 @@ public class HttpMethods {
     private class HttpResultFunc<T> implements Function<HttpResult<T>, T> {
 
         @Override
-        public T apply(HttpResult<T> httpResult) throws Exception {
+        public T apply(HttpResult<T> httpResult) {
             String respCode = httpResult.code;
             if (!respCode.equals(Constant.CODE_RESPONSE_SUCCEED)) {
                 throw new ApiException(respCode, httpResult.code, httpResult.data);

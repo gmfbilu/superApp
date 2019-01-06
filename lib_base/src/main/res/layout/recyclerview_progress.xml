@@ -1,4 +1,4 @@
-<org.gmfbilu.superapp.lib_base.base.baseRecyclerView.swipe.SwipeRefreshLayout
+<org.gmfbilu.superapp.lib_base.view.recyclerView.swipe.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ptr_layout"
@@ -33,4 +33,4 @@
         android:clickable="true"
         />
 
-</org.gmfbilu.superapp.lib_base.base.baseRecyclerView.swipe.SwipeRefreshLayout>
+</org.gmfbilu.superapp.lib_base.view.recyclerView.swipe.SwipeRefreshLayout>

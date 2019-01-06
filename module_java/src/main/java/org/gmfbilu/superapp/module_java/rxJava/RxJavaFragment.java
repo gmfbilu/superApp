@@ -188,7 +188,7 @@ public class RxJavaFragment extends BaseFragment {
         //链式调用
         Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
-            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
+            public void subscribe(ObservableEmitter<Integer> emitter) {
 
             }
         }).safeSubscribe(new Observer<Integer>() {
@@ -229,7 +229,7 @@ public class RxJavaFragment extends BaseFragment {
          */
         Observable<Integer> integerObservable = Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
-            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
+            public void subscribe(ObservableEmitter<Integer> emitter) {
 
             }
         });
@@ -308,12 +308,12 @@ public class RxJavaFragment extends BaseFragment {
          */
         Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
-            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
+            public void subscribe(ObservableEmitter<Integer> emitter) {
                 emitter.onNext(1);
             }
         }).map(new Function<Integer, String>() {
             @Override
-            public String apply(Integer integer) throws Exception {
+            public String apply(Integer integer) {
                 return "" + integer;
             }
         }).safeSubscribe(new Observer<String>() {
@@ -349,14 +349,14 @@ public class RxJavaFragment extends BaseFragment {
          */
         Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
-            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
+            public void subscribe(ObservableEmitter<Integer> emitter) {
                 emitter.onNext(1);
                 emitter.onNext(2);
                 emitter.onNext(3);
             }
         }).flatMap(new Function<Integer, ObservableSource<String>>() {
             @Override
-            public ObservableSource<String> apply(Integer integer) throws Exception {
+            public ObservableSource<String> apply(Integer integer) {
                 //我们在flatMap中将上游发来的每个事件转换为一个新的发送2个String事件的水管, 为了看到flatMap结果是无序的,所以加了10毫秒的延时
                 final List<String> list = new ArrayList<>();
                 for (int i = 0; i < 2; i++) {
@@ -394,7 +394,7 @@ public class RxJavaFragment extends BaseFragment {
          */
         Observable<Integer> observable1 = Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
-            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
+            public void subscribe(ObservableEmitter<Integer> emitter) {
                 emitter.onNext(1);
                 emitter.onNext(2);
                 emitter.onNext(3);
@@ -403,7 +403,7 @@ public class RxJavaFragment extends BaseFragment {
         }).subscribeOn(Schedulers.io());
         Observable<String> observable2 = Observable.create(new ObservableOnSubscribe<String>() {
             @Override
-            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+            public void subscribe(ObservableEmitter<String> emitter) {
                 emitter.onNext("a");
                 emitter.onNext("b");
                 emitter.onComplete();
@@ -411,7 +411,7 @@ public class RxJavaFragment extends BaseFragment {
         }).subscribeOn(Schedulers.io());
         Observable.zip(observable1, observable2, new BiFunction<Integer, String, String>() {
             @Override
-            public String apply(Integer integer, String s) throws Exception {
+            public String apply(Integer integer, String s) {
                 return integer + s;
             }
         }).subscribe(new Observer<String>() {
@@ -442,7 +442,7 @@ public class RxJavaFragment extends BaseFragment {
         disposables.add(Observable.defer(new Callable<ObservableSource<? extends String>>() {
 
             @Override
-            public ObservableSource<? extends String> call() throws Exception {
+            public ObservableSource<? extends String> call() {
                 // Do some long running operation
                 SystemClock.sleep(1000);
                 return Observable.just("one", "two", "three", "four", "five");
@@ -621,7 +621,7 @@ public class RxJavaFragment extends BaseFragment {
 
         Completable.create(new CompletableOnSubscribe() {
             @Override
-            public void subscribe(CompletableEmitter emitter) throws Exception {
+            public void subscribe(CompletableEmitter emitter) {
                 //发射一条完成通知
                 emitter.onComplete();
                 //发射一条异常通知
@@ -651,7 +651,7 @@ public class RxJavaFragment extends BaseFragment {
         //Maybe发射单一数据和完成通知或者发射单一数据和异常通知
         Maybe.create(new MaybeOnSubscribe<Integer>() {
             @Override
-            public void subscribe(MaybeEmitter<Integer> emitter) throws Exception {
+            public void subscribe(MaybeEmitter<Integer> emitter) {
                 emitter.onSuccess(100);
                 emitter.onComplete();
                 // emitter.onError(new Exception(""));
@@ -686,7 +686,7 @@ public class RxJavaFragment extends BaseFragment {
                 .just(0, 1, 2, 3, 4, 5, 6)
                 .filter(new Predicate<Integer>() {
                     @Override
-                    public boolean test(Integer integer) throws Exception {
+                    public boolean test(Integer integer) {
                         return integer % 2 == 0;
                     }
                 }).subscribe(new Observer<Integer>() {
@@ -751,7 +751,7 @@ public class RxJavaFragment extends BaseFragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .scan(new BiFunction<Integer, Integer, Integer>() {
                     @Override
-                    public Integer apply(Integer integer, Integer integer2) throws Exception {
+                    public Integer apply(Integer integer, Integer integer2) {
                         return integer + integer2;
                     }
                 })
@@ -812,12 +812,12 @@ public class RxJavaFragment extends BaseFragment {
         //doOnNext操作符让下游在接收到数据前干点事情
         Observable.create(new ObservableOnSubscribe<String>() {
             @Override
-            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+            public void subscribe(ObservableEmitter<String> emitter) {
                 emitter.onNext("A");
             }
         }).doOnNext(new Consumer<String>() {
             @Override
-            public void accept(String s) throws Exception {
+            public void accept(String s) {
                 //Logger.d(s + "doOnNext");
             }
         }).subscribe(new Observer<String>() {
@@ -849,7 +849,7 @@ public class RxJavaFragment extends BaseFragment {
         Observable.create(new ObservableOnSubscribe<String>() {
 
             @Override
-            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+            public void subscribe(ObservableEmitter<String> emitter) {
                 emitter.onNext("a");
                 emitter.onNext("a");
             }
@@ -881,7 +881,7 @@ public class RxJavaFragment extends BaseFragment {
         Observable.create(new ObservableOnSubscribe<String>() {
 
             @Override
-            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+            public void subscribe(ObservableEmitter<String> emitter) {
                 emitter.onNext("a");
                 emitter.onNext("b");
                 emitter.onNext("c");
@@ -954,7 +954,7 @@ public class RxJavaFragment extends BaseFragment {
         //last操作符取出最后一个值，参数是没有值的时候的默认值
         Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
-            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
+            public void subscribe(ObservableEmitter<Integer> emitter) {
                 emitter.onNext(1);
                 emitter.onNext(10);
                 emitter.onNext(100);
@@ -1009,7 +1009,7 @@ public class RxJavaFragment extends BaseFragment {
         //reduce就是一次用一个方法处理一个值，可以有一个seed作为初始值
         Observable.create(new ObservableOnSubscribe<String>() {
             @Override
-            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+            public void subscribe(ObservableEmitter<String> emitter) {
                 emitter.onNext("a");
                 //emitter.onNext("b");
                 //emitter.onNext("c");
@@ -1017,7 +1017,7 @@ public class RxJavaFragment extends BaseFragment {
             }
         }).reduce(new BiFunction<String, String, String>() {
             @Override
-            public String apply(String s, String s2) throws Exception {
+            public String apply(String s, String s2) {
                 Logger.d(s+"-------"+s2);
                 return "messi";
             }
@@ -1066,7 +1066,7 @@ public class RxJavaFragment extends BaseFragment {
          */
         Flowable<Integer> integerFlowable = Flowable.create(new FlowableOnSubscribe<Integer>() {
             @Override
-            public void subscribe(FlowableEmitter<Integer> emitter) throws Exception {
+            public void subscribe(FlowableEmitter<Integer> emitter) {
                 emitter.onNext(1);
                 emitter.onNext(2);
                 emitter.onNext(3);

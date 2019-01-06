@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/module_main_fragment"
+        android:id="@+id/module_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -17,34 +17,34 @@
 
 
     <TextView
-        android:id="@+id/module_main_views"
+        android:id="@+id/module_views"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="views!"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_main_fragment"/>
+        app:layout_constraintTop_toBottomOf="@+id/module_fragment"/>
 
     <TextView
-        android:id="@+id/module_main_util"
+        android:id="@+id/module_util"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Util!"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_main_views"/>
+        app:layout_constraintTop_toBottomOf="@+id/module_views"/>
 
     <TextView
-        android:id="@+id/module_main_java"
+        android:id="@+id/module_java"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Java!"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_main_util"/>
+        app:layout_constraintTop_toBottomOf="@+id/module_util"/>
 
 
 </android.support.constraint.ConstraintLayout>

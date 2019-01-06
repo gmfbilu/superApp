@@ -1,8 +1,8 @@
-package com.zhy.view.flowlayout;
+package org.gmfbilu.superapp.lib_base.view.flowLayout;
 
-import android.util.Log;
 import android.view.View;
 
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,12 +73,12 @@ public abstract class TagAdapter<T> {
     public abstract View getView(FlowLayout parent, int position, T t);
 
 
-    public void onSelected(int position, View view){
-        Log.d("zhy","onSelected " + position);
+    public void onSelected(int position, View view) {
+        Logger.d("onSelected " + position);
     }
 
-    public void unSelected(int position, View view){
-        Log.d("zhy","unSelected " + position);
+    public void unSelected(int position, View view) {
+        Logger.d( "unSelected " + position);
     }
 
     public boolean setSelected(int position, T t) {

@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_util.recyclerView.simple;
+package org.gmfbilu.superapp.module_view.recyclerView.simple;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ import org.gmfbilu.superapp.lib_base.view.recyclerView.BaseRecyclerView;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.adapter.BaseViewHolder;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.adapter.RecyclerArrayAdapter;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.decoration.DividerDecoration;
-import org.gmfbilu.superapp.module_util.R;
+import org.gmfbilu.superapp.module_view.R;
 
 import java.util.ArrayList;
 
@@ -49,7 +49,7 @@ public class SimpleRecyclerViewFragment extends BaseFragment {
 
     @Override
     public int setLayout() {
-        return R.layout.module_util_fragment_recyclerview_simple;
+        return R.layout.module_view_fragment_recyclerview_simple;
     }
 
     @Override
@@ -92,7 +92,7 @@ public class SimpleRecyclerViewFragment extends BaseFragment {
         //下拉刷新
         mBaseRecyclerView.setRefreshListener(this::refresh);
         //加载更多
-        mAdapter.setMore(R.layout.module_util_recyclerview_content_more, new RecyclerArrayAdapter.OnMoreListener() {
+        mAdapter.setMore(R.layout.module_view_recyclerview_content_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
             public void onMoreShow() {
                 handler.postDelayed(() -> {
@@ -120,7 +120,7 @@ public class SimpleRecyclerViewFragment extends BaseFragment {
             }
         });
         //出错情况下
-        mAdapter.setError(R.layout.module_util_recyclerview_error, new RecyclerArrayAdapter.OnErrorListener() {
+        mAdapter.setError(R.layout.module_view_recyclerview_error, new RecyclerArrayAdapter.OnErrorListener() {
             @Override
             public void onErrorShow() {
                 mAdapter.resumeMore();
@@ -132,9 +132,9 @@ public class SimpleRecyclerViewFragment extends BaseFragment {
             }
         });
         //没有数据
-        mBaseRecyclerView.setEmptyView(R.layout.module_util_recyclerview_empty);
+        mBaseRecyclerView.setEmptyView(R.layout.module_view_recyclerview_empty);
         //下拉加载更多-没有更多数据
-        mAdapter.setNoMore(R.layout.module_util_recyclerview_no_more);
+        mAdapter.setNoMore(R.layout.module_view_recyclerview_no_more);
         //item点击事件
         mAdapter.setOnItemClickListener(position -> {
             SimpleBeen item = mAdapter.getItem(position);

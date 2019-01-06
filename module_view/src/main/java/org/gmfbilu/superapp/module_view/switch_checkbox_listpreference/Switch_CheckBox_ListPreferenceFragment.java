@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference;
+package org.gmfbilu.superapp.module_view.switch_checkbox_listpreference;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -24,12 +24,12 @@ import android.widget.Toast;
 import com.orhanobut.logger.Logger;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
-import org.gmfbilu.superapp.lib_base.base.baseRecyclerView.BaseRecyclerView;
-import org.gmfbilu.superapp.lib_base.base.baseRecyclerView.adapter.RecyclerArrayAdapter;
-import org.gmfbilu.superapp.module_googlelibrary.R;
-import org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference.doubleDatePicker.ScrollChoice;
-import org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference.locationLinkage.WheelView;
-import org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference.search.SearchAdapter;
+import org.gmfbilu.superapp.lib_base.view.recyclerView.BaseRecyclerView;
+import org.gmfbilu.superapp.lib_base.view.recyclerView.adapter.RecyclerArrayAdapter;
+import org.gmfbilu.superapp.module_view.R;
+import org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.doubleDatePicker.ScrollChoice;
+import org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.locationLinkage.WheelView;
+import org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.search.SearchAdapter;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -70,7 +70,7 @@ public class Switch_CheckBox_ListPreferenceFragment extends BaseFragment {
 
     @Override
     public int setLayout() {
-        return R.layout.module_googlelibrary_fragment_switch_checkbox_listpreference;
+        return R.layout.module_view_fragment_switch_checkbox_listpreference;
     }
 
 
@@ -186,12 +186,12 @@ public class Switch_CheckBox_ListPreferenceFragment extends BaseFragment {
             timePickerDialog.show();
         } else if (id == R.id.bt_BottomSheetDialog) {
             final BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(_mActivity);
-            View dialogView = _mActivity.getLayoutInflater().inflate(R.layout.module_googlelibrary_dialog_bottom_sheet, null);
+            View dialogView = _mActivity.getLayoutInflater().inflate(R.layout.module_view_dialog_bottom_sheet, null);
             mBottomSheetDialog.setContentView(dialogView);
             mBottomSheetDialog.show();
         } else if (id == R.id.bt_FullscreenDialog) {
             final Dialog fullscreenDialog = new Dialog(_mActivity, R.style.DialogFullscreen);
-            fullscreenDialog.setContentView(R.layout.module_googlelibrary_dialog_fullscreen);
+            fullscreenDialog.setContentView(R.layout.module_view_dialog_fullscreen);
             fullscreenDialog.findViewById(R.id.img_dialog_fullscreen_close).setOnClickListener(v1 -> fullscreenDialog.dismiss());
             fullscreenDialog.show();
         }
@@ -695,7 +695,7 @@ public class Switch_CheckBox_ListPreferenceFragment extends BaseFragment {
         CustomDialog calDialog = new CustomDialog(_mActivity);
         View layout = calDialog.setSearchLayout();
         SearchView searchView = layout.findViewById(R.id.searchView);
-        SearchView.SearchAutoComplete searchAutoComplete = (SearchView.SearchAutoComplete) searchView.findViewById(R.id.search_src_text);
+        SearchView.SearchAutoComplete searchAutoComplete = searchView.findViewById(R.id.search_src_text);
         searchAutoComplete.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
         searchView.setIconified(false);
         BaseRecyclerView recyclerView = layout.findViewById(R.id.RecyclerView);

@@ -1,11 +1,11 @@
-package org.gmfbilu.superapp.module_util.recyclerView.multiType;
+package org.gmfbilu.superapp.module_view.recyclerView.multiType;
 
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.gmfbilu.superapp.lib_base.view.recyclerView.adapter.BaseViewHolder;
-import org.gmfbilu.superapp.module_util.R;
+import org.gmfbilu.superapp.module_view.R;
 
 public class AdViewHolder extends BaseViewHolder<Ad> {
 
@@ -13,7 +13,7 @@ public class AdViewHolder extends BaseViewHolder<Ad> {
     private ImageView iv_pic;
 
     public AdViewHolder(ViewGroup parent) {
-        super(parent, R.layout.module_util_recyclerview_item_multi_type_ad);
+        super(parent, R.layout.module_view_recyclerview_item_multi_type_ad);
         tv_des = $(R.id.tv_des);
         iv_pic = $(R.id.iv_pic);
     }

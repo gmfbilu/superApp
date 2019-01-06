@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_util.recyclerView.simple;
+package org.gmfbilu.superapp.module_view.recyclerView.simple;
 
 public class SimpleBeen {
 

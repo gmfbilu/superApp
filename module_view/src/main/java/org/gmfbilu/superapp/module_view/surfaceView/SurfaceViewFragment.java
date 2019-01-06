@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_util.surfaceView;
+package org.gmfbilu.superapp.module_view.surfaceView;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
-import org.gmfbilu.superapp.module_util.R;
+import org.gmfbilu.superapp.module_view.R;
 
 
 public class SurfaceViewFragment extends BaseFragment {
@@ -28,7 +28,7 @@ public class SurfaceViewFragment extends BaseFragment {
 
     @Override
     public int setLayout() {
-        return R.layout.module_util_fragment_surfaceview;
+        return R.layout.module_view_fragment_surfaceview;
     }
 
     @Override

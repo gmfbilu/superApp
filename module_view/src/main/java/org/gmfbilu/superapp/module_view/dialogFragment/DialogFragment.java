@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_googlelibrary.dialogFragment;
+package org.gmfbilu.superapp.module_view.dialogFragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,12 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.gmfbilu.superapp.lib_base.view.dialogFragment.BaseDialog;
-import org.gmfbilu.superapp.lib_base.base.baseDialogFragment.BaseDialogFragment;
-import org.gmfbilu.superapp.lib_base.base.baseDialogFragment.DialogFragmentViewConvertListener;
-import org.gmfbilu.superapp.lib_base.base.baseDialogFragment.DialogFragmentViewHolder;
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
-import org.gmfbilu.superapp.module_googlelibrary.R;
+import org.gmfbilu.superapp.lib_base.view.dialogFragment.BaseDialog;
+import org.gmfbilu.superapp.lib_base.view.dialogFragment.BaseDialogFragment;
+import org.gmfbilu.superapp.lib_base.view.dialogFragment.DialogFragmentViewConvertListener;
+import org.gmfbilu.superapp.lib_base.view.dialogFragment.DialogFragmentViewHolder;
+import org.gmfbilu.superapp.module_view.R;
 
 /**
  * Google官方建议使用DialogFragment代替Dialog
@@ -43,7 +43,7 @@ public class DialogFragment extends BaseFragment {
 
     @Override
     public int setLayout() {
-        return R.layout.module_googlelibrary_fragment_dialogfragment;
+        return R.layout.module_view_fragment_dialogfragment;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class DialogFragment extends BaseFragment {
         int id = v.getId();
         if (id == R.id.bt_dialog_share) {
             BaseDialog.init()
-                    .setLayoutId(R.layout.module_googlelibrary_dialogfragment_share) //设置dialog布局文件
+                    .setLayoutId(R.layout.module_view_dialogfragment_share) //设置dialog布局文件
                     //.setTheme() 设置dialog主题，默认主题继承自Theme.AppCompat.Light.Dialog
                     .setConvertListener(new DialogFragmentViewConvertListener() { //进行相关View操作的回调
                         @Override
@@ -77,7 +77,7 @@ public class DialogFragment extends BaseFragment {
                     .show(_mActivity.getSupportFragmentManager());
         } else if (id == R.id.bt_dialog_setting) {
             BaseDialog.init()
-                    .setLayoutId(R.layout.module_googlelibrary_dialogfragment_setting)
+                    .setLayoutId(R.layout.module_view_dialogfragment_setting)
                     .setConvertListener(new DialogFragmentViewConvertListener() {
                         @Override
                         protected void convertView(DialogFragmentViewHolder holder, BaseDialogFragment dialog) {
@@ -89,7 +89,7 @@ public class DialogFragment extends BaseFragment {
                     .show(_mActivity.getSupportFragmentManager());
         } else if (id == R.id.bt_dialog_commit) {
             BaseDialog.init()
-                    .setLayoutId(R.layout.module_googlelibrary_dialogfragment_commit)
+                    .setLayoutId(R.layout.module_view_dialogfragment_commit)
                     .setConvertListener(new DialogFragmentViewConvertListener() {
                         @Override
                         protected void convertView(DialogFragmentViewHolder holder, BaseDialogFragment dialog) {
@@ -107,7 +107,7 @@ public class DialogFragment extends BaseFragment {
                     .show(_mActivity.getSupportFragmentManager());
         } else if (id == R.id.bt_dialog_redpocket) {
             BaseDialog.init()
-                    .setLayoutId(R.layout.module_googlelibrary_dialogfragment_redpocket)
+                    .setLayoutId(R.layout.module_view_dialogfragment_redpocket)
                     .setConvertListener(new DialogFragmentViewConvertListener() {
                         @Override
                         protected void convertView(DialogFragmentViewHolder holder, BaseDialogFragment dialog) {
@@ -126,7 +126,7 @@ public class DialogFragment extends BaseFragment {
                     .show(_mActivity.getSupportFragmentManager());
         } else if (id == R.id.bt_dialog_loading) {
             BaseDialog.init()
-                    .setLayoutId(R.layout.module_googlelibrary_dialogfragment_loading)
+                    .setLayoutId(R.layout.module_view_dialogfragment_loading)
                     .setTheme(R.style.LoadingDialogFragment)
                     .setWidth(100)
                     .setHeight(100)

@@ -26,7 +26,7 @@ public class AIDLService extends Service {
     //由AIDL文件生成的BookManager
     private final BookManager.Stub mBookManager = new BookManager.Stub() {
         @Override
-        public List<Book> getBooks() throws RemoteException {
+        public List<Book> getBooks() {
             synchronized (this) {
                 Logger.d("invoking getBooks() method , now the list is : " + mBooks.toString());
                 if (mBooks != null) {
@@ -38,7 +38,7 @@ public class AIDLService extends Service {
 
 
         @Override
-        public void addBook(Book book) throws RemoteException {
+        public void addBook(Book book) {
             synchronized (this) {
                 if (mBooks == null) {
                     mBooks = new ArrayList<>();

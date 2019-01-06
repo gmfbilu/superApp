@@ -1,11 +1,11 @@
-package org.gmfbilu.superapp.module_util.search;
+package org.gmfbilu.superapp.module_view.search;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
-import org.gmfbilu.superapp.module_util.R;
+import org.gmfbilu.superapp.module_view.R;
 
 public class ShopsFragment extends BaseFragment {
 
@@ -23,7 +23,7 @@ public class ShopsFragment extends BaseFragment {
 
     @Override
     public int setLayout() {
-        return R.layout.module_util_fragment_shops;
+        return R.layout.module_view_fragment_shops;
     }
 
     @Override

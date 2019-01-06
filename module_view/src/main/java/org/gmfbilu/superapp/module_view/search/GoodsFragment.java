@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_util.search;
+package org.gmfbilu.superapp.module_view.search;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -14,10 +13,13 @@ import android.widget.TextView;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.lib_base.utils.Utils;
+import org.gmfbilu.superapp.lib_base.view.flowLayout.FlowLayout;
+import org.gmfbilu.superapp.lib_base.view.flowLayout.TagAdapter;
+import org.gmfbilu.superapp.lib_base.view.flowLayout.TagFlowLayout;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.BaseRecyclerView;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.adapter.BaseViewHolder;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.adapter.RecyclerArrayAdapter;
-import org.gmfbilu.superapp.module_util.R;
+import org.gmfbilu.superapp.module_view.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +45,7 @@ public class GoodsFragment extends BaseFragment {
 
     @Override
     public int setLayout() {
-        return R.layout.module_util_fragment_goods;
+        return R.layout.module_view_fragment_goods;
     }
 
     @Override
@@ -87,7 +89,7 @@ public class GoodsFragment extends BaseFragment {
             @Override
             public View onCreateView(ViewGroup parent) {
                 LayoutInflater layoutInflater = _mActivity.getLayoutInflater();
-                View inflate = layoutInflater.inflate(R.layout.module_util_recyclerview_inflate_footer_search_center_searchhistory, null);
+                View inflate = layoutInflater.inflate(R.layout.module_view_recyclerview_inflate_footer_search_center_searchhistory, null);
                 ImageView iv_clear_search_history = inflate.findViewById(R.id.iv_clear_search_history);
                 return inflate;
             }
@@ -100,36 +102,69 @@ public class GoodsFragment extends BaseFragment {
         mAdapter.addFooter(new RecyclerArrayAdapter.ItemView() {
             @Override
             public View onCreateView(ViewGroup parent) {
-                RecyclerArrayAdapter<String> mAdapter;
-                BaseRecyclerView recyclerView = new BaseRecyclerView(parent.getContext()) {
-                    //为了不打扰横向RecyclerView的滑动操作，可以这样处理
+                ArrayList<String> strings = new ArrayList<>();
+                strings.add("一个");
+                strings.add("一个个");
+                strings.add("一个个个");
+                strings.add("一");
+                strings.add("一个个个个");
+                strings.add("一个");
+                strings.add("一个个个个");
+                strings.add("一个");
+                strings.add("一个个");
+                strings.add("一个个个");
+                strings.add("一");
+                strings.add("一个个个个");
+                strings.add("一个");
+                strings.add("一个");
+                strings.add("一个个");
+                strings.add("一个个个个");
+                strings.add("一个个个个");
+                strings.add("一个个个");
+                strings.add("一");
+                strings.add("一个个个个");
+                strings.add("一个");
+                strings.add("一个");
+                strings.add("一个个");
+                strings.add("一个个个");
+                strings.add("一");
+                strings.add("一个个个个");
+                strings.add("一个");
+                strings.add("一个个个个");
+                strings.add("一个");
+                strings.add("一个个");
+                strings.add("一个个个");
+                strings.add("一");
+                strings.add("一个个个个");
+                strings.add("一个");
+                strings.add("一个");
+                strings.add("一个个");
+                strings.add("一个个个个");
+                strings.add("一个个个个");
+                strings.add("一个个个");
+                strings.add("一");
+                strings.add("一个个个个");
+                strings.add("一个");
+                LayoutInflater layoutInflater = _mActivity.getLayoutInflater();
+                View inflate = layoutInflater.inflate(R.layout.module_view_search_history, null);
+                TagFlowLayout id_flowlayout = inflate.findViewById(R.id.id_flowlayout);
+                id_flowlayout.setAdapter(new TagAdapter<String>(strings) {
+
                     @Override
-                    public boolean onTouchEvent(MotionEvent event) {
-                        super.onTouchEvent(event);
+                    public View getView(FlowLayout parent, int position, String s) {
+                        TextView tv_history = (TextView) layoutInflater.inflate(R.layout.module_view_search_history_flow, id_flowlayout, false);
+                        tv_history.setText(s);
+                        return tv_history;
+                    }
+                });
+                id_flowlayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
+                    @Override
+                    public boolean onTagClick(View view, int position, FlowLayout parent) {
+                        String s = strings.get(position);
                         return true;
                     }
-                };
-                //使用FlowLayout来做
-/*                GridLayoutManager layoutManager = new GridLayoutManager(_mActivity, 2);
-                layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-                    @Override
-                    public int getSpanSize(int position) {
-                        return position == 0 ? 2 : 1;
-                    }
                 });
-                recyclerView.setLayoutManager(layoutManager);
-                recyclerView.setAdapter(mAdapter = new RecyclerArrayAdapter<String>(_mActivity) {
-                    @Override
-                    public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
-                        return new SearchHistoryViewHolder(parent);
-                    }
-                });
-                ArrayList<String> strings = new ArrayList<>();
-                for (int i = 0; i < 10; i++) {
-                    strings.add(i + "FUCK 糟蛋");
-                }
-                mAdapter.addAll(strings);*/
-                return recyclerView;
+                return inflate;
             }
 
             @Override

@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.lib_base.base.baseRecyclerView.adapter;
+package org.gmfbilu.superapp.lib_base.view.recyclerView.adapter;
 
 import android.content.Context;
 import android.support.annotation.IdRes;

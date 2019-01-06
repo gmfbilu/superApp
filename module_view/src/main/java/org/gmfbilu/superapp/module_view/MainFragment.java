@@ -4,8 +4,16 @@ import android.os.Bundle;
 import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
+import org.gmfbilu.superapp.module_view.constraintlayout.ConstraintLayoutFragment;
+import org.gmfbilu.superapp.module_view.dialogFragment.DialogFragment;
+import org.gmfbilu.superapp.module_view.dynamicLayout.DynamicLayoutFragment;
 import org.gmfbilu.superapp.module_view.generalviews.GeneralViewFragment;
+import org.gmfbilu.superapp.module_view.recyclerView.RecyclerViewFragment;
+import org.gmfbilu.superapp.module_view.search.SearchFragment;
+import org.gmfbilu.superapp.module_view.shape.ShapeFragment;
 import org.gmfbilu.superapp.module_view.stepView.StepViewFragment;
+import org.gmfbilu.superapp.module_view.surfaceView.SurfaceViewFragment;
+import org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.Switch_CheckBox_ListPreferenceFragment;
 
 
 /**
@@ -26,6 +34,14 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void findViewById_setOnClickListener(View view) {
+        view.findViewById(R.id.module_view_bt_constraintlayout).setOnClickListener(this);
+        view.findViewById(R.id.module_view_bt_switch_checkbox_listpreference).setOnClickListener(this);
+        view.findViewById(R.id.module_view_bt_dialogfragment).setOnClickListener(this);
+        view.findViewById(R.id.module_view_bt_dynamicLayout).setOnClickListener(this);
+        view.findViewById(R.id.module_view_bt_recyclerview).setOnClickListener(this);
+        view.findViewById(R.id.module_view_bt_shape).setOnClickListener(this);
+        view.findViewById(R.id.module_view_bt_surfaceview).setOnClickListener(this);
+        view.findViewById(R.id.module_view_bt_search).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_generalview).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_stepview).setOnClickListener(this);
     }
@@ -39,9 +55,25 @@ public class MainFragment extends BaseFragment {
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id==R.id.module_view_bt_generalview){
+        if (id == R.id.module_view_bt_constraintlayout) {
+            start(ConstraintLayoutFragment.newInstance());
+        } else if (id == R.id.module_view_bt_switch_checkbox_listpreference) {
+            start(Switch_CheckBox_ListPreferenceFragment.newInstance());
+        } else if (id == R.id.module_view_bt_dialogfragment) {
+            start(DialogFragment.newInstance());
+        } else if (id == R.id.module_view_bt_dynamicLayout) {
+            start(DynamicLayoutFragment.newInstance());
+        } else if (id == R.id.module_view_bt_recyclerview) {
+            start(RecyclerViewFragment.newInstance());
+        } else if (id == R.id.module_view_bt_shape) {
+            start(ShapeFragment.newInstance());
+        } else if (id == R.id.module_view_bt_surfaceview) {
+            start(SurfaceViewFragment.newInstance());
+        }else if (id==R.id.module_view_bt_search){
+            start(SearchFragment.newInstance());
+        }else if (id == R.id.module_view_bt_generalview) {
             start(GeneralViewFragment.newInstance());
-        }else if (id==R.id.module_view_bt_stepview){
+        } else if (id == R.id.module_view_bt_stepview) {
             start(StepViewFragment.newInstance());
         }
     }

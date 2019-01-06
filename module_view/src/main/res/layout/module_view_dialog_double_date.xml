@@ -50,7 +50,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_beginTime"/>
 
-    <org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference.doubleDatePicker.ScrollChoice
+    <org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.doubleDatePicker.ScrollChoice
         android:id="@+id/ScrollChoiceYear"
         android:layout_width="0dp"
         android:layout_height="150dp"
@@ -66,7 +66,7 @@
         app:scroll_selected_item_background="#FFF8F1"
         app:scroll_selected_item_text_color="#3F51B5"/>
 
-    <org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference.doubleDatePicker.ScrollChoice
+    <org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.doubleDatePicker.ScrollChoice
         android:id="@+id/ScrollChoiceMonth"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -83,7 +83,7 @@
         app:scroll_selected_item_background="#FFF8F1"
         app:scroll_selected_item_text_color="#3F51B5"/>
 
-    <org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference.doubleDatePicker.ScrollChoice
+    <org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.doubleDatePicker.ScrollChoice
         android:id="@+id/ScrollChoiceDay"
         android:layout_width="0dp"
         android:layout_height="0dp"

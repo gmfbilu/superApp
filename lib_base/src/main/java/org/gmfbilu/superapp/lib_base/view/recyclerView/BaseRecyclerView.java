@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.lib_base.base.baseRecyclerView;
+package org.gmfbilu.superapp.lib_base.view.recyclerView;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -13,8 +13,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import org.gmfbilu.superapp.lib_base.R;
-import org.gmfbilu.superapp.lib_base.base.baseRecyclerView.adapter.RecyclerArrayAdapter;
-import org.gmfbilu.superapp.lib_base.base.baseRecyclerView.swipe.SwipeRefreshLayout;
+import org.gmfbilu.superapp.lib_base.view.recyclerView.adapter.RecyclerArrayAdapter;
+import org.gmfbilu.superapp.lib_base.view.recyclerView.swipe.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 
@@ -99,14 +99,14 @@ public class BaseRecyclerView extends FrameLayout {
         }
         //生成主View
         View v = LayoutInflater.from(getContext()).inflate(R.layout.recyclerview_progress, this);
-        mPtrLayout = (SwipeRefreshLayout) v.findViewById(R.id.ptr_layout);
+        mPtrLayout = v.findViewById(R.id.ptr_layout);
         mPtrLayout.setEnabled(false);
 
-        mProgressView = (ViewGroup) v.findViewById(R.id.progress);
+        mProgressView = v.findViewById(R.id.progress);
         if (mProgressId!=0)LayoutInflater.from(getContext()).inflate(mProgressId,mProgressView);
-        mEmptyView = (ViewGroup) v.findViewById(R.id.empty);
+        mEmptyView = v.findViewById(R.id.empty);
         if (mEmptyId!=0)LayoutInflater.from(getContext()).inflate(mEmptyId,mEmptyView);
-        mErrorView = (ViewGroup) v.findViewById(R.id.error);
+        mErrorView = v.findViewById(R.id.error);
         if (mErrorId!=0)LayoutInflater.from(getContext()).inflate(mErrorId,mErrorView);
         initRecyclerView(v);
     }
@@ -169,7 +169,7 @@ public class BaseRecyclerView extends FrameLayout {
      * Implement this method to customize the AbsListView
      */
     protected void initRecyclerView(View view) {
-        mRecycler = (RecyclerView) view.findViewById(android.R.id.list);
+        mRecycler = view.findViewById(android.R.id.list);
         setItemAnimator(null);
         if (mRecycler != null) {
             mRecycler.setHasFixedSize(true);

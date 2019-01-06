@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_util.surfaceView;
+package org.gmfbilu.superapp.module_view.surfaceView;
 
 import android.content.Context;
 import android.graphics.Canvas;

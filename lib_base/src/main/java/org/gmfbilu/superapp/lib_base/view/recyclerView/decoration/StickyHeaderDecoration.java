@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.gmfbilu.superapp.lib_base.base.baseRecyclerView.decoration;
+package org.gmfbilu.superapp.lib_base.view.recyclerView.decoration;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -23,7 +23,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.gmfbilu.superapp.lib_base.base.baseRecyclerView.adapter.RecyclerArrayAdapter;
+import org.gmfbilu.superapp.lib_base.view.recyclerView.adapter.RecyclerArrayAdapter;
 
 import java.util.HashMap;
 import java.util.Map;

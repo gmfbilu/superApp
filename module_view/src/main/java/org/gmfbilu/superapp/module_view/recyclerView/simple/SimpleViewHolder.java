@@ -1,17 +1,17 @@
-package org.gmfbilu.superapp.module_util.recyclerView.simple;
+package org.gmfbilu.superapp.module_view.recyclerView.simple;
 
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.gmfbilu.superapp.lib_base.view.recyclerView.adapter.BaseViewHolder;
-import org.gmfbilu.superapp.module_util.R;
+import org.gmfbilu.superapp.module_view.R;
 
 public class SimpleViewHolder extends BaseViewHolder<SimpleBeen> {
 
     private TextView mTv_name;
 
     public SimpleViewHolder(ViewGroup parent) {
-        super(parent,R.layout.module_util_recyclerview_item_simple);
+        super(parent,R.layout.module_view_recyclerview_item_simple);
         mTv_name = $(R.id.tv_name);
     }
 

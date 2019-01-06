@@ -1,6 +1,5 @@
 package org.gmfbilu.superapp;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.util.Log;
@@ -16,13 +15,14 @@ import com.umeng.message.entity.UMessage;
 import org.gmfbilu.superapp.lib_base.app.ARouterPath;
 import org.gmfbilu.superapp.lib_base.app.ApplicationIntentService;
 import org.gmfbilu.superapp.lib_base.app.Constant;
+import org.gmfbilu.superapp.lib_base.base.BaseApplication;
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 
 /**
  * Created by gmfbilu on 2018/3/2.
  */
 
-public class SuperApplication extends Application {
+public class SuperApplication extends BaseApplication {
 
 
 

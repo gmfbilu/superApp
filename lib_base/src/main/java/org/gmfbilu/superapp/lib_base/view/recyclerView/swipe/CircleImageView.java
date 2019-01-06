@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.gmfbilu.superapp.lib_base.base.baseRecyclerView.swipe;
+package org.gmfbilu.superapp.lib_base.view.recyclerView.swipe;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

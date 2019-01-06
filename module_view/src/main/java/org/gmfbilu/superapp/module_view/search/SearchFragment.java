@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_util.search;
+package org.gmfbilu.superapp.module_view.search;
 
 import android.animation.ObjectAnimator;
 import android.graphics.Color;
@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.lib_base.utils.Utils;
-import org.gmfbilu.superapp.module_util.R;
+import org.gmfbilu.superapp.module_view.R;
 
 public class SearchFragment extends BaseFragment {
 
@@ -47,7 +47,7 @@ public class SearchFragment extends BaseFragment {
 
     @Override
     public int setLayout() {
-        return R.layout.module_util_fragment_search;
+        return R.layout.module_view_fragment_search;
     }
 
     @Override

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.gmfbilu.superapp.lib_base.base.baseRecyclerView.adapter;
+package org.gmfbilu.superapp.lib_base.view.recyclerView.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
@@ -24,7 +24,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.gmfbilu.superapp.lib_base.base.baseRecyclerView.BaseRecyclerView;
+import org.gmfbilu.superapp.lib_base.view.recyclerView.BaseRecyclerView;
 
 import java.util.ArrayList;
 import java.util.Arrays;

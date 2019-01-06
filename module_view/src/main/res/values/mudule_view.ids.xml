@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="module_util_dynamicLayout_appBarLayout" type="id"/>
-    <item name="module_util_dynamicLayout_content" type="id"/>
-    <item name="module_util_tv_guideline" type="id"/>
-    <item name="module_util_tv_baseline" type="id"/>
-    <item name="module_util_tv_bias" type="id"/>
-    <item name="module_util_tv_dimenRadio" type="id"/>
+    <item name="module_view_dynamicLayout_appBarLayout" type="id"/>
+    <item name="module_view_dynamicLayout_content" type="id"/>
+    <item name="module_view_tv_guideline" type="id"/>
+    <item name="module_view_tv_baseline" type="id"/>
+    <item name="module_view_tv_bias" type="id"/>
+    <item name="module_view_tv_dimenRadio" type="id"/>
 </resources>

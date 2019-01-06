@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.lib_base.base.baseRecyclerView.decoration;
+package org.gmfbilu.superapp.lib_base.view.recyclerView.decoration;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -10,7 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
-import org.gmfbilu.superapp.lib_base.base.baseRecyclerView.adapter.RecyclerArrayAdapter;
+import org.gmfbilu.superapp.lib_base.view.recyclerView.adapter.RecyclerArrayAdapter;
 
 
 public class DividerDecoration extends RecyclerView.ItemDecoration{

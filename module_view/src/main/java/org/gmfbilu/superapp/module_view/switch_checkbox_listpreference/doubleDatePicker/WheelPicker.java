@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference.doubleDatePicker;
+package org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.doubleDatePicker;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -21,7 +21,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.Scroller;
 
-import org.gmfbilu.superapp.module_googlelibrary.R;
+import org.gmfbilu.superapp.module_view.R;
 
 import java.util.ArrayList;
 import java.util.List;

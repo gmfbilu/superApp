@@ -29,72 +29,12 @@ ninja_required_version = 1.5
 
 include rules.ninja
 
-# =============================================================================
-# Object build statements for SHARED_LIBRARY target jniDemo2
-
-build CMakeFiles/jniDemo2.dir/src/main/cpp/jniDemo2.cpp.o: CXX_COMPILER__jniDemo2 ../../../../src/main/cpp/jniDemo2.cpp
-  DEFINES = -DjniDemo2_EXPORTS
-  DEP_FILE = CMakeFiles\jniDemo2.dir\src\main\cpp\jniDemo2.cpp.o.d
-  FLAGS = -isystem D:/software/Android/SDK/ndk-bundle/sysroot/usr/include/aarch64-linux-android -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -O2 -DNDEBUG  -fPIC
-  INCLUDES = -isystem D:/software/Android/SDK/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem D:/software/Android/SDK/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include
-  IN_ABS = D:\software\Android\projects\githubProjects\superApp\module_util\src\main\cpp\jniDemo2.cpp
-  OBJECT_DIR = CMakeFiles\jniDemo2.dir
-  OBJECT_FILE_DIR = CMakeFiles\jniDemo2.dir\src\main\cpp
-
-# =============================================================================
-# Link build statements for SHARED_LIBRARY target jniDemo2
-
-
-#############################################
-# Link the shared library ..\..\..\..\build\intermediates\cmake\release\obj\arm64-v8a\libjniDemo2.so
-
-build ../../../../build/intermediates/cmake/release/obj/arm64-v8a/libjniDemo2.so: CXX_SHARED_LIBRARY_LINKER__jniDemo2 CMakeFiles/jniDemo2.dir/src/main/cpp/jniDemo2.cpp.o
-  LANGUAGE_COMPILE_FLAGS = -isystem D:/software/Android/SDK/ndk-bundle/sysroot/usr/include/aarch64-linux-android -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -O2 -DNDEBUG
-  LINK_FLAGS = -Wl,--exclude-libs,libgcc.a -Wl,--exclude-libs,libatomic.a -nostdlib++ --sysroot D:/software/Android/SDK/ndk-bundle/platforms/android-21/arch-arm64 -Wl,--build-id -Wl,--warn-shared-textrel -Wl,--fatal-warnings -LD:/software/Android/SDK/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/arm64-v8a -Wl,--no-undefined -Wl,-z,noexecstack -Qunused-arguments -Wl,-z,relro -Wl,-z,now
-  LINK_LIBRARIES = -landroid -llog -latomic -lm "D:/software/Android/SDK/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/arm64-v8a/libc++_static.a" "D:/software/Android/SDK/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/arm64-v8a/libc++abi.a"
-  OBJECT_DIR = CMakeFiles\jniDemo2.dir
-  POST_BUILD = cd .
-  PRE_LINK = cd .
-  SONAME = libjniDemo2.so
-  SONAME_FLAG = -Wl,-soname,
-  TARGET_FILE = ..\..\..\..\build\intermediates\cmake\release\obj\arm64-v8a\libjniDemo2.so
-  TARGET_PDB = jniDemo2.so.dbg
-# =============================================================================
-# Object build statements for SHARED_LIBRARY target jniDemo
-
-build CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o: CXX_COMPILER__jniDemo ../../../../src/main/cpp/jniDemo.cpp
-  DEFINES = -DjniDemo_EXPORTS
-  DEP_FILE = CMakeFiles\jniDemo.dir\src\main\cpp\jniDemo.cpp.o.d
-  FLAGS = -isystem D:/software/Android/SDK/ndk-bundle/sysroot/usr/include/aarch64-linux-android -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -O2 -DNDEBUG  -fPIC
-  INCLUDES = -isystem D:/software/Android/SDK/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem D:/software/Android/SDK/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include
-  IN_ABS = D:\software\Android\projects\githubProjects\superApp\module_util\src\main\cpp\jniDemo.cpp
-  OBJECT_DIR = CMakeFiles\jniDemo.dir
-  OBJECT_FILE_DIR = CMakeFiles\jniDemo.dir\src\main\cpp
-
-# =============================================================================
-# Link build statements for SHARED_LIBRARY target jniDemo
-
-
-#############################################
-# Link the shared library ..\..\..\..\build\intermediates\cmake\release\obj\arm64-v8a\libjniDemo.so
-
-build ../../../../build/intermediates/cmake/release/obj/arm64-v8a/libjniDemo.so: CXX_SHARED_LIBRARY_LINKER__jniDemo CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o
-  LANGUAGE_COMPILE_FLAGS = -isystem D:/software/Android/SDK/ndk-bundle/sysroot/usr/include/aarch64-linux-android -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -O2 -DNDEBUG
-  LINK_FLAGS = -Wl,--exclude-libs,libgcc.a -Wl,--exclude-libs,libatomic.a -nostdlib++ --sysroot D:/software/Android/SDK/ndk-bundle/platforms/android-21/arch-arm64 -Wl,--build-id -Wl,--warn-shared-textrel -Wl,--fatal-warnings -LD:/software/Android/SDK/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/arm64-v8a -Wl,--no-undefined -Wl,-z,noexecstack -Qunused-arguments -Wl,-z,relro -Wl,-z,now
-  LINK_LIBRARIES = -landroid -llog -latomic -lm "D:/software/Android/SDK/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/arm64-v8a/libc++_static.a" "D:/software/Android/SDK/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/arm64-v8a/libc++abi.a"
-  OBJECT_DIR = CMakeFiles\jniDemo.dir
-  POST_BUILD = cd .
-  PRE_LINK = cd .
-  SONAME = libjniDemo.so
-  SONAME_FLAG = -Wl,-soname,
-  TARGET_FILE = ..\..\..\..\build\intermediates\cmake\release\obj\arm64-v8a\libjniDemo.so
-  TARGET_PDB = jniDemo.so.dbg
 
 #############################################
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D D:\software\Android\projects\githubProjects\superApp\module_util\.externalNativeBuild\cmake\release\arm64-v8a && D:\software\Android\SDK\cmake\3.6.4111459\bin\cmake.exe -E echo "No interactive CMake dialog available.""
+  COMMAND = cd /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/arm64-v8a && /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
   DESC = No interactive CMake dialog available...
   restat = 1
 build edit_cache: phony CMakeFiles/edit_cache.util
@@ -103,11 +43,71 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D D:\software\Android\projects\githubProjects\superApp\module_util\.externalNativeBuild\cmake\release\arm64-v8a && D:\software\Android\SDK\cmake\3.6.4111459\bin\cmake.exe -HD:\software\Android\projects\githubProjects\superApp\module_util -BD:\software\Android\projects\githubProjects\superApp\module_util\.externalNativeBuild\cmake\release\arm64-v8a"
+  COMMAND = cd /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/arm64-v8a && /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake -H/home/gmfbilu/Work/Android/Projects/superApp/module_util -B/home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/arm64-v8a
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
 build rebuild_cache: phony CMakeFiles/rebuild_cache.util
+# =============================================================================
+# Object build statements for SHARED_LIBRARY target jniDemo2
+
+build CMakeFiles/jniDemo2.dir/src/main/cpp/jniDemo2.cpp.o: CXX_COMPILER__jniDemo2 ../../../../src/main/cpp/jniDemo2.cpp
+  DEFINES = -DjniDemo2_EXPORTS
+  DEP_FILE = CMakeFiles/jniDemo2.dir/src/main/cpp/jniDemo2.cpp.o.d
+  FLAGS = -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sysroot/usr/include/aarch64-linux-android -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -O2 -DNDEBUG  -fPIC
+  INCLUDES = -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include
+  IN_ABS = /home/gmfbilu/Work/Android/Projects/superApp/module_util/src/main/cpp/jniDemo2.cpp
+  OBJECT_DIR = CMakeFiles/jniDemo2.dir
+  OBJECT_FILE_DIR = CMakeFiles/jniDemo2.dir/src/main/cpp
+
+# =============================================================================
+# Link build statements for SHARED_LIBRARY target jniDemo2
+
+
+#############################################
+# Link the shared library ../../../../build/intermediates/cmake/release/obj/arm64-v8a/libjniDemo2.so
+
+build ../../../../build/intermediates/cmake/release/obj/arm64-v8a/libjniDemo2.so: CXX_SHARED_LIBRARY_LINKER__jniDemo2 CMakeFiles/jniDemo2.dir/src/main/cpp/jniDemo2.cpp.o
+  LANGUAGE_COMPILE_FLAGS = -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sysroot/usr/include/aarch64-linux-android -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -O2 -DNDEBUG
+  LINK_FLAGS = -Wl,--exclude-libs,libgcc.a -Wl,--exclude-libs,libatomic.a -nostdlib++ --sysroot /home/gmfbilu/Work/Android/Sdk/ndk-bundle/platforms/android-21/arch-arm64 -Wl,--build-id -Wl,--warn-shared-textrel -Wl,--fatal-warnings -L/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/arm64-v8a -Wl,--no-undefined -Wl,-z,noexecstack -Qunused-arguments -Wl,-z,relro -Wl,-z,now
+  LINK_LIBRARIES = -landroid -llog -latomic -lm "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/arm64-v8a/libc++_static.a" "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/arm64-v8a/libc++abi.a"
+  OBJECT_DIR = CMakeFiles/jniDemo2.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  SONAME = libjniDemo2.so
+  SONAME_FLAG = -Wl,-soname,
+  TARGET_FILE = ../../../../build/intermediates/cmake/release/obj/arm64-v8a/libjniDemo2.so
+  TARGET_PDB = jniDemo2.so.dbg
+# =============================================================================
+# Object build statements for SHARED_LIBRARY target jniDemo
+
+build CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o: CXX_COMPILER__jniDemo ../../../../src/main/cpp/jniDemo.cpp
+  DEFINES = -DjniDemo_EXPORTS
+  DEP_FILE = CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o.d
+  FLAGS = -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sysroot/usr/include/aarch64-linux-android -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -O2 -DNDEBUG  -fPIC
+  INCLUDES = -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include
+  IN_ABS = /home/gmfbilu/Work/Android/Projects/superApp/module_util/src/main/cpp/jniDemo.cpp
+  OBJECT_DIR = CMakeFiles/jniDemo.dir
+  OBJECT_FILE_DIR = CMakeFiles/jniDemo.dir/src/main/cpp
+
+# =============================================================================
+# Link build statements for SHARED_LIBRARY target jniDemo
+
+
+#############################################
+# Link the shared library ../../../../build/intermediates/cmake/release/obj/arm64-v8a/libjniDemo.so
+
+build ../../../../build/intermediates/cmake/release/obj/arm64-v8a/libjniDemo.so: CXX_SHARED_LIBRARY_LINKER__jniDemo CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o
+  LANGUAGE_COMPILE_FLAGS = -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sysroot/usr/include/aarch64-linux-android -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -O2 -DNDEBUG
+  LINK_FLAGS = -Wl,--exclude-libs,libgcc.a -Wl,--exclude-libs,libatomic.a -nostdlib++ --sysroot /home/gmfbilu/Work/Android/Sdk/ndk-bundle/platforms/android-21/arch-arm64 -Wl,--build-id -Wl,--warn-shared-textrel -Wl,--fatal-warnings -L/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/arm64-v8a -Wl,--no-undefined -Wl,-z,noexecstack -Qunused-arguments -Wl,-z,relro -Wl,-z,now
+  LINK_LIBRARIES = -landroid -llog -latomic -lm "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/arm64-v8a/libc++_static.a" "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/arm64-v8a/libc++abi.a"
+  OBJECT_DIR = CMakeFiles/jniDemo.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  SONAME = libjniDemo.so
+  SONAME_FLAG = -Wl,-soname,
+  TARGET_FILE = ../../../../build/intermediates/cmake/release/obj/arm64-v8a/libjniDemo.so
+  TARGET_PDB = jniDemo.so.dbg
 # =============================================================================
 # Target aliases.
 
@@ -136,13 +136,13 @@ default all
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ../../../../CMakeLists.txt CMakeCache.txt CMakeFiles/3.6.0-rc2/CMakeCCompiler.cmake CMakeFiles/3.6.0-rc2/CMakeCXXCompiler.cmake CMakeFiles/3.6.0-rc2/CMakeSystem.cmake CMakeFiles/feature_tests.c CMakeFiles/feature_tests.cxx D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCCompiler.cmake.in D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCCompilerABI.c D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCInformation.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCXXCompiler.cmake.in D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCXXCompilerABI.cpp D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCXXInformation.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCommonLanguageInclude.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineCCompiler.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineCXXCompiler.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineCompileFeatures.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineCompiler.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineCompilerABI.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineSystem.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeFindBinUtils.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeGenericSystem.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeLanguageInformation.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeParseImplicitLinkInfo.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeSystem.cmake.in D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeSystemSpecificInformation.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeSystemSpecificInitialize.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeTestCCompiler.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeTestCXXCompiler.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeTestCompilerCommon.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang-C-FeatureTests.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang-C.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang-CXX-FeatureTests.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang-CXX-TestableFeatures.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang-CXX.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/GNU.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/Internal/FeatureTesting.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/Platform/Android.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/Platform/Linux.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/Platform/UnixPaths.cmake D$:/software/Android/SDK/ndk-bundle/build/cmake/android.toolchain.cmake D$:/software/Android/SDK/ndk-bundle/build/cmake/platforms.cmake
+build build.ninja: RERUN_CMAKE | ../../../../CMakeLists.txt /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCCompiler.cmake.in /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCCompilerABI.c /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCInformation.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCXXCompiler.cmake.in /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCXXCompilerABI.cpp /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCXXInformation.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCommonLanguageInclude.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineCCompiler.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineCXXCompiler.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineCompileFeatures.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineCompiler.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineCompilerABI.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineSystem.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeFindBinUtils.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeGenericSystem.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeLanguageInformation.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeParseImplicitLinkInfo.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeSystem.cmake.in /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeSystemSpecificInformation.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeSystemSpecificInitialize.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeTestCCompiler.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeTestCXXCompiler.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeTestCompilerCommon.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang-C-FeatureTests.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang-C.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang-CXX-FeatureTests.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang-CXX-TestableFeatures.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang-CXX.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/GNU.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/Internal/FeatureTesting.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/Platform/Android.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/Platform/Linux.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/Platform/UnixPaths.cmake /home/gmfbilu/Work/Android/Sdk/ndk-bundle/build/cmake/android.toolchain.cmake /home/gmfbilu/Work/Android/Sdk/ndk-bundle/build/cmake/platforms.cmake CMakeCache.txt CMakeFiles/3.6.0-rc2/CMakeCCompiler.cmake CMakeFiles/3.6.0-rc2/CMakeCXXCompiler.cmake CMakeFiles/3.6.0-rc2/CMakeSystem.cmake CMakeFiles/feature_tests.c CMakeFiles/feature_tests.cxx
   pool = console
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ../../../../CMakeLists.txt CMakeCache.txt CMakeFiles/3.6.0-rc2/CMakeCCompiler.cmake CMakeFiles/3.6.0-rc2/CMakeCXXCompiler.cmake CMakeFiles/3.6.0-rc2/CMakeSystem.cmake CMakeFiles/feature_tests.c CMakeFiles/feature_tests.cxx D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCCompiler.cmake.in D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCCompilerABI.c D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCInformation.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCXXCompiler.cmake.in D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCXXCompilerABI.cpp D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCXXInformation.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCommonLanguageInclude.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineCCompiler.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineCXXCompiler.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineCompileFeatures.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineCompiler.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineCompilerABI.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineSystem.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeFindBinUtils.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeGenericSystem.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeLanguageInformation.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeParseImplicitLinkInfo.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeSystem.cmake.in D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeSystemSpecificInformation.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeSystemSpecificInitialize.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeTestCCompiler.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeTestCXXCompiler.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeTestCompilerCommon.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang-C-FeatureTests.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang-C.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang-CXX-FeatureTests.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang-CXX-TestableFeatures.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang-CXX.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/GNU.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/Internal/FeatureTesting.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/Platform/Android.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/Platform/Linux.cmake D$:/software/Android/SDK/cmake/3.6.4111459/share/cmake-3.6/Modules/Platform/UnixPaths.cmake D$:/software/Android/SDK/ndk-bundle/build/cmake/android.toolchain.cmake D$:/software/Android/SDK/ndk-bundle/build/cmake/platforms.cmake: phony
+build ../../../../CMakeLists.txt /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCCompiler.cmake.in /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCCompilerABI.c /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCInformation.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCXXCompiler.cmake.in /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCXXCompilerABI.cpp /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCXXInformation.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeCommonLanguageInclude.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineCCompiler.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineCXXCompiler.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineCompileFeatures.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineCompiler.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineCompilerABI.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeDetermineSystem.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeFindBinUtils.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeGenericSystem.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeLanguageInformation.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeParseImplicitLinkInfo.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeSystem.cmake.in /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeSystemSpecificInformation.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeSystemSpecificInitialize.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeTestCCompiler.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeTestCXXCompiler.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/CMakeTestCompilerCommon.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang-C-FeatureTests.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang-C.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang-CXX-FeatureTests.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang-CXX-TestableFeatures.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang-CXX.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/Clang.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/Compiler/GNU.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/Internal/FeatureTesting.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/Platform/Android.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/Platform/Linux.cmake /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/share/cmake-3.6/Modules/Platform/UnixPaths.cmake /home/gmfbilu/Work/Android/Sdk/ndk-bundle/build/cmake/android.toolchain.cmake /home/gmfbilu/Work/Android/Sdk/ndk-bundle/build/cmake/platforms.cmake CMakeCache.txt CMakeFiles/3.6.0-rc2/CMakeCCompiler.cmake CMakeFiles/3.6.0-rc2/CMakeCXXCompiler.cmake CMakeFiles/3.6.0-rc2/CMakeSystem.cmake CMakeFiles/feature_tests.c CMakeFiles/feature_tests.cxx: phony
 
 #############################################
 # Clean all the built files.

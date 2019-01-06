@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_util.recyclerView.multiType;
+package org.gmfbilu.superapp.module_view.recyclerView.multiType;
 
 public class Person {
 

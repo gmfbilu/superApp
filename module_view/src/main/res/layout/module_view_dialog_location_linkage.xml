@@ -28,7 +28,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_location"/>
 
 
-    <org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference.locationLinkage.WheelView
+    <org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.locationLinkage.WheelView
         android:id="@+id/wheelViewProvince"
         android:layout_width="0dp"
         android:layout_height="200dp"
@@ -40,7 +40,7 @@
         app:selectedTextSize="18sp"
         app:unitHeight="34dp"/>
 
-    <org.gmfbilu.superapp.module_googlelibrary.switch_checkbox_listpreference.locationLinkage.WheelView
+    <org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.locationLinkage.WheelView
         android:id="@+id/wheelViewCity"
         android:layout_width="0dp"
         android:layout_height="0dp"
