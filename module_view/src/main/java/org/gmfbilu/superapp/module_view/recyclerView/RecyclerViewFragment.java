@@ -8,6 +8,7 @@ import org.gmfbilu.superapp.module_view.R;
 import org.gmfbilu.superapp.module_view.recyclerView.headerFooter.HeaderFooterRecyclerViewFragment;
 import org.gmfbilu.superapp.module_view.recyclerView.multiType.MultiTypeRecyclerViewFragment;
 import org.gmfbilu.superapp.module_view.recyclerView.simple.SimpleRecyclerViewFragment;
+import org.gmfbilu.superapp.module_view.recyclerView.stickyHeader.StickyHeaderFragment;
 
 public class RecyclerViewFragment extends BaseFragment {
 
@@ -24,6 +25,7 @@ public class RecyclerViewFragment extends BaseFragment {
         view.findViewById(R.id.module_view_bt_easy).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_header_footer).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_multitype).setOnClickListener(this);
+        view.findViewById(R.id.module_view_bt_sticky_header).setOnClickListener(this);
     }
 
     @Override
@@ -40,6 +42,8 @@ public class RecyclerViewFragment extends BaseFragment {
             start(HeaderFooterRecyclerViewFragment.newInstance());
         }else if (id==R.id.module_view_bt_multitype){
             start(MultiTypeRecyclerViewFragment.newInstance());
+        }else if (id==R.id.module_view_bt_sticky_header){
+            start(StickyHeaderFragment.newInstance());
         }
     }
 }

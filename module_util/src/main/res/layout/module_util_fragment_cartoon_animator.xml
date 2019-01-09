@@ -1,7 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/bt_alpha"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="透明度变化"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/bt_rotation"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/bt_rotation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="旋转"
+        app:layout_constraintLeft_toRightOf="@+id/bt_alpha"
+        app:layout_constraintRight_toLeftOf="@+id/bt_translationX"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/bt_translationX"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="平移"
+        app:layout_constraintLeft_toRightOf="@+id/bt_rotation"
+        app:layout_constraintRight_toLeftOf="@+id/bt_scaleY"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/bt_scaleY"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="缩放"
+        app:layout_constraintLeft_toRightOf="@+id/bt_translationX"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/bt_animatorSet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="组合动画"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_alpha"/>
+
+    <org.gmfbilu.superapp.module_util.cartoon.animator.PointView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/bt_animatorSet"
+        app:layout_constraintTop_toBottomOf="@+id/bt_alpha"/>
 </android.support.constraint.ConstraintLayout>

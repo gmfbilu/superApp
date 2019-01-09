@@ -130,7 +130,7 @@ public class DynamicLayoutFragment extends BaseFragment {
         TextView tv_dimenRadio = new TextView(_mActivity);
         tv_dimenRadio.setId(R.id.module_view_tv_dimenRadio);
         content.addView(tv_dimenRadio);
-        ConstraintLayout.LayoutParams layoutParams_tv_dimenRadio = new ConstraintLayout.LayoutParams(AppUtils.dp2px(120), 0);
+        ConstraintLayout.LayoutParams layoutParams_tv_dimenRadio = new ConstraintLayout.LayoutParams(AppUtils.dp2px(_mActivity,120), 0);
         layoutParams_tv_dimenRadio.topToBottom = tv_bias.getId();
         layoutParams_tv_dimenRadio.dimensionRatio = "3:2";
         tv_dimenRadio.setLayoutParams(layoutParams_tv_dimenRadio);
@@ -155,7 +155,7 @@ public class DynamicLayoutFragment extends BaseFragment {
      *         view.setBackgroundColor(Color.WHITE);
      *         view.setId(view.generateViewId());
      *         content.addView(view);
-     *         ConstraintLayout.LayoutParams view_layoutParams = new ConstraintLayout.LayoutParams(0, Utils.dip2px(this, 44f));
+     *         ConstraintLayout.LayoutParams view_layoutParams = new ConstraintLayout.LayoutParams(0, AppUtils.dip2px(this, 44f));
      *         view_layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
      *         view_layoutParams.rightToRight = ConstraintLayout.LayoutParams.PARENT_ID;
      *         view_layoutParams.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;

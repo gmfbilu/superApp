@@ -11,7 +11,7 @@ import android.view.View;
 
 import com.orhanobut.logger.Logger;
 
-import org.gmfbilu.superapp.lib_base.utils.Utils;
+import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 
 import java.util.ArrayList;
 
@@ -63,8 +63,8 @@ public class StepViewTwo extends View {
     public StepViewTwo(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
-        mViewDefaultWidth = Utils.getScreenWidth(mContext);
-        mViewDefaultHeight = Utils.dp2px(mContext, 100);
+        mViewDefaultWidth = AppUtils.getScreenWidth(mContext);
+        mViewDefaultHeight = AppUtils.dp2px(mContext, 100);
 
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -73,7 +73,7 @@ public class StepViewTwo extends View {
         mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 
         mTextPaint = new TextPaint();
-        mTextPaint.setTextSize(Utils.sp2px(mContext, 12));
+        mTextPaint.setTextSize(AppUtils.sp2px(mContext, 12));
         mTextPaint.setAntiAlias(true);
 
         mStepViewTwoBeans = new ArrayList<>();
@@ -89,15 +89,15 @@ public class StepViewTwo extends View {
 
 
         //圆圈的半径
-        mRadius = Utils.dp2px(mContext, 4);
+        mRadius = AppUtils.dp2px(mContext, 4);
         //圆圈和下面直线之间的间隙
-        mCircle_line_gap = Utils.dp2px(mContext, 2);
+        mCircle_line_gap = AppUtils.dp2px(mContext, 2);
         //圆圈的个数
         mCircleSize = mStepViewTwoBeans.size();
         //直线的个数
         mLineSize = mCircleSize - 1;
         //直线的高度
-        mLineHeight = Utils.dp2px(mContext, 64);
+        mLineHeight = AppUtils.dp2px(mContext, 64);
     }
 
     /**
@@ -120,7 +120,7 @@ public class StepViewTwo extends View {
             width = widthSize;
         } else {
             //如果是wrap_content，我们要得到控件需要多大的尺寸。这里假设充满屏幕的宽度
-            float viewContentWidth = Utils.getScreenWidth(mContext);
+            float viewContentWidth = AppUtils.getScreenWidth(mContext);
             //控件的宽度就是文本的宽度加上两边的内边距。内边距就是padding值，在构造方法执行完就被赋值
             width = (int) (paddingLeft + viewContentWidth + paddingRight);
         }
@@ -197,9 +197,9 @@ public class StepViewTwo extends View {
 
     private void drawProcess(Canvas canvas) {
         //圆圈和右边
-        int circle_text_gap = Utils.dp2px(mContext, 10);
+        int circle_text_gap = AppUtils.dp2px(mContext, 10);
         //直线的宽度
-        int lineWidth = Utils.dp2px(mContext, 2);
+        int lineWidth = AppUtils.dp2px(mContext, 2);
         //每个圆圈坐标点的集合
         int[][] circlesLocations = new int[mCircleSize][2];
         //每个直线矩形的坐标集合
@@ -228,16 +228,16 @@ public class StepViewTwo extends View {
             // TODO: 2019/1/3 有bug ，暂时只能考虑一行的情况
             mTextPaint.setColor(stepViewTwoBean.highlight ? Color.parseColor("#35CBD1") : Color.parseColor("#9B9B9B"));
             String location = stepViewTwoBean.location;
-            int stringHeight = Utils.getStringHeight(location, mTextPaint);
+            int stringHeight = AppUtils.getStringHeight(location, mTextPaint);
             int Xtext = mRadius * 2 + circle_text_gap + paddingLeft;
             int Ytext = paddingTop + stringHeight + i * (2 * mRadius + 2 * mCircle_line_gap + mLineHeight);
             canvas.drawText(location, Xtext, Ytext, mTextPaint);
 
             mTextPaint.setColor(stepViewTwoBean.highlight ? Color.parseColor("#35CBD1") : Color.parseColor("#9B9B9B"));
-            mTextPaint.setTextSize(Utils.sp2px(mContext, 11));
+            mTextPaint.setTextSize(AppUtils.sp2px(mContext, 11));
             String time = stepViewTwoBean.time;
-            int stringHeight1 = Utils.getStringHeight(time, mTextPaint);
-            canvas.drawText(time, Xtext, Ytext + stringHeight1 + Utils.dp2px(mContext, 10), mTextPaint);
+            int stringHeight1 = AppUtils.getStringHeight(time, mTextPaint);
+            canvas.drawText(time, Xtext, Ytext + stringHeight1 + AppUtils.dp2px(mContext, 10), mTextPaint);
         }
     }
 

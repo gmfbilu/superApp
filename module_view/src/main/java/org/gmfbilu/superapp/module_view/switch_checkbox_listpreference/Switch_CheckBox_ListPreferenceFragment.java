@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.orhanobut.logger.Logger;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
+import org.gmfbilu.superapp.lib_base.view.dialog.DialogHelper;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.BaseRecyclerView;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.adapter.RecyclerArrayAdapter;
 import org.gmfbilu.superapp.module_view.R;
@@ -201,8 +202,8 @@ public class Switch_CheckBox_ListPreferenceFragment extends BaseFragment {
     private boolean tv_Tab2ESE;
 
     private void doubleDatePicker() {
-        CustomDialog calDialog = new CustomDialog(_mActivity);
-        View calLayout = calDialog.setCalanderLayout();
+        DialogHelper calDialog = new DialogHelper(_mActivity);
+        View calLayout = calDialog.setCalendarLayout(R.layout.module_view_dialog_double_date);
         TextView tv_beginTime = calLayout.findViewById(R.id.tv_beginTime);
         TextView tv_endTime = calLayout.findViewById(R.id.tv_endTime);
         ScrollChoice scrollChoiceYear = calLayout.findViewById(R.id.ScrollChoiceYear);
@@ -569,8 +570,8 @@ public class Switch_CheckBox_ListPreferenceFragment extends BaseFragment {
             mcity.put(i, mCityList);
         }
 
-        CustomDialog calDialog = new CustomDialog(_mActivity);
-        View layout = calDialog.setLocationLinkageLayout();
+        DialogHelper calDialog = new DialogHelper(_mActivity);
+        View layout = calDialog.setLocationLinkageLayout(R.layout.module_view_dialog_location_linkage);
         TextView tv_location = layout.findViewById(R.id.tv_location);
         WheelView wheelViewProvince = layout.findViewById(R.id.wheelViewProvince);
         WheelView wheelViewCity = layout.findViewById(R.id.wheelViewCity);
@@ -692,8 +693,8 @@ public class Switch_CheckBox_ListPreferenceFragment extends BaseFragment {
         strings.add("裕固族");
         strings.add("藏族");
         strings.add("壮族");
-        CustomDialog calDialog = new CustomDialog(_mActivity);
-        View layout = calDialog.setSearchLayout();
+        DialogHelper calDialog = new DialogHelper(_mActivity);
+        View layout = calDialog.setSearchLayout(R.layout.module_view_dialog_search);
         SearchView searchView = layout.findViewById(R.id.searchView);
         SearchView.SearchAutoComplete searchAutoComplete = searchView.findViewById(R.id.search_src_text);
         searchAutoComplete.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);

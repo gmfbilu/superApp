@@ -12,7 +12,7 @@ import android.view.View;
 
 import com.orhanobut.logger.Logger;
 
-import org.gmfbilu.superapp.lib_base.utils.Utils;
+import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 
 /**
  * 自定义View需要处理padding，无需处理margin。自定义ViewGroup需要同时处理padding和margin
@@ -63,15 +63,15 @@ public class StepViewOne extends View {
     public StepViewOne(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
-        mViewDefaultWidth = Utils.getScreenWidth(mContext);
-        mViewDefaultHeight = Utils.dp2px(mContext, 100);
+        mViewDefaultWidth = AppUtils.getScreenWidth(mContext);
+        mViewDefaultHeight = AppUtils.dp2px(mContext, 100);
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 
         mTextPaint = new TextPaint();
-        mTextPaint.setTextSize(Utils.sp2px(mContext, 12));
+        mTextPaint.setTextSize(AppUtils.sp2px(mContext, 12));
         mTextPaint.setAntiAlias(true);
         mTextPaint.setTextAlign(Paint.Align.CENTER);
 
@@ -79,7 +79,7 @@ public class StepViewOne extends View {
         mPathPaint.setColor(Color.parseColor("#35CBD1"));
         mPathPaint.setAntiAlias(true);
         mPathPaint.setStyle(Paint.Style.FILL);
-        mPathPaint.setStrokeWidth(Utils.sp2px(mContext, 1));
+        mPathPaint.setStrokeWidth(AppUtils.sp2px(mContext, 1));
 
     }
 
@@ -103,7 +103,7 @@ public class StepViewOne extends View {
             width = widthSize;
         } else {
             //如果是wrap_content，我们要得到控件需要多大的尺寸。这里假设充满屏幕的宽度
-            float viewContentWidth = Utils.getScreenWidth(mContext);
+            float viewContentWidth = AppUtils.getScreenWidth(mContext);
             //控件的宽度就是文本的宽度加上两边的内边距。内边距就是padding值，在构造方法执行完就被赋值
             width = (int) (paddingLeft + viewContentWidth + paddingRight);
         }
@@ -180,17 +180,17 @@ public class StepViewOne extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         //圆圈的半径
-        int radius = Utils.dp2px(mContext, 4);
+        int radius = AppUtils.dp2px(mContext, 4);
         //圆圈和右边直线之间的间隙
-        int circle_line_gap = Utils.dp2px(mContext, 2);
+        int circle_line_gap = AppUtils.dp2px(mContext, 2);
         //圆圈和上方文字以及下方文字的距离
-        int circle_text_gap = Utils.dp2px(mContext, 10);
+        int circle_text_gap = AppUtils.dp2px(mContext, 10);
         //圆圈的个数
         int circleSize = processName.length;
         //直线的个数
         int lineSize = circleSize - 1;
         //直线的高度
-        int lineHeight = Utils.dp2px(mContext, 2);
+        int lineHeight = AppUtils.dp2px(mContext, 2);
         //直线的宽度
         int lineWidth = (viewContentWidth - circleSize * 2 * radius - circle_line_gap * 2 * lineSize) / 3;
         //每个圆圈坐标点的集合
@@ -211,8 +211,8 @@ public class StepViewOne extends View {
             String process = processName[i];
             if (i == status) {
                 mTextPaint.setColor(Color.parseColor("#ffffff"));
-                int stringHeight = Utils.getStringHeight(process, mTextPaint);
-                int stringWidth = Utils.getStringWidth(process, mTextPaint);
+                int stringHeight = AppUtils.getStringHeight(process, mTextPaint);
+                int stringWidth = AppUtils.getStringWidth(process, mTextPaint);
                 //圆弧半径
                 int arcRadi = stringHeight;
                 canvas.save();
@@ -222,9 +222,9 @@ public class StepViewOne extends View {
                 startPoint[0] = 0;
                 startPoint[1] = 0;
                 path.moveTo(startPoint[0], startPoint[1]);
-                int[] pointOne = {startPoint[0] - Utils.dp2px(mContext, 8), startPoint[1] - Utils.dp2px(mContext, 8)};
+                int[] pointOne = {startPoint[0] - AppUtils.dp2px(mContext, 8), startPoint[1] - AppUtils.dp2px(mContext, 8)};
                 path.lineTo(pointOne[0], pointOne[1]);
-                int[] pointTwo = {pointOne[0] + Utils.dp2px(mContext, 8) - stringWidth / 2, pointOne[1]};
+                int[] pointTwo = {pointOne[0] + AppUtils.dp2px(mContext, 8) - stringWidth / 2, pointOne[1]};
                 path.lineTo(pointTwo[0], pointTwo[1]);
                 path.arcTo(pointTwo[0] - arcRadi, pointTwo[1] - 2 * arcRadi, pointTwo[0] + arcRadi, pointTwo[1], -270, 180, false);
                 path.lineTo(startPoint[0], pointTwo[1] - 2 * arcRadi);
@@ -236,7 +236,7 @@ public class StepViewOne extends View {
                 mPaint.setColor(Color.parseColor("#35CBD1"));
                 canvas.drawCircle(circlesLocations[i][0], circlesLocations[i][1], radius, mPaint);
                 mTextPaint.setColor(Color.parseColor("#FFFFFF"));
-                canvas.drawText(process, circlesLocations[i][0], circlesLocations[i][1] - radius - circle_text_gap - Utils.dp2px(mContext, 10) - (arcRadi * 2 - stringHeight) / 2, mTextPaint);
+                canvas.drawText(process, circlesLocations[i][0], circlesLocations[i][1] - radius - circle_text_gap - AppUtils.dp2px(mContext, 10) - (arcRadi * 2 - stringHeight) / 2, mTextPaint);
             } else {
                 mTextPaint.setColor(Color.parseColor("#35CBD1"));
                 canvas.drawText(process, circlesLocations[i][0], circlesLocations[i][1] - circle_text_gap - radius, mTextPaint);
@@ -255,7 +255,7 @@ public class StepViewOne extends View {
             if (i == 0 || i == circleSize - 1) {
                 mTextPaint.setColor(Color.parseColor("#666666"));
                 String city = i == 0 ? cities[0] : cities[1];
-                canvas.drawText(city, circlesLocations[i][0], circlesLocations[i][1] + circle_text_gap + Utils.getStringHeight(city, mTextPaint) + radius, mTextPaint);
+                canvas.drawText(city, circlesLocations[i][0], circlesLocations[i][1] + circle_text_gap + AppUtils.getStringHeight(city, mTextPaint) + radius, mTextPaint);
             }
         }
     }

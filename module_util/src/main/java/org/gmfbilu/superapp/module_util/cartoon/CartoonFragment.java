@@ -5,6 +5,7 @@ import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_util.R;
+import org.gmfbilu.superapp.module_util.cartoon.animator.AnimatorFragment;
 
 /**
  * Android 动画可以归纳为以下几种：

@@ -11,7 +11,7 @@ import android.widget.CheckBox;
 import android.widget.Toast;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
-import org.gmfbilu.superapp.lib_base.utils.Utils;
+import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.BaseRecyclerView;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.adapter.BaseViewHolder;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.adapter.RecyclerArrayAdapter;
@@ -84,7 +84,7 @@ public class SimpleRecyclerViewFragment extends BaseFragment {
             }
         });
         //间隔装饰
-        DividerDecoration itemDecoration = new DividerDecoration(Color.GRAY, Utils.dp2px(_mActivity, 16f), 0, 0);
+        DividerDecoration itemDecoration = new DividerDecoration(Color.GRAY, AppUtils.dp2px(_mActivity, 16f), 0, 0);
         itemDecoration.setDrawLastItem(false);
         mBaseRecyclerView.addItemDecoration(itemDecoration);
         //是否显示刷新动画

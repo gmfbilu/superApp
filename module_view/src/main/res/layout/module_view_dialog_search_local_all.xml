@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/ViewOne"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#F3F3F3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <org.gmfbilu.superapp.lib_base.view.recyclerView.BaseRecyclerView
+        android:id="@+id/recyclerView_big"
+        android:layout_width="100dp"
+        android:layout_height="420dp"
+        android:background="#F7F7F7"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/recyclerView_small"
+        app:layout_constraintTop_toBottomOf="@+id/ViewOne"/>
+
+    <org.gmfbilu.superapp.lib_base.view.recyclerView.BaseRecyclerView
+        android:id="@+id/recyclerView_small"
+        android:layout_width="0dp"
+        android:layout_height="420dp"
+        android:background="#ffffff"
+        app:layout_constraintLeft_toRightOf="@+id/recyclerView_big"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ViewOne"/>
+
+    <View
+        android:id="@+id/v_half_transparent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#80000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView_big"/>
+</android.support.constraint.ConstraintLayout>

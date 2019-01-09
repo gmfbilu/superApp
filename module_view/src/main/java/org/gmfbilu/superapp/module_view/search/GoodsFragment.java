@@ -4,32 +4,34 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.TypedValue;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import org.gmfbilu.superapp.lib_base.base.BaseFragment;
-import org.gmfbilu.superapp.lib_base.utils.Utils;
-import org.gmfbilu.superapp.lib_base.view.flowLayout.FlowLayout;
-import org.gmfbilu.superapp.lib_base.view.flowLayout.TagAdapter;
-import org.gmfbilu.superapp.lib_base.view.flowLayout.TagFlowLayout;
+import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.BaseRecyclerView;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.adapter.BaseViewHolder;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.adapter.RecyclerArrayAdapter;
+import org.gmfbilu.superapp.lib_base.view.recyclerView.decoration.SpaceDecoration;
 import org.gmfbilu.superapp.module_view.R;
+import org.gmfbilu.superapp.module_view.search.viewholder.GoodsViewHolder;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class GoodsFragment extends BaseFragment {
+public class GoodsFragment extends BaseSearchFragment {
 
+    private TextView tv_synthesize;
+    private TextView tv_sales_volume;
+    private TextView tv_sales_price;
+    private ImageView iv_synthesize;
+    private ImageView iv_sales_volume;
+    private ImageView iv_sales_price;
 
     private BaseRecyclerView mBaseRecyclerView;
     private RecyclerArrayAdapter<String> mAdapter;
-
+    private int lastIndex;
 
     public static GoodsFragment newInstance() {
         Bundle args = new Bundle();
@@ -41,6 +43,15 @@ public class GoodsFragment extends BaseFragment {
     @Override
     public void findViewById_setOnClickListener(View view) {
         mBaseRecyclerView = view.findViewById(R.id.recyclerView);
+        tv_synthesize = view.findViewById(R.id.tv_synthesize);
+        tv_sales_volume = view.findViewById(R.id.tv_sales_volume);
+        tv_sales_price = view.findViewById(R.id.tv_sales_price);
+        iv_synthesize = view.findViewById(R.id.iv_synthesize);
+        iv_sales_volume = view.findViewById(R.id.iv_sales_volume);
+        iv_sales_price = view.findViewById(R.id.iv_sales_price);
+        view.findViewById(R.id.cl_synthesize).setOnClickListener(this);
+        view.findViewById(R.id.cl_sales_volume).setOnClickListener(this);
+        view.findViewById(R.id.cl_sales_price).setOnClickListener(this);
     }
 
     @Override
@@ -50,7 +61,14 @@ public class GoodsFragment extends BaseFragment {
 
     @Override
     public void onClick(View v) {
-
+        int id = v.getId();
+        if (id == R.id.cl_synthesize) {
+            sortByCondition(0);
+        } else if (id == R.id.cl_sales_volume) {
+            sortByCondition(1);
+        } else if (id == R.id.cl_sales_price) {
+            sortByCondition(2);
+        }
     }
 
     @Override
@@ -59,137 +77,60 @@ public class GoodsFragment extends BaseFragment {
         initRecyclerView();
     }
 
+    @Override
+    public void search(int index, String keyWord) {
+        if (index != 0)
+            return;
+        mAdapter.clear();
+        if (keyWord.equals("点此处展示搜索无结果")) {
+            mBaseRecyclerView.showEmpty();
+            return;
+        }
+        Toast.makeText(_mActivity, index + ", " + keyWord, Toast.LENGTH_SHORT).show();
+        search(keyWord);
+    }
+
+    private void search(String keyWord) {
+        ArrayList<String> strings = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            strings.add(i + keyWord);
+        }
+        mAdapter.addAll(strings);
+    }
+
     private void initRecyclerView() {
+        mBaseRecyclerView.addItemDecoration(new SpaceDecoration(AppUtils.dp2px(_mActivity, 8)));
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         mBaseRecyclerView.setLayoutManager(layoutManager);
         mBaseRecyclerView.setAdapterWithProgress(mAdapter = new RecyclerArrayAdapter<String>(_mActivity) {
             @Override
             public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
-                return new SearchHotViewHolder(parent);
+                return new GoodsViewHolder(parent);
             }
         });
-        mAdapter.addHeader(new RecyclerArrayAdapter.ItemView() {
+        mAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
-            public View onCreateView(ViewGroup parent) {
-                TextView tv = new TextView(_mActivity);
-                tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                tv.setPadding(0, Utils.dp2px(_mActivity, 20), 0, 0);
-                tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-                tv.setTextColor(Color.parseColor("#999999"));
-                tv.setText("热门搜索");
-                return tv;
-            }
-
-            @Override
-            public void onBindView(View headerView) {
+            public void onItemClick(int position) {
 
             }
         });
-        mAdapter.addFooter(new RecyclerArrayAdapter.ItemView() {
-            @Override
-            public View onCreateView(ViewGroup parent) {
-                LayoutInflater layoutInflater = _mActivity.getLayoutInflater();
-                View inflate = layoutInflater.inflate(R.layout.module_view_recyclerview_inflate_footer_search_center_searchhistory, null);
-                ImageView iv_clear_search_history = inflate.findViewById(R.id.iv_clear_search_history);
-                return inflate;
-            }
-
-            @Override
-            public void onBindView(View headerView) {
-
-            }
-        });
-        mAdapter.addFooter(new RecyclerArrayAdapter.ItemView() {
-            @Override
-            public View onCreateView(ViewGroup parent) {
-                ArrayList<String> strings = new ArrayList<>();
-                strings.add("一个");
-                strings.add("一个个");
-                strings.add("一个个个");
-                strings.add("一");
-                strings.add("一个个个个");
-                strings.add("一个");
-                strings.add("一个个个个");
-                strings.add("一个");
-                strings.add("一个个");
-                strings.add("一个个个");
-                strings.add("一");
-                strings.add("一个个个个");
-                strings.add("一个");
-                strings.add("一个");
-                strings.add("一个个");
-                strings.add("一个个个个");
-                strings.add("一个个个个");
-                strings.add("一个个个");
-                strings.add("一");
-                strings.add("一个个个个");
-                strings.add("一个");
-                strings.add("一个");
-                strings.add("一个个");
-                strings.add("一个个个");
-                strings.add("一");
-                strings.add("一个个个个");
-                strings.add("一个");
-                strings.add("一个个个个");
-                strings.add("一个");
-                strings.add("一个个");
-                strings.add("一个个个");
-                strings.add("一");
-                strings.add("一个个个个");
-                strings.add("一个");
-                strings.add("一个");
-                strings.add("一个个");
-                strings.add("一个个个个");
-                strings.add("一个个个个");
-                strings.add("一个个个");
-                strings.add("一");
-                strings.add("一个个个个");
-                strings.add("一个");
-                LayoutInflater layoutInflater = _mActivity.getLayoutInflater();
-                View inflate = layoutInflater.inflate(R.layout.module_view_search_history, null);
-                TagFlowLayout id_flowlayout = inflate.findViewById(R.id.id_flowlayout);
-                id_flowlayout.setAdapter(new TagAdapter<String>(strings) {
-
-                    @Override
-                    public View getView(FlowLayout parent, int position, String s) {
-                        TextView tv_history = (TextView) layoutInflater.inflate(R.layout.module_view_search_history_flow, id_flowlayout, false);
-                        tv_history.setText(s);
-                        return tv_history;
-                    }
-                });
-                id_flowlayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
-                    @Override
-                    public boolean onTagClick(View view, int position, FlowLayout parent) {
-                        String s = strings.get(position);
-                        return true;
-                    }
-                });
-                return inflate;
-            }
-
-            @Override
-            public void onBindView(View headerView) {
-
-            }
-        });
-
+        mBaseRecyclerView.setEmptyView(R.layout.module_view_recyclerview_empty_search_center);
         ArrayList<String> strings = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            strings.add(i + "1111111111111aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            strings.add(i + "");
         }
-        mAdapter.addAll(strings);
     }
 
-    private int setSpanSize(int position, List<String> listEntities) {
-        int count;
-        //设置item数据大于多少字只显示一行  默认 超过九个字的程度只显示一列
-        final int MAX = 9;
-        if (listEntities.get(position).length() > MAX) {
-            count = 2;
-        } else {
-            count = 1;
-        }
-
-        return count;
+    private void sortByCondition(int index) {
+        if (index == lastIndex)
+            return;
+        tv_synthesize.setTextColor(index == 0 ? Color.parseColor("#E9372F") : Color.parseColor("#333333"));
+        tv_sales_volume.setTextColor(index == 1 ? Color.parseColor("#E9372F") : Color.parseColor("#333333"));
+        tv_sales_price.setTextColor(index == 2 ? Color.parseColor("#E9372F") : Color.parseColor("#333333"));
+        iv_synthesize.setBackgroundResource(index == 0 ? R.mipmap.search_select_arrow_red : R.mipmap.search_select_arrow);
+        iv_sales_volume.setBackgroundResource(index == 1 ? R.mipmap.search_select_arrow_red : R.mipmap.search_select_arrow);
+        iv_sales_price.setBackgroundResource(index == 2 ? R.mipmap.search_select_arrow_red : R.mipmap.search_select_arrow);
+        lastIndex = index;
     }
+
 }
