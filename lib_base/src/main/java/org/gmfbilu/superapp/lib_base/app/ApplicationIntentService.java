@@ -82,15 +82,12 @@ public class ApplicationIntentService extends IntentService {
 
     private void initLogger() {
         FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
-                .showThreadInfo(true)
-                .methodCount(2)
-                .methodOffset(5)
-                //.logStrategy()
                 .tag(Constant.LOG_NAME)
                 .build();
         Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy) {
             @Override
             public boolean isLoggable(int priority, String tag) {
+                //return BuildConfig.DEBUG;
                 return Constant.ISSHOWLOG;
             }
 

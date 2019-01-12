@@ -99,7 +99,7 @@ public class GoodsFragment extends BaseSearchFragment {
     }
 
     private void initRecyclerView() {
-        mBaseRecyclerView.addItemDecoration(new SpaceDecoration(AppUtils.dp2px(_mActivity, 8)));
+        mBaseRecyclerView.addItemDecoration(new SpaceDecoration(AppUtils.dp2px(8)));
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         mBaseRecyclerView.setLayoutManager(layoutManager);
         mBaseRecyclerView.setAdapterWithProgress(mAdapter = new RecyclerArrayAdapter<String>(_mActivity) {

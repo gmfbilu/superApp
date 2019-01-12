@@ -94,7 +94,7 @@ public class SearchFragment extends BaseFragment {
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
-        screenWidth = AppUtils.getScreenWidth(_mActivity);
+        screenWidth = AppUtils.getScreenWidth();
         initRecyclerView();
         initFragment();
         et_search.addTextChangedListener(new TextWatcher() {
@@ -129,7 +129,7 @@ public class SearchFragment extends BaseFragment {
             public View onCreateView(ViewGroup parent) {
                 TextView tv = new TextView(_mActivity);
                 tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                tv.setPadding(0, AppUtils.dp2px(_mActivity, 20), 0, 0);
+                tv.setPadding(0, AppUtils.dp2px(20), 0, 0);
                 tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
                 tv.setTextColor(Color.parseColor("#999999"));
                 tv.setText("热门搜索");

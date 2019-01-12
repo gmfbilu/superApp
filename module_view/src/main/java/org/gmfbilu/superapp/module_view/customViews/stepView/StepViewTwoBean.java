@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_view.stepView;
+package org.gmfbilu.superapp.module_view.customViews.stepView;
 
 public class StepViewTwoBean {
 

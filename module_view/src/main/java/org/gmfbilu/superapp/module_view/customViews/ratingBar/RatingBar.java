@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_view.generalviews;
+package org.gmfbilu.superapp.module_view.customViews.ratingBar;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -7,22 +7,12 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
+import org.gmfbilu.superapp.module_view.customViews.baseView.BaseView;
 
 
-public class RatingBar extends View {
-
-    /**
-     * 上下文
-     */
-    private Context mContext;
-    /**
-     * view默认宽高，就是设置wrap_content的时候，默认宽是屏幕宽度，高40dp
-     * 这种有问题，就是设置wrap_content的时候，View的宽高限制死了，不能随着View内容的大小改变而改变
-     */
-    private int mViewDefaultWidth, mViewDefaultHeight;
+public class RatingBar extends BaseView {
 
     int width;
     int gap;
@@ -42,15 +32,12 @@ public class RatingBar extends View {
 
     public RatingBar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mContext = context;
-        mViewDefaultWidth = AppUtils.dp2px(mContext, 72);
-        mViewDefaultHeight = AppUtils.dp2px(mContext, 12);
-        width = AppUtils.dp2px(mContext, 12);
-        gap = AppUtils.dp2px(mContext, 2);
-        round = AppUtils.dp2px(mContext, 3);
+        width = AppUtils.dp2px(12);
+        gap = AppUtils.dp2px(2);
+        round = AppUtils.dp2px(3);
         //五角星外圆半径
-        pentagramR = AppUtils.dp2px(mContext, 4);
-        starOffsetX = AppUtils.dp2px(mContext, 1);
+        pentagramR = AppUtils.dp2px(4);
+        starOffsetX = AppUtils.dp2px(1);
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setAntiAlias(true);
@@ -59,16 +46,11 @@ public class RatingBar extends View {
         mPath = new Path();
     }
 
-    /**
-     * 设置默认view大小
-     *
-     * @param widthMeasureSpec
-     * @param heightMeasureSpec
-     */
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        setMeasuredDimension(mViewDefaultWidth, mViewDefaultHeight);
+        setMeasuredDimension(AppUtils.dp2px(72), AppUtils.dp2px(12));
     }
 
     @Override

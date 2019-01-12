@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/module_view_appBarLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/module_view_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/android:actionBarSize"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+        </android.support.design.widget.AppBarLayout>
+
+        <org.gmfbilu.superapp.module_view.customViews.ratingBar.RatingBar
+            android:id="@+id/ratingbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/module_view_appBarLayout"/>
+
+        <org.gmfbilu.superapp.module_view.customViews.stepView.StepViewOne
+            android:id="@+id/StepViewOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/lib_base_colorAccent"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"
+            android:paddingRight="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ratingbar"/>
+
+        <org.gmfbilu.superapp.module_view.customViews.stepView.StepViewTwo
+            android:id="@+id/StepViewTwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/lib_base_colorPrimary"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/StepViewOne"/>
+
+        <org.gmfbilu.superapp.module_view.customViews.canvasView.CanvasViewTestOne
+            android:id="@+id/CanvasViewTestOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/StepViewTwo"/>
+
+        <org.gmfbilu.superapp.module_view.customViews.paintView.PaintView
+            android:id="@+id/PaintView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/lib_base_colorAccent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CanvasViewTestOne"/>
+
+        <org.gmfbilu.superapp.module_view.customViews.canvasView.CanvasView
+            android:id="@+id/CanvasView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/PaintView"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

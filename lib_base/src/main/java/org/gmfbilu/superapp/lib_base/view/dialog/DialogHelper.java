@@ -53,17 +53,17 @@ public class DialogHelper extends Dialog {
     }
 
     public View setCalendarLayout(int layoutId) {
-        int dp2px = AppUtils.dp2px(mContext, 45);
+        int dp2px = AppUtils.dp2px(45);
         return defaultSetting(dp2px, 0, dp2px, 0, layoutId);
     }
 
     public View setLocationLinkageLayout(int layoutId) {
-        int dp2px = AppUtils.dp2px(mContext, 30);
+        int dp2px = AppUtils.dp2px(30);
         return defaultSetting(dp2px, 0, dp2px, 0, layoutId);
     }
 
     public View setSearchLayout(int layoutId) {
-        int dp2px = AppUtils.dp2px(mContext, 30);
+        int dp2px = AppUtils.dp2px(30);
         return defaultSetting(dp2px, 0, dp2px, 0, layoutId);
     }
 
@@ -86,7 +86,7 @@ public class DialogHelper extends Dialog {
         v.getLocationOnScreen(location);
         //对dialog设置y轴坐标
         int y = location[1] + v.getHeight() - notificationBar;
-        int screenHeight = AppUtils.getScreenHeight(mContext);
+        int screenHeight = AppUtils.getScreenHeight();
         View view = LayoutInflater.from(mContext).inflate(layoutId, null);
         Window win = this.getWindow();
         if (win != null) {

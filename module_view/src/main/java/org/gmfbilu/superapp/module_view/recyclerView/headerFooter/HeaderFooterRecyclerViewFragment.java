@@ -62,7 +62,7 @@ public class HeaderFooterRecyclerViewFragment extends BaseFragment {
         mBaseRecyclerView.setRefreshingColorResources(R.color.lib_base_colorPrimaryDark);
         mBaseRecyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
         mBaseRecyclerView.setAdapterWithProgress(mHeaderFooterAdapter = new HeaderFooterAdapter(_mActivity));
-        DividerDecoration itemDecoration = new DividerDecoration(Color.GRAY, AppUtils.dp2px(_mActivity, 16f), 0, 0);
+        DividerDecoration itemDecoration = new DividerDecoration(Color.GRAY, AppUtils.dp2px(16f), 0, 0);
         itemDecoration.setDrawLastItem(false);
         mBaseRecyclerView.addItemDecoration(itemDecoration);
 
@@ -96,7 +96,7 @@ public class HeaderFooterRecyclerViewFragment extends BaseFragment {
                     }
                 };
                 recyclerView.setLayoutManager(new LinearLayoutManager(parent.getContext(), LinearLayoutManager.HORIZONTAL, false));
-                recyclerView.addItemDecoration(new SpaceDecoration(AppUtils.dp2px(_mActivity, 8)));
+                recyclerView.addItemDecoration(new SpaceDecoration(AppUtils.dp2px(8)));
                 recyclerView.setHorizontalScrollBarEnabled(false);
                 recyclerView.setAdapterWithProgress(mAdapter = new RecyclerArrayAdapter<SimpleBeen>(_mActivity) {
                     @Override

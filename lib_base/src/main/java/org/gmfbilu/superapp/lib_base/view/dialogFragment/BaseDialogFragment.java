@@ -119,18 +119,18 @@ public abstract class BaseDialogFragment extends DialogFragment {
 
             //设置dialog宽度
             if (width == 0) {
-                lp.width = AppUtils.getScreenWidth(getContext()) - 2 * AppUtils.dp2px(getContext(), margin);
+                lp.width = AppUtils.getScreenWidth() - 2 * AppUtils.dp2px(margin);
             } else if (width == -1) {
                 lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
             } else {
-                lp.width = AppUtils.dp2px(getContext(), width);
+                lp.width = AppUtils.dp2px(width);
             }
 
             //设置dialog高度
             if (height == 0) {
                 lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
             } else {
-                lp.height = AppUtils.dp2px(getContext(), height);
+                lp.height = AppUtils.dp2px(height);
             }
 
             //设置dialog进入、退出的动画

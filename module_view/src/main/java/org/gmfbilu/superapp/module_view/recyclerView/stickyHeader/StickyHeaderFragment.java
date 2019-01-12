@@ -53,7 +53,7 @@ public class StickyHeaderFragment extends BaseFragment {
     }
 
     private void initRecyclerView() {
-        DividerDecoration itemDecoration = new DividerDecoration(Color.GRAY, AppUtils.dp2px(_mActivity, 0.5f), AppUtils.dp2px(_mActivity, 72), 0);
+        DividerDecoration itemDecoration = new DividerDecoration(Color.GRAY, AppUtils.dp2px(0.5f), AppUtils.dp2px(72), 0);
         itemDecoration.setDrawLastItem(false);
         mBaseRecyclerView.addItemDecoration(itemDecoration);
         mBaseRecyclerView.setRefreshingColorResources(R.color.lib_base_colorPrimaryDark);
@@ -79,7 +79,7 @@ public class StickyHeaderFragment extends BaseFragment {
     private void refresh() {
         ArrayList<String> strings = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
-            strings.add(i+"");
+            strings.add(i + "");
         }
         mAdapter.addAll(strings);
         mStickyHeaderAdapter.setData(strings);

@@ -147,7 +147,7 @@ public class CameraFragment extends BaseFragment {
                     cropImageUri = Uri.fromFile(fileCropUri);
                     Uri newUri = Uri.parse(PhotoUtils.getPath(_mActivity, data.getData()));
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        newUri = FileProvider.getUriForFile(_mActivity, AppUtils.getPackageName(_mActivity) + ".fileprovider", new File(newUri.getPath()));
+                        newUri = FileProvider.getUriForFile(_mActivity, AppUtils.getPackageName() + ".fileprovider", new File(newUri.getPath()));
                     }
                     //不进行裁剪
                     Bitmap bitmap = PhotoUtils.getBitmapFromUri(newUri, _mActivity);
@@ -178,7 +178,7 @@ public class CameraFragment extends BaseFragment {
             imageUri = Uri.fromFile(fileUri);
             //通过FileProvider创建一个content类型的Uri
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                imageUri = FileProvider.getUriForFile(_mActivity, AppUtils.getPackageName(_mActivity) + ".fileprovider", fileUri);
+                imageUri = FileProvider.getUriForFile(_mActivity, AppUtils.getPackageName() + ".fileprovider", fileUri);
             }
             PhotoUtils.takePicture(this, imageUri, CODE_CAMERA_REQUEST);
         } else {

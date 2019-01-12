@@ -54,4 +54,13 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toRightOf="@+id/bt_animatorSet"
         app:layout_constraintTop_toBottomOf="@+id/bt_alpha"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/bt_viewPropertyAnimator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ViewPropertyAnimator"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_animatorSet"/>
+
 </android.support.constraint.ConstraintLayout>

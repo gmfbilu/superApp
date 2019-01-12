@@ -7,11 +7,10 @@ import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_view.constraintlayout.ConstraintLayoutFragment;
 import org.gmfbilu.superapp.module_view.dialogFragment.DialogFragment;
 import org.gmfbilu.superapp.module_view.dynamicLayout.DynamicLayoutFragment;
-import org.gmfbilu.superapp.module_view.generalviews.GeneralViewFragment;
+import org.gmfbilu.superapp.module_view.customViews.CustomViewsFragment;
 import org.gmfbilu.superapp.module_view.recyclerView.RecyclerViewFragment;
 import org.gmfbilu.superapp.module_view.search.SearchFragment;
 import org.gmfbilu.superapp.module_view.shape.ShapeFragment;
-import org.gmfbilu.superapp.module_view.stepView.StepViewFragment;
 import org.gmfbilu.superapp.module_view.surfaceView.SurfaceViewFragment;
 import org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.Switch_CheckBox_ListPreferenceFragment;
 
@@ -43,7 +42,6 @@ public class MainFragment extends BaseFragment {
         view.findViewById(R.id.module_view_bt_surfaceview).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_search).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_generalview).setOnClickListener(this);
-        view.findViewById(R.id.module_view_bt_stepview).setOnClickListener(this);
     }
 
     @Override
@@ -72,9 +70,7 @@ public class MainFragment extends BaseFragment {
         }else if (id==R.id.module_view_bt_search){
             start(SearchFragment.newInstance());
         }else if (id == R.id.module_view_bt_generalview) {
-            start(GeneralViewFragment.newInstance());
-        } else if (id == R.id.module_view_bt_stepview) {
-            start(StepViewFragment.newInstance());
+            start(CustomViewsFragment.newInstance());
         }
     }
 }

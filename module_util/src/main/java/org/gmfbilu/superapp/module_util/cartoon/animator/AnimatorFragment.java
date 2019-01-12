@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatButton;
 import android.view.View;
+import android.view.animation.BounceInterpolator;
 
 import com.orhanobut.logger.Logger;
 
@@ -47,6 +48,7 @@ public class AnimatorFragment extends BaseFragment {
     private AppCompatButton bt_translationX;
     private AppCompatButton bt_scaleY;
     private AppCompatButton bt_animatorSet;
+    private AppCompatButton bt_viewPropertyAnimator;
 
     public static AnimatorFragment newInstance() {
         Bundle args = new Bundle();
@@ -67,6 +69,8 @@ public class AnimatorFragment extends BaseFragment {
         bt_scaleY.setOnClickListener(this);
         bt_animatorSet = view.findViewById(R.id.bt_animatorSet);
         bt_animatorSet.setOnClickListener(this);
+        bt_viewPropertyAnimator = view.findViewById(R.id.bt_viewPropertyAnimator);
+        bt_viewPropertyAnimator.setOnClickListener(this);
     }
 
     @Override
@@ -87,6 +91,8 @@ public class AnimatorFragment extends BaseFragment {
             hello7();
         } else if (id == R.id.bt_animatorSet) {
             hello8();
+        } else if (id == R.id.bt_viewPropertyAnimator) {
+            hello12();
         }
     }
 
@@ -103,6 +109,8 @@ public class AnimatorFragment extends BaseFragment {
         //hello8();
         hello9();
         //hello10();
+        hello11();
+        // hello12();
     }
 
     private void hello1() {
@@ -273,5 +281,17 @@ public class AnimatorFragment extends BaseFragment {
         anim.setDuration(5000);
         anim.start();
 
+    }
+
+    private void hello11() {
+        //Interpolator是补间器的意思，它的主要作用是可以控制动画的变化速率,TimeInterpolator是一个接口，只有一个getInterpolation()方法
+        //getInterpolation()方法中接收一个input参数，这个参数的值会随着动画的运行而不断变化，不过它的变化是非常有规律的，就是根据设定的动画时长匀速增加，变化范围是0到1
+        //input的值决定了fraction的值。input的值是由系统经过计算后传入到getInterpolation()方法中的，然后我们可以自己实现getInterpolation()方法中的算法，根据input的值来计算出一个返回值，而这个返回值就是fraction了
+        //最简单的情况就是input值和fraction值是相同的，这种情况由于input值是匀速增加的，因而fraction的值也是匀速增加的，所以动画的运动情况也是匀速的。系统中内置的LinearInterpolator就是一种匀速运动的Interpolator
+    }
+
+    private void hello12() {
+        //属性动画的机制已经不是再针对于View而进行设计的了，而是一种不断地对值进行操作的机制，它可以将值赋值到指定对象的指定属性上。但是，在绝大多数情况下开发者主要都还是对View进行动画操作的。Android开发团队也是意识到了这一点，没有为View的动画操作提供一种更加便捷的用法确实是有点太不人性化了，于是在Android 3.1系统当中补充了ViewPropertyAnimator这个机制
+        bt_viewPropertyAnimator.animate().x(500).y(500).setDuration(5000).setInterpolator(new BounceInterpolator());
     }
 }

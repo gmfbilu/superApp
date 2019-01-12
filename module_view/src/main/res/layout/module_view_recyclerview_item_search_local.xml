@@ -35,7 +35,7 @@
         app:layout_constraintLeft_toRightOf="@+id/iv_shop_img"
         app:layout_constraintTop_toBottomOf="@+id/tv_shop_name"/>
 
-    <org.gmfbilu.superapp.module_view.generalviews.RatingBar
+    <org.gmfbilu.superapp.module_view.customViews.ratingBar.RatingBar
         android:id="@+id/ratingbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

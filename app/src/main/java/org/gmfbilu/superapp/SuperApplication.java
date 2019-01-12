@@ -40,7 +40,7 @@ public class SuperApplication extends BaseApplication {
     }
 
     private void initPush() {
-        UMConfigure.init(this, Constant.PUSH_APPKEY, AppUtils.getChannelName(this), UMConfigure.DEVICE_TYPE_PHONE, Constant.PUSH_SECRET);
+        UMConfigure.init(this, Constant.PUSH_APPKEY, AppUtils.getChannelName(), UMConfigure.DEVICE_TYPE_PHONE, Constant.PUSH_SECRET);
         UMConfigure.setLogEnabled(Constant.ISSHOWLOG);
         PushAgent mPushAgent = PushAgent.getInstance(this);
         /**
