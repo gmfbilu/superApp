@@ -9,7 +9,6 @@ import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
-import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 import org.gmfbilu.superapp.module_view.R;
 import org.gmfbilu.superapp.module_view.customViews.baseView.BaseView;
 
@@ -25,6 +24,7 @@ import org.gmfbilu.superapp.module_view.customViews.baseView.BaseView;
  * (0, 1)	根据缩放中心缩小到n
  * 1	没有变化
  * (1, +∞)	根据缩放中心放大n倍
+ * scale(1,-1)翻转y坐标轴，y轴上为正
  * <p>
  * rotate (float degrees, float px, float py):后两个参数是旋转中心点
  * <p>
@@ -104,23 +104,7 @@ public class CanvasView extends BaseView {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int widthMode = MeasureSpec.getMode(widthMeasureSpec);   //获取宽的模式
-        int heightMode = MeasureSpec.getMode(heightMeasureSpec); //获取高的模式
-        int widthSize = MeasureSpec.getSize(widthMeasureSpec);   //获取宽的尺寸
-        int heightSize = MeasureSpec.getSize(heightMeasureSpec); //获取高的尺寸
-        int width;
-        int height;
-        if (widthMode == MeasureSpec.EXACTLY) {
-            width = widthSize;
-        } else {
-            width = _mScreenWidth;
-        }
-        if (heightMode == MeasureSpec.EXACTLY) {
-            height = heightSize;
-        } else {
-            height = AppUtils.dp2px(200);
-        }
-        setMeasuredDimension(width, height);
+        setMeasuredDimension(_mScreenWidth, canvas_bitmapH);
     }
 
     @Override

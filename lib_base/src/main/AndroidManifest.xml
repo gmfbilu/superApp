@@ -20,6 +20,7 @@
 
     <application
         tools:replace="android:label"
+        android:hardwareAccelerated="false"
         android:label="@string/lib_base_app_name">
         <service android:name=".app.ApplicationIntentService">
             <intent-filter>

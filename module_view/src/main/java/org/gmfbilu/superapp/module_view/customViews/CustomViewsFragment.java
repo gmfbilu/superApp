@@ -8,6 +8,7 @@ import android.view.View;
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.lib_base.http.MessiObserver;
 import org.gmfbilu.superapp.module_view.R;
+import org.gmfbilu.superapp.module_view.customViews.canvasView.LeafLoading;
 import org.gmfbilu.superapp.module_view.customViews.stepView.StepViewOne;
 import org.gmfbilu.superapp.module_view.customViews.stepView.StepViewOneBean;
 import org.gmfbilu.superapp.module_view.customViews.stepView.StepViewTwo;
@@ -31,6 +32,7 @@ public class CustomViewsFragment extends BaseFragment {
     private Toolbar mToolbar;
     private StepViewOne mStepViewOne;
     private StepViewTwo mStepViewTwo;
+    private LeafLoading mLeafLoading;
 
     public static CustomViewsFragment newInstance() {
         Bundle args = new Bundle();
@@ -45,6 +47,7 @@ public class CustomViewsFragment extends BaseFragment {
         mToolbar = view.findViewById(R.id.module_view_toolbar);
         mStepViewOne = view.findViewById(R.id.StepViewOne);
         mStepViewTwo = view.findViewById(R.id.StepViewTwo);
+        mLeafLoading = view.findViewById(R.id.LeafLoading);
     }
 
     @Override
@@ -150,5 +153,23 @@ public class CustomViewsFragment extends BaseFragment {
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mLeafLoading.resume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mLeafLoading.pause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mLeafLoading.destroy();
     }
 }

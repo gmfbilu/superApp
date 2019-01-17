@@ -84,8 +84,12 @@ dependencies {
     api "com.squareup.retrofit2:adapter-rxjava2:${adapter_rxjava_version}"
     //autodispose
     api "com.uber.autodispose:autodispose:${autodispose_version}"
-    api "com.uber.autodispose:autodispose-android-archcomponents:${autodispose_android_archcomponents_version}"
+    api "com.uber.autodispose:autodispose-android-archcomponents:${autodispose_version}"
     //glide
     api "com.github.bumptech.glide:glide:${glide_version}"
+    //leakcanary
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakcanary_version}"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${leakcanary_version}"
+    debugImplementation "com.squareup.leakcanary:leakcanary-support-fragment:${leakcanary_version}"
 
 }

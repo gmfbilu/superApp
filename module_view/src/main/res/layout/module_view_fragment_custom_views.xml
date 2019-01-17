@@ -82,6 +82,30 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/PaintView"/>
 
+        <org.gmfbilu.superapp.module_view.customViews.canvasView.LeafLoading
+            android:id="@+id/LeafLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CanvasView"/>
+
+        <org.gmfbilu.superapp.module_view.customViews.pathView.PathView
+            android:id="@+id/PathView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/LeafLoading"/>
+
+        <org.gmfbilu.superapp.module_view.customViews.pathView.PathMeasureView
+            android:id="@+id/PathMeasureView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/PathView"/>
+
     </android.support.constraint.ConstraintLayout>
 
 

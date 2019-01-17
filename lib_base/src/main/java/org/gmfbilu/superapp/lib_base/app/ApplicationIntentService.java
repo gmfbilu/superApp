@@ -17,6 +17,7 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
+import com.squareup.leakcanary.LeakCanary;
 
 import org.gmfbilu.superapp.lib_base.BuildConfig;
 
@@ -77,8 +78,17 @@ public class ApplicationIntentService extends IntentService {
         initLogger();
         initLocalCrashReport();
         initARouter();
+        initLeakCanary();
         Log.d(Constant.LOG_NAME, "ApplicationIntentService ---> onHandleIntent");
     }
+
+    private void initLeakCanary() {
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return;
+        }
+        LeakCanary.install(getApplication());
+    }
+
 
     private void initLogger() {
         FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()

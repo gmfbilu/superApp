@@ -142,7 +142,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':lib_base')
     annotationProcessor "com.alibaba:arouter-compiler:${arouter_compiler_version}"
-    annotationProcessor "com.github.bumptech.glide:compiler:${glide_annotationProcessor_version}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${glide_version}"
     //AOP
     implementation 'org.aspectj:aspectjrt:1.8.9'
 

@@ -11,6 +11,7 @@
         tools:replace="android:theme,android:label"
         android:roundIcon="@mipmap/lib_base_ic_launcher_round"
         android:supportsRtl="true"
+        android:hardwareAccelerated="false"
         android:theme="@style/lib_base_AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".MainActivity">
