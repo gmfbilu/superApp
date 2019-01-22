@@ -120,11 +120,16 @@ public class PathMeasureView extends BaseView {
     private void drawSearch(Canvas canvas) {
         canvas.save();
         canvas.translate(_mViewContentWidth / 2, _mViewContentHeight / 2);
-        mCirclePath.addCircle(0, 0, radius, Path.Direction.CW);
+        Path path1 = new Path();
+        path1.addCircle(0, 0, radius, Path.Direction.CW);
         searchPaint.setColor(Color.TRANSPARENT);
-        PathMeasure pathMeasure = new PathMeasure(mCirclePath, false);
-        canvas.drawPath(mCirclePath,searchPaint);
-
+        PathMeasure pathMeasure = new PathMeasure(path1, false);
+        float[] pos = new float[2];
+        float[] tan = new float[2];
+        pathMeasure.getPosTan(pathMeasure.getLength()*mAnimatedValue,pos,tan);
+        float degrees = (float) (Math.atan2(tan[1], tan[0]) * 180.0 / Math.PI);
+        canvas.drawPath(path1,searchPaint);
+        searchPaint.setColor(Color.BLUE);
         canvas.restore();
     }
 
