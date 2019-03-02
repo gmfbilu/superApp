@@ -1,7 +1,6 @@
 package org.gmfbilu.superapp;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -13,7 +12,6 @@ import com.umeng.message.UmengNotificationClickHandler;
 import com.umeng.message.entity.UMessage;
 
 import org.gmfbilu.superapp.lib_base.app.ARouterPath;
-import org.gmfbilu.superapp.lib_base.app.ApplicationIntentService;
 import org.gmfbilu.superapp.lib_base.app.Constant;
 import org.gmfbilu.superapp.lib_base.base.BaseApplication;
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
@@ -25,17 +23,13 @@ import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 public class SuperApplication extends BaseApplication {
 
 
-
-
     @Override
     public void onCreate() {
         super.onCreate();
-        ApplicationIntentService.start(this, "ApplicationLike");
         /**
          * 并不是所有的第三方库都可以放在IntentService中
          */
         initPush();
-        Log.d(Constant.LOG_NAME, getClass().getName() + "---> start");
 
     }
 
@@ -84,22 +78,4 @@ public class SuperApplication extends BaseApplication {
         mPushAgent.setNotificationClickHandler(notificationClickHandler);
 
     }
-
-
-
-
-    @Override
-    public void onTrimMemory(int level) {
-        // 程序在内存清理的时候执行
-        Logger.d(getClass().getName() + "---> onTrimMemory");
-        super.onTrimMemory(level);
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        Logger.d(getClass().getName() + "---> onConfigurationChanged");
-        super.onConfigurationChanged(newConfig);
-    }
-
-
 }

@@ -17,7 +17,6 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
-import com.squareup.leakcanary.LeakCanary;
 
 import org.gmfbilu.superapp.lib_base.BuildConfig;
 
@@ -56,7 +55,8 @@ public class ApplicationIntentService extends IntentService {
     /**
      * 多次去启动IntentService,start会启动多次
      */
-    public static void start(Context context, String tagWho) {
+    public static void start(Context context) {
+        Log.d(Constant.LOG_NAME, "ApplicationIntentService ---> start");
         Intent intent = new Intent(context, ApplicationIntentService.class);
         intent.setAction(ACTION_INIT_WHEN_APP_CREATE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -64,7 +64,6 @@ public class ApplicationIntentService extends IntentService {
         } else {
             context.startService(intent);
         }
-        Log.d(Constant.LOG_NAME, tagWho + " starts ApplicationIntentService ---> start");
     }
 
     /**
@@ -78,15 +77,7 @@ public class ApplicationIntentService extends IntentService {
         initLogger();
         initLocalCrashReport();
         initARouter();
-        initLeakCanary();
         Log.d(Constant.LOG_NAME, "ApplicationIntentService ---> onHandleIntent");
-    }
-
-    private void initLeakCanary() {
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            return;
-        }
-        LeakCanary.install(getApplication());
     }
 
 
@@ -125,7 +116,6 @@ public class ApplicationIntentService extends IntentService {
      */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(Constant.LOG_NAME, "ApplicationIntentService ---> onStartCommand");
         return super.onStartCommand(intent, flags, startId);
 
     }
@@ -138,7 +128,6 @@ public class ApplicationIntentService extends IntentService {
 
     @Override
     public IBinder onBind(Intent intent) {
-        Log.d(Constant.LOG_NAME, "ApplicationIntentService ---> onBind");
         return super.onBind(intent);
     }
 

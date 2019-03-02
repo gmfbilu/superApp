@@ -9,6 +9,9 @@ import com.orhanobut.logger.Logger;
 
 import org.gmfbilu.superapp.lib_base.app.ApplicationIntentService;
 import org.gmfbilu.superapp.lib_base.app.Constant;
+import org.gmfbilu.superapp.lib_base.utils.AppUtils;
+
+import java.util.Objects;
 
 /**
  * Created by gmfbilu on 2018/3/2.
@@ -20,26 +23,27 @@ import org.gmfbilu.superapp.lib_base.app.Constant;
 
 public class BaseApplication extends Application {
 
-    public static Context sApplicationContext;
+    public static Context mApplicationContext;
 
-
-    public static Context getInstance() {
-        return sApplicationContext;
-    }
-
-
+    /**
+     * Application可能会调用多次，特别是集成推送情况下
+     */
     @Override
     public void onCreate() {
         super.onCreate();
-        sApplicationContext = this;
-        ApplicationIntentService.start(this, getClass().getSimpleName());
-        Log.d(Constant.LOG_NAME, getClass().getName() + "---> start");
+        if (!Objects.requireNonNull(AppUtils.getProcessName()).contains(":")) {
+            mApplicationContext = this;
+            ApplicationIntentService.start(this);
+        }
+        Log.d(Constant.LOG_NAME, getClass().getName() + "----" + AppUtils.getProcessName() + "---> start");
     }
 
-
+    /**
+     * 模拟器上app退出会回调这个方法
+     * 真机上不会
+     */
     @Override
     public void onTerminate() {
-        // 程序终止的时候执行
         Logger.d(getClass().getName() + "---> onTerminate");
         super.onTerminate();
     }

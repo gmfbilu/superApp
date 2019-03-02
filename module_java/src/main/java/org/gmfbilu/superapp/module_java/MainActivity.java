@@ -14,13 +14,13 @@ public class MainActivity extends BaseActivity {
     @Override
     public void findViewById_setOnClickListener(Bundle savedInstanceState) {
         if (findFragment(MainFragment.class) == null) {
-            loadRootFragment(R.id.module_java_fl_container, MainFragment.newInstance());
+            loadRootFragment(R.id.lib_base__fl_container, MainFragment.newInstance());
         }
     }
 
     @Override
     public int setLayout() {
-        return R.layout.module_java_activity_main;
+        return R.layout.module_lib_base_fl_container;
     }
 
     @Override

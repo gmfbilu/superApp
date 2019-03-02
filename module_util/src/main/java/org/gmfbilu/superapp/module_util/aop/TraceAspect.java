@@ -1,14 +1,13 @@
 package org.gmfbilu.superapp.module_util.aop;
 
 import android.annotation.SuppressLint;
-import android.widget.Toast;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.gmfbilu.superapp.lib_base.base.BaseApplication;
+import org.gmfbilu.superapp.lib_base.utils.ToastUtil;
 
 @Aspect
 public class TraceAspect {
@@ -46,7 +45,7 @@ public class TraceAspect {
         if (Preconditions.isBlank(className)) {
             className = "Anonymous class";
         }
-        Toast.makeText(BaseApplication.sApplicationContext, buildLogMessage(methodName, stopWatch.getElapsedTime()), Toast.LENGTH_SHORT).show();
+        ToastUtil.show(buildLogMessage(methodName, stopWatch.getElapsedTime()));
         return result;
     }
 

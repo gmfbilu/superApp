@@ -98,7 +98,7 @@ public class BaseRecyclerView extends FrameLayout {
             return;
         }
         //生成主View
-        View v = LayoutInflater.from(getContext()).inflate(R.layout.recyclerview_progress, this);
+        View v = LayoutInflater.from(getContext()).inflate(R.layout.module_lib_base_recyclerview_progress, this);
         mPtrLayout = v.findViewById(R.id.ptr_layout);
         mPtrLayout.setEnabled(false);
 

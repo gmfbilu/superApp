@@ -31,7 +31,7 @@ public abstract class MessiObserver<T> implements Observer<T> {
         if (e != null) {
            // Logger.d(e.toString());
             if (e instanceof ApiException) {
-                Toast.makeText(BaseApplication.getInstance(), ((ApiException) e).ResponseMessageError, Toast.LENGTH_SHORT).show();
+                Toast.makeText(BaseApplication.mApplicationContext, ((ApiException) e).ResponseMessageError, Toast.LENGTH_SHORT).show();
             }
         }
         //RxBus.getDefault().post(e);

@@ -20,6 +20,7 @@ import org.gmfbilu.superapp.lib_base.bean.response.GetProductsByTypeRes;
 import org.gmfbilu.superapp.lib_base.bean.response.GetSaleManListRes;
 import org.gmfbilu.superapp.lib_base.bean.response.LoginRes;
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
+import org.gmfbilu.superapp.lib_base.utils.StringUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -106,7 +107,7 @@ public class HttpMethods {
         httpClientBuilder.addInterceptor(loggingInterceptor);
         httpClientBuilder.addNetworkInterceptor(mRewriteCacheControlInterceptor);
 
-        Cache cache = new Cache(new File(BaseApplication.getInstance().getExternalCacheDir(), "ExampleHttpCache"), 1024 * 1024 * 100);
+        Cache cache = new Cache(new File(BaseApplication.mApplicationContext.getExternalCacheDir(), "ExampleHttpCache"), 1024 * 1024 * 100);
         httpClientBuilder.cache(cache);
         httpClientBuilder.retryOnConnectionFailure(true);
         httpClientBuilder.connectTimeout(Constant.DEFAULT_TIMEOUT, TimeUnit.SECONDS);
@@ -130,11 +131,12 @@ public class HttpMethods {
         @Override
         public T apply(HttpResult<T> httpResult) {
             String respCode = httpResult.code;
-            if (!respCode.equals(Constant.CODE_RESPONSE_SUCCEED)) {
-                throw new ApiException(respCode, httpResult.code, httpResult.data);
-            }
-            if (httpResult.code != null) {
-                return httpResult.data;
+            if (!StringUtils.isEmpty(respCode)) {
+                if (!respCode.equals(Constant.CODE_RESPONSE_SUCCEED)) {
+                    throw new ApiException(respCode, httpResult.code, httpResult.data);
+                } else {
+                    return httpResult.data;
+                }
             }
             return null;
         }

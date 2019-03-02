@@ -126,5 +126,6 @@ dependencies {
         implementation project(':module_view')
         implementation project(':module_util')
         implementation project(':module_java')
+        implementation project(':module_kotlin')
     }
 }

@@ -17,6 +17,7 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.module_views).setOnClickListener(this);
         findViewById(R.id.module_util).setOnClickListener(this);
         findViewById(R.id.module_java).setOnClickListener(this);
+        findViewById(R.id.module_kotlin).setOnClickListener(this);
     }
 
     @Override
@@ -43,6 +44,8 @@ public class MainActivity extends BaseActivity {
             ARouter.getInstance().build(ARouterPath.MODULE_UTIL).navigation();
         } else if (id == R.id.module_java) {
             ARouter.getInstance().build(ARouterPath.MODULE_JAVA).navigation();
+        }else if (id==R.id.module_kotlin){
+            ARouter.getInstance().build(ARouterPath.MODULE_KOTLIN).navigation();
         }
     }
 

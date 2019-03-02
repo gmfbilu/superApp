@@ -49,13 +49,13 @@ public class MainActivity extends BaseActivity {
         //startX()，popX()，find/getX()系列方法，操作的对象是 兄弟Fragment
         //popChildX()，find/getChildX()系列方法，操作的对象是 孩子Fragment
         if (findFragment(MainFragment.class) == null) {
-            loadRootFragment(R.id.module_fragment_fl_container, MainFragment.newInstance());
+            loadRootFragment(R.id.lib_base__fl_container, MainFragment.newInstance());
         }
     }
 
     @Override
     public int setLayout() {
-        return R.layout.module_fragment_activity_main;
+        return R.layout.module_lib_base_fl_container;
     }
 
     @Override

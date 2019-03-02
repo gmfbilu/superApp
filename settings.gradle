@@ -3,4 +3,5 @@ include ':app',
         ':module_util',
         ':module_fragment',
         ':module_view',
-        ':module_java'
+        ':module_java',
+        ':module_kotlin'

@@ -1,5 +1,6 @@
 package org.gmfbilu.superapp.lib_base.utils;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -20,6 +21,7 @@ import org.gmfbilu.superapp.lib_base.app.Constant;
 import org.gmfbilu.superapp.lib_base.base.BaseApplication;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
@@ -49,7 +51,7 @@ public class AppUtils {
         //当前应用pid
         int pid = android.os.Process.myPid();
         //任务管理类
-        ActivityManager manager = (ActivityManager) BaseApplication.getInstance().getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager manager = (ActivityManager) BaseApplication.mApplicationContext.getSystemService(Context.ACTIVITY_SERVICE);
         //遍历所有应用
         List<ActivityManager.RunningAppProcessInfo> infos = Objects.requireNonNull(manager).getRunningAppProcesses();
         for (ActivityManager.RunningAppProcessInfo info : infos) {
@@ -65,7 +67,7 @@ public class AppUtils {
      * @return
      */
     public static String getAppVersion() {
-        PackageManager packageManager = BaseApplication.getInstance().getPackageManager();
+        PackageManager packageManager = BaseApplication.mApplicationContext.getPackageManager();
         String packageName = getPackageName();
         String name;
         try {
@@ -109,12 +111,30 @@ public class AppUtils {
     }
 
     /**
+     * 获取本app进程名，效率上比上一个高效
+     *
+     * @return
+     */
+    public static String getProcessName() {
+        try {
+            File file = new File("/proc/" + android.os.Process.myPid() + "/" + "cmdline");
+            BufferedReader mBufferedReader = new BufferedReader(new FileReader(file));
+            String processName = mBufferedReader.readLine().trim();
+            mBufferedReader.close();
+            return processName;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
      * 获取渠道名
      *
      * @return
      */
     public static String getChannelName() {
-        String name = ChannelReaderUtil.getChannel(BaseApplication.getInstance());
+        String name = ChannelReaderUtil.getChannel(BaseApplication.mApplicationContext);
         if (TextUtils.isEmpty(name)) {
             name = Constant.BASE_CHANNEL;
         }
@@ -128,7 +148,7 @@ public class AppUtils {
      * @return
      */
     public static boolean isNetworkConnected() {
-        ConnectivityManager mConnectivityManager = (ConnectivityManager) BaseApplication.getInstance()
+        ConnectivityManager mConnectivityManager = (ConnectivityManager) BaseApplication.mApplicationContext
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
         if (mNetworkInfo != null) {
@@ -138,17 +158,17 @@ public class AppUtils {
     }
 
     public static int dp2px(float dpValue) {
-        final float scale = BaseApplication.getInstance().getResources().getDisplayMetrics().density;
+        final float scale = BaseApplication.mApplicationContext.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
 
     public static int px2dp(float pxValue) {
-        final float scale = BaseApplication.getInstance().getResources().getDisplayMetrics().density;
+        final float scale = BaseApplication.mApplicationContext.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
 
     public static int sp2px(int spVal) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spVal, BaseApplication.getInstance().getResources().getDisplayMetrics());
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spVal, BaseApplication.mApplicationContext.getResources().getDisplayMetrics());
     }
 
     /**
@@ -157,7 +177,7 @@ public class AppUtils {
      * @return
      */
     public static int getScreenWidth() {
-        DisplayMetrics displayMetrics = BaseApplication.getInstance().getResources().getDisplayMetrics();
+        DisplayMetrics displayMetrics = BaseApplication.mApplicationContext.getResources().getDisplayMetrics();
         return displayMetrics.widthPixels;
     }
 
@@ -167,7 +187,7 @@ public class AppUtils {
      * @return
      */
     public static int getScreenHeight() {
-        DisplayMetrics displayMetrics = BaseApplication.getInstance().getResources().getDisplayMetrics();
+        DisplayMetrics displayMetrics = BaseApplication.mApplicationContext.getResources().getDisplayMetrics();
         return displayMetrics.heightPixels;
     }
 
@@ -198,13 +218,23 @@ public class AppUtils {
     }
 
     /**
-     * //获取通知栏高度
+     * 获取通知栏高度
      *
      * @return
      */
     public static int getNotificationBarHeight() {
         Resources system = Resources.getSystem();
         return system.getDimensionPixelSize(system.getIdentifier("status_bar_height", "dimen", "android"));
+    }
+
+    /**
+     * 判断Activity是否存在
+     *
+     * @param activity
+     * @return
+     */
+    public static boolean isActivityRunning(Activity activity) {
+        return activity != null && !activity.isDestroyed() && !activity.isFinishing();
     }
 
 }
