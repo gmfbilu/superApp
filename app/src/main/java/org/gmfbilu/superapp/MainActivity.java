@@ -13,7 +13,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void findViewById_setOnClickListener(Bundle savedInstanceState) {
-        findViewById(R.id.module_fragment).setOnClickListener(this);
         findViewById(R.id.module_views).setOnClickListener(this);
         findViewById(R.id.module_util).setOnClickListener(this);
         findViewById(R.id.module_java).setOnClickListener(this);
@@ -36,15 +35,13 @@ public class MainActivity extends BaseActivity {
                     .withOptionsCompat(compat)
                     .navigation();*/
 
-        if (id == R.id.module_fragment) {
-            ARouter.getInstance().build(ARouterPath.MODULE_FRAGMENT).navigation();
-        } else if (id == R.id.module_views) {
+        if (id == R.id.module_views) {
             ARouter.getInstance().build(ARouterPath.MODULE_VIEWS).navigation();
         } else if (id == R.id.module_util) {
             ARouter.getInstance().build(ARouterPath.MODULE_UTIL).navigation();
         } else if (id == R.id.module_java) {
             ARouter.getInstance().build(ARouterPath.MODULE_JAVA).navigation();
-        }else if (id==R.id.module_kotlin){
+        } else if (id == R.id.module_kotlin) {
             ARouter.getInstance().build(ARouterPath.MODULE_KOTLIN).navigation();
         }
     }

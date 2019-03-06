@@ -1,5 +1,6 @@
 package org.gmfbilu.superapp.module_view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -8,6 +9,7 @@ import org.gmfbilu.superapp.module_view.constraintlayout.ConstraintLayoutFragmen
 import org.gmfbilu.superapp.module_view.dialogFragment.DialogFragment;
 import org.gmfbilu.superapp.module_view.dynamicLayout.DynamicLayoutFragment;
 import org.gmfbilu.superapp.module_view.customViews.CustomViewsFragment;
+import org.gmfbilu.superapp.module_view.fragment.module.FragmentActivity;
 import org.gmfbilu.superapp.module_view.recyclerView.RecyclerViewFragment;
 import org.gmfbilu.superapp.module_view.search.SearchFragment;
 import org.gmfbilu.superapp.module_view.shape.ShapeFragment;
@@ -33,6 +35,7 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void findViewById_setOnClickListener(View view) {
+        view.findViewById(R.id.module_view_bt_fragment).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_constraintlayout).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_switch_checkbox_listpreference).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_dialogfragment).setOnClickListener(this);
@@ -53,7 +56,9 @@ public class MainFragment extends BaseFragment {
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.module_view_bt_constraintlayout) {
+        if (id == R.id.module_view_bt_fragment) {
+            startActivity(new Intent(_mActivity, FragmentActivity.class));
+        } else if (id == R.id.module_view_bt_constraintlayout) {
             start(ConstraintLayoutFragment.newInstance());
         } else if (id == R.id.module_view_bt_switch_checkbox_listpreference) {
             start(Switch_CheckBox_ListPreferenceFragment.newInstance());
@@ -67,9 +72,9 @@ public class MainFragment extends BaseFragment {
             start(ShapeFragment.newInstance());
         } else if (id == R.id.module_view_bt_surfaceview) {
             start(SurfaceViewFragment.newInstance());
-        }else if (id==R.id.module_view_bt_search){
+        } else if (id == R.id.module_view_bt_search) {
             start(SearchFragment.newInstance());
-        }else if (id == R.id.module_view_bt_generalview) {
+        } else if (id == R.id.module_view_bt_generalview) {
             start(CustomViewsFragment.newInstance());
         }
     }

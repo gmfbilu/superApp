@@ -74,6 +74,7 @@ public class ApplicationIntentService extends IntentService {
      */
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
+        // TODO: 3/6/19 有bug,可能此方法还没有完全回调完成，但是界面已经显示完成，用户点击控件的时候，第三方还没有完全初始化
         initLogger();
         initLocalCrashReport();
         initARouter();

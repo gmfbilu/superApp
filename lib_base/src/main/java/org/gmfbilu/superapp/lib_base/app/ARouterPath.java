@@ -6,7 +6,6 @@ package org.gmfbilu.superapp.lib_base.app;
 
 public interface ARouterPath {
 
-    String MODULE_FRAGMENT="/module_fragment/main";
     String MODULE_GOOGLELIBRARY="/module_googleLibrary/main";
     String MODULE_VIEWS="/module_views/main";
     String MODULE_UTIL="/module_util/main";

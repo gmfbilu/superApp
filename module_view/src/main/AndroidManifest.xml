@@ -5,8 +5,8 @@
 
     <application
         android:theme="@style/lib_base_AppTheme">
-        <activity android:name=".MainActivity">
-        </activity>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".fragment.module.FragmentActivity"/>
     </application>
 
 </manifest>
