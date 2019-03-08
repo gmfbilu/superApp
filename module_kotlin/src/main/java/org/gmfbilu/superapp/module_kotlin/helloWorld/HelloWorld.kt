@@ -1,6 +1,92 @@
 package org.gmfbilu.superapp.module_kotlin.helloWorld
 
+import org.gmfbilu.superapp.module_kotlin.helloWorld.静态变量和方法.T1Utils
 import java.math.BigInteger
+
+/**
+ * Java写法——>kotlin写法
+ *
+ * 可见修饰符：
+ * Java 的写法（默认为 default）
+ * public	所有类可见
+ * protected	子类可见
+ * default	同一包下的类可见
+ * private	仅对自己类可见
+ * Kotlin 的写法（默认为 public）
+ * public	所有类可见
+ * internal	同 Module 下的类可见
+ * protected	子类可见
+ * private	仅对自己类可见
+ *
+ * MainActivity.this——>this@MainActivity
+ *
+ * MainActivity.class——>MainActivity::class.java
+ *
+ * 继承：public class MainActivity extends AppCompatActivity——>class MainActivity : AppCompatActivity()。在 Kotlin 中被继承类必须被 open 关键字修饰）
+ *
+ * 变量：Intent intent = new Intent()——>var intent = Intent()
+ *
+ * 常量：final String text = "hello"——>val text = "hello"
+ *
+ * 静态常量：static final String text = "hello"——>const val text = "hello"。（需要注意的是要把静态变量定义在类上方）
+ *
+ * 比较类型："hello" instanceof String——>"hello" is String
+ *
+ * 比较字符串：s1.equals(s2)——>s1 == s2。（Kotlin 对字符串比较的写法进行优化了，其他类型对象对比还是要用 equals 方法）
+ *
+ * 数组：int[] array1 = {1, 2, 3}——>val array1 = intArrayOf(1, 2, 3)。String[] array3 = {"1", "2", "3"}——>val array3 = arrayListOf("1", "2", "3")
+ *
+ * 循环：for (int i = 0; i < array.length; i++)——>for (i in array.indices)。（for (i in 1 until array.size) ）
+ *
+ * 高级循环：for (String text : array)——>for (text in array)
+ *
+ * 判断器：
+ * int count = 1;
+ * switch (count) {
+ *  case 0:
+ *    System.out.println(count);
+ *    break;
+ *  case 1:
+ *  case 2:
+ *    System.out.println(count);
+ *    break;
+ *  default:
+ *    System.out.println(count);
+ *    break;
+ *  }
+ * ——>
+ * when (count) {
+ *  0 -> {
+ *    println(count)
+ *  }
+ *  in 1..2 -> {
+ *    println(count)
+ *  }
+ *  else -> {
+ *    println(count)
+ *  }
+ * }
+ * 更简洁的写法
+ * when (count) {
+ *  0 -> println(count)
+ *  in 1..2 -> println(count)
+ *  else -> println(count)
+ * }
+ *
+ * 构造函数：
+ * class MyView : View {
+ *  constructor(context : Context) : this(context, null)
+ *  constructor(context : Context, attrs : AttributeSet?) : this(context, attrs, 0)
+ *  constructor(context : Context, attrs : AttributeSet?, defStyleAttr : Int) : super(context, attrs, defStyleAttr)
+ * }
+ *
+ * 可变参数：
+ * int... array——>vararg array: Int
+ *
+ */
+
+//静态常量
+const val text = "hello"
 
 class HelloWorld {
 
@@ -42,6 +128,8 @@ class HelloWorld {
         if (true and false) {
 
         }
+
+        T1Utils.sToast
     }
 
 

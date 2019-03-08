@@ -25,4 +25,13 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/module_java_bt_rxjava"/>
 
+  <Button
+        android:id="@+id/module_java_bt_webSocket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WebSocket"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/module_java_bt_rxjava_retrofit"/>
+
 </android.support.constraint.ConstraintLayout>

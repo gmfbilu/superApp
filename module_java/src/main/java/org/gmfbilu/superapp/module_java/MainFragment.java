@@ -6,6 +6,7 @@ import android.view.View;
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_java.retrofit_rxjava.RxJava_RetrofitFragment;
 import org.gmfbilu.superapp.module_java.rxJava.RxJavaFragment;
+import org.gmfbilu.superapp.module_java.webSocket.WebSocketFragment;
 
 /**
  * Created by gmfbilu on 18-3-11.
@@ -27,6 +28,7 @@ public class MainFragment extends BaseFragment {
     public void findViewById_setOnClickListener(View view) {
         view.findViewById(R.id.module_java_bt_rxjava).setOnClickListener(this);
         view.findViewById(R.id.module_java_bt_rxjava_retrofit).setOnClickListener(this);
+        view.findViewById(R.id.module_java_bt_webSocket).setOnClickListener(this);
     }
 
     @Override
@@ -42,6 +44,8 @@ public class MainFragment extends BaseFragment {
             start(RxJavaFragment.newInstance());
         } else if (id == R.id.module_java_bt_rxjava_retrofit) {
             start(RxJava_RetrofitFragment.newInstance());
+        }else if (id==R.id.module_java_bt_webSocket){
+            start(WebSocketFragment.newInstance());
         }
     }
 }
