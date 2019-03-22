@@ -11,6 +11,7 @@ import org.gmfbilu.superapp.module_util.cartoon.CartoonFragment;
 import org.gmfbilu.superapp.module_util.glide.GlideFragment;
 import org.gmfbilu.superapp.module_util.jni.JniFragment;
 import org.gmfbilu.superapp.module_util.permissions.PermissionsFragment;
+import org.gmfbilu.superapp.module_util.sqLite.SQLiteFragment;
 import org.gmfbilu.superapp.module_util.thirdCamera.ThirdCameraFragment;
 import org.gmfbilu.superapp.module_util.webview.WebViewFragment;
 
@@ -36,6 +37,7 @@ public class MainFragment extends BaseFragment {
         view.findViewById(R.id.module_util_bt_glide).setOnClickListener(this);
         view.findViewById(R.id.module_util_bt_animation).setOnClickListener(this);
         view.findViewById(R.id.module_util_bt_webview).setOnClickListener(this);
+        view.findViewById(R.id.module_util_bt_sqlite).setOnClickListener(this);
     }
 
     @Override
@@ -65,6 +67,8 @@ public class MainFragment extends BaseFragment {
             start(CartoonFragment.newInstance());
         }else if (id==R.id.module_util_bt_webview){
             start(WebViewFragment.newInstance());
+        }else if (id==R.id.module_util_bt_sqlite){
+            start(SQLiteFragment.newInstance());
         }
     }
 }

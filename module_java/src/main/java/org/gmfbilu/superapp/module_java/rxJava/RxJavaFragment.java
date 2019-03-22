@@ -137,7 +137,7 @@ public class RxJavaFragment extends BaseFragment {
         //create 操作符应该是最常见的操作符了，主要用于产生一个 Obserable 被观察者对象,为了方便认知，统一把被观察者 Observable 称为发射器（上游事件），观察者 Observer 称为接收器（下游事件）
         Observable<Integer> integerObservable = Observable.create(new ObservableOnSubscribe<Integer>() {
 
-            /**h
+            /**
              *  ObservableEmitter用来发射事件的,它可以发出三种类型的事件
              *  并不意味着你可以随意乱七八糟发射事件，需要满足一定的规则：
              *  上游可以发送无限个onNext, 下游也可以接收无限个onNext.

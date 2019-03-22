@@ -105,7 +105,9 @@ public class ConstraintLayoutFragment extends BaseFragment {
         toolbar.setNavigationOnClickListener(v -> _mActivity.onBackPressed());
         toolbar.setTitle("ConstraintLayout");
         group.setVisibility(View.VISIBLE);
+
     }
+
 
     /**
      * 然后在onEnterAnimationEnd()方法里进行 复杂的耗时的初始化 (比如FragmentPagerAdapter的初始化 加载数据等)
