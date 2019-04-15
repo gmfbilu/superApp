@@ -54,7 +54,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 build CMakeFiles/jniDemo2.dir/src/main/cpp/jniDemo2.cpp.o: CXX_COMPILER__jniDemo2 ../../../../src/main/cpp/jniDemo2.cpp
   DEFINES = -DjniDemo2_EXPORTS
   DEP_FILE = CMakeFiles/jniDemo2.dir/src/main/cpp/jniDemo2.cpp.o.d
-  FLAGS = --sysroot /home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/sysroot -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -O0 -fno-limit-debug-info  -fPIC
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -O0 -fno-limit-debug-info  -fPIC
   IN_ABS = /home/gmfbilu/Work/Android/Projects/superApp/module_util/src/main/cpp/jniDemo2.cpp
   OBJECT_DIR = CMakeFiles/jniDemo2.dir
   OBJECT_FILE_DIR = CMakeFiles/jniDemo2.dir/src/main/cpp
@@ -67,7 +67,7 @@ build CMakeFiles/jniDemo2.dir/src/main/cpp/jniDemo2.cpp.o: CXX_COMPILER__jniDemo
 # Link the shared library ../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libjniDemo2.so
 
 build ../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libjniDemo2.so: CXX_SHARED_LIBRARY_LINKER__jniDemo2 CMakeFiles/jniDemo2.dir/src/main/cpp/jniDemo2.cpp.o
-  LANGUAGE_COMPILE_FLAGS = --sysroot /home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/sysroot -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -O0 -fno-limit-debug-info
+  LANGUAGE_COMPILE_FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -O0 -fno-limit-debug-info
   LINK_FLAGS = -Wl,--exclude-libs,libgcc.a -Wl,--exclude-libs,libatomic.a -static-libstdc++ -Wl,--build-id -Wl,--warn-shared-textrel -Wl,--fatal-warnings -Wl,--no-undefined -Qunused-arguments -Wl,-z,noexecstack -Wl,-z,relro -Wl,-z,now
   LINK_LIBRARIES = -landroid -llog -latomic -lm "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/arm64-v8a/libc++_static.a" "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/arm64-v8a/libc++abi.a"
   OBJECT_DIR = CMakeFiles/jniDemo2.dir
@@ -83,7 +83,7 @@ build ../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libjniDemo2.so: 
 build CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o: CXX_COMPILER__jniDemo ../../../../src/main/cpp/jniDemo.cpp
   DEFINES = -DjniDemo_EXPORTS
   DEP_FILE = CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o.d
-  FLAGS = --sysroot /home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/sysroot -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -O0 -fno-limit-debug-info  -fPIC
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -O0 -fno-limit-debug-info  -fPIC
   IN_ABS = /home/gmfbilu/Work/Android/Projects/superApp/module_util/src/main/cpp/jniDemo.cpp
   OBJECT_DIR = CMakeFiles/jniDemo.dir
   OBJECT_FILE_DIR = CMakeFiles/jniDemo.dir/src/main/cpp
@@ -96,7 +96,7 @@ build CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o: CXX_COMPILER__jniDemo .
 # Link the shared library ../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libjniDemo.so
 
 build ../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libjniDemo.so: CXX_SHARED_LIBRARY_LINKER__jniDemo CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o
-  LANGUAGE_COMPILE_FLAGS = --sysroot /home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/sysroot -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -O0 -fno-limit-debug-info
+  LANGUAGE_COMPILE_FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -O0 -fno-limit-debug-info
   LINK_FLAGS = -Wl,--exclude-libs,libgcc.a -Wl,--exclude-libs,libatomic.a -static-libstdc++ -Wl,--build-id -Wl,--warn-shared-textrel -Wl,--fatal-warnings -Wl,--no-undefined -Qunused-arguments -Wl,-z,noexecstack -Wl,-z,relro -Wl,-z,now
   LINK_LIBRARIES = -landroid -llog -latomic -lm "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/arm64-v8a/libc++_static.a" "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/libs/arm64-v8a/libc++abi.a"
   OBJECT_DIR = CMakeFiles/jniDemo.dir

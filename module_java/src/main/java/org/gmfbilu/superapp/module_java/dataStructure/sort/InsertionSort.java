@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_java.sort;
+package org.gmfbilu.superapp.module_java.dataStructure.sort;
 
 /**
  * 插入排序

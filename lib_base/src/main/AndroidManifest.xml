@@ -11,17 +11,20 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.PHONE_STATE"/>
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
 
 
     <application
-        tools:replace="android:label"
         android:hardwareAccelerated="false"
-        android:label="@string/lib_base_app_name">
+        android:label="@string/lib_base_app_name"
+        tools:replace="android:label">
         <service android:name=".app.ApplicationIntentService">
             <intent-filter>
                 <action android:name="org.gmfbilu.superapp.lib_base"/>

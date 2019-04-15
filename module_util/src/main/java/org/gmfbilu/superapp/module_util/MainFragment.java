@@ -6,9 +6,11 @@ import android.view.View;
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_util.aidl.AidlFragment;
 import org.gmfbilu.superapp.module_util.aop.AOPFragment;
+import org.gmfbilu.superapp.module_util.bluetooth.BlueToothFragment;
 import org.gmfbilu.superapp.module_util.camera.CameraFragment;
 import org.gmfbilu.superapp.module_util.cartoon.CartoonFragment;
 import org.gmfbilu.superapp.module_util.glide.GlideFragment;
+import org.gmfbilu.superapp.module_util.hook.HookFragment;
 import org.gmfbilu.superapp.module_util.jni.JniFragment;
 import org.gmfbilu.superapp.module_util.permissions.PermissionsFragment;
 import org.gmfbilu.superapp.module_util.sqLite.SQLiteFragment;
@@ -38,6 +40,8 @@ public class MainFragment extends BaseFragment {
         view.findViewById(R.id.module_util_bt_animation).setOnClickListener(this);
         view.findViewById(R.id.module_util_bt_webview).setOnClickListener(this);
         view.findViewById(R.id.module_util_bt_sqlite).setOnClickListener(this);
+        view.findViewById(R.id.module_util_bt_bluetooth).setOnClickListener(this);
+        view.findViewById(R.id.module_util_bt_hook).setOnClickListener(this);
     }
 
     @Override
@@ -69,6 +73,10 @@ public class MainFragment extends BaseFragment {
             start(WebViewFragment.newInstance());
         }else if (id==R.id.module_util_bt_sqlite){
             start(SQLiteFragment.newInstance());
+        }else if (id==R.id.module_util_bt_bluetooth){
+            start(BlueToothFragment.newInstance());
+        }else if (id==R.id.module_util_bt_hook){
+            start(HookFragment.newInstance());
         }
     }
 }

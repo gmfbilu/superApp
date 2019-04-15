@@ -86,7 +86,8 @@ dependencies {
     api "com.github.bumptech.glide:glide:${glide_version}"
     //屏幕适配框架
     api "me.jessyan:autosize:${autosize_version}"
-    //WebSocket
-    api "org.java-websocket:Java-WebSocket:${webSocket_version}"
+    //内存泄露检测
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakCanary_version}"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanary_version}"
 
 }

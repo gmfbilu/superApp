@@ -106,17 +106,18 @@ public class SQLiteFragment extends BaseFragment {
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.AppCompatButton_add) {
-            hello1(new Person("A",1));
+            hello1(new Person("A", 1));
         } else if (id == R.id.AppCompatButton_delete) {
             hello2("B");
         } else if (id == R.id.AppCompatButton_update) {
-            hello3("B",0);
+            hello3("B", 0);
         } else if (id == R.id.AppCompatButton_find) {
+
         }
     }
 
     /**
-     * 插入数据
+     * 插入数据，使用事物的方式，这样可以优化数据库
      */
     private void hello1(Person person) {
         /**

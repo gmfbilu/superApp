@@ -94,7 +94,8 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             @Override
             public void run() {
                 Looper.prepare();
-                Logger.e(e.getMessage());
+               // Logger.e(e.getMessage());
+                Logger.e(e.toString());
                 Looper.loop();
             }
         }.start();

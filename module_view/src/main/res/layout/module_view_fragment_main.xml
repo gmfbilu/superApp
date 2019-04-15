@@ -100,4 +100,5 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/module_view_bt_search"/>
 
+
 </android.support.constraint.ConstraintLayout>

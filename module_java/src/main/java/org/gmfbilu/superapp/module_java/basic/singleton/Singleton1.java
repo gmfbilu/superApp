@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_java.singleton;
+package org.gmfbilu.superapp.module_java.basic.singleton;
 
 /**
  * 懒汉式非线程安全

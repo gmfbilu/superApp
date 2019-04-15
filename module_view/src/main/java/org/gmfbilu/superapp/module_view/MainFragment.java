@@ -6,9 +6,9 @@ import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_view.constraintlayout.ConstraintLayoutFragment;
+import org.gmfbilu.superapp.module_view.customViews.CustomViewsFragment;
 import org.gmfbilu.superapp.module_view.dialogFragment.DialogFragment;
 import org.gmfbilu.superapp.module_view.dynamicLayout.DynamicLayoutFragment;
-import org.gmfbilu.superapp.module_view.customViews.CustomViewsFragment;
 import org.gmfbilu.superapp.module_view.fragment.module.FragmentActivity;
 import org.gmfbilu.superapp.module_view.recyclerView.RecyclerViewFragment;
 import org.gmfbilu.superapp.module_view.search.SearchFragment;

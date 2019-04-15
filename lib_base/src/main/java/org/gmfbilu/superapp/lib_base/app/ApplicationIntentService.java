@@ -17,6 +17,7 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
+import com.squareup.leakcanary.LeakCanary;
 
 import org.gmfbilu.superapp.lib_base.BuildConfig;
 
@@ -78,6 +79,7 @@ public class ApplicationIntentService extends IntentService {
         initLogger();
         initLocalCrashReport();
         initARouter();
+        initLeakCanary();
         Log.d(Constant.LOG_NAME, "ApplicationIntentService ---> onHandleIntent");
     }
 
@@ -109,6 +111,15 @@ public class ApplicationIntentService extends IntentService {
 
     private void initLocalCrashReport() {
         CrashHandler.getInstance().init(getApplicationContext());
+    }
+
+    private void initLeakCanary() {
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(getApplication());
     }
 
 
