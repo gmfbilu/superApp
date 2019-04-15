@@ -1,12 +1,9 @@
 
 {
-	"buildFiles" : 
-	[
-		"/home/gmfbilu/Work/Android/Projects/superApp/module_util/CMakeLists.txt"
-	],
+	"buildFiles" : [ "D:/Android/StudioProjects/superApp/module_util/CMakeLists.txt" ],
 	"cleanCommands" : 
 	[
-		"/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/debug/x86_64 --target clean"
+		"D:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Android\\StudioProjects\\superApp\\module_util\\.externalNativeBuild\\cmake\\debug\\x86_64 --target clean"
 	],
 	"cppFileExtensions" : [ "cpp" ],
 	"libraries" : 
@@ -15,45 +12,45 @@
 		{
 			"abi" : "x86_64",
 			"artifactName" : "jniDemo",
-			"buildCommand" : "/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/debug/x86_64 --target jniDemo",
+			"buildCommand" : "D:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Android\\StudioProjects\\superApp\\module_util\\.externalNativeBuild\\cmake\\debug\\x86_64 --target jniDemo",
 			"buildType" : "debug",
 			"files" : 
 			[
 				
 				{
-					"flags" : "  --target=x86_64-none-linux-android21 --gcc-toolchain=/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/x86_64-4.9/prebuilt/linux-x86_64 --sysroot=/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sysroot  -DjniDemo_EXPORTS -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sysroot/usr/include/x86_64-linux-android -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -O0 -fno-limit-debug-info  -fPIC    -c ",
-					"src" : "/home/gmfbilu/Work/Android/Projects/superApp/module_util/src/main/cpp/jniDemo.cpp",
-					"workingDirectory" : "/home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/debug/x86_64"
+					"flags" : "  --target=x86_64-none-linux-android21 --gcc-toolchain=D:/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -DjniDemo_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "D:/Android/StudioProjects/superApp/module_util/src/main/cpp/jniDemo.cpp",
+					"workingDirectory" : "D:/Android/StudioProjects/superApp/module_util/.externalNativeBuild/cmake/debug/x86_64"
 				}
 			],
-			"output" : "/home/gmfbilu/Work/Android/Projects/superApp/module_util/build/intermediates/cmake/debug/obj/x86_64/libjniDemo.so",
-			"toolchain" : "8962518858468697716"
+			"output" : "D:/Android/StudioProjects/superApp/module_util/build/intermediates/cmake/debug/obj/x86_64/libjniDemo.so",
+			"toolchain" : "423535169"
 		},
 		"jniDemo2-Debug-x86_64" : 
 		{
 			"abi" : "x86_64",
 			"artifactName" : "jniDemo2",
-			"buildCommand" : "/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/debug/x86_64 --target jniDemo2",
+			"buildCommand" : "D:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Android\\StudioProjects\\superApp\\module_util\\.externalNativeBuild\\cmake\\debug\\x86_64 --target jniDemo2",
 			"buildType" : "debug",
 			"files" : 
 			[
 				
 				{
-					"flags" : "  --target=x86_64-none-linux-android21 --gcc-toolchain=/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/x86_64-4.9/prebuilt/linux-x86_64 --sysroot=/home/gmfbilu/Work/Android/Sdk/ndk-bundle/sysroot  -DjniDemo2_EXPORTS -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/gmfbilu/Work/Android/Sdk/ndk-bundle/sysroot/usr/include/x86_64-linux-android -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -O0 -fno-limit-debug-info  -fPIC    -c ",
-					"src" : "/home/gmfbilu/Work/Android/Projects/superApp/module_util/src/main/cpp/jniDemo2.cpp",
-					"workingDirectory" : "/home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/debug/x86_64"
+					"flags" : "  --target=x86_64-none-linux-android21 --gcc-toolchain=D:/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -DjniDemo2_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "D:/Android/StudioProjects/superApp/module_util/src/main/cpp/jniDemo2.cpp",
+					"workingDirectory" : "D:/Android/StudioProjects/superApp/module_util/.externalNativeBuild/cmake/debug/x86_64"
 				}
 			],
-			"output" : "/home/gmfbilu/Work/Android/Projects/superApp/module_util/build/intermediates/cmake/debug/obj/x86_64/libjniDemo2.so",
-			"toolchain" : "8962518858468697716"
+			"output" : "D:/Android/StudioProjects/superApp/module_util/build/intermediates/cmake/debug/obj/x86_64/libjniDemo2.so",
+			"toolchain" : "423535169"
 		}
 	},
 	"toolchains" : 
 	{
-		"8962518858468697716" : 
+		"423535169" : 
 		{
-			"cCompilerExecutable" : "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/clang",
-			"cppCompilerExecutable" : "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++"
+			"cCompilerExecutable" : "D:/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
+			"cppCompilerExecutable" : "D:/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
 		}
 	}
 }

@@ -1,22 +1,22 @@
 {
   "buildFiles": [
-    "/home/gmfbilu/Work/Android/Projects/superApp/module_util/CMakeLists.txt"
+    "D:\\Android\\StudioProjects\\superApp\\module_util\\CMakeLists.txt"
   ],
   "cleanCommands": [
-    "/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/arm64-v8a --target clean"
+    "D:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Android\\StudioProjects\\superApp\\module_util\\.externalNativeBuild\\cmake\\release\\arm64-v8a --target clean"
   ],
   "libraries": {
     "jniDemo-Release-arm64-v8a": {
       "artifactName": "jniDemo",
-      "buildCommand": "/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/arm64-v8a --target jniDemo",
+      "buildCommand": "D:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Android\\StudioProjects\\superApp\\module_util\\.externalNativeBuild\\cmake\\release\\arm64-v8a --target jniDemo",
       "abi": "arm64-v8a",
-      "output": "/home/gmfbilu/Work/Android/Projects/superApp/module_util/build/intermediates/cmake/release/obj/arm64-v8a/libjniDemo.so"
+      "output": "D:\\Android\\StudioProjects\\superApp\\module_util\\build\\intermediates\\cmake\\release\\obj\\arm64-v8a\\libjniDemo.so"
     },
     "jniDemo2-Release-arm64-v8a": {
       "artifactName": "jniDemo2",
-      "buildCommand": "/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/arm64-v8a --target jniDemo2",
+      "buildCommand": "D:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Android\\StudioProjects\\superApp\\module_util\\.externalNativeBuild\\cmake\\release\\arm64-v8a --target jniDemo2",
       "abi": "arm64-v8a",
-      "output": "/home/gmfbilu/Work/Android/Projects/superApp/module_util/build/intermediates/cmake/release/obj/arm64-v8a/libjniDemo2.so"
+      "output": "D:\\Android\\StudioProjects\\superApp\\module_util\\build\\intermediates\\cmake\\release\\obj\\arm64-v8a\\libjniDemo2.so"
     }
   }
 }

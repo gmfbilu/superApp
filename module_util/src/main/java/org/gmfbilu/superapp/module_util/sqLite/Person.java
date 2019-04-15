@@ -16,8 +16,8 @@ public class Person {
 
     //创建表的语句,属性列为：_id（主键并且自动增加）、name、age
     public static final String CREATE_TABLE =
-            "CREATE TABLE IF NOT EXISTS " + TABLE_NAME +
-                    COLUMN_id + " (INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "CREATE TABLE IF NOT EXISTS " + TABLE_NAME +"("+
+                    COLUMN_id + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     COLUMN_NAME + " TEXT," +
                     COLUMN_AGE + " INTEGER)";
 
