@@ -40,11 +40,11 @@ import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class HttpMethods {
 
-    private Retrofit retrofit;
     private ApiService mApiService;
     private static HttpMethods INSTANCE;
 
@@ -58,6 +58,9 @@ public class HttpMethods {
         return INSTANCE;
     }
 
+    /**
+     * 由于是单例模式，HttpMethods会一直和程序生命周期保持一致。在配置需要改变的情况下需要结束实例重写创建
+     */
     public static void clearSingleton() {
         INSTANCE = null;
     }
@@ -66,12 +69,11 @@ public class HttpMethods {
     // 云端响应头拦截器，用来配置缓存策略
     // 设缓存有效期为两天
     private static final long CACHE_STALE_SEC = 60 * 60 * 24 * 2;
-    // 30秒内直接读缓存
+    // 0秒内直接读缓存
     private static final long CACHE_AGE_SEC = 0;
+    // 在这里统一配置请求头缓存策略以及响应头缓存策略
     private Interceptor mRewriteCacheControlInterceptor = chain -> {
         Request request = chain.request();
-
-        // 在这里统一配置请求头缓存策略以及响应头缓存策略
         if (AppUtils.isNetworkConnected()) {
             // 在有网的情况下CACHE_AGE_SEC秒内读缓存，大于CACHE_AGE_SEC秒后会重新请求数据
             request = request.newBuilder().removeHeader("Pragma").removeHeader("Cache-Control").header("Cache-Control", "public, max-age=" + CACHE_AGE_SEC).build();
@@ -79,20 +81,18 @@ public class HttpMethods {
             return response.newBuilder().removeHeader("Pragma").removeHeader("Cache-Control").header("Cache-Control", "public, max-age=" + CACHE_AGE_SEC).build();
         } else {
             // 无网情况下CACHE_STALE_SEC秒内读取缓存，大于CACHE_STALE_SEC秒缓存无效报504
-            request = request.newBuilder().removeHeader("Pragma").removeHeader("Cache-Control")
-                    .header("Cache-Control", "public, only-if-cached, max-stale=" + CACHE_STALE_SEC).build();
+            request = request.newBuilder().removeHeader("Pragma").removeHeader("Cache-Control").header("Cache-Control", "public, only-if-cached, max-stale=" + CACHE_STALE_SEC).build();
             Response response = chain.proceed(request);
-            return response.newBuilder().removeHeader("Pragma").removeHeader("Cache-Control")
-                    .header("Cache-Control", "public, only-if-cached, max-stale=" + CACHE_STALE_SEC).build();
+            return response.newBuilder().removeHeader("Pragma").removeHeader("Cache-Control").header("Cache-Control", "public, only-if-cached, max-stale=" + CACHE_STALE_SEC).build();
         }
 
     };
 
     private HttpMethods() {
-        initRetrofit();
+        initSetting();
     }
 
-    private void initRetrofit() {
+    private void initSetting() {
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
         //日志打印
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
@@ -103,6 +103,7 @@ public class HttpMethods {
                 }
             }
         });
+        //打印日志的范围,HEADERS、BODY等
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         httpClientBuilder.addInterceptor(loggingInterceptor);
         httpClientBuilder.addNetworkInterceptor(mRewriteCacheControlInterceptor);
@@ -113,12 +114,13 @@ public class HttpMethods {
         httpClientBuilder.connectTimeout(Constant.DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         httpClientBuilder.readTimeout(Constant.DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         httpClientBuilder.writeTimeout(Constant.DEFAULT_TIMEOUT, TimeUnit.SECONDS);
-        //httpClientBuilder.build().retryOnConnectionFailure();
 
-        retrofit = new Retrofit.Builder()
+        Retrofit retrofit = new Retrofit.Builder()
                 .client(httpClientBuilder.build())
-                .addConverterFactory(ResponseConvertFactory.create(new Gson()))
-                //.addConverterFactory(GsonConverterFactory.create())
+                //配置自定义的Convert
+                //.addConverterFactory(ResponseConvertFactory.create(new Gson()))
+                //配置默认的Convert
+                .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .baseUrl(Constant.BASE_URL)
                 .build();
@@ -145,7 +147,9 @@ public class HttpMethods {
 
     private <T> void toSubscribe(Observable<T> o, Observer<T> s, LifecycleOwner lifecycleOwner) {
         o.subscribeOn(Schedulers.io())
+                //unsubscribeOn?
                 .unsubscribeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 //自动管理生命周期
                 .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(lifecycleOwner)))
@@ -157,32 +161,30 @@ public class HttpMethods {
         if (Constant.ISSHOWLOG) {
             Logger.d(o);
         }
-        Gson gson = new Gson();
-        String route = gson.toJson(o);
-        return RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), route);
+        return RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), new Gson().toJson(o));
     }
 
 
     /**
      * 单个请求
      *
-     * @param messiObserver
+     * @param netObserver
      * @param loginReq
      */
-    public void login(MessiObserver<LoginRes> messiObserver, LoginReq loginReq, LifecycleOwner lifecycleOwner) {
+    public void login(NetObserver<LoginRes> netObserver, LoginReq loginReq, LifecycleOwner lifecycleOwner) {
         Observable<LoginRes> observable = mApiService.login(getBody(loginReq)).map(new HttpResultFunc<>());
-        toSubscribe(observable, messiObserver, lifecycleOwner);
+        toSubscribe(observable, netObserver, lifecycleOwner);
     }
 
 
     /**
      * 多个请求合并
      *
-     * @param messiObserver
+     * @param netObserver
      * @param getDictionaryDatReq
      * @param getProductsByTypeReq
      */
-    public void addJJMerge(MessiObserver<AddJJMergeRes> messiObserver, GetDictionaryDatReq getDictionaryDatReq, GetProductsByTypeReq getProductsByTypeReq, LifecycleOwner lifecycleOwner) {
+    public void addJJMerge(NetObserver<AddJJMergeRes> netObserver, GetDictionaryDatReq getDictionaryDatReq, GetProductsByTypeReq getProductsByTypeReq, LifecycleOwner lifecycleOwner) {
         Observable<ArrayList<GetDictionaryDatRes>> map = mApiService.GetDictionaryDat(getBody(getDictionaryDatReq)).map(new HttpResultFunc<>());
         Observable<ArrayList<GetProductsByTypeRes>> map1 = mApiService.GetProductsByType(getBody(getProductsByTypeReq)).map(new HttpResultFunc<>());
         Observable<ArrayList<GetSaleManListRes>> map2 = mApiService.GetSaleManList().map(new HttpResultFunc<>());
@@ -194,7 +196,7 @@ public class HttpMethods {
                     addJJMergeRes.salesManList = getSaleManListRes;
                     return addJJMergeRes;
                 });
-        toSubscribe(zip, messiObserver, lifecycleOwner);
+        toSubscribe(zip, netObserver, lifecycleOwner);
     }
 
 }

@@ -13,7 +13,7 @@ import org.gmfbilu.superapp.lib_base.bean.request.LoginReq;
 import org.gmfbilu.superapp.lib_base.bean.response.AddJJMergeRes;
 import org.gmfbilu.superapp.lib_base.bean.response.LoginRes;
 import org.gmfbilu.superapp.lib_base.http.HttpMethods;
-import org.gmfbilu.superapp.lib_base.http.MessiObserver;
+import org.gmfbilu.superapp.lib_base.http.NetObserver;
 import org.gmfbilu.superapp.module_java.R;
 
 public class RxJava_RetrofitFragment extends BaseFragment {
@@ -80,7 +80,7 @@ public class RxJava_RetrofitFragment extends BaseFragment {
         LoginReq loginReq = new LoginReq();
         loginReq.login_name = "admin";
         loginReq.password = "123456";
-        HttpMethods.getInstance().login(new MessiObserver<LoginRes>() {
+        HttpMethods.getInstance().login(new NetObserver<LoginRes>() {
 
             @Override
             public void onNext(LoginRes loginRes) {
@@ -93,7 +93,7 @@ public class RxJava_RetrofitFragment extends BaseFragment {
     private void multiRequest() {
         GetDictionaryDatReq getDictionaryDatReq = new GetDictionaryDatReq();
         GetProductsByTypeReq getProductsByTypeReq = new GetProductsByTypeReq();
-        HttpMethods.getInstance().addJJMerge(new MessiObserver<AddJJMergeRes>() {
+        HttpMethods.getInstance().addJJMerge(new NetObserver<AddJJMergeRes>() {
             @Override
             public void onNext(AddJJMergeRes addJJMergeRes) {
                 super.onNext(addJJMergeRes);

@@ -7,7 +7,7 @@ import org.gmfbilu.superapp.lib_base.base.BaseApplication;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
-public abstract class MessiObserver<T> implements Observer<T> {
+public abstract class NetObserver<T> implements Observer<T> {
 
     @Override
     public void onSubscribe(Disposable d) {

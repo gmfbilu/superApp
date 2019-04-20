@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
-import org.gmfbilu.superapp.lib_base.http.MessiObserver;
+import org.gmfbilu.superapp.lib_base.http.NetObserver;
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 import org.gmfbilu.superapp.module_util.R;
 
@@ -89,7 +89,7 @@ public class CameraFragment extends BaseFragment {
     private void autoObtainCameraPermission() {
         rxPermissions
                 .request(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
-                .subscribe(new MessiObserver<Boolean>() {
+                .subscribe(new NetObserver<Boolean>() {
                     @Override
                     public void onNext(Boolean granted) {
                         if (granted) {
@@ -108,7 +108,7 @@ public class CameraFragment extends BaseFragment {
     private void autoObtainStoragePermission() {
         rxPermissions
                 .request(Manifest.permission.READ_EXTERNAL_STORAGE)
-                .subscribe(new MessiObserver<Boolean>() {
+                .subscribe(new NetObserver<Boolean>() {
                     @Override
                     public void onNext(Boolean granted) {
                         if (granted) {

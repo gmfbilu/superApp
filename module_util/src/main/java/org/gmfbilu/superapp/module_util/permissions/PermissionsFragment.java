@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
-import org.gmfbilu.superapp.lib_base.http.MessiObserver;
+import org.gmfbilu.superapp.lib_base.http.NetObserver;
 import org.gmfbilu.superapp.module_util.R;
 
 import io.reactivex.Observer;
@@ -59,7 +59,7 @@ public class PermissionsFragment extends BaseFragment {
     private void requestCameraPermissions() {
         rxPermissions
                 .request(Manifest.permission.CAMERA)
-                .subscribe(new MessiObserver<Boolean>() {
+                .subscribe(new NetObserver<Boolean>() {
                                @Override
                                public void onNext(Boolean granted) {
                                    if (granted) { // Always true pre-M

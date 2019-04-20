@@ -15,7 +15,7 @@ public interface Constant {
 
 
     //========================================================================
-    String CODE_RESPONSE_SUCCEED = "1000";
+    String CODE_RESPONSE_SUCCEED = "200";
     int DEFAULT_TIMEOUT = 30;
     String BASE_URL = "http://114.55.27.208:8765/";
     String URL_CONNECTED_MOBILE = "Api/";

@@ -26,8 +26,8 @@ class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
         String response = value.string();
         HttpResult httpResult = gson.fromJson(response, HttpResult.class);
         String respCode = httpResult.code;
-        //Logger.json(response);
         Logger.d(response);
+        //没有返回正确的结果就抛出RuntimeException
         if (!respCode.equals(Constant.CODE_RESPONSE_SUCCEED)) {
             throw new ApiException(respCode, httpResult.message,httpResult.data);
         }

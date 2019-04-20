@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
-import org.gmfbilu.superapp.lib_base.http.MessiObserver;
+import org.gmfbilu.superapp.lib_base.http.NetObserver;
 import org.gmfbilu.superapp.module_view.R;
 import org.gmfbilu.superapp.module_view.customViews.canvasView.LeafLoading;
 import org.gmfbilu.superapp.module_view.customViews.stepView.StepViewOne;
@@ -130,7 +130,7 @@ public class CustomViewsFragment extends BaseFragment {
                 //2秒后执行
                 .timer(1, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MessiObserver<Long>() {
+                .subscribe(new NetObserver<Long>() {
                     @Override
                     public void onNext(Long aLong) {
                         super.onNext(aLong);
