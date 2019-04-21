@@ -1,12 +1,14 @@
 package org.gmfbilu.superapp.module_util.aop;
 
 import android.os.Bundle;
-import android.os.Looper;
 import android.view.View;
 import android.widget.Toast;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_util.R;
+import org.gmfbilu.superapp.module_util.aop.checkLogin.CheckLogin;
+import org.gmfbilu.superapp.module_util.aop.click.SingleClick;
+import org.gmfbilu.superapp.module_util.aop.timeLog.TimeLog;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +27,6 @@ public class AOPFragment extends BaseFragment {
     public void findViewById_setOnClickListener(View view) {
         view.findViewById(R.id.bt_gotonext).setOnClickListener(this);
         view.findViewById(R.id.bt_click).setOnClickListener(this);
-        view.findViewById(R.id.bt_async).setOnClickListener(this);
         view.findViewById(R.id.bt_trace).setOnClickListener(this);
     }
 
@@ -35,37 +36,36 @@ public class AOPFragment extends BaseFragment {
     }
 
     @Override
+    public void onEnterAnimationEnd(Bundle savedInstanceState) {
+        super.onEnterAnimationEnd(savedInstanceState);
+    }
+
+    @Override
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.bt_gotonext) {
             gotoNextPage();
         } else if (id == R.id.bt_click) {
-            Toast.makeText(getContext(), "有效点击", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.bt_async) {
-            async();
+            //v.setTag(DataCollectionTag.CLICK_QQ_LOGIN);
+            singleClick();
         } else if (id == R.id.bt_trace) {
             trace();
         }
     }
 
-
-    @Async
-    private void async() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("current thread=").append(Thread.currentThread().getId())
-                .append("\r\n")
-                .append("ui thread=")
-                .append(Looper.getMainLooper().getThread().getId());
-        Toast.makeText(getContext(), sb.toString(), Toast.LENGTH_SHORT).show();
+    private void singleClick() {
+        Toast.makeText(getContext(), "有效点击", Toast.LENGTH_SHORT).show();
     }
 
-    @CheckLogin()
+    @SingleClick
+    @CheckLogin(isLogin = true)
     public void gotoNextPage() {
         //登录才会执行下列代码
         Toast.makeText(getContext(), "去下一个页面", Toast.LENGTH_SHORT).show();
     }
 
-    @Trace
+    @TimeLog
+    @SingleClick
     private void trace() {
         for (int i = 0; i < 100000; i++) {
             Map map = new HashMap();

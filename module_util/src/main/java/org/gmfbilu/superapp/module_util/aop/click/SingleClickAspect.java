@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_util.aop;
+package org.gmfbilu.superapp.module_util.aop.click;
 
 import android.view.View;
 
@@ -7,12 +7,11 @@ import com.orhanobut.logger.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 
-/**
- * 防重复点击
- */
 @Aspect
-public class ClickFilterHook {
+public class SingleClickAspect {
+
     private static final Long FILTER_TIME = 1000L;
     /**
      * 最近一次点击的时间
@@ -23,8 +22,17 @@ public class ClickFilterHook {
      */
     private static int mLastClickViewId;
 
-    @Around("execution(* android.view.View.OnClickListener.onClick(..))")
-    public void clickFilterHook(ProceedingJoinPoint joinPoint) {
+    @Pointcut("execution(@org.gmfbilu.superapp.module_util.aop.click.SingleClick * *(..))")//方法切入点
+    public void executionAspectJ() {
+    }
+
+    @Pointcut("execution(@org.gmfbilu.superapp.module_util.aop.click.SingleClick *.new(..))")
+//构造器切入点
+    public void constructorAspectJ() {
+    }
+
+    @Around("executionAspectJ()||constructorAspectJ")//在连接点进行方法替换
+    public void aroundAspectJ(ProceedingJoinPoint joinPoint) throws Throwable {
         View view = null;
         for (Object arg : joinPoint.getArgs()) {
             if (arg instanceof View) {
@@ -43,6 +51,7 @@ public class ClickFilterHook {
         } else {
             mLastClickTime = time;
             mLastClickViewId = viewId;
+           // collectClickInfo(view, time);
             try {
                 joinPoint.proceed();
             } catch (Throwable throwable) {

@@ -1,4 +1,4 @@
-D:/Android/StudioProjects/superApp/module_util/.externalNativeBuild/cmake/release/armeabi-v7a/CMakeFiles/jniDemo2.dir
-D:/Android/StudioProjects/superApp/module_util/.externalNativeBuild/cmake/release/armeabi-v7a/CMakeFiles/jniDemo.dir
-D:/Android/StudioProjects/superApp/module_util/.externalNativeBuild/cmake/release/armeabi-v7a/CMakeFiles/edit_cache.dir
-D:/Android/StudioProjects/superApp/module_util/.externalNativeBuild/cmake/release/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+D:/Android/demo/superApp/module_util/.externalNativeBuild/cmake/release/armeabi-v7a/CMakeFiles/jniDemo2.dir
+D:/Android/demo/superApp/module_util/.externalNativeBuild/cmake/release/armeabi-v7a/CMakeFiles/jniDemo.dir
+D:/Android/demo/superApp/module_util/.externalNativeBuild/cmake/release/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/Android/demo/superApp/module_util/.externalNativeBuild/cmake/release/armeabi-v7a/CMakeFiles/rebuild_cache.dir

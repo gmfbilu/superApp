@@ -1,22 +1,22 @@
 {
   "buildFiles": [
-    "D:\\Android\\StudioProjects\\superApp\\module_util\\CMakeLists.txt"
+    "D:\\Android\\demo\\superApp\\module_util\\CMakeLists.txt"
   ],
   "cleanCommands": [
-    "D:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Android\\StudioProjects\\superApp\\module_util\\.externalNativeBuild\\cmake\\release\\x86 --target clean"
+    "D:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Android\\demo\\superApp\\module_util\\.externalNativeBuild\\cmake\\release\\x86 --target clean"
   ],
   "libraries": {
     "jniDemo-Release-x86": {
       "artifactName": "jniDemo",
-      "buildCommand": "D:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Android\\StudioProjects\\superApp\\module_util\\.externalNativeBuild\\cmake\\release\\x86 --target jniDemo",
+      "buildCommand": "D:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Android\\demo\\superApp\\module_util\\.externalNativeBuild\\cmake\\release\\x86 --target jniDemo",
       "abi": "x86",
-      "output": "D:\\Android\\StudioProjects\\superApp\\module_util\\build\\intermediates\\cmake\\release\\obj\\x86\\libjniDemo.so"
+      "output": "D:\\Android\\demo\\superApp\\module_util\\build\\intermediates\\cmake\\release\\obj\\x86\\libjniDemo.so"
     },
     "jniDemo2-Release-x86": {
       "artifactName": "jniDemo2",
-      "buildCommand": "D:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Android\\StudioProjects\\superApp\\module_util\\.externalNativeBuild\\cmake\\release\\x86 --target jniDemo2",
+      "buildCommand": "D:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Android\\demo\\superApp\\module_util\\.externalNativeBuild\\cmake\\release\\x86 --target jniDemo2",
       "abi": "x86",
-      "output": "D:\\Android\\StudioProjects\\superApp\\module_util\\build\\intermediates\\cmake\\release\\obj\\x86\\libjniDemo2.so"
+      "output": "D:\\Android\\demo\\superApp\\module_util\\build\\intermediates\\cmake\\release\\obj\\x86\\libjniDemo2.so"
     }
   }
 }
