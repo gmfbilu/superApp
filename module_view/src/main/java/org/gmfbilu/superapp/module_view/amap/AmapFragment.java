@@ -65,7 +65,8 @@ public class AmapFragment extends BaseFragment {
         gestures();
         methodInterface();
         marker();
-       // drawL();
+        draw();
+        track();
     }
 
 
@@ -420,7 +421,169 @@ public class AmapFragment extends BaseFragment {
 
     }
 
-    private void drawLine(){
+    private void draw() {
+        drawLine();
+        drawFace();
+        drawHot();
+    }
+
+    /**
+     * 地图上绘制的线是由 Polyline 类定义实现的，线由一组经纬度（LatLng对象）点连接而成
+     * 与点标记一样，Polyline 的属性操作集中在 PolylineOptions 类中
+     */
+    private void drawLine() {
+        /**
+         * 定义该折线的颜色为黑色，宽度为 10 像素
+         *  List<LatLng> latLngs = new ArrayList<LatLng>();
+         *         latLngs.add(new LatLng(39.999391,116.135972));
+         *         latLngs.add(new LatLng(39.898323,116.057694));
+         *         latLngs.add(new LatLng(39.900430,116.265061));
+         *         latLngs.add(new LatLng(39.955192,116.140092));
+         *         polyline =AMap.addPolyline(new PolylineOptions().addAll(latLngs).width(10).color(Color.argb(255, 1, 1, 1)));
+         */
+
+        /**
+         * 这些方法均在 PolylienOptions 类中体现
+         * setCustomTexture(BitmapDescriptor customTexture)设置线段的纹理，建议纹理资源长宽均为2的n次方
+         * setCustomTextureIndex(java.util.List<java.lang.Integer> custemTextureIndexs)设置分段纹理index数组
+         * setCustomTextureList(java.util.List customTextureList)设置分段纹理list
+         * setDottedLine(boolean isDottedLine)设置是否画虚线，默认为false，画实线。
+         * setUseTexture(boolean useTexture)是否使用纹理贴图
+         * useGradient(boolean useGradient)设置是否使用渐变色
+         * visible(boolean isVisible)设置线段的可见性
+         * width(float width)设置线段的宽度，单位像素
+         * zIndex(float zIndex)设置线段Z轴的值
+         */
+
+    }
+
+    /**
+     * 地图上的面分为圆形和多边形两种
+     */
+    private void drawFace() {
+        /**
+         * 绘制圆
+         * 圆形由 Circle 类定义实现，构造一个圆形需要确定它的圆心和半径，具体的示例代码如下：
+         * 义该圆形的填充灰色，边线颜色为灰色，宽度15 像素
+         * LatLng latLng = new LatLng(39.984059,116.307771);
+         * circle = AMap.addCircle(new CircleOptions().
+         *         center(latLng).
+         *         radius(1000).
+         *         fillColor(Color.argb(progress, 1, 1, 1)).
+         *         strokeColor(Color.argb(progress, 1, 1, 1)).
+         *         strokeWidth(15));
+         */
+
+        /**
+         * 绘制多边形
+         * 多边形是由 Polygon 类定义的一组在地图上的封闭线段组成的图形，它由一组 LatLng 点按照传入顺序连接而成的封闭图形。与绘制线类似，面的属性操作集中在 PolygonOptions 中
+         *
+         * 绘制椭圆
+         * aMap.addPolygon(new PolygonOptions()
+         *                 .addAll(createRectangle( new LatLng(31.238068, 121.501654), 1, 1))
+         *                 .fillColor(Color.LTGRAY).strokeColor(Color.RED).strokeWidth(1));
+         *         PolygonOptions options = new PolygonOptions();
+         *         int numPoints = 400;
+         *         float semiHorizontalAxis = 5f;
+         *         float semiVerticalAxis = 2.5f;
+         *         double phase = 2 * Math.PI / numPoints;
+         *         for (int i = 0; i <= numPoints; i++) {
+         *             options.add(new LatLng(Constants.BEIJING.latitude
+         *                     + semiVerticalAxis * Math.sin(i * phase),
+         *                     Constants.BEIJING.longitude + semiHorizontalAxis
+         *                             * Math.cos(i * phase)));
+         *         }
+         *         // 绘制一个椭圆
+         *         polygon = aMap.addPolygon(options.strokeWidth(25)
+         *                 .strokeColor(Color.argb(50, 1, 1, 1))
+         *                 .fillColor(Color.argb(50, 1, 1, 1)));
+         *     }
+         *
+         *  以下是生成长方形四个顶点坐标列表的方法，可以简便的生成出长方形的四个顶点
+         *  private List<LatLng> createRectangle(LatLng center, double halfWidth,
+         *       double halfHeight) {
+         *     List<LatLng> latLngs = new ArrayList<LatLng>();
+         *     latLngs.add(new LatLng(center.latitude - halfHeight, center.longitude - halfWidth));
+         *     latLngs.add(new LatLng(center.latitude - halfHeight, center.longitude + halfWidth));
+         *     latLngs.add(new LatLng(center.latitude + halfHeight, center.longitude + halfWidth));
+         *     latLngs.add(new LatLng(center.latitude + halfHeight, center.longitude - halfWidth));
+         *     return latLngs;
+         *   }
+         *
+         *   绘制一个长方形
+         *   aMap.addPolygon(new PolygonOptions()
+         * .addAll(createRectangle(Constants.SHANGHAI, 1, 1))
+         * .fillColor(Color.LTGRAY).strokeColor(Color.RED).strokeWidth(1));
+         *
+         *  绘制5边形
+         *  // 定义多边形的5个点点坐标
+         * LatLng latLng1 = new LatLng(42.742467, 79.842785);
+         * LatLng latLng2 = new LatLng(43.893433, 98.124035);
+         * LatLng latLng3 = new LatLng(33.058738, 101.463879);
+         * LatLng latLng4 = new LatLng(25.873426, 95.838879);
+         * LatLng latLng5 = new LatLng(30.8214661, 78.788097);
+         * // 声明 多边形参数对象
+         * PolygonOptions polygonOptions = new PolygonOptions();
+         * // 添加 多边形的每个顶点（顺序添加）
+         * polygonOptions.add(latLng1, latLng2, latLng3, latLng4, latLng5);
+         * polygonOptions.strokeWidth(15) // 多边形的边框
+         * .strokeColor(Color.argb(50, 1, 1, 1)) // 边框颜色
+         * .fillColor(Color.argb(1, 1, 1, 1));   // 多边形的填充色
+         */
+
+    }
+
+
+    /**
+     * 热力图功能提供将业务数据展示在地图上，可以给使用者直观描述一个区域的人员，车辆等事物的热度情况
+     */
+    private void drawHot() {
+        /**
+         * 第一步，组织热力图数据
+         *
+         生成热力点坐标列表
+         LatLng[] latlngs = new LatLng[500];
+         double x = 39.904979;
+         double y = 116.40964;
+
+         for (int i = 0; i < 500; i++) {
+         double x_ = 0;
+         double y_ = 0;
+         x_ = Math.random() * 0.5 - 0.25;
+         y_ = Math.random() * 0.5 - 0.25;
+         latlngs[i] = new LatLng(x + x_, y + y_);
+         }
+         */
+
+        /**
+         * 第二步，构建热力图 HeatmapTileProvider
+         * HeatmapTileProvider 是生成热力图的核心类，一些基础用法可参考如下代码
+         * 构建热力图 HeatmapTileProvider
+         * HeatmapTileProvider.Builder builder = new HeatmapTileProvider.Builder();
+         * builder.data(Arrays.asList(latlngs)) // 设置热力图绘制的数据
+         * .gradient(ALT_HEATMAP_GRADIENT); // 设置热力图渐变，有默认值 DEFAULT_GRADIENT，可不设置该接口
+         *  Gradient 的设置可见参考手册
+         * 构造热力图对象
+         * HeatmapTileProvider heatmapTileProvider = builder.build();
+         */
+
+        /**
+         * 第三步，绘制热力图图层
+         * 通过 TileOverlay 绘制热力图，方法如下
+         * 初始化 TileOverlayOptions
+         * TileOverlayOptions tileOverlayOptions = new TileOverlayOptions();
+         * tileOverlayOptions.tileProvider(heatmapTileProvider); // 设置瓦片图层的提供者
+         * 向地图上添加 TileOverlayOptions 类对象
+         * mAMap.addTileOverlay(tileOverlayOptions);
+         */
+    }
+
+    /**
+     * 轨迹记录、纠偏类需求强烈建议您使用高德开放平台提供的猎鹰SDK或者猎鹰服务API，后续版本的地图SDK会逐步停止轨迹纠偏接口的维护
+     * 轨迹纠偏可帮助您将您记录的行车轨迹点进行抽稀、纠偏操作，将轨迹匹配到道路上，提供平滑的绘制效果，并计算行驶里程（地图SDK V3.4.0以上支持）；也可以通过结合高德定位帮助您记录真实行车轨迹（地图SDK V5.1.0版本以上支持）。
+     * 值得注意的是，目前该功能只支持将驾车轨迹纠正到路上
+     */
+    private void track(){
 
     }
 

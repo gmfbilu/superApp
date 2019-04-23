@@ -1,22 +1,22 @@
 {
   "buildFiles": [
-    "D:\\Android\\demo\\superApp\\module_util\\CMakeLists.txt"
+    "/home/gmfbilu/Work/Android/Projects/superApp/module_util/CMakeLists.txt"
   ],
   "cleanCommands": [
-    "D:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Android\\demo\\superApp\\module_util\\.externalNativeBuild\\cmake\\release\\x86_64 --target clean"
+    "/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/x86_64 --target clean"
   ],
   "libraries": {
     "jniDemo2-Release-x86_64": {
       "artifactName": "jniDemo2",
-      "buildCommand": "D:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Android\\demo\\superApp\\module_util\\.externalNativeBuild\\cmake\\release\\x86_64 --target jniDemo2",
+      "buildCommand": "/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/x86_64 --target jniDemo2",
       "abi": "x86_64",
-      "output": "D:\\Android\\demo\\superApp\\module_util\\build\\intermediates\\cmake\\release\\obj\\x86_64\\libjniDemo2.so"
+      "output": "/home/gmfbilu/Work/Android/Projects/superApp/module_util/build/intermediates/cmake/release/obj/x86_64/libjniDemo2.so"
     },
     "jniDemo-Release-x86_64": {
       "artifactName": "jniDemo",
-      "buildCommand": "D:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Android\\demo\\superApp\\module_util\\.externalNativeBuild\\cmake\\release\\x86_64 --target jniDemo",
+      "buildCommand": "/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/x86_64 --target jniDemo",
       "abi": "x86_64",
-      "output": "D:\\Android\\demo\\superApp\\module_util\\build\\intermediates\\cmake\\release\\obj\\x86_64\\libjniDemo.so"
+      "output": "/home/gmfbilu/Work/Android/Projects/superApp/module_util/build/intermediates/cmake/release/obj/x86_64/libjniDemo.so"
     }
   }
 }
