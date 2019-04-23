@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -51,6 +52,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -964,6 +967,53 @@ public class AppUtils {
             child.setLayoutParams(params);
             child.invalidate();
         }
+    }
+
+    /**
+     * 获取清单文件中Activity标签下的label
+     *
+     * @param activity
+     * @return
+     */
+    public static String getManifestActivityLabel(Activity activity) {
+        String label;
+        try {
+            PackageManager packageManager = activity.getPackageManager();
+            ActivityInfo activityInfo = packageManager.getActivityInfo(activity.getComponentName(), PackageManager.GET_META_DATA);
+            label = activityInfo.loadLabel(packageManager).toString();
+        } catch (Exception e) {
+            label = null;
+        }
+        return label;
+    }
+
+    /**
+     * 获取sha1值
+     * @return
+     */
+    public static String getSHA1() {
+        try {
+            PackageInfo info = BaseApplication.mApplicationContext.getPackageManager().getPackageInfo(BaseApplication.mApplicationContext.getPackageName(), PackageManager.GET_SIGNATURES);
+            byte[] cert = info.signatures[0].toByteArray();
+            MessageDigest md = MessageDigest.getInstance("SHA1");
+            byte[] publicKey = md.digest(cert);
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < publicKey.length; i++) {
+                String appendString = Integer.toHexString(0xFF & publicKey[i])
+                        .toUpperCase(Locale.US);
+                if (appendString.length() == 1)
+                    hexString.append("0");
+                hexString.append(appendString);
+                hexString.append(":");
+            }
+            String result = hexString.toString();
+            return result.substring(0, result.length() - 1);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 

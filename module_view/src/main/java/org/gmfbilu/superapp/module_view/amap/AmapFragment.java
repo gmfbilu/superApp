@@ -1,0 +1,455 @@
+package org.gmfbilu.superapp.module_view.amap;
+
+import android.os.Bundle;
+import android.view.View;
+
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.MapView;
+import com.amap.api.maps.UiSettings;
+import com.amap.api.maps.model.BitmapDescriptor;
+import com.amap.api.maps.model.MyLocationStyle;
+
+import org.gmfbilu.superapp.lib_base.base.BaseFragment;
+import org.gmfbilu.superapp.module_view.R;
+
+/**
+ * INVALID_USER_KEY:开发过程中经常报这个错误
+ * <p>
+ * 3D地图才需要添加so库，2D地图无需这一步骤。
+ * <p>
+ * 地图 SDK 底层运用两种 OpenGL ES 组件构建地图，分别是 GLSurfaceView 和 TextureView
+ * GLSurfaceView：包括 MapView、MapFragment、SupportMapFragment 三种容器
+ * MapFragment 是 Android Fragment 类的一个子类，用于在 Android Fragment 中放置地图。 MapFragment 也是地图容器，与 MapView 一样提供对 AMap 对象（地图的控制类）的访问权。与 MapView 相比 SupportMapFragment 方便之处在于其可以更好的管理地图的生命周期，布局灵活
+ * TextureView：包括TextureMapView、TextureMapFragment、TextureSupportMapFragment 三种容器
+ * 您将MapView与其他的GLSurfaceView（比如相机）叠加展示，或者是在ScrollView中加载地图时，建议使用TextureMapView及SupportTextureMapFragment来展示地图，可以有效解决 GLSurfaceView 叠加时出现的穿透、滚动黑屏等问题
+ * <p>
+ * AMap 类是地图的控制器类，用来操作地图。它所承载的工作包括：地图图层切换（如卫星图、黑夜地图）、改变地图状态（地图旋转角度、俯仰角、中心点坐标和缩放级别）、添加点标记（Marker）、绘制几何图形(Polyline、Polygon、Circle)、各类事件监听(点击、手势等)等，AMap 是地图 SDK 最重要的核心类，诸多操作都依赖它完成
+ */
+public class AmapFragment extends BaseFragment {
+
+    private MapView mMapView;
+    private AMap mAMap;
+
+    public static AmapFragment newInstance() {
+        Bundle args = new Bundle();
+        AmapFragment fragment = new AmapFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+
+    @Override
+    public void findViewById_setOnClickListener(View view) {
+        mMapView = view.findViewById(R.id.map);
+    }
+
+    @Override
+    public int setLayout() {
+        return R.layout.module_view_fragment_amap;
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
+
+    @Override
+    public void onEnterAnimationEnd(Bundle savedInstanceState) {
+        super.onEnterAnimationEnd(savedInstanceState);
+        mMapView.onCreate(savedInstanceState); //此方法须覆写，虚拟机需要在很多情况下保存地图绘制的当前状态。
+        if (mAMap == null) {
+            mAMap = mMapView.getMap();
+        }
+        locationBluePoint();
+        widgetSetting();
+        gestures();
+        methodInterface();
+        marker();
+       // drawL();
+    }
+
+
+    /**
+     * 显示定位蓝点:定位蓝点指的是进入地图后显示当前位置点的功能
+     */
+    private void locationBluePoint() {
+        MyLocationStyle myLocationStyle = new MyLocationStyle();//初始化定位蓝点样式类myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);//连续定位、且将视角移动到地图中心点，定位点依照设备方向旋转，并且会跟随设备移动。（1秒1次定位）如果不设置myLocationType，默认也会执行此种模式。
+        myLocationStyle.interval(2000); //设置连续定位模式下的定位间隔，只在连续定位模式下生效，单次定位模式下不会生效。单位为毫秒。
+        mAMap.setMyLocationStyle(myLocationStyle);//设置定位蓝点的Style
+        //mAMap.getUiSettings().setMyLocationButtonEnabled(true);设置默认定位按钮是否显示，非必需设置。
+        mAMap.setMyLocationEnabled(true);// 设置为true表示启动显示定位蓝点，false表示隐藏定位蓝点并不进行定位，默认是false。
+        locationBluePointLocationStyle(myLocationStyle);
+        locationBluePointEnable(myLocationStyle, true);
+        locationBluePointStyle(myLocationStyle, null);
+    }
+
+    /**
+     * 定位蓝点展现模式
+     *
+     * @param myLocationStyle
+     */
+    private void locationBluePointLocationStyle(MyLocationStyle myLocationStyle) {
+        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_SHOW);//只定位一次。
+    /*    myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATE);//定位一次，且将视角移动到地图中心点。
+        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW);//连续定位、且将视角移动到地图中心点，定位蓝点跟随设备移动。（1秒1次定位）
+        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_MAP_ROTATE);//连续定位、且将视角移动到地图中心点，地图依照设备方向旋转，定位点会跟随设备移动。（1秒1次定位）
+        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);//连续定位、且将视角移动到地图中心点，定位点依照设备方向旋转，并且会跟随设备移动。（1秒1次定位）默认执行此种模式。
+        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE_NO_CENTER);//连续定位、蓝点不会移动到地图中心点，定位点依照设备方向旋转，并且蓝点会跟随设备移动。
+        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW_NO_CENTER);//连续定位、蓝点不会移动到地图中心点，并且蓝点会跟随设备移动。
+        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_MAP_ROTATE_NO_CENTER);//连续定位、蓝点不会移动到地图中心点，地图依照设备方向旋转，并且蓝点会跟随设备移动。*/
+    }
+
+    /**
+     * 控制是否显示定位蓝点
+     *
+     * @param myLocationStyle
+     * @param enable
+     */
+    private void locationBluePointEnable(MyLocationStyle myLocationStyle, boolean enable) {
+        myLocationStyle.showMyLocation(enable);//设置是否显示定位小蓝点，用于满足只想使用定位，不想使用定位小蓝点的场景，设置false以后图面上不再有定位蓝点的概念，但是会持续回调位置信息。
+    }
+
+    /**
+     * 自定义定位蓝点图标
+     *
+     * @param myLocationStyle
+     * @param myLocationIcon
+     */
+    private void locationBluePointStyle(MyLocationStyle myLocationStyle, BitmapDescriptor myLocationIcon) {
+        myLocationStyle.myLocationIcon(myLocationIcon);//设置定位蓝点的icon图标方法，需要用到BitmapDescriptor类对象作为参数。
+    }
+
+    /**
+     * 控件是指浮在地图图面上的一系列用于操作地图的组件，例如缩放按钮、指南针、定位按钮、比例尺等
+     * UiSettings 类用于操控这些控件，以定制自己想要的视图效果
+     */
+    private void widgetSetting() {
+        UiSettings uiSettings = mAMap.getUiSettings();//实例化UiSettings类对象
+        zoomButton(uiSettings);
+        compass(uiSettings);
+        locationButton(uiSettings);
+        scaleControl(uiSettings);
+        logo(uiSettings);
+    }
+
+    /**
+     * 缩放按钮
+     *
+     * @param uiSettings
+     */
+    private void zoomButton(UiSettings uiSettings) {
+        //控制其隐藏
+        uiSettings.setZoomControlsEnabled(false);
+        //UiSettings.setZoomPosition(int position)  设置缩放按钮的位置
+        //UiSettings.getZoomPosition() 获取缩放按钮的位置
+    }
+
+    /**
+     * 指南针
+     * 指南针用于向 App 端用户展示地图方向，默认不显示
+     */
+    private void compass(UiSettings uiSettings) {
+        uiSettings.setCompassEnabled(true);
+    }
+
+    /**
+     * 定位按钮
+     * App 端用户可以通过点击定位按钮在地图上标注一个蓝色定位点，代表其当前位置。不同于以上控件，定位按钮内部的逻辑实现依赖 Android 定位 SDK
+     * SDK 没有提供自定义定位按钮的功能，如果您想要实现该功能，可以浏览参考论坛的帖子的内容
+     *
+     * @param uiSettings
+     */
+    private void locationButton(UiSettings uiSettings) {
+        // mAMap.setLocationSource(this);//通过aMap对象设置定位数据源的监听
+        uiSettings.setMyLocationButtonEnabled(true); //显示默认的定位按钮
+        mAMap.setMyLocationEnabled(true);// 可触发定位并显示当前位置
+    }
+
+    /**
+     * 比例尺控件
+     * 比例尺控件（最大比例是1：10m,最小比例是1：1000Km），位于地图右下角，可控制其显示与隐藏
+     *
+     * @param uiSettings
+     */
+    private void scaleControl(UiSettings uiSettings) {
+        uiSettings.setScaleControlsEnabled(false);//控制比例尺控件是否显示
+    }
+
+    /**
+     * 地图Logo
+     * 高德地图的 logo 默认在左下角显示，不可以移除，但支持调整到固定位置
+     *
+     * @param uiSettings
+     */
+    private void logo(UiSettings uiSettings) {
+        //uiSettings.setLogoPosition( int position);//设置logo位置
+       /* AMapOptions.LOGO_POSITION_BOTTOM_LEFT LOGO边缘MARGIN（左边）
+        AMapOptions.LOGO_MARGIN_BOTTOM LOGO边缘MARGIN（底部
+        AMapOptions.LOGO_MARGIN_RIGHT LOGO边缘MARGIN（右边）
+        AMapOptions.LOGO_POSITION_BOTTOM_CENTER Logo位置（地图底部居中）
+        AMapOptions.LOGO_POSITION_BOTTOM_LEFT Logo位置（地图左下角）
+        AMapOptions.LOGO_POSITION_BOTTOM_RIGHTLogo位置（地图右下角）*/
+    }
+
+    /**
+     * 地图 SDK 提供了多种手势供 App 端用户与地图之间进行交互，如缩放、旋转、滑动、倾斜。这些手势默认开启，如果想要关闭某些手势，可以通过 UiSetting 类提供的接口来控制手势的开关
+     */
+    private void gestures() {
+
+    }
+
+    /**
+     * 方法交互的概念是从程序角度出发提出的。地图 SDK 提供了很多与地图交互的接口方法，例如：改变地图显示的区域（即改变地图中心点）、改变地图的缩放级别、限制地图的显示范围等
+     * 地图视角交互的核心方法均依赖 AMap 类提供的这两个方法，区别在于所构造的 CameraUpdate 类对象参数不一样，得到的效果也不同。以下对例举的三种常用交互方法进行详细介绍，其余的交互方法请参考官方参考手册
+     */
+    private void methodInterface() {
+        /**
+         * animateCamera(CameraUpdate cameraupdate,long duration,AMap.CancelableCallback cancelablecallback) 带有地图视角移动动画的方法
+         * moveCamera(CameraUpdate cameraupdate) 不带地图视角移动动画的方法
+         */
+
+        /**
+         * 改变地图的中心点
+         * 参数依次是：视角调整区域的中心点坐标、希望调整到的缩放级别、俯仰角0°~45°（垂直与地图时为0）、偏航角 0~360° (正北方为0)
+         * CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(new LatLng(39.977290,116.337000),18,30,0));
+         */
+
+        /**
+         * 改变地图的缩放级别。地图的缩放级别一共分为 17 级，从 3 到 19。数字越大，展示的图面信息越精细
+         * CameraUpdate mCameraUpdate ＝ CameraUpdateFactory.zoomTo(17);
+         *
+         * 缩放地图到指定的缩放级别
+         * AMap.moveCamera(CameraUpdateFactory.zoomTo(17))
+         *
+         * 缩放地图到当前缩放级别的上一级
+         * AMap.moveCamera(CameraUpdateFactory.zoomIn())
+         */
+
+        /**
+         * 限制地图的显示范围。手机屏幕仅显示设定的地图范围，例如：希望设置仅显示北京市区地图，可使用此功能。
+         * 注意：如果限制了地图显示范围，地图旋转手势将会失效
+         *
+         * LatLng southwestLatLng = new LatLng(33.789925, 104.838326);
+         * LatLng northeastLatLng = new LatLng(38.740688, 114.647472);
+         * LatLngBounds latLngBounds = new LatLngBounds(southwestLatLng, northeastLatLng);
+         * aMap.setMapStatusLimits(latLngBounds)
+         */
+
+        /**
+         * 改变地图默认显示区域。地图默认显示北京地区，通过采用重载的 MapView 构造方法更改默认地图显示区域：
+         * MapView mapView = new MapView(this, mapOptions);
+         *
+         * 定义北京市经纬度坐标（此处以北京坐标为例）
+         * LatLng centerBJPoint= new LatLng(39.904989,116.405285);
+         *  定义了一个配置 AMap 对象的参数类
+         * AMapOptions mapOptions = new AMapOptions();
+         * 设置了一个可视范围的初始化位置
+         *  CameraPosition 第一个参数： 目标位置的屏幕中心点经纬度坐标。
+         *  CameraPosition 第二个参数： 目标可视区域的缩放级别
+         *  CameraPosition 第三个参数： 目标可视区域的倾斜度，以角度为单位。
+         *  CameraPosition 第四个参数： 可视区域指向的方向，以角度为单位，从正北向顺时针方向计算，从0度到360度
+         * mapOptions.camera(new CameraPosition(centerBJPoint, 10f, 0, 0));
+         * 定义一个 MapView 对象，构造方法中传入 mapOptions 参数类
+         * MapView mapView = new MapView(this, mapOptions);
+         * 调用 onCreate方法 对 MapView LayoutParams 设置
+         * mapView.onCreate(savedInstanceState);
+         */
+
+    }
+
+
+    /**
+     * 绘制点标记
+     * 点标记用来在地图上标记任何位置，例如用户位置、车辆位置、店铺位置等一切带有位置属性的事物
+     * 地图 SDK 提供的点标记功能包含两大部分，一部分是点（俗称 Marker）、另一部分是浮于点上方的信息窗体（俗称 InfoWindow）
+     * 同时，SDK 对 Marker 和 InfoWindow 封装了大量的触发事件，例如点击事件、长按事件、拖拽事件
+     * Marker 和 InfoWindow 有默认风格，同时也支持自定义。由于内容丰富，以下只能展示一些基础功能的使用，详细内容可分别参考官方参考手册。
+     * Marker
+     * MarkerOptions
+     * AMap.InfoWindowAdapter
+     */
+    private void marker() {
+        /**
+         *  绘制绘制默认 Marker
+         *  LatLng latLng = new LatLng(39.906901,116.397972);
+         *  final Marker marker = mAMap.addMarker(new MarkerOptions().position(latLng).title("北京").snippet("DefaultMarker"));
+         *  Marker 常用属性
+         *  position:在地图上标记位置的经纬度值。必填参数
+         * title:点标记的标题
+         * snippet:点标记的内容
+         * draggable: 点标记是否可拖拽
+         * visible:点标记是否可见
+         * anchor:点标记的锚点
+         * alpha:点的透明度
+         */
+
+        /**
+         * 绘制自定义 Marker
+         * 可根据实际的业务需求，在地图指定的位置上添加自定义的 Marker。MarkerOptions 是设置 Marker 参数变量的类，自定义 Marker 时会经常用到
+         *      MarkerOptions markerOption = new MarkerOptions();
+         *         markerOption.position(Constants.XIAN);
+         *         markerOption.title("西安市").snippet("西安市：34.341568, 108.940174");
+         *         markerOption.draggable(true);//设置Marker可拖动
+         *         markerOption.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.location_marker)));
+         *         // 将Marker设置为贴地显示，可以双指下拉地图查看效果
+         *         markerOption.setFlat(true);//设置marker平贴地图效果
+         */
+
+        /**
+         * 绘制动画效果 Marker
+         *  Animation animation = new RotateAnimation(marker.getRotateAngle(),marker.getRotateAngle()+180,0,0,0);
+         *         long duration = 1000L;
+         *         animation.setDuration(duration);
+         *         animation.setInterpolator(new LinearInterpolator());
+         *         marker.setAnimation(animation);
+         *         marker.startAnimation();
+         */
+
+        /**
+         * Marker 点击事件
+         * 点击 Marker 时会回调AMap.OnMarkerClickListener，监听器的实现示例如下
+         *  AMap.OnMarkerClickListener markerClickListener = new AMap.OnMarkerClickListener() {
+         *             // marker 对象被点击时回调的接口
+         *             // 返回 true 则表示接口已响应事件，否则返回false
+         *             @Override
+         *             public boolean onMarkerClick(Marker marker) {
+         *                 return false;
+         *             }
+         *         };
+         *         mAMap.setOnMarkerClickListener(markerClickListener);
+         */
+
+        /**
+         * Marker 拖拽事件
+         * 拖拽 Marker 时会回调AMap.OnMarkerDragListener，监听器的实现示例如下
+         * AMap.OnMarkerDragListener markerDragListener = new AMap.OnMarkerDragListener() {
+         *
+         *             // 当marker开始被拖动时回调此方法, 这个marker的位置可以通过getPosition()方法返回。
+         *             // 这个位置可能与拖动的之前的marker位置不一样。
+         *             // marker 被拖动的marker对象。
+         *             @Override
+         *             public void onMarkerDragStart(Marker arg0) {
+         *                 // TODO Auto-generated method stub
+         *
+         *             }
+         *
+         *             // 在marker拖动完成后回调此方法, 这个marker的位置可以通过getPosition()方法返回。
+         *             // 这个位置可能与拖动的之前的marker位置不一样。
+         *             // marker 被拖动的marker对象。
+         *             @Override
+         *             public void onMarkerDragEnd(Marker arg0) {
+         *                 // TODO Auto-generated method stub
+         *
+         *             }
+         *
+         *             // 在marker拖动过程中回调此方法, 这个marker的位置可以通过getPosition()方法返回。
+         *             // 这个位置可能与拖动的之前的marker位置不一样。
+         *             // marker 被拖动的marker对象。
+         *             @Override
+         *             public void onMarkerDrag(Marker arg0) {
+         *                 // TODO Auto-generated method stub
+         *
+         *             }
+         *         };
+         *         aMap.setOnMarkerDragListener(markerDragListener);
+         */
+
+        /**
+         * InfoWindow 是点标记的一部分，默认的 Infowindow 只显示 Marker 对象的两个属性，一个是 title 和另一个 snippet，如果希望对InfoWindow 的样式或者内容有自定义需求，可以参考如下内容
+         * 绘制默认 Infowindow
+         * SDK 为用户提供了默认的 InfoWindow 样式，调用 Marker 类的 showInfoWindow() 和 hideInfoWindow() 方法可以控制显示和隐藏。当改变 Marker 的 title 和 snippet 属性时，再次调用 showInfoWindow()，可以更新 InfoWindow 显示内容
+         */
+
+        /**
+         * 绘制自定义 InfoWindow
+         * 实现 InfoWindowAdapter
+         * InfoWindowAdapter是一个接口，其中有两个方法需要实现
+         *  View getInfoWindow(Marker marker);
+         *  当实现此方法并返回有效值时（返回值不为空，则视为有效）,SDK 将不会使用默认的样式，而采用此方法返回的样式（即 View）。默认会将Marker 的 title 和 snippet 显示到 InfoWindow 中
+         *  如果此时修改了 Marker 的 title 或者 snippet 内容，再次调用类 Marker 的 showInfoWindow() 方法，InfoWindow 内容不会更新。自定义 InfoWindow 之后所有的内容更新都需要用户自己完成。当调用 Marker 类的 showInfoWindow() 方法时，SDK 会调用 getInfoWindow（Marker marker） 方法和 getInfoContents(Marker marker) 方法（之后会提到），在这些方法中更新 InfoWindow 的内容即可
+         *  注意：如果此方法返回的 View 没有设置 InfoWindow 背景图，SDK 会默认添加一个背景图
+         *
+         *  View getInfoContents(Marker marker);
+         *  此方法和 getInfoWindow（Marker marker） 方法的实质是一样的，唯一的区别是：此方法不能修改整个 InfoWindow 的背景和边框，无论自定义的样式是什么样，SDK 都会在最外层添加一个默认的边框
+         *
+         *  实现 InfoWindow 样式和内容:必须要先执行如下方法
+         *  setInfoWindowAdapter(InfoWindowAdapter);//AMap类中
+         *  然后实现如下接口方法，自定义Infowindow的内容和样式
+         *    监听自定义infowindow窗口的infocontents事件回调
+         *             @Override
+         *
+         *             public View getInfoWindow(Marker marker) {
+         *                 return null;
+         *             }
+         *
+         *             监听自定义infowindow窗口的infowindow事件回调
+         *             @Override
+         *
+         *             public View getInfoContents(Marker marker) {
+         *                 f(infoWindow == null) {
+         *                     infoWindow = LayoutInflater.from(this).inflate(
+         *                             R.layout.custom_info_window, null);
+         *                 }
+         *                 render(marker, infoWindow);
+         *                 return infoWindow;
+         *                 加载custom_info_window.xml布局文件作为InfoWindow的样式
+         *                 该布局可在官方Demo布局文件夹下找到
+         *             }
+         *
+         *         });
+         *         自定义infowinfow窗口
+         *         public void render(Marker marker, View view) {
+         *             如果想修改自定义Infow中内容，请通过view找到它并修改
+         *         }
+         *
+         */
+
+        /**
+         * InfoWindow 点击事件
+         * 点击 InfoWindow 时会回调 AMap.OnInfoWindowClickListener
+         * OnInfoWindowClickListener listener = new OnInfoWindowClickListener() {
+         *
+         *     @Override
+         *     public void onInfoWindowClick(Marker arg0) {
+         *
+         *         arg0.setTitle("infowindow clicked");
+         *     }
+         * };
+         * aMap.setOnInfoWindowClickListener(listener);
+         */
+
+    }
+
+    private void drawLine(){
+
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        //在activity执行onDestroy时执行mMapView.onDestroy()，销毁地图
+        mMapView.onDestroy();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //在activity执行onResume时执行mMapView.onResume ()，重新绘制加载地图
+        mMapView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        //在activity执行onPause时执行mMapView.onPause ()，暂停地图的绘制
+        mMapView.onPause();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //在activity执行onSaveInstanceState时执行mMapView.onSaveInstanceState (outState)，保存地图当前的状态
+        mMapView.onSaveInstanceState(outState);
+    }
+}

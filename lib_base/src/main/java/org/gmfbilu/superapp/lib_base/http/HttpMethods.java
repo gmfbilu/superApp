@@ -149,7 +149,6 @@ public class HttpMethods {
         o.subscribeOn(Schedulers.io())
                 //unsubscribeOn?
                 .unsubscribeOn(Schedulers.io())
-                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 //自动管理生命周期
                 .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(lifecycleOwner)))

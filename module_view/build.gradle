@@ -53,12 +53,18 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':lib_base')
     testImplementation "junit:junit:${junit_lib_version}"
     androidTestImplementation "com.android.support.test:runner:${test_runner_lib_version}"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:${test_espresso_lib_version}"
     annotationProcessor "com.alibaba:arouter-compiler:${arouter_compiler_version}"
     annotationProcessor "com.github.bumptech.glide:compiler:${glide_version}"
+    //定位
+    implementation 'com.amap.api:location:4.5.1'
+    //搜索
+    implementation 'com.amap.api:search:6.5.0.1'
+    //高德3D地图
+    implementation 'com.amap.api:3dmap:6.8.0'
 
 }
