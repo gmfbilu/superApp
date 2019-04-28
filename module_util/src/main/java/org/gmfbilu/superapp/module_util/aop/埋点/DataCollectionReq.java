@@ -14,7 +14,7 @@ public class DataCollectionReq {
     /**
      * 机型
      */
-    private String deviceType = AppUtils.getDeviceType();
+    private String deviceType ;
     /**
      * 系统版本
      */
@@ -22,7 +22,7 @@ public class DataCollectionReq {
     /**
      * 设备码
      */
-    private String deviceCode = AppUtils.getIMEI();
+    private String deviceCode;
     /**
      * 产品版本
      */

@@ -89,6 +89,13 @@ dependencies {
     //内存泄露检测
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakCanary_version}"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanary_version}"
+    //万能适配器
     api "com.github.CymChad:BaseRecyclerViewAdapterHelper:${baseRecyclerViewAdapterHelper_version}"
+    //定位
+    api 'com.amap.api:location:4.5.1'
+    //搜索
+    api 'com.amap.api:search:6.5.0.1'
+    //高德3D地图
+    api 'com.amap.api:3dmap:6.8.0'
 
 }

@@ -3,6 +3,7 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="org.gmfbilu.superapp.module_java">
 
+
     <application
         android:name="debug.JavaApplication"
         android:allowBackup="true"

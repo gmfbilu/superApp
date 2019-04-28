@@ -48,6 +48,7 @@ public class ConfirmDialogFragment extends BaseDialogFragment {
         holder.setOnClickListener(R.id.cancel, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //dismiss调用后此DialogFragment将会销毁，所有生命周期方法将会走
                 dialog.dismiss();
             }
         });

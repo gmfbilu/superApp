@@ -40,7 +40,7 @@ public class CheckLoginAspect {
             } else if (object instanceof android.support.v4.app.Fragment) {
                 context = ((android.support.v4.app.Fragment) object).getActivity();
             } else {
-                context = ActivitiesManager.getInstance().getCurActivity();
+                context = ActivitiesManager.getCurrentActivity();
             }
             Toast.makeText(context, " go  Login", Toast.LENGTH_SHORT).show();
             //  context.startActivity(new Intent(context, LoginActivity.class));

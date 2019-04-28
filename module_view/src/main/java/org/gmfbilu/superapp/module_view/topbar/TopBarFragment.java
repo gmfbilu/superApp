@@ -11,6 +11,8 @@ import org.gmfbilu.superapp.module_view.R;
  */
 public class TopBarFragment extends BaseFragment {
 
+
+
     public static TopBarFragment newInstance() {
         Bundle args = new Bundle();
         TopBarFragment fragment = new TopBarFragment();
@@ -20,7 +22,6 @@ public class TopBarFragment extends BaseFragment {
 
     @Override
     public void findViewById_setOnClickListener(View view) {
-
     }
 
     @Override
@@ -32,4 +33,11 @@ public class TopBarFragment extends BaseFragment {
     public void onClick(View v) {
 
     }
+
+    @Override
+    public void onEnterAnimationEnd(Bundle savedInstanceState) {
+        super.onEnterAnimationEnd(savedInstanceState);
+    }
+
+
 }
