@@ -10,7 +10,7 @@
         <!--===============================================高德地图 begin========================================-->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="3c94051e008741c0798b56bf56621072"/>
+            android:value="e7aa8d4daa0dbbde4ee41467c0f9c936"/>
         <!-- 高德地图定位需要的服务 -->
         <service android:name="com.amap.api.location.APSService"/>
         <!--===============================================高德地图 end========================================-->

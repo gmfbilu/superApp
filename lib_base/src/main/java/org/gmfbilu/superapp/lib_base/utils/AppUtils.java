@@ -1,9 +1,7 @@
 package org.gmfbilu.superapp.lib_base.utils;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.arch.lifecycle.LifecycleOwner;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -11,7 +9,6 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -30,7 +27,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Looper;
-import android.provider.MediaStore;
 import android.support.design.widget.TabLayout;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -43,13 +39,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.amap.api.location.AMapLocation;
-import com.amap.api.location.AMapLocationClient;
-import com.amap.api.location.AMapLocationClientOption;
-import com.amap.api.location.AMapLocationListener;
 import com.leon.channel.helper.ChannelReaderUtil;
-import com.uber.autodispose.AutoDispose;
-import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
 import org.gmfbilu.superapp.lib_base.app.Constant;
 import org.gmfbilu.superapp.lib_base.base.BaseApplication;
@@ -67,20 +57,11 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
-
-import io.reactivex.Maybe;
-import io.reactivex.MaybeEmitter;
-import io.reactivex.MaybeObserver;
-import io.reactivex.MaybeOnSubscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 public class AppUtils {
 
@@ -1077,78 +1058,6 @@ public class AppUtils {
         return null;
     }
 
-    // TODO: 2019/4/25 内存泄漏
-    public interface PictureInfoListener {
-        void callback(ArrayList<SystemPictureInfo> systemPictureInfos);
-    }
-
-    /**
-     * 获取系统相册照片信息
-     *
-     * @param lifecycleOwner
-     * @param pictureInfoListener
-     */
-    public static void getAllPicInfo(LifecycleOwner lifecycleOwner, PictureInfoListener pictureInfoListener) {
-        Maybe.create(new MaybeOnSubscribe<ArrayList<SystemPictureInfo>>() {
-            @Override
-            public void subscribe(MaybeEmitter<ArrayList<SystemPictureInfo>> emitter) {
-                Cursor cursor = BaseApplication.mApplicationContext.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null, null);
-                if (cursor == null) {
-                    return;
-                }
-                ArrayList<SystemPictureInfo> systemPictureInfos = new ArrayList<>();
-                while (cursor.moveToNext()) {
-                    SystemPictureInfo systemPictureInfo = new SystemPictureInfo();
-                    systemPictureInfos.add(systemPictureInfo);
-                    //获取图片的名称 mmexport1556030534481.webp
-                    String name = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME));
-                    // storage/emulated/0/tencent/MicroMsg/WeiXin/mmexport1556030534481.webp
-                    byte[] data = cursor.getBlob(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-                    String path = new String(data, 0, data.length - 1);
-                    //获取图片的详细信息，很可能为null
-                    String desc = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DESCRIPTION));
-                    //The date & time that the image was taken in units of milliseconds since jan 1, 1970.
-                    String date_taken = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATE_TAKEN));
-                    //String shootTime = AppUtils.transMilesToDate(Long.parseLong(date_taken));
-                    //经纬度
-                    String latitude = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.LATITUDE));
-                    String longitude = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.LONGITUDE));
-                    systemPictureInfo.picName = name;
-                    systemPictureInfo.picPath = path;
-                    systemPictureInfo.picShoot = date_taken;
-                    systemPictureInfo.picLatitude = latitude;
-                    systemPictureInfo.picLongitude = longitude;
-                }
-                cursor.close();
-                emitter.onSuccess(systemPictureInfos);
-                emitter.onComplete();
-            }
-        }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(lifecycleOwner)))
-                .subscribe(new MaybeObserver<ArrayList<SystemPictureInfo>>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onSuccess(ArrayList<SystemPictureInfo> systemPictureInfos) {
-                        pictureInfoListener.callback(systemPictureInfos);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-    }
-
 
     /**
      * 判断当前线程是否是主线程
@@ -1158,83 +1067,5 @@ public class AppUtils {
     public static boolean isMainThread() {
         return Looper.myLooper() == Looper.getMainLooper();
     }
-
-
-    public interface LocationListener {
-        void callback(AMapLocation amapLocation);
-    }
-
-    /**
-     * 获取当前地理位置信息
-     *
-     * @param activity
-     * @param locationListener
-     */
-    public static void getCurrentLocation(Activity activity, final LocationListener locationListener) {
-        RxPermissionsUtils.isPermissions(activity, new TCallback<Boolean>() {
-            @Override
-            public void callback(Boolean aBoolean) {
-                if (!aBoolean) {
-                    ToastUtil.show("未授权权限，获取地点失败！");
-                    return;
-                }
-                //声明mLocationOption对象
-                AMapLocationClientOption mLocationOption = null;
-                AMapLocationClient mlocationClient = new AMapLocationClient(activity);
-                //初始化定位参数
-                mLocationOption = new AMapLocationClientOption();
-                //设置返回地址信息，默认为true
-                mLocationOption.setNeedAddress(true);
-                mlocationClient.setLocationListener(new AMapLocationListener() {
-                    @Override
-                    public void onLocationChanged(AMapLocation amapLocation) {
-                        locationListener.callback(amapLocation);
-                        if (amapLocation != null) {
-                            if (amapLocation.getErrorCode() == 0) {
-                                //定位成功回调信息，设置相关消息
-                                amapLocation.getLocationType();//获取当前定位结果来源，如网络定位结果，详见定位类型表
-                                amapLocation.getLatitude();//获取纬度
-                                amapLocation.getLongitude();//获取经度
-                                amapLocation.getAccuracy();//获取精度信息
-                                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                                Date date = new Date(amapLocation.getTime());
-                                df.format(date);//定位时间
-                                amapLocation.getAddress();//地址，如果option中设置isNeedAddress为false，则没有此结果，网络定位结果中会有地址信息，GPS定位不返回地址信息。
-                                amapLocation.getCountry();//国家信息
-                                amapLocation.getProvince();//省信息
-                                amapLocation.getCity();//城市信息
-                                amapLocation.getDistrict();//城区信息
-                                amapLocation.getStreet();//街道信息
-                                amapLocation.getStreetNum();//街道门牌号信息
-                                amapLocation.getCityCode();//城市编码
-                                amapLocation.getAdCode();//地区编码
-                                //amapLocation.getAOIName();//获取当前定位点的AOI信息
-                                // (amapLocation.getLatitude(), amapLocation.getLongitude());
-                            } else {
-                                //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
-                                //"获取定位失败！
-                            }
-                        } else {
-                            //"获取定位失败！
-                        }
-                    }
-                });
-                //设置定位模式为高精度模式，Battery_Saving为低功耗模式，Device_Sensors是仅设备模式
-                mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
-                //设置定位间隔,单位毫秒,默认为2000ms
-                mLocationOption.setOnceLocation(true);
-                //mLocationOption.setInterval(2000);
-                //设置定位参数
-                mlocationClient.setLocationOption(mLocationOption);
-                // 此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
-                // 注意设置合适的定位时间的间隔（最小间隔支持为1000ms），并且在合适时间调用stopLocation()方法来取消定位请求
-                // 在定位结束后，在合适的生命周期调用onDestroy()方法
-                // 在单次定位情况下，定位无论成功与否，都无需调用stopLocation()方法移除请求，定位sdk内部会移除
-                //启动定位
-                mlocationClient.startLocation();
-            }
-        }, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION);
-    }
-
 
 }

@@ -1,14 +1,16 @@
 package org.gmfbilu.superapp.module_view.amap;
 
+import android.Manifest;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.location.Location;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Toast;
 
-import com.amap.api.location.AMapLocation;
 import com.amap.api.maps.AMap;
-import com.amap.api.maps.CameraUpdate;
-import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.UiSettings;
@@ -30,11 +32,12 @@ import com.amap.api.services.geocoder.RegeocodeAddress;
 import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.amap.api.services.geocoder.RegeocodeResult;
 import com.orhanobut.logger.Logger;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.uber.autodispose.AutoDispose;
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
+import org.gmfbilu.superapp.lib_base.base.BaseApplication;
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
-import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 import org.gmfbilu.superapp.lib_base.utils.StringUtils;
 import org.gmfbilu.superapp.lib_base.utils.SystemPictureInfo;
 import org.gmfbilu.superapp.module_view.R;
@@ -45,6 +48,7 @@ import io.reactivex.Maybe;
 import io.reactivex.MaybeEmitter;
 import io.reactivex.MaybeObserver;
 import io.reactivex.MaybeOnSubscribe;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -66,8 +70,10 @@ public class AmapFragment extends BaseFragment implements DistrictSearch.OnDistr
 
     private MapView mMapView;
     private AMap mAMap;
+    private LatLng mLatLng;
     //地理位置搜索
     private GeocodeSearch geocoderSearch;
+    //有地理位置照片的省份，重复
     private ArrayList<String> mAllProvinces = new ArrayList<>();
 
     public static AmapFragment newInstance() {
@@ -79,11 +85,14 @@ public class AmapFragment extends BaseFragment implements DistrictSearch.OnDistr
 
 
     @Override
+    public int setLayout() {
+        return R.layout.module_view_fragment_amap;
+    }
+
+    @Override
     public void findViewById_setOnClickListener(View view) {
-        view.findViewById(R.id.bt_test).setOnClickListener(this);
         view.findViewById(R.id.bt_district).setOnClickListener(this);
         view.findViewById(R.id.bt_district_boundary).setOnClickListener(this);
-        view.findViewById(R.id.bt_address).setOnClickListener(this);
         mMapView = view.findViewById(R.id.map);
         geocoderSearch = new GeocodeSearch(_mActivity);
         geocoderSearch.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {
@@ -103,7 +112,6 @@ public class AmapFragment extends BaseFragment implements DistrictSearch.OnDistr
                     //省名称、直辖市的名称
                     String province = regeocodeAddress.getProvince();
                     if (!StringUtils.isEmpty(country) && country.equals("中国")) {
-                        mAllProvinces.add(province);
                         drawProvinceOrCity(province);
                     }
                 }
@@ -129,46 +137,28 @@ public class AmapFragment extends BaseFragment implements DistrictSearch.OnDistr
     }
 
     @Override
-    public int setLayout() {
-        return R.layout.module_view_fragment_amap;
-    }
-
-    @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.bt_test) {
-            zoom();
-        } else if (id == R.id.bt_district) {
+        if (id == R.id.bt_district) {
             start(DistrictFragment.newInstance());
         } else if (id == R.id.bt_district_boundary) {
-            //从地图上删除所有的Marker，Overlay，Polyline 等覆盖物
-            //mAMap.clear();
-            //返回当前Location Source 提供的定位信息。如果未设置Location Source 则返回null。当前显示的定位位置的经纬度.Location是安卓类
-            AppUtils.getCurrentLocation(_mActivity, new AppUtils.LocationListener() {
-                @Override
-                public void callback(AMapLocation amapLocation) {
-                    if (amapLocation != null) {
-                        //北京的情况下，省也是北京市
-                        getAddress(new LatLonPoint(amapLocation.getLatitude(), amapLocation.getLongitude()));
-                    }
-                }
-            });
-            AppUtils.getAllPicInfo(_mActivity, new AppUtils.PictureInfoListener() {
-                @Override
-                public void callback(ArrayList<SystemPictureInfo> systemPictureInfos) {
-                    getProvinces(systemPictureInfos);
-                }
-            });
-        } else if (id == R.id.bt_address) {
-            getLatlon("新疆");
-            LatLonPoint latLonPoint = new LatLonPoint(39.904989, 116.405285);
-            getAddress(latLonPoint);
+            getAllSystemPicInfo();
         }
     }
 
     @Override
     public void onEnterAnimationEnd(Bundle savedInstanceState) {
         super.onEnterAnimationEnd(savedInstanceState);
+        initAMap(savedInstanceState);
+        getCurrentLocation();
+    }
+
+    /**
+     * 初始化高德地图
+     *
+     * @param savedInstanceState
+     */
+    private void initAMap(Bundle savedInstanceState) {
         mMapView.onCreate(savedInstanceState); //此方法须覆写，虚拟机需要在很多情况下保存地图绘制的当前状态。
         if (mAMap == null) {
             mAMap = mMapView.getMap();
@@ -181,65 +171,9 @@ public class AmapFragment extends BaseFragment implements DistrictSearch.OnDistr
         draw();
         track();
         zoom();
-    }
-
-    private void getProvinces(ArrayList<SystemPictureInfo> systemPictureInfos) {
-        Maybe.create(new MaybeOnSubscribe<ArrayList<LatLonPoint>>() {
-            @Override
-            public void subscribe(MaybeEmitter<ArrayList<LatLonPoint>> emitter) throws Exception {
-                if (systemPictureInfos != null && systemPictureInfos.size() != 0) {
-                    Long maxTime = 0L;
-                    Long minTime = 0L;
-                    ArrayList<LatLonPoint> latLngs = new ArrayList<>();
-                    for (int i = 0; i < systemPictureInfos.size(); i++) {
-                        SystemPictureInfo systemPictureInfo = systemPictureInfos.get(i);
-                      //  Logger.d(systemPictureInfo);
-                        Long picShoot = Long.parseLong(systemPictureInfo.picShoot);
-                        if (maxTime < picShoot) {
-                            maxTime = picShoot;
-                        }
-                        if (minTime > picShoot) {
-                            minTime = picShoot;
-                        }
-                        String picLongitude = systemPictureInfo.picLongitude;
-                        String picLatitude = systemPictureInfo.picLatitude;
-                        if (!StringUtils.isEmpty(picLongitude) && !StringUtils.isEmpty(picLatitude)) {
-                            latLngs.add(new LatLonPoint(Float.parseFloat(picLatitude), Float.parseFloat(picLongitude)));
-                        }
-                    }
-                    emitter.onSuccess(latLngs);
-                    emitter.onComplete();
-                }
-            }
-        }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(_mActivity))).subscribe(new MaybeObserver<ArrayList<LatLonPoint>>() {
-
-            @Override
-            public void onSubscribe(Disposable d) {
-
-            }
-
-            @Override
-            public void onSuccess(ArrayList<LatLonPoint> o) {
-                for (int i = 0; i < o.size(); i++) {
-                    LatLonPoint latLonPoint = o.get(i);
-                    getAddress(latLonPoint);
-                }
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        });
 
     }
+
 
     private void basic() {
         //地图加载完成
@@ -798,95 +732,37 @@ public class AmapFragment extends BaseFragment implements DistrictSearch.OnDistr
         //地图放大
         // CameraUpdate cameraUpdate = CameraUpdateFactory.zoomIn();
         //地图缩小
-        CameraUpdate cameraUpdate = CameraUpdateFactory.zoomOut();
-        mAMap.moveCamera(cameraUpdate);
+        // CameraUpdate cameraUpdate = CameraUpdateFactory.zoomOut();
+        // mAMap.moveCamera(cameraUpdate);
     }
 
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        //在activity执行onDestroy时执行mMapView.onDestroy()，销毁地图
         mMapView.onDestroy();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        //在activity执行onResume时执行mMapView.onResume ()，重新绘制加载地图
         mMapView.onResume();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        //在activity执行onPause时执行mMapView.onPause ()，暂停地图的绘制
         mMapView.onPause();
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        //在activity执行onSaveInstanceState时执行mMapView.onSaveInstanceState (outState)，保存地图当前的状态
         mMapView.onSaveInstanceState(outState);
     }
 
     @Override
     public void onDistrictSearched(DistrictResult districtResult) {
-         /* try {
-            if (districtResult == null || districtResult.getDistrict() == null) {
-                return;
-            }
-            if (districtResult.getAMapException() != null && districtResult.getAMapException().getErrorCode() == AMapException.CODE_AMAP_SUCCESS) {
-                final DistrictItem item = districtResult.getDistrict().get(0);
-                if (item == null) {
-                    return;
-                }
-                LatLonPoint centerLatLng = item.getCenter();
-                if (centerLatLng != null) {
-                    //  mAMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(centerLatLng.getLatitude(), centerLatLng.getLongitude()), 8));
-                }
-                Logger.d(item.getName());
-                String[] polyStr = item.districtBoundary();
-                if (polyStr == null || polyStr.length == 0) {
-                    return;
-                }
-                PolygonOptions polygonOptions = new PolygonOptions();
-                polygonOptions.fillColor(Color.BLUE);
-                polygonOptions.strokeColor(Color.BLUE);
-                polygonOptions.strokeWidth(1);
-                for (String str : polyStr) {
-                    String[] lat = str.split(";");
-                    // PolylineOptions polylineOption = new PolylineOptions();
-                    boolean isFirst = true;
-                    LatLng firstLatLng = null;
-                    for (String latstr : lat) {
-                        String[] lats = latstr.split(",");
-                        if (isFirst) {
-                            isFirst = false;
-                            firstLatLng = new LatLng(Double.parseDouble(lats[1]), Double.parseDouble(lats[0]));
-                        }
-                        //polylineOption.add(new LatLng(Double.parseDouble(lats[1]), Double.parseDouble(lats[0])));
-                        polygonOptions.add(new LatLng(Double.parseDouble(lats[1]), Double.parseDouble(lats[0])));
-                    }
-                    if (firstLatLng != null) {
-                        // polylineOption.add(firstLatLng);
-                        polygonOptions.add(firstLatLng);
-                    }
-                    // polylineOption.width(10).color(Color.BLUE);
-                }
-                //画边境线,添加多线段
-                //mAMap.addPolyline(polylineOption);
-                //添加多边形 PolygonOptions
-                mAMap.addPolygon(polygonOptions);
-            } else {
-                if (districtResult.getAMapException() != null) {
-                }
-                //ToastUtil.show(districtResult.getAMapException().getErrorCode() + "");
-            }
-        } catch (Exception e) {
-        }*/
-        Logger.d("onDistrictSearched");
         drawProvinceOrCity(districtResult);
     }
 
@@ -920,33 +796,44 @@ public class AmapFragment extends BaseFragment implements DistrictSearch.OnDistr
                         //返回查询行政区的结果
                         ArrayList<DistrictItem> district = districtResult.getDistrict();
                         //行政区信息类
+                        if (district.size() == 0) {
+                            return;
+                        }
                         DistrictItem item = district.get(0);
-                        //以字符串数组形式返回行政区划边界值.经度和纬度之间用","分隔，坐标点之间用";"分隔
+                        //以字符串数组形式返回行政区划边界值.经度和纬度之间用","分隔，坐标点之间用";"分隔,各个岛屿之间的经纬度使用"|"分隔
                         String[] polyStr = item.districtBoundary();
                         if (polyStr == null || polyStr.length == 0) {
                             return;
                         }
-                        PolygonOptions polygonOptions = new PolygonOptions();
-                        polygonOptions.fillColor(Color.BLUE);
-                        polygonOptions.strokeColor(Color.BLUE);
                         //一个行政区域所有边界点的集合
                         //数据量太大，所以可能分组
+
                         for (int i = 0; i < polyStr.length; i++) {
                             String str = polyStr[i];
-                            String[] lat = str.split(";");
-                            for (int i1 = 0; i1 < lat.length; i1++) {
-                                String latstr = lat[i1];
-                                //一个经纬点
-                                String[] lats = latstr.split(",");
-                                LatLng firstLatLng = new LatLng(Double.parseDouble(lats[1]), Double.parseDouble(lats[0]));
-                                polygonOptions.add(firstLatLng);
+                            if (!str.contains("|")) {
+                                String[] lat = str.split(";");
+                                PolygonOptions polygonOptions = new PolygonOptions();
+                                polygonOptions.fillColor(Color.BLUE);
+                                polygonOptions.strokeColor(Color.BLUE);
+                                boolean isFirst = true;
+                                LatLng firstLatLng = null;
+                                for (int i1 = 0; i1 < lat.length; i1++) {
+                                    String latstr = lat[i1];
+                                    //一个经纬点
+                                    String[] lats = latstr.split(",");
+                                    if (isFirst) {
+                                        isFirst = false;
+                                        firstLatLng = new LatLng(Double.parseDouble(lats[1]), Double.parseDouble(lats[0]));
+                                    }
+                                    polygonOptions.add(new LatLng(Double.parseDouble(lats[1]), Double.parseDouble(lats[0])));
+                                }
+                                if (firstLatLng != null) {
+                                    polygonOptions.add(firstLatLng);
+                                }
+                                mAMap.addPolygon(polygonOptions);
                             }
                         }
                         //添加多边形 PolygonOptions
-                        mAMap.addPolygon(polygonOptions);
-                        if (!AppUtils.isMainThread()) {
-                            Logger.d(item.getName());
-                        }
                     }
 
                     @Override
@@ -968,14 +855,25 @@ public class AmapFragment extends BaseFragment implements DistrictSearch.OnDistr
      * @param cityName
      */
     private void drawProvinceOrCity(String cityName) {
-        DistrictSearch search = new DistrictSearch(_mActivity);
-        DistrictSearchQuery   query = new DistrictSearchQuery();
-        search.setOnDistrictSearchListener(this);
-        query.setShowBoundary(true);
-        query.setShowChild(false);
-        query.setKeywords(cityName);
-        search.setQuery(query);
-        search.searchDistrictAsyn();
+        boolean has = false;
+        int size = mAllProvinces.size();
+        for (int i = 0; i < size; i++) {
+            String s = mAllProvinces.get(i);
+            if (s.equals(cityName)) {
+                has = true;
+            }
+        }
+        mAllProvinces.add(cityName);
+        if (!has) {
+            DistrictSearch search = new DistrictSearch(_mActivity);
+            DistrictSearchQuery query = new DistrictSearchQuery();
+            search.setOnDistrictSearchListener(this);
+            query.setShowBoundary(true);
+            query.setShowChild(false);
+            query.setKeywords(cityName);
+            search.setQuery(query);
+            search.searchDistrictAsyn();
+        }
     }
 
     /**
@@ -1010,5 +908,130 @@ public class AmapFragment extends BaseFragment implements DistrictSearch.OnDistr
         return mAMap.getProjection().toScreenLocation(latLng);
     }
 
+    /**
+     * 获取系统中所有照片的信息，照片名，拍摄时间，拍摄经纬度
+     * 很多信息都可能是null
+     */
+    private void getAllSystemPicInfo() {
+        Maybe.create(new MaybeOnSubscribe<ArrayList<SystemPictureInfo>>() {
+            @Override
+            public void subscribe(MaybeEmitter<ArrayList<SystemPictureInfo>> emitter) {
+                Cursor cursor = BaseApplication.mApplicationContext.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null, null);
+                if (cursor == null) {
+                    return;
+                }
+                ArrayList<SystemPictureInfo> systemPictureInfos = new ArrayList<>();
+                while (cursor.moveToNext()) {
+                    SystemPictureInfo systemPictureInfo = new SystemPictureInfo();
+                    systemPictureInfos.add(systemPictureInfo);
+                    //获取图片的名称 mmexport1556030534481.webp
+                    String name = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME));
+                    // storage/emulated/0/tencent/MicroMsg/WeiXin/mmexport1556030534481.webp
+                    byte[] data = cursor.getBlob(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                    String path = new String(data, 0, data.length - 1);
+                    //获取图片的详细信息，很可能为null
+                    String desc = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DESCRIPTION));
+                    //The date & time that the image was taken in units of milliseconds since jan 1, 1970.
+                    String date_taken = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATE_TAKEN));
+                    //String shootTime = AppUtils.transMilesToDate(Long.parseLong(date_taken));
+                    //经纬度
+                    String latitude = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.LATITUDE));
+                    String longitude = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.LONGITUDE));
+                    systemPictureInfo.picName = name;
+                    systemPictureInfo.picPath = path;
+                    systemPictureInfo.picShoot = date_taken;
+                    systemPictureInfo.picLatitude = latitude;
+                    systemPictureInfo.picLongitude = longitude;
+                }
+                cursor.close();
+                emitter.onSuccess(systemPictureInfos);
+                emitter.onComplete();
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(this)))
+                .subscribe(new MaybeObserver<ArrayList<SystemPictureInfo>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(ArrayList<SystemPictureInfo> systemPictureInfos) {
+                        if (systemPictureInfos != null && systemPictureInfos.size() != 0) {
+                            //根据经纬度查询
+                            int size = systemPictureInfos.size();
+                            for (int i = 0; i < size; i++) {
+                                SystemPictureInfo systemPictureInfo = systemPictureInfos.get(i);
+                                if (StringUtils.isEmpty(systemPictureInfo.picLatitude) || StringUtils.isEmpty(systemPictureInfo.picLongitude)) {
+                                    continue;
+                                }
+                                Long l;
+                                Long n;
+                                try {
+                                    l = Long.parseLong(systemPictureInfo.picLatitude);
+                                    n = Long.parseLong(systemPictureInfo.picLatitude);
+                                } catch (Exception e) {
+                                    continue;
+                                }
+                                getAddress(new LatLonPoint(l, n));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+
+    /**
+     * 获取当前地理位置信息
+     */
+    private void getCurrentLocation() {
+        RxPermissions rxPermissions = new RxPermissions(_mActivity);
+        rxPermissions
+                .request(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
+                .subscribe(new Observer<Boolean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Boolean granted) {
+                        if (granted) {
+                            MyLocation.LocationResult locationResult = new MyLocation.LocationResult() {
+                                @Override
+                                public void gotLocation(Location location) {
+                                    Logger.d(location.getLatitude() + ", " + location.getLongitude());
+                                }
+                            };
+                            MyLocation myLocation = new MyLocation();
+                            myLocation.getLocation(_mActivity, locationResult);
+
+                        } else {
+                            Toast.makeText(_mActivity, "Permission denied", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
 
 }
