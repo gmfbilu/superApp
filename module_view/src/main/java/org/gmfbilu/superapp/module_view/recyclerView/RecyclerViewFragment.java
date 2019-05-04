@@ -5,10 +5,11 @@ import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_view.R;
-import org.gmfbilu.superapp.module_view.recyclerView.headerFooter.HeaderFooterRecyclerViewFragment;
-import org.gmfbilu.superapp.module_view.recyclerView.multiType.MultiTypeRecyclerViewFragment;
-import org.gmfbilu.superapp.module_view.recyclerView.simple.SimpleRecyclerViewFragment;
-import org.gmfbilu.superapp.module_view.recyclerView.stickyHeader.StickyHeaderFragment;
+import org.gmfbilu.superapp.module_view.recyclerView.baseRecyclerViewAdapter.BRAFragment;
+import org.gmfbilu.superapp.module_view.recyclerView.easyRecyclerView.headerFooter.HeaderFooterRecyclerViewFragment;
+import org.gmfbilu.superapp.module_view.recyclerView.easyRecyclerView.multiType.MultiTypeRecyclerViewFragment;
+import org.gmfbilu.superapp.module_view.recyclerView.easyRecyclerView.simple.SimpleRecyclerViewFragment;
+import org.gmfbilu.superapp.module_view.recyclerView.easyRecyclerView.stickyHeader.StickyHeaderFragment;
 
 public class RecyclerViewFragment extends BaseFragment {
 
@@ -26,6 +27,7 @@ public class RecyclerViewFragment extends BaseFragment {
         view.findViewById(R.id.module_view_bt_header_footer).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_multitype).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_sticky_header).setOnClickListener(this);
+        view.findViewById(R.id.module_view_bt_baserecyclerviewadapter).setOnClickListener(this);
     }
 
     @Override
@@ -44,6 +46,8 @@ public class RecyclerViewFragment extends BaseFragment {
             start(MultiTypeRecyclerViewFragment.newInstance());
         }else if (id==R.id.module_view_bt_sticky_header){
             start(StickyHeaderFragment.newInstance());
+        }else if (id==R.id.module_view_bt_baserecyclerviewadapter){
+            start(BRAFragment.newInstance());
         }
     }
 }

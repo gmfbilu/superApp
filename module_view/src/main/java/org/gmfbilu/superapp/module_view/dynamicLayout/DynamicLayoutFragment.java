@@ -36,6 +36,9 @@ import org.gmfbilu.superapp.module_view.R;
  * 3.将控件通过addView方法添加到父控件中去
  * 4.控件通过getLayoutParams方法得到的父控件类型的LayoutParams，然后配置宽高等参数
  * 5.控件通过setLayoutParams方法关联LayoutParams
+ * <p>
+ * view.getLayoutParams()得到的是上层布局类型的的LayoutParams，这个LayoutParams可以设置当前view的属性
+ * view.addView(view1),view1是view的子view,view1的LayoutParams是view类型的LayoutParams，是可以new出来的
  */
 public class DynamicLayoutFragment extends BaseFragment {
 

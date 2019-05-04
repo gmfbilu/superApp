@@ -2,6 +2,7 @@ package org.gmfbilu.superapp.module_view.amap;
 
 import android.Manifest;
 import android.database.Cursor;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.location.Location;
@@ -11,11 +12,17 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.amap.api.maps.AMap;
+import com.amap.api.maps.CameraUpdate;
+import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.BitmapDescriptor;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.LatLngBounds;
+import com.amap.api.maps.model.Marker;
+import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.maps.model.PolygonOptions;
 import com.amap.api.services.core.AMapException;
@@ -43,6 +50,7 @@ import org.gmfbilu.superapp.lib_base.utils.SystemPictureInfo;
 import org.gmfbilu.superapp.module_view.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.Maybe;
 import io.reactivex.MaybeEmitter;
@@ -830,10 +838,10 @@ public class AmapFragment extends BaseFragment implements DistrictSearch.OnDistr
                                 if (firstLatLng != null) {
                                     polygonOptions.add(firstLatLng);
                                 }
+                                //添加多边形 PolygonOptions
                                 mAMap.addPolygon(polygonOptions);
                             }
                         }
-                        //添加多边形 PolygonOptions
                     }
 
                     @Override
@@ -880,6 +888,7 @@ public class AmapFragment extends BaseFragment implements DistrictSearch.OnDistr
      * 响应逆地理编码
      */
     public void getAddress(final LatLonPoint latLonPoint) {
+        Logger.d(latLonPoint.getLatitude() + ", " + latLonPoint.getLongitude());
         RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 20000, GeocodeSearch.AMAP);// 第一个参数表示一个Latlng，第二参数表示范围多少米，第三个参数表示是火系坐标系还是GPS原生坐标系
         geocoderSearch.getFromLocationAsyn(query);// 设置异步逆地理编码请求
     }
@@ -958,24 +967,26 @@ public class AmapFragment extends BaseFragment implements DistrictSearch.OnDistr
 
                     @Override
                     public void onSuccess(ArrayList<SystemPictureInfo> systemPictureInfos) {
-                        if (systemPictureInfos != null && systemPictureInfos.size() != 0) {
-                            //根据经纬度查询
-                            int size = systemPictureInfos.size();
-                            for (int i = 0; i < size; i++) {
-                                SystemPictureInfo systemPictureInfo = systemPictureInfos.get(i);
-                                if (StringUtils.isEmpty(systemPictureInfo.picLatitude) || StringUtils.isEmpty(systemPictureInfo.picLongitude)) {
-                                    continue;
-                                }
-                                Long l;
-                                Long n;
-                                try {
-                                    l = Long.parseLong(systemPictureInfo.picLatitude);
-                                    n = Long.parseLong(systemPictureInfo.picLatitude);
-                                } catch (Exception e) {
-                                    continue;
-                                }
-                                getAddress(new LatLonPoint(l, n));
+                        if (systemPictureInfos == null || systemPictureInfos.size() == 0) {
+                            return;
+                        }
+                        //根据经纬度查询
+                        int size = systemPictureInfos.size();
+                        for (int i = 0; i < size; i++) {
+                            SystemPictureInfo systemPictureInfo = systemPictureInfos.get(i);
+                            Logger.d(systemPictureInfo);
+                            if (StringUtils.isEmpty(systemPictureInfo.picLatitude) || StringUtils.isEmpty(systemPictureInfo.picLongitude)) {
+                                continue;
                             }
+                            float l;
+                            float n;
+                            try {
+                                l = Float.valueOf(systemPictureInfo.picLatitude);
+                                n = Float.valueOf(systemPictureInfo.picLatitude);
+                            } catch (Exception e) {
+                                continue;
+                            }
+                            getAddress(new LatLonPoint(l, n));
                         }
                     }
 
@@ -1032,6 +1043,124 @@ public class AmapFragment extends BaseFragment implements DistrictSearch.OnDistr
 
                     }
                 });
+    }
+
+    /**
+     * 添加Marker
+     *
+     * @param latLng
+     */
+    private void addMarker(LatLng latLng) {
+        if (latLng == null) {
+            return;
+        }
+        if (mAMap == null) {
+            return;
+        }
+        MarkerOptions markerOption = new MarkerOptions().position(latLng);
+        markerOption.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_favorite_border_black_24dp)));
+        markerOption.anchor(0.5f, 0.5f);
+        Marker marker = mAMap.addMarker(markerOption);
+        marker.setClickable(false);
+    }
+
+
+    /**
+     * 添加Markers
+     *
+     * @param latLngs
+     */
+    private void addMarkers(ArrayList<LatLng> latLngs) {
+        if (latLngs == null) {
+            return;
+        }
+        int size = latLngs.size();
+        if (size == 0) {
+            return;
+        }
+        if (mAMap == null) {
+            return;
+        }
+        for (LatLng localtion : latLngs) {
+            addMarker(localtion);
+        }
+    }
+
+
+    /**
+     * 删除Markers
+     *
+     * @param latLngs
+     */
+    private void removeMarkers(ArrayList<LatLng> latLngs) {
+        if (latLngs == null) {
+            return;
+        }
+        int size = latLngs.size();
+        if (size == 0) {
+            return;
+        }
+        //获取地图上所有Marker
+        List<Marker> mapScreenMarkers = mAMap.getMapScreenMarkers();
+        int size1 = mapScreenMarkers.size();
+        if (size1 == 0) {
+            return;
+        }
+        for (int i = 0; i < size; i++) {
+            LatLng latLng = latLngs.get(i);
+            for (int i1 = 0; i1 < size1; i1++) {
+                Marker marker = mapScreenMarkers.get(i1);
+                LatLng position = marker.getPosition();
+                if ((latLng.latitude == position.latitude) && (latLng.longitude == position.longitude)) {
+                    //移除当前Marker
+                    marker.remove();
+                }
+            }
+        }
+        //刷新地图
+        mMapView.invalidate();
+    }
+
+    /**
+     * 根据一系列坐标点缩放地图
+     *
+     * @param pointList
+     */
+    private void zoomToSpan(List<LatLng> pointList) {
+        if (pointList != null && pointList.size() > 0) {
+            if (mAMap == null)
+                return;
+            LatLngBounds.Builder b = LatLngBounds.builder();
+            for (int i = 0; i < pointList.size(); i++) {
+                LatLng p = pointList.get(i);
+                b.include(p);
+            }
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(b.build(), 80);
+            mAMap.moveCamera(cameraUpdate);
+        }
+    }
+
+    /**
+     * 根据中心点和一系列坐标点缩放地图
+     *
+     * @param centerpoint
+     * @param pointList
+     */
+    public void zoomToSpanWithCenter(LatLng centerpoint, List<LatLng> pointList) {
+        if (pointList != null && pointList.size() > 0) {
+            if (mAMap == null)
+                return;
+            LatLngBounds.Builder b = LatLngBounds.builder();
+            if (centerpoint != null) {
+                for (int i = 0; i < pointList.size(); i++) {
+                    LatLng p = pointList.get(i);
+                    LatLng p1 = new LatLng((centerpoint.latitude * 2) - p.latitude, (centerpoint.longitude * 2) - p.longitude);
+                    b.include(p);
+                    b.include(p1);
+                }
+            }
+            mAMap.moveCamera(CameraUpdateFactory.newLatLngBounds(b.build(), 50));
+        }
     }
 
 }

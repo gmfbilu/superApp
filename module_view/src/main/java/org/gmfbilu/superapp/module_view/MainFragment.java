@@ -16,6 +16,7 @@ import org.gmfbilu.superapp.module_view.search.SearchFragment;
 import org.gmfbilu.superapp.module_view.shape.ShapeFragment;
 import org.gmfbilu.superapp.module_view.surfaceView.SurfaceViewFragment;
 import org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.Switch_CheckBox_ListPreferenceFragment;
+import org.gmfbilu.superapp.module_view.textView.TextViewFragment;
 import org.gmfbilu.superapp.module_view.topbar.TopBarFragment;
 
 
@@ -44,6 +45,7 @@ public class MainFragment extends BaseFragment {
         view.findViewById(R.id.module_view_bt_dynamicLayout).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_recyclerview).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_shape).setOnClickListener(this);
+        view.findViewById(R.id.module_view_bt_textview).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_surfaceview).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_search).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_generalview).setOnClickListener(this);
@@ -74,6 +76,8 @@ public class MainFragment extends BaseFragment {
             start(RecyclerViewFragment.newInstance());
         } else if (id == R.id.module_view_bt_shape) {
             start(ShapeFragment.newInstance());
+        } else if (id == R.id.module_view_bt_textview) {
+            start(TextViewFragment.newInstance());
         } else if (id == R.id.module_view_bt_surfaceview) {
             start(SurfaceViewFragment.newInstance());
         } else if (id == R.id.module_view_bt_search) {

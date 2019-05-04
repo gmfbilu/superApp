@@ -5,118 +5,141 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/module_view_bt_fragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fragment!"
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
-    <Button
-        android:id="@+id/module_view_bt_constraintlayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ConstraintLayout!"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_view_bt_fragment"/>
+            <Button
+                android:id="@+id/module_view_bt_fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fragment!"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
 
-    <Button
-        android:id="@+id/module_view_bt_switch_checkbox_listpreference"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Switch,Check Box,List Preference!"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_view_bt_constraintlayout"/>
-
-    <Button
-        android:id="@+id/module_view_bt_dialogfragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DialogFragment!"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_view_bt_switch_checkbox_listpreference"/>
+            <Button
+                android:id="@+id/module_view_bt_constraintlayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ConstraintLayout!"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_fragment"/>
 
 
-    <Button
-        android:id="@+id/module_view_bt_dynamicLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dynamic Layout!"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_view_bt_dialogfragment"/>
+            <Button
+                android:id="@+id/module_view_bt_switch_checkbox_listpreference"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Switch,Check Box,List Preference!"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_constraintlayout"/>
 
-    <Button
-        android:id="@+id/module_view_bt_recyclerview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="RecyclerView!"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_view_bt_dynamicLayout"/>
-
-    <Button
-        android:id="@+id/module_view_bt_shape"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="shape!"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_view_bt_recyclerview"/>
+            <Button
+                android:id="@+id/module_view_bt_dialogfragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DialogFragment!"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_switch_checkbox_listpreference"/>
 
 
-    <Button
-        android:id="@+id/module_view_bt_surfaceview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SurfaceView!"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_view_bt_shape"/>
+            <Button
+                android:id="@+id/module_view_bt_dynamicLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dynamic Layout!"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_dialogfragment"/>
+
+            <Button
+                android:id="@+id/module_view_bt_recyclerview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RecyclerView!"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_dynamicLayout"/>
+
+            <Button
+                android:id="@+id/module_view_bt_shape"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="shape!"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_recyclerview"/>
+
+            <Button
+                android:id="@+id/module_view_bt_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView!"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_shape"/>
 
 
-    <Button
-        android:id="@+id/module_view_bt_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="搜索!"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_view_bt_surfaceview"/>
-
-    <Button
-        android:id="@+id/module_view_bt_generalview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="自定义控件!"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_view_bt_search"/>
-
-    <Button
-        android:id="@+id/module_view_bt_amap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="高德地图!"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_view_bt_generalview"/>
-
-    <Button
-        android:id="@+id/module_view_bt_head"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="头部布局!"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_view_bt_amap"/>
+            <Button
+                android:id="@+id/module_view_bt_surfaceview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SurfaceView!"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_textview"/>
 
 
+            <Button
+                android:id="@+id/module_view_bt_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="搜索!"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_surfaceview"/>
+
+            <Button
+                android:id="@+id/module_view_bt_generalview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="自定义控件!"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_search"/>
+
+            <Button
+                android:id="@+id/module_view_bt_amap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="高德地图!"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_generalview"/>
+
+            <Button
+                android:id="@+id/module_view_bt_head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="头部布局!"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_amap"/>
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
 </android.support.constraint.ConstraintLayout>
