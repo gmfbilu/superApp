@@ -50,7 +50,9 @@ import org.gmfbilu.superapp.lib_base.utils.SystemPictureInfo;
 import org.gmfbilu.superapp.module_view.R;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import io.reactivex.Maybe;
 import io.reactivex.MaybeEmitter;
@@ -1081,9 +1083,15 @@ public class AmapFragment extends BaseFragment implements DistrictSearch.OnDistr
         if (mAMap == null) {
             return;
         }
-        for (LatLng localtion : latLngs) {
+        //去重，因为可能得到的经纬度完全一样，这样去重保证了顺序
+        Set<LatLng> middleLinkedHashSet = new LinkedHashSet<>(latLngs);
+        List<LatLng> afterHashSetList = new ArrayList<>(middleLinkedHashSet);
+        for (LatLng localtion : afterHashSetList) {
             addMarker(localtion);
         }
+        middleLinkedHashSet=null;
+        afterHashSetList=null;
+        latLngs=null;
     }
 
 
@@ -1100,7 +1108,7 @@ public class AmapFragment extends BaseFragment implements DistrictSearch.OnDistr
         if (size == 0) {
             return;
         }
-        //获取地图上所有Marker
+        //获取当前可见地图区域的所有marker，注意是可见区域。不看见的区域也可能有marker
         List<Marker> mapScreenMarkers = mAMap.getMapScreenMarkers();
         int size1 = mapScreenMarkers.size();
         if (size1 == 0) {

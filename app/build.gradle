@@ -62,7 +62,7 @@ android {
             }
         }
         ndk {
-            //设置支持的SO库架构
+            //设置支持的SO库架构，不写的话就是默认支持所有，一般只保留v7a就可以
             // abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
         }
         multiDexEnabled true

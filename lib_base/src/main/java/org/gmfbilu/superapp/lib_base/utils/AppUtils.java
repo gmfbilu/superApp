@@ -1068,4 +1068,5 @@ public class AppUtils {
         return Looper.myLooper() == Looper.getMainLooper();
     }
 
+
 }
