@@ -2,8 +2,6 @@ package org.gmfbilu.superapp.lib_base.view.recyclerView;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.ColorRes;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +15,9 @@ import org.gmfbilu.superapp.lib_base.view.recyclerView.adapter.RecyclerArrayAdap
 import org.gmfbilu.superapp.lib_base.view.recyclerView.swipe.SwipeRefreshLayout;
 
 import java.util.ArrayList;
+
+import androidx.annotation.ColorRes;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class BaseRecyclerView extends FrameLayout {
@@ -45,7 +46,7 @@ public class BaseRecyclerView extends FrameLayout {
     protected ArrayList<RecyclerView.OnScrollListener> mExternalOnScrollListenerList = new ArrayList<>();
 
     protected SwipeRefreshLayout mPtrLayout;
-    protected android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener mRefreshListener;
+    protected SwipeRefreshLayout.OnRefreshListener mRefreshListener;
 
     public SwipeRefreshLayout getSwipeToRefresh() {
         return mPtrLayout;
@@ -350,7 +351,7 @@ public class BaseRecyclerView extends FrameLayout {
      *
      * @param listener
      */
-    public void setRefreshListener(android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener listener) {
+    public void setRefreshListener(SwipeRefreshLayout.OnRefreshListener listener) {
         mPtrLayout.setEnabled(true);
         mPtrLayout.setOnRefreshListener(listener);
         this.mRefreshListener = listener;

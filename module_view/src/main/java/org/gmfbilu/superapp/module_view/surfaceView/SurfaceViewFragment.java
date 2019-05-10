@@ -1,12 +1,13 @@
 package org.gmfbilu.superapp.module_view.surfaceView;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_view.R;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 
 
 public class SurfaceViewFragment extends BaseFragment {

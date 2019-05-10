@@ -3,12 +3,6 @@ package org.gmfbilu.superapp.module_view.search;
 import android.animation.ObjectAnimator;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.AppCompatEditText;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.TypedValue;
@@ -31,6 +25,13 @@ import org.gmfbilu.superapp.module_view.R;
 import org.gmfbilu.superapp.module_view.search.viewholder.SearchHotViewHolder;
 
 import java.util.ArrayList;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 public class SearchFragment extends BaseFragment {
 

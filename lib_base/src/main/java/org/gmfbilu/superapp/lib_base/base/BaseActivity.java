@@ -1,5 +1,6 @@
 package org.gmfbilu.superapp.lib_base.base;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
@@ -16,16 +17,26 @@ import me.yokeyword.fragmentation.SupportActivity;
 
 public abstract class BaseActivity extends SupportActivity implements View.OnClickListener {
 
+    /**
+     * 当前Activity的实例。
+     */
+    protected Activity mCurrentActivity;
+    /**
+     * 判断当前Activity是否在前台。
+     */
+    protected  Boolean isActivityActive;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Logger.d(getClass().getName() + "---> onCreate");
+        mCurrentActivity = this;
         int layout = setLayout();
         if (layout != 0)
             setContentView(layout);
         findViewById_setOnClickListener(savedInstanceState);
         activityManager();
-        initPush();
+        //initPush();
     }
 
     public abstract void findViewById_setOnClickListener(Bundle savedInstanceState);
@@ -67,6 +78,7 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
     @Override
     protected void onResume() {
         super.onResume();
+        isActivityActive=true;
         Logger.d(getClass().getName() + "---> onResume");
     }
 
@@ -74,6 +86,7 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
     @Override
     protected void onPause() {
         super.onPause();
+        isActivityActive=false;
         Logger.d(getClass().getName() + "---> onPause");
     }
 
@@ -87,6 +100,7 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
     @Override
     protected void onDestroy() {
         ActivitiesManager.removeActivity(this);
+        mCurrentActivity = null;
         super.onDestroy();
         Logger.d(getClass().getName() + "---> onDestroy");
     }

@@ -2,9 +2,6 @@ package org.gmfbilu.superapp.module_view.search;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.util.ArrayMap;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +21,10 @@ import org.gmfbilu.superapp.module_view.search.viewholder.LocalAllSmallViewHolde
 import org.gmfbilu.superapp.module_view.search.viewholder.LocalViewHolder;
 
 import java.util.ArrayList;
+
+import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class LocalFragment extends BaseSearchFragment {
 

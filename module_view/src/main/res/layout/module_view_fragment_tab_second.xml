@@ -5,11 +5,11 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.design.widget.TabLayout
+        <com.google.android.material.tabs.TabLayout
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/module_fragment_tab"
             android:layout_width="match_parent"
@@ -19,9 +19,9 @@
             app:tabTextAppearance="@style/module_view_tab_appearance"
             app:tabTextColor="#EF9A9A"/>
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/module_fragment_viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

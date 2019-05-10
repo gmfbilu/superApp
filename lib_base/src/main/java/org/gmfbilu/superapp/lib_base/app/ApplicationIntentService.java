@@ -8,8 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -20,6 +18,9 @@ import com.orhanobut.logger.PrettyFormatStrategy;
 import com.squareup.leakcanary.LeakCanary;
 
 import org.gmfbilu.superapp.lib_base.BuildConfig;
+
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 
 /**
  * 我们多次启动IntentService，但IntentService的实例只有一个，这跟传统的Service是一样的，最终IntentService会去调用onHandleIntent执行异步任务

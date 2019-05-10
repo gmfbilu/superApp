@@ -7,8 +7,6 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
@@ -19,6 +17,9 @@ import org.gmfbilu.superapp.module_util.BookManager;
 import org.gmfbilu.superapp.module_util.R;
 
 import java.util.List;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 
 /**
  * 这门语言的目的是为了实现进程间通信

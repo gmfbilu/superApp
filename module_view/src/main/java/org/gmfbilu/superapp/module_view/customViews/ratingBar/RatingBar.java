@@ -5,11 +5,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 import org.gmfbilu.superapp.module_view.customViews.baseView.BaseView;
+
+import androidx.annotation.Nullable;
 
 
 public class RatingBar extends BaseView {

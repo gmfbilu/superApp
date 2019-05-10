@@ -1,7 +1,7 @@
 package org.gmfbilu.superapp.module_java.basic.singleton;
 
 /**
- * 懒汉式非线程安全
+ * 懒汉式非线程安全,单例一直没用过的情况下不占用内存
  */
 public class Singleton1 {
 

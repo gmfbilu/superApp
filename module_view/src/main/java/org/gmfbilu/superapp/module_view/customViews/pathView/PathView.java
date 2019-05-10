@@ -7,13 +7,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.animation.DecelerateInterpolator;
 
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 import org.gmfbilu.superapp.module_view.customViews.baseView.BaseView;
+
+import androidx.annotation.Nullable;
 
 
 /**

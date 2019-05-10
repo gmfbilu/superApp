@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Toast;
 
@@ -14,6 +13,7 @@ import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.lib_base.http.NetObserver;
 import org.gmfbilu.superapp.module_util.R;
 
+import androidx.annotation.Nullable;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 

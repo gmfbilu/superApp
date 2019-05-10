@@ -2,8 +2,6 @@ package org.gmfbilu.superapp.module_view.recyclerView.easyRecyclerView.headerFoo
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,6 +21,9 @@ import org.gmfbilu.superapp.module_view.R;
 import org.gmfbilu.superapp.module_view.recyclerView.easyRecyclerView.simple.SimpleBeen;
 
 import java.util.ArrayList;
+
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class HeaderFooterRecyclerViewFragment extends BaseFragment {
 

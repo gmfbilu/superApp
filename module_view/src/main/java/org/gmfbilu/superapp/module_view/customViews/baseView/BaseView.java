@@ -1,13 +1,14 @@
 package org.gmfbilu.superapp.module_view.customViews.baseView;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.orhanobut.logger.Logger;
 
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
+
+import androidx.annotation.Nullable;
 
 /**
  * 自定义View需要处理padding，无需处理margin。自定义ViewGroup需要同时处理padding和margin

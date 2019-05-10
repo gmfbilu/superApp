@@ -2,20 +2,22 @@ package org.gmfbilu.superapp.module_view.dynamicLayout;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
-import android.support.constraint.ConstraintSet;
-import android.support.design.widget.AppBarLayout;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.material.appbar.AppBarLayout;
+
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 import org.gmfbilu.superapp.module_view.R;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 
 /**
  * 1. xml中引入的根布局通过getLayoutParams获取的LayoutParams默认是FrameLayout.LayoutParams.
@@ -90,7 +92,7 @@ public class DynamicLayoutFragment extends BaseFragment {
         appBarLayout.addView(toolbar);
         AppBarLayout.LayoutParams AppBarLayout_LayoutParams = new AppBarLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         toolbar.setLayoutParams(AppBarLayout_LayoutParams);
-        toolbar.setPopupTheme(android.support.v7.appcompat.R.style.ThemeOverlay_AppCompat_Dark_ActionBar);
+        toolbar.setPopupTheme(R.style.ThemeOverlay_AppCompat_Dark_ActionBar);
         toolbar.setOnClickListener(this);
         toolbar.setNavigationIcon(R.mipmap.lib_base_ic_arrow_back_white_24dp);
         toolbar.setNavigationOnClickListener(v -> _mActivity.onBackPressed());

@@ -2,8 +2,6 @@ package org.gmfbilu.superapp.module_java.rxJava;
 
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.orhanobut.logger.Logger;
@@ -19,6 +17,8 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Completable;
 import io.reactivex.CompletableEmitter;

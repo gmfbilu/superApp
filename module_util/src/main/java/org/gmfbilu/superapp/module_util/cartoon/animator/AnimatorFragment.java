@@ -6,8 +6,6 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatButton;
 import android.view.View;
 import android.view.animation.BounceInterpolator;
 
@@ -15,6 +13,9 @@ import com.orhanobut.logger.Logger;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_util.R;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 
 /**
  * https://github.com/OCNYang/Android-Animation-Set/tree/master/property-animation

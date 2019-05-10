@@ -1,2 +1,1 @@
-[1/2] Building CXX object CMakeFiles/jniDemo2.dir/src/main/cpp/jniDemo2.cpp.o
-[2/2] Linking CXX shared library ..\..\..\..\build\intermediates\cmake\debug\obj\x86_64\libjniDemo2.so
+ninja: no work to do.

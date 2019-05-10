@@ -1,8 +1,6 @@
 package org.gmfbilu.superapp.module_view.customViews;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
@@ -17,6 +15,8 @@ import org.gmfbilu.superapp.module_view.customViews.stepView.StepViewTwoBean;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;

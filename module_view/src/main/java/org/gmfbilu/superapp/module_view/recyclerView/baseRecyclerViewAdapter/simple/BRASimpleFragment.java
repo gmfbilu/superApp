@@ -1,8 +1,6 @@
 package org.gmfbilu.superapp.module_view.recyclerView.baseRecyclerViewAdapter.simple;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -12,6 +10,9 @@ import org.gmfbilu.superapp.lib_base.utils.ToastUtil;
 import org.gmfbilu.superapp.module_view.R;
 
 import java.util.ArrayList;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class BRASimpleFragment extends BaseFragment {
 

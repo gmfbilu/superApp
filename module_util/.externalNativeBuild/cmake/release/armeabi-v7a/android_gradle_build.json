@@ -1,9 +1,12 @@
 
 {
-	"buildFiles" : [ "D:/Android/demo/superApp/module_util/CMakeLists.txt" ],
+	"buildFiles" : 
+	[
+		"/home/gmfbilu/Work/Android/Projects/superApp/module_util/CMakeLists.txt"
+	],
 	"cleanCommands" : 
 	[
-		"D:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Android\\demo\\superApp\\module_util\\.externalNativeBuild\\cmake\\release\\armeabi-v7a --target clean"
+		"/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/armeabi-v7a --target clean"
 	],
 	"cppFileExtensions" : [ "cpp" ],
 	"libraries" : 
@@ -12,45 +15,45 @@
 		{
 			"abi" : "armeabi-v7a",
 			"artifactName" : "jniDemo",
-			"buildCommand" : "D:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Android\\demo\\superApp\\module_util\\.externalNativeBuild\\cmake\\release\\armeabi-v7a --target jniDemo",
+			"buildCommand" : "/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/armeabi-v7a --target jniDemo",
 			"buildType" : "release",
 			"files" : 
 			[
 				
 				{
-					"flags" : "  --target=armv7-none-linux-androideabi21 --gcc-toolchain=D:/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -DjniDemo_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mfpu=vfpv3-d16 -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -Oz -DNDEBUG  -fPIC    -c ",
-					"src" : "D:/Android/demo/superApp/module_util/src/main/cpp/jniDemo.cpp",
-					"workingDirectory" : "D:/Android/demo/superApp/module_util/.externalNativeBuild/cmake/release/armeabi-v7a"
+					"flags" : "  --target=armv7-none-linux-androideabi21 --gcc-toolchain=/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -DjniDemo_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mfpu=vfpv3-d16 -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -Oz -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/gmfbilu/Work/Android/Projects/superApp/module_util/src/main/cpp/jniDemo.cpp",
+					"workingDirectory" : "/home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/armeabi-v7a"
 				}
 			],
-			"output" : "D:/Android/demo/superApp/module_util/build/intermediates/cmake/release/obj/armeabi-v7a/libjniDemo.so",
-			"toolchain" : "423535169"
+			"output" : "/home/gmfbilu/Work/Android/Projects/superApp/module_util/build/intermediates/cmake/release/obj/armeabi-v7a/libjniDemo.so",
+			"toolchain" : "8962518858468697716"
 		},
 		"jniDemo2-Release-armeabi-v7a" : 
 		{
 			"abi" : "armeabi-v7a",
 			"artifactName" : "jniDemo2",
-			"buildCommand" : "D:\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Android\\demo\\superApp\\module_util\\.externalNativeBuild\\cmake\\release\\armeabi-v7a --target jniDemo2",
+			"buildCommand" : "/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/armeabi-v7a --target jniDemo2",
 			"buildType" : "release",
 			"files" : 
 			[
 				
 				{
-					"flags" : "  --target=armv7-none-linux-androideabi21 --gcc-toolchain=D:/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -DjniDemo2_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mfpu=vfpv3-d16 -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -Oz -DNDEBUG  -fPIC    -c ",
-					"src" : "D:/Android/demo/superApp/module_util/src/main/cpp/jniDemo2.cpp",
-					"workingDirectory" : "D:/Android/demo/superApp/module_util/.externalNativeBuild/cmake/release/armeabi-v7a"
+					"flags" : "  --target=armv7-none-linux-androideabi21 --gcc-toolchain=/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -DjniDemo2_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mfpu=vfpv3-d16 -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -stdlib=libc++  -Oz -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/gmfbilu/Work/Android/Projects/superApp/module_util/src/main/cpp/jniDemo2.cpp",
+					"workingDirectory" : "/home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/release/armeabi-v7a"
 				}
 			],
-			"output" : "D:/Android/demo/superApp/module_util/build/intermediates/cmake/release/obj/armeabi-v7a/libjniDemo2.so",
-			"toolchain" : "423535169"
+			"output" : "/home/gmfbilu/Work/Android/Projects/superApp/module_util/build/intermediates/cmake/release/obj/armeabi-v7a/libjniDemo2.so",
+			"toolchain" : "8962518858468697716"
 		}
 	},
 	"toolchains" : 
 	{
-		"423535169" : 
+		"8962518858468697716" : 
 		{
-			"cCompilerExecutable" : "D:/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
-			"cppCompilerExecutable" : "D:/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
+			"cCompilerExecutable" : "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/clang",
+			"cppCompilerExecutable" : "/home/gmfbilu/Work/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++"
 		}
 	}
 }

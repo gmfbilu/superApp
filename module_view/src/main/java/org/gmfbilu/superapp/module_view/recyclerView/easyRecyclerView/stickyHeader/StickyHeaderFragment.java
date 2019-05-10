@@ -2,8 +2,6 @@ package org.gmfbilu.superapp.module_view.recyclerView.easyRecyclerView.stickyHea
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -17,6 +15,9 @@ import org.gmfbilu.superapp.lib_base.view.recyclerView.decoration.StickyHeaderDe
 import org.gmfbilu.superapp.module_view.R;
 
 import java.util.ArrayList;
+
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class StickyHeaderFragment extends BaseFragment {
 

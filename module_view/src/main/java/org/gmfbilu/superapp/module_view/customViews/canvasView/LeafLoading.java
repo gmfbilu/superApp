@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.drawable.BitmapDrawable;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.animation.DecelerateInterpolator;
 
@@ -19,6 +18,8 @@ import org.gmfbilu.superapp.module_view.customViews.baseView.BaseView;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+
+import androidx.annotation.Nullable;
 
 public class LeafLoading extends BaseView {
 

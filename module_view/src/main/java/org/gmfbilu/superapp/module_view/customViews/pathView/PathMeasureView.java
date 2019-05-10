@@ -10,12 +10,13 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 import org.gmfbilu.superapp.module_view.R;
 import org.gmfbilu.superapp.module_view.customViews.baseView.BaseView;
+
+import androidx.annotation.Nullable;
 
 /**
  * PathMeasure是一个用来测量Path的类

@@ -66,7 +66,7 @@ android {
             // abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
         }
         multiDexEnabled true
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
@@ -117,13 +117,13 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:multidex:${multidex_lib_version}"
+    implementation "androidx.multidex:multidex:${androidx_multidex_version}"
     annotationProcessor "com.alibaba:arouter-compiler:${arouter_compiler_version}"
     annotationProcessor "com.github.bumptech.glide:compiler:${glide_version}"
-    implementation project(':lib_base')
     testImplementation "junit:junit:${junit_lib_version}"
-    androidTestImplementation "com.android.support.test:runner:${test_runner_lib_version}"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:${test_espresso_lib_version}"
+    androidTestImplementation "androidx.test:runner:${androidx_test_runner_version}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${androidx_test_espresso_version}"
+    implementation project(':lib_base')
     if (!isModule.toBoolean()) {
         implementation project(':module_view')
         implementation project(':module_util')

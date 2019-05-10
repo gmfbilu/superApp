@@ -1,12 +1,13 @@
 package org.gmfbilu.superapp.module_java.webSocket;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_java.R;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 
 /**
  * 利用OkHttp实现WebSocket通信？

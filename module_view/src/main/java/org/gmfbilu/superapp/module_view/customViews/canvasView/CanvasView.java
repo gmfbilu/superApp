@@ -6,11 +6,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
 import org.gmfbilu.superapp.module_view.R;
 import org.gmfbilu.superapp.module_view.customViews.baseView.BaseView;
+
+import androidx.annotation.Nullable;
 
 /**
  * translate(x,y);位移是基于当前位置移动，而不是每次基于屏幕左上角的(0,0)点移动

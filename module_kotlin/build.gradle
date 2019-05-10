@@ -54,8 +54,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':lib_base')
     testImplementation "junit:junit:${junit_lib_version}"
-    androidTestImplementation "com.android.support.test:runner:${test_runner_lib_version}"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:${test_espresso_lib_version}"
+    androidTestImplementation "androidx.test:runner:${androidx_test_runner_version}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${androidx_test_espresso_version}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     annotationProcessor "com.alibaba:arouter-compiler:${arouter_compiler_version}"
 }

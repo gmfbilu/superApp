@@ -1,10 +1,11 @@
 package org.gmfbilu.superapp.module_view.fragment.module.secondTab;
 
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_view.R;
+
+import androidx.appcompat.widget.Toolbar;
 
 public class NewFeatureFragment extends BaseFragment {
 

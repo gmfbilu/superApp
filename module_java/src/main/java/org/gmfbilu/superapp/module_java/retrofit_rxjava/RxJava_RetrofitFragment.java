@@ -1,8 +1,6 @@
 package org.gmfbilu.superapp.module_java.retrofit_rxjava;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
@@ -15,6 +13,9 @@ import org.gmfbilu.superapp.lib_base.bean.response.LoginRes;
 import org.gmfbilu.superapp.lib_base.http.HttpMethods;
 import org.gmfbilu.superapp.lib_base.http.NetObserver;
 import org.gmfbilu.superapp.module_java.R;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 
 public class RxJava_RetrofitFragment extends BaseFragment {
 

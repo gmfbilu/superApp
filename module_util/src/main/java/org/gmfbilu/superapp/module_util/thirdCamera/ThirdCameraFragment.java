@@ -1,11 +1,12 @@
 package org.gmfbilu.superapp.module_util.thirdCamera;
 
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_util.R;
+
+import androidx.appcompat.widget.AppCompatImageView;
 
 public class ThirdCameraFragment extends BaseFragment {
 

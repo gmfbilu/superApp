@@ -1,6 +1,6 @@
 package org.gmfbilu.superapp.lib_base.view.recyclerView.adapter;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class FixDataObserver extends RecyclerView.AdapterDataObserver {

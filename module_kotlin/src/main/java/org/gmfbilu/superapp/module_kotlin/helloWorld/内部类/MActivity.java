@@ -1,6 +1,6 @@
 package org.gmfbilu.superapp.module_kotlin.helloWorld.内部类;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MActivity extends AppCompatActivity {
 

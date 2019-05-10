@@ -27,7 +27,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Looper;
-import android.support.design.widget.TabLayout;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -39,6 +38,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.android.material.tabs.TabLayout;
 import com.leon.channel.helper.ChannelReaderUtil;
 
 import org.gmfbilu.superapp.lib_base.app.Constant;

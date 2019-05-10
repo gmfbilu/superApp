@@ -13,6 +13,8 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.gmfbilu.superapp.lib_base.app.ActivitiesManager;
 
+import androidx.fragment.app.Fragment;
+
 
 @Aspect
 public class CheckLoginAspect {
@@ -37,8 +39,8 @@ public class CheckLoginAspect {
                 context = (Context) object;
             } else if (object instanceof android.app.Fragment) {
                 context = ((android.app.Fragment) object).getActivity();
-            } else if (object instanceof android.support.v4.app.Fragment) {
-                context = ((android.support.v4.app.Fragment) object).getActivity();
+            } else if (object instanceof Fragment) {
+                context = ((Fragment) object).getActivity();
             } else {
                 context = ActivitiesManager.getCurrentActivity();
             }

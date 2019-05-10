@@ -1,7 +1,6 @@
 package org.gmfbilu.superapp.module_view.fragment.module;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
@@ -14,6 +13,7 @@ import org.gmfbilu.superapp.module_view.fragment.module.thirdTab.MainThirdFragme
 import org.gmfbilu.superapp.module_view.fragment.views.BottomBar;
 import org.gmfbilu.superapp.module_view.fragment.views.BottomBarTab;
 
+import androidx.annotation.Nullable;
 import me.yokeyword.fragmentation.SupportFragment;
 
 public class MainFFragment extends BaseFragment {

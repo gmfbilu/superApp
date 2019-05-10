@@ -23,10 +23,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static android.R.layout.simple_spinner_item;
 
-public class DistrictFragment extends BaseFragment  implements
-        DistrictSearch.OnDistrictSearchListener, AdapterView.OnItemSelectedListener{
+public class DistrictFragment extends BaseFragment  implements DistrictSearch.OnDistrictSearchListener, AdapterView.OnItemSelectedListener{
 
 
     public static final String COUNTRY = "country"; // 行政区划，国家级
@@ -196,8 +194,8 @@ public class DistrictFragment extends BaseFragment  implements
                 spinnerDistrict.setAdapter(adapter);
             }
         } else {
-            List<String> emptyNameList = new ArrayList<String>();
-            ArrayAdapter<String> emptyAdapter = new ArrayAdapter<String>(_mActivity, simple_spinner_item, emptyNameList);
+            List<String> emptyNameList = new ArrayList<>();
+            ArrayAdapter<String> emptyAdapter = new ArrayAdapter<>(_mActivity, android.R.layout.simple_spinner_item, emptyNameList);
             if (selectedLevel.equalsIgnoreCase(COUNTRY)) {
 
                 spinnerProvince.setAdapter(emptyAdapter);
@@ -257,27 +255,21 @@ public class DistrictFragment extends BaseFragment  implements
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position,
-                               long id) {
+    public void onItemSelected(AdapterView<?> parent, View view, int position,long id) {
         DistrictItem districtItem = null;
-        switch (parent.getId()) {
-            case R.id.spinner_province:
-                districtItem = provinceList.get(position);
-                selectedLevel = PROVINCE;
-                tv_provinceInfo.setText(getDistrictInfoStr(districtItem));
-                break;
-            case R.id.spinner_city:
-                selectedLevel = CITY;
-                districtItem = cityList.get(position);
-                tv_cityInfo.setText(getDistrictInfoStr(districtItem));
-                break;
-            case R.id.spinner_district:
-                selectedLevel = DISTRICT;
-                districtItem = districtList.get(position);
-                tv_districtInfo.setText(getDistrictInfoStr(districtItem));
-                break;
-            default:
-                break;
+        int i = parent.getId();
+        if (i == R.id.spinner_province) {
+            districtItem = provinceList.get(position);
+            selectedLevel = PROVINCE;
+            tv_provinceInfo.setText(getDistrictInfoStr(districtItem));
+        } else if (i == R.id.spinner_city) {
+            selectedLevel = CITY;
+            districtItem = cityList.get(position);
+            tv_cityInfo.setText(getDistrictInfoStr(districtItem));
+        } else if (i == R.id.spinner_district) {
+            selectedLevel = DISTRICT;
+            districtItem = districtList.get(position);
+            tv_districtInfo.setText(getDistrictInfoStr(districtItem));
         }
 
         if (districtItem != null) {

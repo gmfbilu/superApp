@@ -1,12 +1,13 @@
 package org.gmfbilu.superapp.module_view.fragment.module.secondTab;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_view.R;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 
 /**
  * Created by gmfbilu on 18-3-11.
@@ -38,7 +39,7 @@ public class CycleFragment extends BaseFragment {
 
     @Override
     public void findViewById_setOnClickListener(View view) {
-        Toolbar   toolbar = view.findViewById(R.id.module_view_toolbar);
+        Toolbar toolbar = view.findViewById(R.id.module_view_toolbar);
         view.findViewById(R.id.module_fragment_bt_next).setOnClickListener(this);
         view.findViewById(R.id.module_fragment_bt_next_with_finish).setOnClickListener(this);
 

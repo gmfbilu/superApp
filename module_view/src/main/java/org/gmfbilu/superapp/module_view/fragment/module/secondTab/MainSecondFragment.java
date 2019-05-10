@@ -1,13 +1,15 @@
 package org.gmfbilu.superapp.module_view.fragment.module.secondTab;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.view.View;
+
+import com.google.android.material.tabs.TabLayout;
 
 import org.gmfbilu.superapp.module_view.R;
 import org.gmfbilu.superapp.module_view.fragment.base.BaseMainFFragment;
+
+import androidx.annotation.Nullable;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by gmfbilu on 18-3-11.

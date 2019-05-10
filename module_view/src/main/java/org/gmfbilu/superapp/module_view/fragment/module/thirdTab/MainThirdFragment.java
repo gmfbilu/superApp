@@ -1,12 +1,13 @@
 package org.gmfbilu.superapp.module_view.fragment.module.thirdTab;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 
 import org.gmfbilu.superapp.module_view.R;
 import org.gmfbilu.superapp.module_view.fragment.base.BaseMainFFragment;
 import org.gmfbilu.superapp.module_view.fragment.module.MainFFragment;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by gmfbilu on 18-3-11.

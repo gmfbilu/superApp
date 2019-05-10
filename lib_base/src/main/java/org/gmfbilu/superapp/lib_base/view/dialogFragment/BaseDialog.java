@@ -1,9 +1,10 @@
 package org.gmfbilu.superapp.lib_base.view.dialogFragment;
 
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
-import android.support.annotation.StyleRes;
+
+import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
+import androidx.annotation.StyleRes;
 
 public class BaseDialog extends BaseDialogFragment {
     private DialogFragmentViewConvertListener convertListener;

@@ -18,7 +18,7 @@
             android:grantUriPermissions="true"  授予临时权限
         -->
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="org.gmfbilu.superapp.module_util.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">

@@ -1,13 +1,14 @@
 package org.gmfbilu.superapp.module_view.constraintlayout;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.constraint.Group;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_view.R;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.Group;
 
 
 /**

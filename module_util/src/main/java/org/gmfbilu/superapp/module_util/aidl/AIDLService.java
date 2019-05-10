@@ -3,8 +3,6 @@ package org.gmfbilu.superapp.module_util.aidl;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.os.RemoteException;
-import android.support.annotation.Nullable;
 
 import com.orhanobut.logger.Logger;
 
@@ -12,6 +10,8 @@ import org.gmfbilu.superapp.module_util.BookManager;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.Nullable;
 
 /**
  * 服务端的AIDLService.java

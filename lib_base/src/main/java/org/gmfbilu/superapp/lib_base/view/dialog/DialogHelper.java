@@ -3,8 +3,6 @@ package org.gmfbilu.superapp.lib_base.view.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.StyleRes;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +11,9 @@ import android.view.WindowManager;
 
 import org.gmfbilu.superapp.lib_base.R;
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.StyleRes;
 
 public class DialogHelper extends Dialog {
 

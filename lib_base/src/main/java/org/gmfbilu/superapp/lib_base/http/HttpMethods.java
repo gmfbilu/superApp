@@ -1,7 +1,5 @@
 package org.gmfbilu.superapp.lib_base.http;
 
-import android.arch.lifecycle.LifecycleOwner;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -26,6 +24,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;

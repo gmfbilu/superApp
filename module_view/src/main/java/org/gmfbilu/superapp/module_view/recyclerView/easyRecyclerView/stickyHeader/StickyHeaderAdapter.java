@@ -3,7 +3,6 @@
 package org.gmfbilu.superapp.module_view.recyclerView.easyRecyclerView.stickyHeader;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,8 @@ import org.gmfbilu.superapp.lib_base.view.recyclerView.decoration.StickyHeaderDe
 import org.gmfbilu.superapp.module_view.R;
 
 import java.util.ArrayList;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class StickyHeaderAdapter implements StickyHeaderDecoration.IStickyHeaderAdapter<StickyHeaderAdapter.HeaderHolder> {
