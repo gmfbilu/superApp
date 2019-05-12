@@ -11,3 +11,15 @@
 306	354	0	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo2.so	8a22498d46140e5
 0	332	0	CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o	f6ef461b9df71253
 332	357	0	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo.so	713781e128a63fec
+1	298	0	CMakeFiles/jniDemo2.dir/src/main/cpp/jniDemo2.cpp.o	edad204829a8eb67
+298	347	0	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo2.so	8a22498d46140e5
+1	294	0	CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o	f6ef461b9df71253
+295	320	0	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo.so	713781e128a63fec
+0	292	0	CMakeFiles/jniDemo2.dir/src/main/cpp/jniDemo2.cpp.o	edad204829a8eb67
+292	355	0	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo2.so	8a22498d46140e5
+1	289	0	CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o	f6ef461b9df71253
+289	314	0	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo.so	713781e128a63fec
+1	319	0	CMakeFiles/jniDemo2.dir/src/main/cpp/jniDemo2.cpp.o	edad204829a8eb67
+319	369	0	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo2.so	8a22498d46140e5
+0	297	0	CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o	f6ef461b9df71253
+297	322	0	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libjniDemo.so	713781e128a63fec

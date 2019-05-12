@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Per Material Design specs: -->
+    <!-- https://material.io/design/components/buttons-floating-action-button.html#specs -->
+    <dimen name="fab_margin" tools:ignore="ResourceName">16dp</dimen>
+
+    <!-- Padding on the bottom of a screen so that the FAB won't overlap scrolled text. -->
+    <dimen name="fab_bottom_padding" tools:ignore="ResourceName">72dp</dimen>
+
+    <dimen name="app_bar_height" tools:ignore="ResourceName">200dp</dimen>
+
+    <dimen name="margin_normal" tools:ignore="ResourceName">16dp</dimen>
+    <dimen name="margin_small" tools:ignore="ResourceName">8dp</dimen>
+
+    <dimen name="plant_item_image_height" tools:ignore="ResourceName">100dp</dimen>
+
+    <dimen name="navigation_drawer_header_height" tools:ignore="ResourceName">192dp</dimen>
+    <dimen name="navigation_drawer_header_padding" tools:ignore="ResourceName">16dp</dimen>
+    <dimen name="navigation_drawer_image_width" tools:ignore="ResourceName">100dp</dimen>
+</resources>

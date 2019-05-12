@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Values used for animations -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Duration (in milliseconds) for slide transition animation -->
+    <integer name="slide" tools:ignore="ResourceName">200</integer>
+</resources>

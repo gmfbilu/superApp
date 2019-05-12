@@ -13,6 +13,8 @@ import me.yokeyword.fragmentation.SupportActivity;
 
 /**
  * Created by gmfbilu on 2018/3/7.
+ * <p>
+ * 这种baseActivity不适合mvvm
  */
 
 public abstract class BaseActivity extends SupportActivity implements View.OnClickListener {
@@ -24,7 +26,7 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
     /**
      * 判断当前Activity是否在前台。
      */
-    protected  Boolean isActivityActive;
+    protected Boolean isActivityActive;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +57,6 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
         }
     }
 
-    /**
-     * 自定义通知打开页面后关闭此Activity
-     */
-    @Override
-    public void onBackPressedSupport() {
-        super.onBackPressedSupport();
-    }
 
     @Override
     protected void onStart() {
@@ -78,7 +73,7 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
     @Override
     protected void onResume() {
         super.onResume();
-        isActivityActive=true;
+        isActivityActive = true;
         Logger.d(getClass().getName() + "---> onResume");
     }
 
@@ -86,7 +81,7 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
     @Override
     protected void onPause() {
         super.onPause();
-        isActivityActive=false;
+        isActivityActive = false;
         Logger.d(getClass().getName() + "---> onPause");
     }
 

@@ -1,9 +1,10 @@
 package org.gmfbilu.superapp.module_kotlin
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import org.gmfbilu.superapp.lib_base.base.BaseFragment
-import org.gmfbilu.superapp.lib_base.utils.ToastUtil
+import org.gmfbilu.superapp.module_kotlin.sunflower.GardenActivity
 
 class MainFragment : BaseFragment() {
 
@@ -18,13 +19,13 @@ class MainFragment : BaseFragment() {
 
     override fun onClick(v: View?) {
         val id = v?.id
-        if (id == R.id.tv) {
-            ToastUtil.show("hello")
+        if (id == R.id.bt) {
+           startActivity(Intent(_mActivity,GardenActivity::class.java))
         }
     }
 
     override fun findViewById_setOnClickListener(view: View?) {
-        view?.findViewById<View>(R.id.tv)?.setOnClickListener(this)
+        view?.findViewById<View>(R.id.bt)?.setOnClickListener(this)
     }
 
     override fun setLayout(): Int {

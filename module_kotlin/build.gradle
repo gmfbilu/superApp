@@ -5,6 +5,8 @@ if (isModule.toBoolean()) {
 }
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 Properties properties = new Properties()
 properties.load(project.rootProject.file("gradle.properties").newDataInputStream())
@@ -14,6 +16,9 @@ int versionCodeP = Integer.parseInt(properties.getProperty("versionCode"))
 android {
     resourcePrefix "module_kotlin_"
     compileSdkVersion compileSdk as int
+    dataBinding {
+        enabled = true
+    }
     defaultConfig {
         minSdkVersion minSdk as int
         targetSdkVersion targetSdk as int
@@ -58,4 +63,5 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:${androidx_test_espresso_version}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     annotationProcessor "com.alibaba:arouter-compiler:${arouter_compiler_version}"
+    kapt "androidx.room:room-compiler:${androidx_room_version}"
 }
