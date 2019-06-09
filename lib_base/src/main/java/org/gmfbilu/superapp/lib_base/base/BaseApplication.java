@@ -69,4 +69,8 @@ public class BaseApplication extends Application {
     }
 
 
+    @Override
+    public void registerActivityLifecycleCallbacks(ActivityLifecycleCallbacks callback) {
+        super.registerActivityLifecycleCallbacks(callback);
+    }
 }

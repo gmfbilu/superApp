@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_java.basic.singleton;
+package org.gmfbilu.superapp.module_java.basic.单例;
 
 /**
  * 饿汉式，和第三种差不多

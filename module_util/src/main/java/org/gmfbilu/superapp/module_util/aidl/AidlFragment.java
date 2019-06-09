@@ -22,6 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 
 /**
+ * https://juejin.im/post/5cb14c696fb9a0686e40c48d
  * 这门语言的目的是为了实现进程间通信
  * 我们可以在一个进程访问另一个进程的数据，甚至调用它的一些方法，当然，只能是特定的方法
  * <p>

@@ -23,3 +23,7 @@
 583	640	0	../../../../build/intermediates/cmake/debug/obj/x86_64/libjniDemo.so	9647c0453f7f2832
 1	314	0	CMakeFiles/jniDemo2.dir/src/main/cpp/jniDemo2.cpp.o	2dade8d16577810
 314	338	0	../../../../build/intermediates/cmake/debug/obj/x86_64/libjniDemo2.so	e5c8cb821c6eb1b
+2	555	0	CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o	f722163b71944c90
+555	603	0	../../../../build/intermediates/cmake/debug/obj/x86_64/libjniDemo.so	9647c0453f7f2832
+1	328	0	CMakeFiles/jniDemo2.dir/src/main/cpp/jniDemo2.cpp.o	2dade8d16577810
+328	352	0	../../../../build/intermediates/cmake/debug/obj/x86_64/libjniDemo2.so	e5c8cb821c6eb1b

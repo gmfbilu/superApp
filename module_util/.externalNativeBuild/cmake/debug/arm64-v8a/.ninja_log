@@ -31,3 +31,7 @@
 311	387	0	../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libjniDemo2.so	d1bdc30e3492ff85
 1	303	0	CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o	706d84a145675053
 303	353	0	../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libjniDemo.so	8d4f9f1c844530fe
+1	311	0	CMakeFiles/jniDemo2.dir/src/main/cpp/jniDemo2.cpp.o	1ec8eadb65f7049a
+311	389	0	../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libjniDemo2.so	d1bdc30e3492ff85
+1	305	0	CMakeFiles/jniDemo.dir/src/main/cpp/jniDemo.cpp.o	706d84a145675053
+305	353	0	../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libjniDemo.so	8d4f9f1c844530fe

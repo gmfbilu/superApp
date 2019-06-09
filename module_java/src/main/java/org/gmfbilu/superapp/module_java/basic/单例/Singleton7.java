@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_java.basic.singleton;
+package org.gmfbilu.superapp.module_java.basic.单例;
 
 /**
  * 双重校验锁,避免在多线程环境中被创建多次

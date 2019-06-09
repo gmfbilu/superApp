@@ -14,4 +14,12 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt_header_footer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="header,footer"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_simple"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

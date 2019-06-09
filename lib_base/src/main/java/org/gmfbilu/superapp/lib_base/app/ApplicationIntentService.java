@@ -18,6 +18,7 @@ import com.orhanobut.logger.PrettyFormatStrategy;
 import com.squareup.leakcanary.LeakCanary;
 
 import org.gmfbilu.superapp.lib_base.BuildConfig;
+import org.gmfbilu.superapp.lib_base.base.BaseApplication;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
@@ -111,11 +112,11 @@ public class ApplicationIntentService extends IntentService {
 
 
     private void initLocalCrashReport() {
-        CrashHandler.getInstance().init(getApplicationContext());
+        CrashHandler.getInstance().init(BaseApplication.mApplicationContext);
     }
 
     private void initLeakCanary() {
-        if (LeakCanary.isInAnalyzerProcess(this)) {
+        if (LeakCanary.isInAnalyzerProcess(BaseApplication.mApplicationContext)) {
             // This process is dedicated to LeakCanary for heap analysis.
             // You should not init your app in this process.
             return;

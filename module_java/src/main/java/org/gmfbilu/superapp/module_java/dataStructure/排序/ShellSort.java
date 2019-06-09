@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_java.dataStructure.sort;
+package org.gmfbilu.superapp.module_java.dataStructure.排序;
 
 /**
  * 希尔排序

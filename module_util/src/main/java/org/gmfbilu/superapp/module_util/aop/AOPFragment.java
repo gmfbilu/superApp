@@ -67,7 +67,7 @@ public class AOPFragment extends BaseFragment {
     @TimeLog
     @SingleClick
     private void trace() {
-        for (int i = 0; i < 100000; i++) {
+        for (int i = 0; i < 1000000; i++) {
             Map map = new HashMap();
             map.put("name", "tony");
             map.put("age", "18");

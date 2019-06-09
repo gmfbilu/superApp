@@ -1,5 +1,4 @@
-package org.gmfbilu.superapp.module_view.recyclerView.baseRecyclerViewAdapter.simple;
-
+package org.gmfbilu.superapp.module_view.recyclerView.baseRecyclerViewAdapter.headerfooter;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -8,10 +7,9 @@ import org.gmfbilu.superapp.module_view.R;
 
 import java.util.ArrayList;
 
-//第一个泛型String是数据实体类型，第二个BaseViewHolder是ViewHolder其目的是为了支持扩展ViewHolder
-public class SimpleAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
+public class HeaderFooterAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
-    public SimpleAdapter(int layoutResId, ArrayList<String> data) {
+    public HeaderFooterAdapter(int layoutResId, ArrayList<String> data) {
         super(layoutResId, data);
     }
 

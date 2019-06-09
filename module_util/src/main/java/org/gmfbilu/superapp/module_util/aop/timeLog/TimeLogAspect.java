@@ -25,7 +25,7 @@ public class TimeLogAspect {
     @Around("methodAnnotated() || constructorAnnotated()")//在连接点进行方法替换
     public Object aroundJoinPoint(ProceedingJoinPoint joinPoint) throws Throwable {
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-        Logger.d(methodSignature.getMethod().getDeclaringClass().getCanonicalName());
+        //Logger.d(methodSignature.getMethod().getDeclaringClass().getCanonicalName());
         String className = methodSignature.getDeclaringType().getSimpleName();
         String methodName = methodSignature.getName();
         long startTime = System.nanoTime();

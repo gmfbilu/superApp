@@ -5,9 +5,11 @@ import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_view.R;
+import org.gmfbilu.superapp.module_view.recyclerView.baseRecyclerViewAdapter.headerfooter.BRAHeaderFooterFragment;
 import org.gmfbilu.superapp.module_view.recyclerView.baseRecyclerViewAdapter.simple.BRASimpleFragment;
 
 public class BRAFragment extends BaseFragment {
+
 
     public static BRAFragment newInstance() {
         Bundle args = new Bundle();
@@ -19,11 +21,12 @@ public class BRAFragment extends BaseFragment {
     @Override
     public void findViewById_setOnClickListener(View view) {
         view.findViewById(R.id.bt_simple).setOnClickListener(this);
+        view.findViewById(R.id.bt_header_footer).setOnClickListener(this);
     }
 
     @Override
     public int setLayout() {
-        return R.layout.module_view_fragment_base_recyclerview_adapter;
+        return R.layout.module_view_fragment_bra;
     }
 
     @Override
@@ -31,6 +34,8 @@ public class BRAFragment extends BaseFragment {
         int id = v.getId();
         if (id == R.id.bt_simple) {
             start(BRASimpleFragment.newInstance());
+        }else if (id==R.id.bt_header_footer){
+            start(BRAHeaderFooterFragment.newInstance());
         }
     }
 

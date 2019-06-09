@@ -74,26 +74,17 @@ dependencies {
     api "com.umeng.sdk:common:${push_common_version}"
     api "com.umeng.sdk:utdid:${push_utdid_version}"
     api "com.umeng.sdk:push:${push_version}"
-    //RxJava2
+    //RxJava2+Retrofit2+okhttp3+logging-interceptor+gson+converter-gson+adapter-rxjava+RxAndroid2+autodispose
     api "io.reactivex.rxjava2:rxjava:${rxjava_version}"
-    //RxAndroid2
     api "io.reactivex.rxjava2:rxandroid:${rxandroid_version}"
-    //Retrofit2
     api "com.squareup.retrofit2:retrofit:${retrofit2_version}"
-    //okhttp3
     api "com.squareup.okhttp3:okhttp:${okhttp3_version}"
-    //logging-interceptor
     api "com.squareup.okhttp3:logging-interceptor:${okhttp_logging_version}"
-    //gson
     api "com.google.code.gson:gson:${gson_version}"
-    //converter-gson
     api "com.squareup.retrofit2:converter-gson:${converter_gson_version}"
-    //adapter-rxjava
     api "com.squareup.retrofit2:adapter-rxjava2:${adapter_rxjava_version}"
-    //autodispose
     api "com.uber.autodispose:autodispose:${autodispose_version}"
     api "com.uber.autodispose:autodispose-android-archcomponents:${autodispose_version}"
-    //glide
     api "com.github.bumptech.glide:glide:${glide_version}"
     //屏幕适配框架
     api "me.jessyan:autosize:${autosize_version}"

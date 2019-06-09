@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_java.basic.singleton;
+package org.gmfbilu.superapp.module_java.basic.单例;
 
 /**
  * 懒汉式非线程安全,单例一直没用过的情况下不占用内存
