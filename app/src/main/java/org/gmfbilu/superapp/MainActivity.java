@@ -11,6 +11,7 @@ import org.gmfbilu.superapp.lib_base.base.BaseActivity;
 
 public class MainActivity extends BaseActivity {
 
+
     @Override
     public void findViewById_setOnClickListener(Bundle savedInstanceState) {
         findViewById(R.id.module_views).setOnClickListener(this);
