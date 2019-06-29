@@ -7,5 +7,6 @@ public class Test {
         Integer integer1 = Integer.valueOf(10);
         System.out.println(integer.equals(integer1));
         System.out.println(integer == integer1);
+        System.out.println("master stash1");
     }
 }
