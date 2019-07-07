@@ -6,5 +6,6 @@ public class Test {
         System.out.println("this is master test merge commit log1");
         System.out.println("this is master test merge commit log2");
         System.out.println("this is master test merge commit log3");
+        System.out.println("this is master test merge commit log4");
     }
 }
