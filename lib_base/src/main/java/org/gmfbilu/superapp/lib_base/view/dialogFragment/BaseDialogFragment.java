@@ -8,9 +8,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
-import org.gmfbilu.superapp.lib_base.R;
-import org.gmfbilu.superapp.lib_base.utils.AppUtils;
-
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +15,9 @@ import androidx.annotation.StyleRes;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import org.gmfbilu.superapp.lib_base.R;
+import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 
 public abstract class BaseDialogFragment extends DialogFragment {
     private static final String MARGIN = "margin";
@@ -36,6 +36,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
     private float dimAmount = 0.5f;//灰度深浅
     private boolean showBottom;//是否底部显示
     private boolean outCancel = true;//是否点击外部取消
+    private boolean fullScreen = false;//是否全屏
     @StyleRes
     protected int theme = R.style.lib_base_BaseDialogFragmentStyle; // dialog主题
     @StyleRes
@@ -55,7 +56,6 @@ public abstract class BaseDialogFragment extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NO_TITLE, initTheme());
-
         //恢复保存的数据
         if (savedInstanceState != null) {
             margin = savedInstanceState.getInt(MARGIN);
@@ -78,6 +78,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
         convertView(DialogFragmentViewHolder.create(view), this);
         return view;
     }
+
 
     @Override
     public void onStart() {
@@ -117,23 +118,26 @@ public abstract class BaseDialogFragment extends DialogFragment {
                     animStyle = R.style.lib_base_BaseDialogFragment_DefaultAnimation;
                 }
             }
-
-            //设置dialog宽度
-            if (width == 0) {
-                lp.width = AppUtils.getScreenWidth() - 2 * AppUtils.dp2px(margin);
-            } else if (width == -1) {
-                lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+            if (fullScreen) {
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                lp.height = WindowManager.LayoutParams.MATCH_PARENT;
             } else {
-                lp.width = AppUtils.dp2px(width);
-            }
+                //设置dialog宽度
+                if (width == 0) {
+                    lp.width = AppUtils.getScreenWidth() - 2 * AppUtils.dp2px(margin);
+                } else if (width == -1) {
+                    lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+                } else {
+                    lp.width = AppUtils.dp2px(width);
+                }
 
-            //设置dialog高度
-            if (height == 0) {
-                lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-            } else {
-                lp.height = AppUtils.dp2px(height);
+                //设置dialog高度
+                if (height == 0) {
+                    lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                } else {
+                    lp.height = AppUtils.dp2px(height);
+                }
             }
-
             //设置dialog进入、退出的动画
             window.setWindowAnimations(animStyle);
             window.setAttributes(lp);
@@ -173,6 +177,11 @@ public abstract class BaseDialogFragment extends DialogFragment {
 
     public BaseDialogFragment setAnimStyle(@StyleRes int animStyle) {
         this.animStyle = animStyle;
+        return this;
+    }
+
+    public BaseDialogFragment setFullScreen(boolean isFullScreen) {
+        this.fullScreen = isFullScreen;
         return this;
     }
 

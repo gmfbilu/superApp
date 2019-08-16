@@ -21,7 +21,8 @@
     </style>
 
     <style name="lib_base_BaseDialogFragment_DefaultAnimation" parent="android:Animation" tools:ignore="ResourceName">
-        <item name="android:windowEnterAnimation">@anim/lib_base_basedialogfragment_enter_anim</item>
+        <item name="android:windowEnterAnimation">@anim/lib_base_basedialogfragment_enter_anim
+        </item>
         <item name="android:windowExitAnimation">@anim/lib_base_basedialogfragment_exit_anim</item>
     </style>
 
@@ -32,4 +33,5 @@
         <item name="android:windowNoTitle">true</item> <!-- 无标题 -->
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
+
 </resources>

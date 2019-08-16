@@ -15,6 +15,7 @@ import org.gmfbilu.superapp.lib_base.view.dialogFragment.BaseDialogFragment;
 import org.gmfbilu.superapp.lib_base.view.dialogFragment.DialogFragmentViewConvertListener;
 import org.gmfbilu.superapp.lib_base.view.dialogFragment.DialogFragmentViewHolder;
 import org.gmfbilu.superapp.module_view.R;
+import org.gmfbilu.superapp.module_view.dialogFragment.countryselect.CountrySelectDialogFragment;
 
 /**
  * Google官方建议使用DialogFragment代替Dialog
@@ -38,6 +39,7 @@ public class DialogFragment extends BaseFragment {
         view.findViewById(R.id.bt_dialog_redpocket).setOnClickListener(this);
         view.findViewById(R.id.bt_dialog_loading).setOnClickListener(this);
         view.findViewById(R.id.bt_dialog_pop).setOnClickListener(this);
+        view.findViewById(R.id.bt_dialog_country_select).setOnClickListener(this);
 
     }
 
@@ -136,6 +138,10 @@ public class DialogFragment extends BaseFragment {
             ConfirmDialogFragment.newInstance("1")
                     .setMargin(60)
                     .setOutCancel(false)
+                    .show(_mActivity.getSupportFragmentManager());
+        } else if (id == R.id.bt_dialog_country_select) {
+            CountrySelectDialogFragment.newInstance()
+                    .setFullScreen(true)
                     .show(_mActivity.getSupportFragmentManager());
         }
     }

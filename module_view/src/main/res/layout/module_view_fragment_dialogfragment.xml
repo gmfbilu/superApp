@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -12,7 +11,7 @@
         android:text="分享"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <Button
@@ -22,7 +21,7 @@
         android:text="好友设置"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_dialog_share"/>
+        app:layout_constraintTop_toBottomOf="@+id/bt_dialog_share" />
 
     <Button
         android:id="@+id/bt_dialog_commit"
@@ -31,7 +30,7 @@
         android:text="评论"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_dialog_setting"/>
+        app:layout_constraintTop_toBottomOf="@+id/bt_dialog_setting" />
 
     <Button
         android:id="@+id/bt_dialog_redpocket"
@@ -40,17 +39,17 @@
         android:text="红包"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_dialog_commit"/>
+        app:layout_constraintTop_toBottomOf="@+id/bt_dialog_commit" />
 
 
-  <Button
+    <Button
         android:id="@+id/bt_dialog_loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="加载中"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_dialog_redpocket"/>
+        app:layout_constraintTop_toBottomOf="@+id/bt_dialog_redpocket" />
 
     <Button
         android:id="@+id/bt_dialog_pop"
@@ -59,6 +58,15 @@
         android:text="弹框"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_dialog_loading"/>
+        app:layout_constraintTop_toBottomOf="@+id/bt_dialog_loading" />
+
+    <Button
+        android:id="@+id/bt_dialog_country_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="地区选择"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_dialog_pop" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
