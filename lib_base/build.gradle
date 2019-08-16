@@ -28,18 +28,19 @@ android {
 }
 
 dependencies {
+
     /**
-     * api和compile完全一样，compile过时
-     * implementation 将该依赖隐藏在内部，而不对外部公开，implementation不可以依赖传递。
-     * 比如现在项目中有app,module1,module2三个modulepp依赖module1,module1依赖module2,那么在app内能调用module2的参数和方法吗？如果是compile依赖的确实可以做到依赖传递，但是AS 3.0开始推荐使用implementation取代了compile，依赖传递失效了
-     * 由于之前的项目统一用compile依赖，导致的情况就是模块耦合性太高，不利于项目拆解，使用implementation之后虽然使用起来复杂了但是做到降低偶合兴提高安全性，使用implementation会使编译速度有所增快
-     * 依赖首先应该设置为implementation
+     *  api和compile完全一样，compile过时
+     *  implementation 将该依赖隐藏在内部，而不对外部公开，implementation不可以依赖传递。
+     *  比如现在项目中有app,module1,module2三个modulepp依赖module1,module1依赖module2,那么在app内能调用module2的参数和方法吗？如果是compile依赖的确实可以做到依赖传递，但是AS 3.0开始推荐使用implementation取代了compile，依赖传递失效了
+     *  由于之前的项目统一用compile依赖，导致的情况就是模块耦合性太高，不利于项目拆解，使用implementation之后虽然使用起来复杂了但是做到降低偶合兴提高安全性，使用implementation会使编译速度有所增快
+     *  依赖首先应该设置为implementation
      *
-     * annotationProcessor将该依赖隐藏在内部，而不对外部公开,所以遇到注解的框架需要再写一次
-     * annotationProcessor来代替android-apt，annotationProcessor同时支持 javac 和 jack 编译方式，而android-apt只支持 javac 方式
-     * APT是一种处理注释的工具,它对源代码文件进行检测找出其中的Annotation，根据注解自动生成代码
-     * Annotation处理器在处理Annotation时可以根据源文件中的Annotation生成额外的源文件和其它的文件(文件具体内容由Annotation处理器的编写者决定),APT还会编译生成的源文件和原来的源文件，将它们一起生成class文件
-     * 注解处理器（AbstractProcess）+代码处理（javaPoet）+处理器注册（AutoService）+apt
+     *  annotationProcessor将该依赖隐藏在内部，而不对外部公开,所以遇到注解的框架需要再写一次
+     *  annotationProcessor来代替android-apt，annotationProcessor同时支持 javac 和 jack 编译方式，而android-apt只支持 javac 方式
+     *  APT是一种处理注释的工具,它对源代码文件进行检测找出其中的Annotation，根据注解自动生成代码
+     *  Annotation处理器在处理Annotation时可以根据源文件中的Annotation生成额外的源文件和其它的文件(文件具体内容由Annotation处理器的编写者决定),APT还会编译生成的源文件和原来的源文件，将它们一起生成class文件
+     *  注解处理器（AbstractProcess）+代码处理（javaPoet）+处理器注册（AutoService）+apt
      */
     api fileTree(include: ['*.jar'], dir: 'libs')
     api "androidx.appcompat:appcompat:${androidx_appcompat_version}"
@@ -60,20 +61,27 @@ dependencies {
 
     //路由
     api "com.alibaba:arouter-api:${arouter_api_version}"
+
     //日志
     api "com.orhanobut:logger:${logger_version}"
+
     //fragment
     api "me.yokeyword:fragmentation:${yokeyword_fragmentation_version}"
+
     //事件总线
     api "org.greenrobot:eventbus:${greenrobot_eventbus_version}"
+
     //多渠道打包
     api "com.leon.channel:helper:${leon_channel_version}"
+
     //权限申请
     api "com.tbruyelle.rxpermissions2:rxpermissions:${rxpermissions2_version}"
+
     //PushSDK
     api "com.umeng.sdk:common:${push_common_version}"
     api "com.umeng.sdk:utdid:${push_utdid_version}"
     api "com.umeng.sdk:push:${push_version}"
+
     //RxJava2+Retrofit2+okhttp3+logging-interceptor+gson+converter-gson+adapter-rxjava+RxAndroid2+autodispose
     api "io.reactivex.rxjava2:rxjava:${rxjava_version}"
     api "io.reactivex.rxjava2:rxandroid:${rxandroid_version}"
@@ -86,18 +94,29 @@ dependencies {
     api "com.uber.autodispose:autodispose:${autodispose_version}"
     api "com.uber.autodispose:autodispose-android-archcomponents:${autodispose_version}"
     api "com.github.bumptech.glide:glide:${glide_version}"
+
     //屏幕适配框架
     api "me.jessyan:autosize:${autosize_version}"
+
     //内存泄露检测
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakCanary_version}"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanary_version}"
+
     //万能适配器
     api "com.github.CymChad:BaseRecyclerViewAdapterHelper:${baseRecyclerViewAdapterHelper_version}"
+
     //定位
     api "com.amap.api:location:${amap_location_version}"
+
     //搜索
     api "com.amap.api:search:${amap_search_version}"
+
     //高德3D地图
     api "com.amap.api:3dmap:${amap_3dmap_version}"
 
+    //google二维码
+    implementation files('lib/core-3.1.0.jar')
+
+    //照片和视频库
+    api "com.github.LuckSiege.PictureSelector:picture_library:${picture_elector}"
 }

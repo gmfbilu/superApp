@@ -1,0 +1,22 @@
+{
+  "buildFiles": [
+    "D:\\demo\\superApp\\module_util\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "D:\\09_setup\\AndroidSDK\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\demo\\superApp\\module_util\\.cxx\\cmake\\release\\armeabi-v7a --target clean"
+  ],
+  "libraries": {
+    "jniDemo-Release-armeabi-v7a": {
+      "artifactName": "jniDemo",
+      "buildCommand": "D:\\09_setup\\AndroidSDK\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\demo\\superApp\\module_util\\.cxx\\cmake\\release\\armeabi-v7a --target jniDemo",
+      "abi": "armeabi-v7a",
+      "output": "D:\\demo\\superApp\\module_util\\build\\intermediates\\cmake\\release\\obj\\armeabi-v7a\\libjniDemo.so"
+    },
+    "jniDemo2-Release-armeabi-v7a": {
+      "artifactName": "jniDemo2",
+      "buildCommand": "D:\\09_setup\\AndroidSDK\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\demo\\superApp\\module_util\\.cxx\\cmake\\release\\armeabi-v7a --target jniDemo2",
+      "abi": "armeabi-v7a",
+      "output": "D:\\demo\\superApp\\module_util\\build\\intermediates\\cmake\\release\\obj\\armeabi-v7a\\libjniDemo2.so"
+    }
+  }
+}

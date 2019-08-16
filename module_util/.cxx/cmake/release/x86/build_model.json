@@ -1,0 +1,72 @@
+{
+  "variant": {
+    "module": {
+      "rootBuildGradleFolder": "D:\\demo\\superApp",
+      "sdkFolder": "D:\\09_setup\\AndroidSDK",
+      "isNativeCompilerSettingsCacheEnabled": false,
+      "isBuildOnlyTargetAbiEnabled": true,
+      "splitsAbiFilterSet": [],
+      "intermediatesFolder": "D:\\demo\\superApp\\module_util\\build\\intermediates",
+      "gradleModulePathName": ":module_util",
+      "moduleRootFolder": "D:\\demo\\superApp\\module_util",
+      "makeFile": "D:\\demo\\superApp\\module_util\\CMakeLists.txt",
+      "buildSystem": "CMAKE",
+      "compilerSettingsCacheFolder": "D:\\demo\\superApp\\.cxx",
+      "cxxFolder": "D:\\demo\\superApp\\module_util\\.cxx",
+      "ndkFolder": "D:\\09_setup\\AndroidSDK\\ndk-bundle",
+      "ndkVersion": "20.0.5594570",
+      "ndkSupportedAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "ndkDefaultAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "cmakeToolchainFile": "."
+    },
+    "buildSystemArgumentList": [],
+    "cFlagList": [],
+    "cppFlagsList": [
+      ""
+    ],
+    "variantName": "release",
+    "soFolder": "D:\\demo\\superApp\\module_util\\build\\intermediates\\cmake\\release\\lib",
+    "objFolder": "D:\\demo\\superApp\\module_util\\build\\intermediates\\cmake\\release\\obj",
+    "jsonFolder": "D:\\demo\\superApp\\module_util\\.cxx\\cmake\\release",
+    "gradleBuildOutputFolder": "D:\\demo\\superApp\\module_util\\.cxx\\cxx\\release",
+    "isDebuggableEnabled": false,
+    "validAbiList": [
+      "ARMEABI_V7A",
+      "ARM64_V8A",
+      "X86",
+      "X86_64"
+    ],
+    "buildTargetSet": []
+  },
+  "abi": "X86",
+  "abiPlatformVersion": 21,
+  "cxxBuildFolder": "D:\\demo\\superApp\\module_util\\.cxx\\cmake\\release\\x86",
+  "jsonFile": "D:\\demo\\superApp\\module_util\\.cxx\\cmake\\release\\x86\\android_gradle_build.json",
+  "gradleBuildOutputFolder": "D:\\demo\\superApp\\module_util\\.cxx\\cxx\\release\\x86",
+  "objFolder": "D:\\demo\\superApp\\module_util\\build\\intermediates\\cmake\\release\\obj\\x86",
+  "buildCommandFile": "D:\\demo\\superApp\\module_util\\.cxx\\cmake\\release\\x86\\build_command.txt",
+  "buildOutputFile": "D:\\demo\\superApp\\module_util\\.cxx\\cmake\\release\\x86\\build_output.txt",
+  "modelOutputFile": "D:\\demo\\superApp\\module_util\\.cxx\\cmake\\release\\x86\\build_model.json",
+  "cmake": {
+    "cmakeListsWrapperFile": "D:\\demo\\superApp\\module_util\\.cxx\\cxx\\release\\x86\\CMakeLists.txt",
+    "toolchainWrapperFile": "D:\\demo\\superApp\\module_util\\.cxx\\cxx\\release\\x86\\android_gradle_build.toolchain.cmake",
+    "buildGenerationStateFile": "D:\\demo\\superApp\\module_util\\.cxx\\cxx\\release\\x86\\build_generation_state.json",
+    "cacheKeyFile": "D:\\demo\\superApp\\module_util\\.cxx\\cxx\\release\\x86\\compiler_cache_key.json",
+    "compilerCacheUseFile": "D:\\demo\\superApp\\module_util\\.cxx\\cxx\\release\\x86\\compiler_cache_use.json",
+    "compilerCacheWriteFile": "D:\\demo\\superApp\\module_util\\.cxx\\cxx\\release\\x86\\compiler_cache_write.json",
+    "toolchainSettingsFromCacheFile": "D:\\demo\\superApp\\module_util\\.cxx\\cxx\\release\\x86\\compiler_settings_cache.cmake",
+    "cmakeWrappingBaseFolder": "."
+  },
+  "jsonGenerationLoggingRecordFile": "D:\\demo\\superApp\\module_util\\.cxx\\cmake\\release\\x86\\json_generation_record.json",
+  "compileCommandsJsonFile": "D:\\demo\\superApp\\module_util\\.cxx\\cmake\\release\\x86\\compile_commands.json"
+}

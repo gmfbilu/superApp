@@ -1,7 +1,7 @@
-Executable : /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake
+Executable : D:\09_setup\AndroidSDK\cmake\3.6.4111459\bin\cmake.exe
 arguments : 
 --build
-/home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/debug/arm64-v8a
+D:\demo\superApp\module_util\.externalNativeBuild\cmake\debug\arm64-v8a
 --target
 jniDemo
 jvmArgs : 

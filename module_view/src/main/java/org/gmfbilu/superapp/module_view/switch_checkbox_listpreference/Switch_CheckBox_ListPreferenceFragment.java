@@ -14,6 +14,13 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.orhanobut.logger.Logger;
 
@@ -31,13 +38,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class Switch_CheckBox_ListPreferenceFragment extends BaseFragment {
 
@@ -164,7 +164,9 @@ public class Switch_CheckBox_ListPreferenceFragment extends BaseFragment {
                     calendar.set(Calendar.MONTH, monthOfYear);
                     calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                     String date = DateFormat.getDateInstance(DateFormat.MEDIUM).format(calendar.getTime());
-                    Toast.makeText(_mActivity, date, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(_mActivity, date, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(_mActivity, "year="+year+", monthOfYear="+(monthOfYear+1)+", dayOfMonth="+dayOfMonth, Toast.LENGTH_SHORT).show();
+
                 }
             }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
             datePickerDialog.show();

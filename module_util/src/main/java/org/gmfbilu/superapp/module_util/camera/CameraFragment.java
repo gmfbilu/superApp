@@ -11,6 +11,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.FileProvider;
+
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
@@ -20,24 +24,23 @@ import org.gmfbilu.superapp.module_util.R;
 
 import java.io.File;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.FileProvider;
-
 public class CameraFragment extends BaseFragment {
 
+    //========================================================拍照
     //打开相册请求码
-    private static final int CODE_GALLERY_REQUEST = 0xa0;
+    private static final int CODE_GALLERY_REQUEST = 100;
     //打开相机请求码
-    private static final int CODE_CAMERA_REQUEST = 0xa1;
+    private static final int CODE_CAMERA_REQUEST = 101;
     //裁剪图片返回码
-    private static final int CODE_RESULT_REQUEST = 0xa2;
+    private static final int CODE_RESULT_REQUEST = 102;
     private File fileUri = new File(Environment.getExternalStorageDirectory().getPath() + "/photo.jpg");
     private File fileCropUri = new File(Environment.getExternalStorageDirectory().getPath() + "/crop_photo.jpg");
     private Uri imageUri;
     private Uri cropImageUri;
     private static final int OUTPUT_X = 480;
     private static final int OUTPUT_Y = 480;
+
+    //=========================================================拍摄视频
 
     private RxPermissions rxPermissions;
     private Toolbar mToolbar;
@@ -57,6 +60,7 @@ public class CameraFragment extends BaseFragment {
         mIV_pic = view.findViewById(R.id.module_util_iv_pic);
         view.findViewById(R.id.module_util_bt_camera).setOnClickListener(this);
         view.findViewById(R.id.module_util_bt_album).setOnClickListener(this);
+        view.findViewById(R.id.module_util_bt_video).setOnClickListener(this);
     }
 
     @Override
@@ -68,9 +72,11 @@ public class CameraFragment extends BaseFragment {
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.module_util_bt_camera) {
-            autoObtainCameraPermission();
+            autoObtainCameraPermission(true);
         } else if (id == R.id.module_util_bt_album) {
             autoObtainStoragePermission();
+        } else if (id == R.id.module_util_bt_video) {
+            autoObtainCameraPermission(false);
         }
     }
 
@@ -87,14 +93,18 @@ public class CameraFragment extends BaseFragment {
     /**
      * 申请访问相机权限
      */
-    private void autoObtainCameraPermission() {
+    private void autoObtainCameraPermission(boolean photo) {
         rxPermissions
                 .request(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
                 .subscribe(new NetObserver<Boolean>() {
                     @Override
                     public void onNext(Boolean granted) {
                         if (granted) {
-                            openSystemCamera();
+                            if (photo) {
+                                openSystemCamera();
+                            } else {
+
+                            }
                         } else {
                             Toast.makeText(_mActivity, "权限拒绝，请去设置中心打开相关权限", Toast.LENGTH_SHORT).show();
                         }

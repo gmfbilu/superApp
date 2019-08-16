@@ -42,6 +42,7 @@ public class MainFragment extends BaseFragment {
         view.findViewById(R.id.module_util_bt_sqlite).setOnClickListener(this);
         view.findViewById(R.id.module_util_bt_bluetooth).setOnClickListener(this);
         view.findViewById(R.id.module_util_bt_hook).setOnClickListener(this);
+        view.findViewById(R.id.module_util_bt_workManager).setOnClickListener(this);
     }
 
     @Override
@@ -69,14 +70,16 @@ public class MainFragment extends BaseFragment {
             start(GlideFragment.newInstance());
         } else if (id == R.id.module_util_bt_animation) {
             start(CartoonFragment.newInstance());
-        }else if (id==R.id.module_util_bt_webview){
+        } else if (id == R.id.module_util_bt_webview) {
             start(WebViewFragment.newInstance());
-        }else if (id==R.id.module_util_bt_sqlite){
+        } else if (id == R.id.module_util_bt_sqlite) {
             start(SQLiteFragment.newInstance());
-        }else if (id==R.id.module_util_bt_bluetooth){
+        } else if (id == R.id.module_util_bt_bluetooth) {
             start(BlueToothFragment.newInstance());
-        }else if (id==R.id.module_util_bt_hook){
+        } else if (id == R.id.module_util_bt_hook) {
             start(HookFragment.newInstance());
+        } else if (id == R.id.module_util_bt_workManager) {
+
         }
     }
 }

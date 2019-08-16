@@ -3,6 +3,9 @@ package org.gmfbilu.superapp.module_view.customViews;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.lib_base.http.NetObserver;
 import org.gmfbilu.superapp.module_view.R;
@@ -11,12 +14,11 @@ import org.gmfbilu.superapp.module_view.customViews.stepView.StepViewOne;
 import org.gmfbilu.superapp.module_view.customViews.stepView.StepViewOneBean;
 import org.gmfbilu.superapp.module_view.customViews.stepView.StepViewTwo;
 import org.gmfbilu.superapp.module_view.customViews.stepView.StepViewTwoBean;
+import org.gmfbilu.superapp.module_view.customViews.折叠收缩布局.ExpandLayout;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -33,6 +35,7 @@ public class CustomViewsFragment extends BaseFragment {
     private StepViewOne mStepViewOne;
     private StepViewTwo mStepViewTwo;
     private LeafLoading mLeafLoading;
+    private ExpandLayout mExpandLayout;
 
     public static CustomViewsFragment newInstance() {
         Bundle args = new Bundle();
@@ -48,6 +51,8 @@ public class CustomViewsFragment extends BaseFragment {
         mStepViewOne = view.findViewById(R.id.StepViewOne);
         mStepViewTwo = view.findViewById(R.id.StepViewTwo);
         mLeafLoading = view.findViewById(R.id.LeafLoading);
+        view.findViewById(R.id.bt_ExpandLayout).setOnClickListener(this);
+        mExpandLayout = view.findViewById(R.id.expandLayout);
     }
 
     @Override
@@ -66,6 +71,7 @@ public class CustomViewsFragment extends BaseFragment {
         mToolbar.setNavigationIcon(R.mipmap.lib_base_ic_arrow_back_white_24dp);
         mToolbar.setNavigationOnClickListener(v -> _mActivity.onBackPressed());
         mToolbar.setTitle("generalView!");
+        initExpandView();
     }
 
     /**
@@ -152,7 +158,15 @@ public class CustomViewsFragment extends BaseFragment {
 
     @Override
     public void onClick(View v) {
+        int id = v.getId();
+        if (id == R.id.bt_ExpandLayout) {
+            mExpandLayout.toggleExpand();
+        }
+    }
 
+
+    private void initExpandView() {
+        mExpandLayout.initExpand(false);
     }
 
     @Override

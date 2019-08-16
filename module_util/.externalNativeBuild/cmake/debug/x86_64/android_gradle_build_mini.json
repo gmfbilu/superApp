@@ -1,22 +1,22 @@
 {
   "buildFiles": [
-    "/home/gmfbilu/Work/Android/Projects/superApp/module_util/CMakeLists.txt"
+    "D:\\demo\\superApp\\module_util\\CMakeLists.txt"
   ],
   "cleanCommands": [
-    "/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/debug/x86_64 --target clean"
+    "D:\\09_setup\\AndroidSDK\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\demo\\superApp\\module_util\\.externalNativeBuild\\cmake\\debug\\x86_64 --target clean"
   ],
   "libraries": {
     "jniDemo2-Debug-x86_64": {
       "artifactName": "jniDemo2",
-      "buildCommand": "/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/debug/x86_64 --target jniDemo2",
+      "buildCommand": "D:\\09_setup\\AndroidSDK\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\demo\\superApp\\module_util\\.externalNativeBuild\\cmake\\debug\\x86_64 --target jniDemo2",
       "abi": "x86_64",
-      "output": "/home/gmfbilu/Work/Android/Projects/superApp/module_util/build/intermediates/cmake/debug/obj/x86_64/libjniDemo2.so"
+      "output": "D:\\demo\\superApp\\module_util\\build\\intermediates\\cmake\\debug\\obj\\x86_64\\libjniDemo2.so"
     },
     "jniDemo-Debug-x86_64": {
       "artifactName": "jniDemo",
-      "buildCommand": "/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/debug/x86_64 --target jniDemo",
+      "buildCommand": "D:\\09_setup\\AndroidSDK\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\demo\\superApp\\module_util\\.externalNativeBuild\\cmake\\debug\\x86_64 --target jniDemo",
       "abi": "x86_64",
-      "output": "/home/gmfbilu/Work/Android/Projects/superApp/module_util/build/intermediates/cmake/debug/obj/x86_64/libjniDemo.so"
+      "output": "D:\\demo\\superApp\\module_util\\build\\intermediates\\cmake\\debug\\obj\\x86_64\\libjniDemo.so"
     }
   }
 }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -10,24 +9,25 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/module_util_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <ImageView
         android:id="@+id/module_util_iv_pic"
         android:layout_width="300dp"
         android:layout_height="200dp"
-        android:background="@color/lib_base_colorAccent"
         android:scaleType="fitXY"
+        android:background="@android:color/darker_gray"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_util_appBarLayout"/>
+        app:layout_constraintTop_toBottomOf="@+id/module_util_appBarLayout" />
 
     <Button
         android:id="@+id/module_util_bt_camera"
@@ -36,7 +36,7 @@
         android:text="系统相机"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_util_iv_pic"/>
+        app:layout_constraintTop_toBottomOf="@+id/module_util_iv_pic" />
 
     <Button
         android:id="@+id/module_util_bt_album"
@@ -45,6 +45,15 @@
         android:text="系统相册"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_util_bt_camera"/>
+        app:layout_constraintTop_toBottomOf="@+id/module_util_bt_camera" />
+
+    <Button
+        android:id="@+id/module_util_bt_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="视频"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/module_util_bt_album" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

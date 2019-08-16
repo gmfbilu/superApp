@@ -1,4 +1,4 @@
-/home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/debug/x86_64/CMakeFiles/edit_cache.dir
-/home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/debug/x86_64/CMakeFiles/rebuild_cache.dir
-/home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/debug/x86_64/CMakeFiles/jniDemo2.dir
-/home/gmfbilu/Work/Android/Projects/superApp/module_util/.externalNativeBuild/cmake/debug/x86_64/CMakeFiles/jniDemo.dir
+D:/demo/superApp/module_util/.externalNativeBuild/cmake/debug/x86_64/CMakeFiles/jniDemo2.dir
+D:/demo/superApp/module_util/.externalNativeBuild/cmake/debug/x86_64/CMakeFiles/jniDemo.dir
+D:/demo/superApp/module_util/.externalNativeBuild/cmake/debug/x86_64/CMakeFiles/edit_cache.dir
+D:/demo/superApp/module_util/.externalNativeBuild/cmake/debug/x86_64/CMakeFiles/rebuild_cache.dir

@@ -2,6 +2,8 @@ package org.gmfbilu.superapp.lib_base.utils;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -1066,6 +1068,24 @@ public class AppUtils {
      */
     public static boolean isMainThread() {
         return Looper.myLooper() == Looper.getMainLooper();
+    }
+
+
+    /**
+     * 复制到剪切板
+     *
+     * @param text
+     */
+    public static void copyToClipboard(String text) {
+        if (StringUtils.isEmpty(text)) {
+            return;
+        }
+        //获取剪贴板管理器：
+        ClipboardManager cm = (ClipboardManager) BaseApplication.mApplicationContext.getSystemService(Context.CLIPBOARD_SERVICE);
+        // 创建普通字符型ClipData
+        ClipData mClipData = ClipData.newPlainText("Label", text);
+        // 将ClipData内容放到系统剪贴板里。
+        cm.setPrimaryClip(mClipData);
     }
 
 

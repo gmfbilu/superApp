@@ -1,0 +1,56 @@
+
+{
+	"buildFiles" : [ "D:/demo/superApp/module_util/CMakeLists.txt" ],
+	"cleanCommands" : 
+	[
+		"D:\\09_setup\\AndroidSDK\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\demo\\superApp\\module_util\\.cxx\\cmake\\release\\arm64-v8a --target clean"
+	],
+	"cppFileExtensions" : [ "cpp" ],
+	"libraries" : 
+	{
+		"jniDemo-Release-arm64-v8a" : 
+		{
+			"abi" : "arm64-v8a",
+			"artifactName" : "jniDemo",
+			"buildCommand" : "D:\\09_setup\\AndroidSDK\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\demo\\superApp\\module_util\\.cxx\\cmake\\release\\arm64-v8a --target jniDemo",
+			"buildType" : "release",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=aarch64-none-linux-android21 --gcc-toolchain=D:/09_setup/AndroidSDK/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/09_setup/AndroidSDK/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -DjniDemo_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "D:/demo/superApp/module_util/src/main/cpp/jniDemo.cpp",
+					"workingDirectory" : "D:/demo/superApp/module_util/.cxx/cmake/release/arm64-v8a"
+				}
+			],
+			"output" : "D:/demo/superApp/module_util/build/intermediates/cmake/release/obj/arm64-v8a/libjniDemo.so",
+			"toolchain" : "1325219905"
+		},
+		"jniDemo2-Release-arm64-v8a" : 
+		{
+			"abi" : "arm64-v8a",
+			"artifactName" : "jniDemo2",
+			"buildCommand" : "D:\\09_setup\\AndroidSDK\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\demo\\superApp\\module_util\\.cxx\\cmake\\release\\arm64-v8a --target jniDemo2",
+			"buildType" : "release",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=aarch64-none-linux-android21 --gcc-toolchain=D:/09_setup/AndroidSDK/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/09_setup/AndroidSDK/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -DjniDemo2_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "D:/demo/superApp/module_util/src/main/cpp/jniDemo2.cpp",
+					"workingDirectory" : "D:/demo/superApp/module_util/.cxx/cmake/release/arm64-v8a"
+				}
+			],
+			"output" : "D:/demo/superApp/module_util/build/intermediates/cmake/release/obj/arm64-v8a/libjniDemo2.so",
+			"toolchain" : "1325219905"
+		}
+	},
+	"toolchains" : 
+	{
+		"1325219905" : 
+		{
+			"cCompilerExecutable" : "D:/09_setup/AndroidSDK/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
+			"cppCompilerExecutable" : "D:/09_setup/AndroidSDK/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
+		}
+	}
+}

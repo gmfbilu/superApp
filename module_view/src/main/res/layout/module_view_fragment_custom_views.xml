@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -20,7 +19,7 @@
                 android:id="@+id/module_view_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/android:actionBarSize"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <org.gmfbilu.superapp.module_view.customViews.ratingBar.RatingBar
@@ -30,7 +29,7 @@
             android:layout_marginTop="10dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/module_view_appBarLayout"/>
+            app:layout_constraintTop_toBottomOf="@+id/module_view_appBarLayout" />
 
         <org.gmfbilu.superapp.module_view.customViews.stepView.StepViewOne
             android:id="@+id/StepViewOne"
@@ -42,7 +41,7 @@
             android:paddingRight="20dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ratingbar"/>
+            app:layout_constraintTop_toBottomOf="@+id/ratingbar" />
 
         <org.gmfbilu.superapp.module_view.customViews.stepView.StepViewTwo
             android:id="@+id/StepViewTwo"
@@ -55,7 +54,7 @@
             android:paddingBottom="20dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/StepViewOne"/>
+            app:layout_constraintTop_toBottomOf="@+id/StepViewOne" />
 
         <org.gmfbilu.superapp.module_view.customViews.canvasView.CanvasViewTestOne
             android:id="@+id/CanvasViewTestOne"
@@ -63,7 +62,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/StepViewTwo"/>
+            app:layout_constraintTop_toBottomOf="@+id/StepViewTwo" />
 
         <org.gmfbilu.superapp.module_view.customViews.paintView.PaintView
             android:id="@+id/PaintView"
@@ -72,7 +71,7 @@
             android:background="@color/lib_base_colorAccent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CanvasViewTestOne"/>
+            app:layout_constraintTop_toBottomOf="@+id/CanvasViewTestOne" />
 
         <org.gmfbilu.superapp.module_view.customViews.canvasView.CanvasView
             android:id="@+id/CanvasView"
@@ -80,7 +79,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/PaintView"/>
+            app:layout_constraintTop_toBottomOf="@+id/PaintView" />
 
         <org.gmfbilu.superapp.module_view.customViews.canvasView.LeafLoading
             android:id="@+id/LeafLoading"
@@ -88,7 +87,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CanvasView"/>
+            app:layout_constraintTop_toBottomOf="@+id/CanvasView" />
 
         <org.gmfbilu.superapp.module_view.customViews.pathView.PathView
             android:id="@+id/PathView"
@@ -96,7 +95,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/LeafLoading"/>
+            app:layout_constraintTop_toBottomOf="@+id/LeafLoading" />
 
         <org.gmfbilu.superapp.module_view.customViews.pathView.PathMeasureView
             android:id="@+id/PathMeasureView"
@@ -104,7 +103,33 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/PathView"/>
+            app:layout_constraintTop_toBottomOf="@+id/PathView" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_ExpandLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="展开收起"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/PathMeasureView" />
+
+        <org.gmfbilu.superapp.module_view.customViews.折叠收缩布局.ExpandLayout
+            android:id="@+id/expandLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#FFFF00"
+            android:clickable="true"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_ExpandLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:text="展开后的内容" />
+
+        </org.gmfbilu.superapp.module_view.customViews.折叠收缩布局.ExpandLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
