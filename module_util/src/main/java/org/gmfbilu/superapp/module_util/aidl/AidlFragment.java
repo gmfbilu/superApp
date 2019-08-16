@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.RemoteException;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 
 import com.orhanobut.logger.Logger;
 
@@ -17,9 +19,6 @@ import org.gmfbilu.superapp.module_util.BookManager;
 import org.gmfbilu.superapp.module_util.R;
 
 import java.util.List;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 
 /**
  * https://juejin.im/post/5cb14c696fb9a0686e40c48d
@@ -85,12 +84,12 @@ public class AidlFragment extends BaseFragment {
             if (mBookManager == null) return;
             Book book = new Book();
             book.name = "APP研发录In";
-            try {
+     /*       try {
                 mBookManager.addBook(book);
                 Logger.d(book.toString());
             } catch (RemoteException e) {
                 e.printStackTrace();
-            }
+            }*/
 
         }
     }
@@ -153,14 +152,14 @@ public class AidlFragment extends BaseFragment {
             mBookManager = BookManager.Stub.asInterface(service);
             mBound = true;
 
-            if (mBookManager != null) {
+        /*    if (mBookManager != null) {
                 try {
                     mBooks = mBookManager.getBooks();
                     Logger.d(mBooks.toString());
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
         }
 
         @Override

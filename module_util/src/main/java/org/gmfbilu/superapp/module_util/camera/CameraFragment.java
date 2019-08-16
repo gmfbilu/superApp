@@ -3,10 +3,12 @@ package org.gmfbilu.superapp.module_util.camera;
 import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -15,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 
+import com.bumptech.glide.Glide;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
@@ -23,6 +26,9 @@ import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 import org.gmfbilu.superapp.module_util.R;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class CameraFragment extends BaseFragment {
 
@@ -41,6 +47,8 @@ public class CameraFragment extends BaseFragment {
     private static final int OUTPUT_Y = 480;
 
     //=========================================================拍摄视频
+    //拍照
+    private static final int CODE_CAMERA_VIDEO_REQUEST = 1001;
 
     private RxPermissions rxPermissions;
     private Toolbar mToolbar;
@@ -103,7 +111,7 @@ public class CameraFragment extends BaseFragment {
                             if (photo) {
                                 openSystemCamera();
                             } else {
-
+                                takeVideo();
                             }
                         } else {
                             Toast.makeText(_mActivity, "权限拒绝，请去设置中心打开相关权限", Toast.LENGTH_SHORT).show();
@@ -112,6 +120,27 @@ public class CameraFragment extends BaseFragment {
                 });
 
     }
+
+
+    /**
+     * 录像
+     */
+    private void takeVideo() {
+        // 激活系统的照相机进行录像
+        Intent intent = new Intent();
+        intent.setAction("android.media.action.VIDEO_CAPTURE");
+        intent.addCategory("android.intent.category.DEFAULT");
+        // 保存录像到指定的路径
+        //获取与应用相关联的路径
+        String videoPath = _mActivity.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss", Locale.CHINA);
+        String timeTemp = "/" + format.format(new Date()) + ".mp4";
+        File file = new File(videoPath, timeTemp);
+        Uri uri = Uri.fromFile(file);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        startActivityForResult(intent, CODE_CAMERA_VIDEO_REQUEST);
+    }
+
 
     /**
      * 动态申请sdcard读写权限
@@ -176,6 +205,13 @@ public class CameraFragment extends BaseFragment {
                 if (bitmap != null) {
                     mIV_pic.setImageBitmap(bitmap);
                 }
+                break;
+            case CODE_CAMERA_VIDEO_REQUEST:
+                Uri uri = data.getData();
+                String videoPath = uri.getPath();
+                Bitmap videoBitmap = ThumbnailUtils.createVideoThumbnail(videoPath, MediaStore.Images.Thumbnails.MINI_KIND);
+                Glide.with(_mActivity).load(videoBitmap).fitCenter().into(mIV_pic);
+                //上传的时候video以file文件形式上传
                 break;
             default:
         }

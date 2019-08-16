@@ -24,7 +24,6 @@
         android:layout_width="300dp"
         android:layout_height="200dp"
         android:scaleType="fitXY"
-        android:background="@android:color/darker_gray"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/module_util_appBarLayout" />
