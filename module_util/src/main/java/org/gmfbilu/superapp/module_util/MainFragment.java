@@ -11,6 +11,8 @@ import org.gmfbilu.superapp.module_util.camera.CameraFragment;
 import org.gmfbilu.superapp.module_util.cartoon.CartoonFragment;
 import org.gmfbilu.superapp.module_util.glide.GlideFragment;
 import org.gmfbilu.superapp.module_util.hook.HookFragment;
+import org.gmfbilu.superapp.module_util.jetpack.livedata_viewmodel.LiveData_ViewModelFragment;
+import org.gmfbilu.superapp.module_util.jetpack.room.RoomFragment;
 import org.gmfbilu.superapp.module_util.jni.JniFragment;
 import org.gmfbilu.superapp.module_util.permissions.PermissionsFragment;
 import org.gmfbilu.superapp.module_util.sqLite.SQLiteFragment;
@@ -42,6 +44,8 @@ public class MainFragment extends BaseFragment {
         view.findViewById(R.id.module_util_bt_sqlite).setOnClickListener(this);
         view.findViewById(R.id.module_util_bt_bluetooth).setOnClickListener(this);
         view.findViewById(R.id.module_util_bt_hook).setOnClickListener(this);
+        view.findViewById(R.id.module_util_bt_livedata).setOnClickListener(this);
+        view.findViewById(R.id.module_util_bt_room).setOnClickListener(this);
         view.findViewById(R.id.module_util_bt_workManager).setOnClickListener(this);
     }
 
@@ -78,6 +82,10 @@ public class MainFragment extends BaseFragment {
             start(BlueToothFragment.newInstance());
         } else if (id == R.id.module_util_bt_hook) {
             start(HookFragment.newInstance());
+        } else if (id == R.id.module_util_bt_livedata) {
+            start(LiveData_ViewModelFragment.newInstance());
+        } else if (id == R.id.module_util_bt_room) {
+            start(RoomFragment.newInstance());
         } else if (id == R.id.module_util_bt_workManager) {
 
         }

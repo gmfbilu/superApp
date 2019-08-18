@@ -12,7 +12,7 @@ public interface Java8Interface {
         System.out.print("Java8及以后接口有main方法了");
     }
 
-    public static void main(String args[]){
+    static void main(String args[]) {
         method3();
     }
 }

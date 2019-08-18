@@ -213,4 +213,30 @@ public class SQLiteFragment extends BaseFragment {
         }
     }
 
+
+    /**
+     * 改变表名
+     * ALTER TABLE 旧表名 RENAME TO 新表名
+     */
+    private void hello5(){
+
+    }
+
+    /**
+     * 添加一个新字段
+     * ALTER TABLE 表名 ADD COLUMN 字段 数据类型
+     */
+    private void hello6(){
+
+    }
+
+    /**
+     * 删除一个字段
+     * qlite中是不支持删除字段操作，也不支持修改已经存在的字段的名称、数据类型
+     * 将数据备份到一张临时表，删除原始表，然后新建一张剔除了需要删除字段的表，将临时表数据导入到新表中，然后将新表rename为原始表名
+     */
+    private void hello7(){
+
+    }
+
 }
