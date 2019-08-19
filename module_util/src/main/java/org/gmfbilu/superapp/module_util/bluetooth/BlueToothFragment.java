@@ -12,7 +12,7 @@ import android.view.View;
 import com.orhanobut.logger.Logger;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
-import org.gmfbilu.superapp.lib_base.utils.AppUtils;
+import org.gmfbilu.superapp.lib_base.utils.ToastUtil;
 import org.gmfbilu.superapp.module_util.R;
 
 import java.util.ArrayList;
@@ -90,38 +90,38 @@ public class BlueToothFragment extends BaseFragment {
         int id = v.getId();
         if (id == R.id.bt_check_support_bluetooth) {
             if (mBluetoothAdapter != null) {
-                AppUtils.toast("支持");
+                ToastUtil.show("支持");
             } else {
-                AppUtils.toast("不支持");
+                ToastUtil.show("不支持");
             }
         } else if (id == R.id.bt_open_bluetooth) {
             if (mBluetoothAdapter.isEnabled()) {
-                AppUtils.toast("蓝牙已经开启");
+                ToastUtil.show("蓝牙已经开启");
                 return;
             }
             Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(intent, REQUEST_ENABLE_BT);
         } else if (id == R.id.bt_close_bluetooth) {
             if (!mBluetoothAdapter.isEnabled()) {
-                AppUtils.toast("蓝牙已经关闭");
+                ToastUtil.show("蓝牙已经关闭");
                 return;
             }
             mBluetoothAdapter.disable();
         } else if (id == R.id.bt_find_matched_bluetooth) {
             if (!mBluetoothAdapter.isEnabled()) {
-                AppUtils.toast("请先打开蓝牙");
+                ToastUtil.show("请先打开蓝牙");
                 return;
             }
             //之前已经配对成功过的蓝牙
             Set<BluetoothDevice> bondedDevices = mBluetoothAdapter.getBondedDevices();
             if (bondedDevices.size() > 0) {
                 for (BluetoothDevice device : bondedDevices) {
-                    AppUtils.toast(device.getName() + ", " + bondedDevices.size());
+                    ToastUtil.show(device.getName() + ", " + bondedDevices.size());
                 }
             }
         } else if (id == R.id.bt_find_bluetooth) {
             if (!mBluetoothAdapter.isEnabled()) {
-                AppUtils.toast("请先打开蓝牙");
+                ToastUtil.show("请先打开蓝牙");
                 return;
             }
             //开启发现设备，该方法是异步方法，发现进程通常包含约12秒的查询扫描，之后对每台发现的设备进行页面扫描，以检索蓝牙名称
@@ -135,14 +135,14 @@ public class BlueToothFragment extends BaseFragment {
                         public void onSubscribe(Disposable d) {
                             mBluetoothAdapter.startDiscovery();
                             Logger.d("onSubscribe");
-                            AppUtils.toast("开始查找蓝牙设备");
+                            ToastUtil.show("开始查找蓝牙设备");
                         }
 
                         @Override
                         public void onSuccess(Long aLong) {
                             mBluetoothAdapter.cancelDiscovery();
                             Logger.d("onSuccess");
-                            AppUtils.toast(deviceList.size() + "个蓝牙设备");
+                            ToastUtil.show(deviceList.size() + "个蓝牙设备");
                         }
 
                         @Override
@@ -153,7 +153,7 @@ public class BlueToothFragment extends BaseFragment {
                     });
         } else if (id == R.id.bt_attached_other) {
             if (!mBluetoothAdapter.isEnabled()) {
-                AppUtils.toast("请先打开蓝牙");
+                ToastUtil.show("请先打开蓝牙");
                 return;
             }
             //默认情况下设备变为可检测并持续120s，可设置最大持续时间为3600s，任何小于0或者大于3600s的值都会被自动设为120s
@@ -175,9 +175,9 @@ public class BlueToothFragment extends BaseFragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_ENABLE_BT) {
             if (resultCode == RESULT_OK) {
-                AppUtils.toast("蓝牙已经开启");
+                ToastUtil.show("蓝牙已经开启");
             } else if (resultCode == RESULT_CANCELED) {
-                AppUtils.toast("蓝牙没有开启");
+                ToastUtil.show("蓝牙没有开启");
             }
         }
     }
@@ -213,16 +213,16 @@ public class BlueToothFragment extends BaseFragment {
                 int blueState = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, 0);
                 switch (blueState) {
                     case BluetoothAdapter.STATE_ON:
-                        AppUtils.toast("蓝牙开启");
+                        ToastUtil.show("蓝牙开启");
                         break;
                     case BluetoothAdapter.STATE_TURNING_ON:
-                        AppUtils.toast("蓝牙正在开启");
+                        ToastUtil.show("蓝牙正在开启");
                         break;
                     case BluetoothAdapter.STATE_TURNING_OFF:
-                        AppUtils.toast("蓝牙正在关闭");
+                        ToastUtil.show("蓝牙正在关闭");
                         break;
                     case BluetoothAdapter.STATE_OFF:
-                        AppUtils.toast("蓝牙关闭");
+                        ToastUtil.show("蓝牙关闭");
                         break;
                 }
             } else if (BluetoothDevice.ACTION_FOUND.equals(action)) {

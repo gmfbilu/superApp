@@ -5,21 +5,60 @@
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/module_util_iv_pic"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:id="@+id/iv_album"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
         android:background="@color/lib_base_colorAccent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_camera"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@color/lib_base_colorPrimary"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_album" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_video"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@color/lib_base_colorPrimaryDark"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_camera" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt_album"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="打开相册"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_video" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt_camera"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="拍照"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_album" />
+
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/bt_video"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="拍视频"
+        android:text="录像"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_util_iv_pic" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_camera" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

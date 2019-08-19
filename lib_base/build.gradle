@@ -118,5 +118,5 @@ dependencies {
     implementation files('lib/core-3.1.0.jar')
 
     //照片和视频库
-    api "com.github.LuckSiege.PictureSelector:picture_library:${picture_elector}"
+    api "com.zhihu.android:matisse:${matisse}"
 }

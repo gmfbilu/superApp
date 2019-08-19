@@ -1,5 +1,5 @@
 {
-  "ndkFolder": "D:\\09_setup\\AndroidSDK\\ndk-bundle",
+  "ndkFolder": "/home/gmfbilu/Work/Android/Sdk/ndk-bundle",
   "messages": [
     {
       "level": "INFO",
@@ -7,7 +7,7 @@
     },
     {
       "level": "INFO",
-      "message": "ndk.dir in local.properties is D:\\09_setup\\AndroidSDK\\ndk-bundle"
+      "message": "ndk.dir in local.properties is /home/gmfbilu/Work/Android/Sdk/ndk-bundle"
     },
     {
       "level": "INFO",
@@ -15,23 +15,23 @@
     },
     {
       "level": "INFO",
-      "message": "sdkFolder is D:\\09_setup\\AndroidSDK"
+      "message": "sdkFolder is /home/gmfbilu/Work/Android/Sdk"
     },
     {
       "level": "INFO",
-      "message": "Considering D:\\09_setup\\AndroidSDK\\ndk-bundle by ndk.dir"
+      "message": "Considering /home/gmfbilu/Work/Android/Sdk/ndk-bundle by ndk.dir"
     },
     {
       "level": "INFO",
-      "message": "Considering D:\\09_setup\\AndroidSDK\\ndk-bundle in SDK ndk-bundle folder"
+      "message": "Considering /home/gmfbilu/Work/Android/Sdk/ndk-bundle in SDK ndk-bundle folder"
     },
     {
       "level": "INFO",
-      "message": "Considering D:\\09_setup\\AndroidSDK\\ndk\\20.0.5594570 in SDK ndk folder"
+      "message": "Considering /home/gmfbilu/Work/Android/Sdk/ndk/20.0.5594570 in SDK ndk folder"
     },
     {
       "level": "INFO",
-      "message": "Found requested ndk.dir (D:\\09_setup\\AndroidSDK\\ndk-bundle) which has version 20.0.5594570"
+      "message": "Found requested ndk.dir (/home/gmfbilu/Work/Android/Sdk/ndk-bundle) which has version 20.0.5594570"
     }
   ]
 }

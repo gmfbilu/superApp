@@ -7,7 +7,7 @@ import com.orhanobut.logger.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.gmfbilu.superapp.lib_base.utils.AppUtils;
+import org.gmfbilu.superapp.lib_base.utils.ToastUtil;
 
 @Aspect
 public class ClickHook {
@@ -57,7 +57,7 @@ public class ClickHook {
     }
 
     private void collectClickInfo(String tag) {
-        AppUtils.toast(tag);
+        ToastUtil.show(tag);
     }
 
 }

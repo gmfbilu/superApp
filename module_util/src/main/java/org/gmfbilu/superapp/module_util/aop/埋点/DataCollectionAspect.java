@@ -5,7 +5,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.gmfbilu.superapp.lib_base.utils.AppUtils;
+import org.gmfbilu.superapp.lib_base.utils.ToastUtil;
 
 import java.lang.reflect.Method;
 
@@ -48,7 +48,7 @@ public class DataCollectionAspect {
         String tag = aspectJAnnotation.tag();
         String type = aspectJAnnotation.type();
         String methodName = aspectJAnnotation.methodName();
-        AppUtils.toast(declaringType.getSimpleName());
+        ToastUtil.show(declaringType.getSimpleName());
         joinPoint.proceed();
     }
 
