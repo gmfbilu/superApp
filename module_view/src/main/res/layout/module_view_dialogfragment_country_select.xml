@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="#ffffff">
 
     <ImageView
         android:id="@+id/iV_close"
@@ -30,7 +30,7 @@
         android:id="@+id/ViewOne"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:background="@color/black"
+        android:background="#ffffff"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iV_close" />
@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/index_bar_indicator_bg"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="#ffffff"
         android:textSize="36sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

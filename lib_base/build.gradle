@@ -65,10 +65,10 @@ dependencies {
     //日志
     api "com.orhanobut:logger:${logger_version}"
 
-    //fragment
-    api "me.yokeyword:fragmentation:${yokeyword_fragmentation_version}"
+    //fragment 需要被自己寫的替換掉
+    api "me.yokeyword:fragmentationx:${yokeyword_fragmentationx_version}"
 
-    //事件总线
+    //事件总线  需要被ViewModel替換掉
     api "org.greenrobot:eventbus:${greenrobot_eventbus_version}"
 
     //多渠道打包
@@ -91,8 +91,12 @@ dependencies {
     api "com.google.code.gson:gson:${gson_version}"
     api "com.squareup.retrofit2:converter-gson:${converter_gson_version}"
     api "com.squareup.retrofit2:adapter-rxjava2:${adapter_rxjava_version}"
+    //需要被lifecycle替換掉
     api "com.uber.autodispose:autodispose:${autodispose_version}"
     api "com.uber.autodispose:autodispose-android-archcomponents:${autodispose_version}"
+
+
+    //glide
     api "com.github.bumptech.glide:glide:${glide_version}"
 
     //屏幕适配框架

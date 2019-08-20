@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="org.gmfbilu.superapp.module_util">
 
     <application android:theme="@style/lib_base_AppTheme">
@@ -18,6 +17,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/lib_base_provider_path" />
         </provider>
+
         <provider
             android:name=".thirdCamera.MatisseFileProvider"
             android:authorities="org.gmfbilu.superapp.module_util.fileprovider"

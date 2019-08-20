@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -41,6 +42,7 @@ public class ThirdCameraFragment extends BaseFragment {
     private AppCompatImageView iv_album;
     private AppCompatImageView iv_camera;
     private AppCompatImageView iv_video;
+
 
     public static ThirdCameraFragment newInstance() {
 
@@ -92,10 +94,10 @@ public class ThirdCameraFragment extends BaseFragment {
                                public void onNext(Boolean granted) {
                                    if (granted) {
                                        Matisse.from(ThirdCameraFragment.this)
-                                               .choose(MimeType.ofVideo())
+                                               .choose(MimeType.ofImage())
                                                .showSingleMediaType(true)//只出现照片，排除掉视频
-                                               //.capture(true) 出现拍照选项
-                                               //.captureStrategy(new CaptureStrategy(true, "org.gmfbilu.superapp.module_util.fileprovider", "test")) 有拍照选项的策略
+                                               //.capture(true) //出现拍照选项
+                                               //.captureStrategy(new CaptureStrategy(true, "org.gmfbilu.superapp.module_util.fileprovider", "test"))// 有拍照选项的策略
                                                .theme(R.style.Matisse_Dracula)
                                                .countable(false)
                                                .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
@@ -112,6 +114,10 @@ public class ThirdCameraFragment extends BaseFragment {
                 );
     }
 
+
+    /**
+     * 無法在拍攝視頻的時候顯示出拍視頻的按鈕
+     */
     private void video() {
         rxPermissions
                 .request(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -124,6 +130,8 @@ public class ThirdCameraFragment extends BaseFragment {
                                                .showSingleMediaType(true)//只出现视频，排除掉照片
                                                .theme(R.style.Matisse_Dracula)
                                                .countable(false)
+                                               .capture(true) //出现拍攝选项
+                                               .captureStrategy(new CaptureStrategy(true, "org.gmfbilu.superapp.module_util.fileprovider", "test")) //有拍照选项的策略
                                                .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
                                                .maxSelectable(9)
                                                .originalEnable(true)
@@ -185,39 +193,17 @@ public class ThirdCameraFragment extends BaseFragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            switch (requestCode) {
-                case REQUEST_CODE_ALBUM:
-                    List<Uri> uriList = Matisse.obtainResult(data);
-                    for (int i = 0; i < uriList.size(); i++) {
-                        Uri uri = uriList.get(i);
-                        LoggerUtil.d("图片的Uri=" + uri);
-                    }
-                    List<String> pathResult = Matisse.obtainPathResult(data);
-                    for (int i = 0; i < pathResult.size(); i++) {
-                        LoggerUtil.d("图片的path=" + pathResult.get(i));
-                    }
-                    break;
-                case REQUEST_CODE_CAMERA:
-                    break;
-                case REQUEST_CODE_VIDEO:
-                    List<Uri> uriListVideo = Matisse.obtainResult(data);
-                    for (int i = 0; i < uriListVideo.size(); i++) {
-                        Uri uri = uriListVideo.get(i);
-                        LoggerUtil.d("视频的Uri=" + uri);
-                    }
-                    List<String> pathResultVideo = Matisse.obtainPathResult(data);
-                    for (int i = 0; i < pathResultVideo.size(); i++) {
-                        LoggerUtil.d("视频的path=" + pathResultVideo.get(i));
-                    }
-                    break;
-                case REQUEST_CODE_ALBUM_CAMERA:
-                    break;
-            }
+        if (resultCode != RESULT_OK || data == null || data.getData() == null) {
+            return;
+        }
+        Uri uri = data.getData();
+        String path = uri.getPath();
+        LoggerUtil.d(uri.toString());
+        LoggerUtil.d(path);
+        switch (requestCode) {
+
         }
     }
-
-
 }

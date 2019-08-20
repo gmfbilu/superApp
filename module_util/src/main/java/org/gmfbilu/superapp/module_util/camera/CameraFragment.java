@@ -23,6 +23,7 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.lib_base.http.NetObserver;
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
+import org.gmfbilu.superapp.lib_base.utils.LoggerUtil;
 import org.gmfbilu.superapp.module_util.R;
 
 import java.io.File;
@@ -33,26 +34,27 @@ import java.util.Locale;
 public class CameraFragment extends BaseFragment {
 
     //========================================================拍照
-    //打开相册请求码
-    private static final int CODE_GALLERY_REQUEST = 100;
-    //打开相机请求码
-    private static final int CODE_CAMERA_REQUEST = 101;
-    //裁剪图片返回码
-    private static final int CODE_RESULT_REQUEST = 102;
-    private File fileUri = new File(Environment.getExternalStorageDirectory().getPath() + "/photo.jpg");
-    private File fileCropUri = new File(Environment.getExternalStorageDirectory().getPath() + "/crop_photo.jpg");
+    private static final int IV_ALBUM = 0x100;
+    private static final int IV_ALBUM_CROP = 0x101; //裁剪图片
+    private static final int IV_CAMERA = 0x102;
+    private static final int IV_CAMERA_CROP = 0x103; //裁剪图片
+    private static final int IV_VIDEO = 0x104;
+    //图片路径都在根路径下，方便用户删除
+    SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss", Locale.CHINA);
+    String timeTemp = "/" + format.format(new Date());
+    private File fileUri = new File(Environment.getExternalStorageDirectory().getPath() + timeTemp + ".jpg"); //图片质量是好几M以上
+    private File fileCropUri = new File(Environment.getExternalStorageDirectory().getPath() + timeTemp + "crop.jpg");//图片质量可以压缩到几百K
     private Uri imageUri;
     private Uri cropImageUri;
     private static final int OUTPUT_X = 480;
     private static final int OUTPUT_Y = 480;
 
-    //=========================================================拍摄视频
-    //拍照
-    private static final int CODE_CAMERA_VIDEO_REQUEST = 1001;
 
     private RxPermissions rxPermissions;
     private Toolbar mToolbar;
-    private ImageView mIV_pic;
+    private ImageView iv_album;
+    private ImageView iv_camera;
+    private ImageView iv_video;
 
     public static CameraFragment newInstance() {
         Bundle args = new Bundle();
@@ -65,10 +67,12 @@ public class CameraFragment extends BaseFragment {
     @Override
     public void findViewById_setOnClickListener(View view) {
         mToolbar = view.findViewById(R.id.module_util_toolbar);
-        mIV_pic = view.findViewById(R.id.module_util_iv_pic);
-        view.findViewById(R.id.module_util_bt_camera).setOnClickListener(this);
-        view.findViewById(R.id.module_util_bt_album).setOnClickListener(this);
-        view.findViewById(R.id.module_util_bt_video).setOnClickListener(this);
+        iv_album = view.findViewById(R.id.iv_album);
+        iv_camera = view.findViewById(R.id.iv_camera);
+        iv_video = view.findViewById(R.id.iv_video);
+        view.findViewById(R.id.bt_album).setOnClickListener(this);
+        view.findViewById(R.id.bt_camera).setOnClickListener(this);
+        view.findViewById(R.id.bt_video).setOnClickListener(this);
     }
 
     @Override
@@ -79,12 +83,12 @@ public class CameraFragment extends BaseFragment {
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.module_util_bt_camera) {
-            autoObtainCameraPermission(true);
-        } else if (id == R.id.module_util_bt_album) {
-            autoObtainStoragePermission();
-        } else if (id == R.id.module_util_bt_video) {
-            autoObtainCameraPermission(false);
+        if (id == R.id.bt_album) {
+            autoObtainGalleryPermission(IV_ALBUM);
+        } else if (id == R.id.bt_camera) {
+            autoObtainCameraPermission(IV_CAMERA);
+        } else if (id == R.id.bt_video) {
+            autoObtainVideoPermission(IV_VIDEO);
         }
     }
 
@@ -98,67 +102,7 @@ public class CameraFragment extends BaseFragment {
         rxPermissions = new RxPermissions(_mActivity);
     }
 
-    /**
-     * 申请访问相机权限
-     */
-    private void autoObtainCameraPermission(boolean photo) {
-        rxPermissions
-                .request(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
-                .subscribe(new NetObserver<Boolean>() {
-                    @Override
-                    public void onNext(Boolean granted) {
-                        if (granted) {
-                            if (photo) {
-                                openSystemCamera();
-                            } else {
-                                takeVideo();
-                            }
-                        } else {
-                            Toast.makeText(_mActivity, "权限拒绝，请去设置中心打开相关权限", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
 
-    }
-
-
-    /**
-     * 录像
-     */
-    private void takeVideo() {
-        // 激活系统的照相机进行录像
-        Intent intent = new Intent();
-        intent.setAction("android.media.action.VIDEO_CAPTURE");
-        intent.addCategory("android.intent.category.DEFAULT");
-        // 保存录像到指定的路径
-        //获取与应用相关联的路径
-        String videoPath = _mActivity.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss", Locale.CHINA);
-        String timeTemp = "/" + format.format(new Date()) + ".mp4";
-        File file = new File(videoPath, timeTemp);
-        Uri uri = Uri.fromFile(file);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-        startActivityForResult(intent, CODE_CAMERA_VIDEO_REQUEST);
-    }
-
-
-    /**
-     * 动态申请sdcard读写权限
-     */
-    private void autoObtainStoragePermission() {
-        rxPermissions
-                .request(Manifest.permission.READ_EXTERNAL_STORAGE)
-                .subscribe(new NetObserver<Boolean>() {
-                    @Override
-                    public void onNext(Boolean granted) {
-                        if (granted) {
-                            PhotoUtils.openPic(CameraFragment.this, CODE_GALLERY_REQUEST);
-                        } else {
-                            Toast.makeText(_mActivity, "请允许打操作SDCard！！", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
 
 
     /**
@@ -171,18 +115,24 @@ public class CameraFragment extends BaseFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode != RESULT_OK) {
+        if (resultCode != RESULT_OK ) {
             return;
         }
         switch (requestCode) {
-            //相机返回
-            case CODE_CAMERA_REQUEST:
+            case IV_CAMERA:
+                LoggerUtil.d(imageUri);
+                LoggerUtil.d(imageUri.getPath());
+                Bitmap iv_camera_bitmap = PhotoUtils.getBitmapFromUri(imageUri, _mActivity);
+                if (iv_camera_bitmap != null) {
+                    iv_camera.setImageBitmap(iv_camera_bitmap);
+                }
+           /*     进行裁剪然后返回
                 cropImageUri = Uri.fromFile(fileCropUri);
-                //进行裁剪然后返回
-                PhotoUtils.cropImageUri(this, imageUri, cropImageUri, 1, 1, OUTPUT_X, OUTPUT_Y, CODE_RESULT_REQUEST);
+                PhotoUtils.cropImageUri(this, imageUri, cropImageUri, 1, 1, OUTPUT_X, OUTPUT_Y, IV_CAMERA_CROP);*/
                 break;
-            //相册返回
-            case CODE_GALLERY_REQUEST:
+                //从相册选取的照片为什么一定要这种方式
+            case IV_ALBUM:
+                cropImageUri = Uri.fromFile(fileCropUri);
                 if (AppUtils.hasSdcard()) {
                     cropImageUri = Uri.fromFile(fileCropUri);
                     Uri newUri = Uri.parse(PhotoUtils.getPath(_mActivity, data.getData()));
@@ -190,44 +140,136 @@ public class CameraFragment extends BaseFragment {
                         newUri = FileProvider.getUriForFile(_mActivity, AppUtils.getPackageName() + ".fileprovider", new File(newUri.getPath()));
                     }
                     //不进行裁剪
-                    Bitmap bitmap = PhotoUtils.getBitmapFromUri(newUri, _mActivity);
-                    if (bitmap != null) {
-                        mIV_pic.setImageBitmap(bitmap);
+                    Bitmap iv_album_bitmap = PhotoUtils.getBitmapFromUri(newUri, _mActivity);
+                    if (iv_album_bitmap != null) {
+                        LoggerUtil.d(newUri);
+                        LoggerUtil.d(newUri.getPath());
+                        iv_album.setImageBitmap(iv_album_bitmap);
                     }
                     //PhotoUtils.cropImageUri(this, newUri, cropImageUri, 1, 1, OUTPUT_X, OUTPUT_Y, CODE_RESULT_REQUEST);
                 } else {
                     Toast.makeText(_mActivity, "设备没有SD卡！", Toast.LENGTH_SHORT).show();
                 }
+
+                //进行裁剪然后返回
+                //PhotoUtils.cropImageUri(this, imageUri, cropImageUri, 1, 1, OUTPUT_X, OUTPUT_Y, IV_ALBUM_CROP);
+                break;
+            case IV_ALBUM_CROP:
+
                 break;
             //裁剪返回
-            case CODE_RESULT_REQUEST:
-                Bitmap bitmap = PhotoUtils.getBitmapFromUri(cropImageUri, _mActivity);
+            case IV_CAMERA_CROP:
+             /*   Bitmap bitmap = PhotoUtils.getBitmapFromUri(cropImageUri, _mActivity);
                 if (bitmap != null) {
-                    mIV_pic.setImageBitmap(bitmap);
-                }
+                    LoggerUtil.d(cropImageUri);
+                    LoggerUtil.d(cropImageUri.getPath());
+                    iv_camera.setImageBitmap(bitmap);
+                }*/
                 break;
-            case CODE_CAMERA_VIDEO_REQUEST:
+            //拍摄视频返回
+            case IV_VIDEO:
                 Uri uri = data.getData();
                 String videoPath = uri.getPath();
+                LoggerUtil.d(uri); //file:///storage/emulated/0/Android/data/org.gmfbilu.superapp.module_util/files/Pictures/20190820135637.mp4
+                LoggerUtil.d(videoPath);///storage/emulated/0/Android/data/org.gmfbilu.superapp.module_util/files/Pictures/20190820135637.mp4
                 Bitmap videoBitmap = ThumbnailUtils.createVideoThumbnail(videoPath, MediaStore.Images.Thumbnails.MINI_KIND);
-                Glide.with(_mActivity).load(videoBitmap).fitCenter().into(mIV_pic);
+                Glide.with(_mActivity).load(videoBitmap).fitCenter().into(iv_video);
                 //上传的时候video以file文件形式上传
                 break;
             default:
         }
     }
 
+
+    /**
+     * 打开系统相机拍照
+     */
+    private void autoObtainCameraPermission(int who) {
+        rxPermissions
+                .request(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
+                .subscribe(new NetObserver<Boolean>() {
+                    @Override
+                    public void onNext(Boolean granted) {
+                        if (granted) {
+                            openSystemCamera(who);
+                        } else {
+                            Toast.makeText(_mActivity, "权限拒绝，请去设置中心打开相关权限", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+    }
+
+    /**
+     * 打开系统相册
+     */
+    private void autoObtainGalleryPermission(int who) {
+        rxPermissions
+                .request(Manifest.permission.READ_EXTERNAL_STORAGE)
+                .subscribe(new NetObserver<Boolean>() {
+                    @Override
+                    public void onNext(Boolean granted) {
+                        if (granted) {
+                            PhotoUtils.openPic(CameraFragment.this, who);
+                        } else {
+                            Toast.makeText(_mActivity, "请允许打操作SDCard！！", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    /**
+     * 拍摄视频
+     */
+    private void autoObtainVideoPermission(int who) {
+        rxPermissions
+                .request(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe(new NetObserver<Boolean>() {
+                    @Override
+                    public void onNext(Boolean granted) {
+                        if (granted) {
+                            takeVideo(who);
+                        } else {
+                            Toast.makeText(_mActivity, "权限拒绝，请去设置中心打开相关权限", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+
+    /**
+     * 录像
+     */
+    private void takeVideo(int who) {
+        // 激活系统的照相机进行录像
+        Intent intent = new Intent();
+        intent.setAction("android.media.action.VIDEO_CAPTURE");
+        intent.addCategory("android.intent.category.DEFAULT");
+        // 保存录像到指定的路径
+        //获取与应用相关联的路径
+        String videoPath = _mActivity.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss", Locale.CHINA);
+        String timeTemp = "/" + format.format(new Date()) + ".mp4";
+        File file = new File(videoPath, timeTemp);
+        Uri uri = Uri.fromFile(file);
+        LoggerUtil.d(uri);//file:///storage/emulated/0/Android/data/org.gmfbilu.superapp.module_util/files/Pictures/20190820135637.mp4
+        LoggerUtil.d(uri.getPath());///storage/emulated/0/Android/data/org.gmfbilu.superapp.module_util/files/Pictures/20190820135637.mp4
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        startActivityForResult(intent, who);
+    }
+
+
     /**
      * 打开系统相机并裁剪
      */
-    private void openSystemCamera() {
+    private void openSystemCamera(int who) {
         if (AppUtils.hasSdcard()) {
             imageUri = Uri.fromFile(fileUri);
             //通过FileProvider创建一个content类型的Uri
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 imageUri = FileProvider.getUriForFile(_mActivity, AppUtils.getPackageName() + ".fileprovider", fileUri);
             }
-            PhotoUtils.takePicture(this, imageUri, CODE_CAMERA_REQUEST);
+            PhotoUtils.takePicture(this, imageUri, who);
         } else {
             Toast.makeText(_mActivity, "设备没有SD卡！", Toast.LENGTH_SHORT).show();
         }

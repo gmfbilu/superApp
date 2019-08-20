@@ -20,39 +20,60 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <ImageView
-        android:id="@+id/module_util_iv_pic"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:id="@+id/iv_album"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
         android:scaleType="fitXY"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/module_util_appBarLayout" />
 
     <Button
-        android:id="@+id/module_util_bt_camera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="系统相机"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_util_iv_pic" />
-
-    <Button
-        android:id="@+id/module_util_bt_album"
+        android:id="@+id/bt_album"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="系统相册"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_util_bt_camera" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_album" />
+
+    <ImageView
+        android:id="@+id/iv_camera"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:scaleType="fitXY"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_album" />
+
 
     <Button
-        android:id="@+id/module_util_bt_video"
+        android:id="@+id/bt_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="系统相机"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_camera" />
+
+
+    <ImageView
+        android:id="@+id/iv_video"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:scaleType="fitXY"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_camera" />
+
+
+    <Button
+        android:id="@+id/bt_video"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="视频"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_util_bt_album" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_video" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

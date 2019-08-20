@@ -21,8 +21,7 @@ public abstract class UserRoomDatabase extends RoomDatabase {
             synchronized (UserRoomDatabase.class) {
                 if (instance == null) {
                     //使用Room提供的数据库构建器来创建该实例，第一个参数application，第二个参数当前数据库的实体类，第三个参数数据库的名字
-                    instance = Room.databaseBuilder(context.getApplicationContext(), UserRoomDatabase.class
-                            , "user_database").build();
+                    instance = Room.databaseBuilder(context.getApplicationContext(), UserRoomDatabase.class, "user_database").build();
                 }
             }
         }

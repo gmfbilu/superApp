@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:shape="oval"
     tools:ignore="ResourceName">
-    <solid android:color="@color/bar_grey" />
+    <solid android:color="#BABABA" />
     <size
         android:width="64dp"
         android:height="64dp" />

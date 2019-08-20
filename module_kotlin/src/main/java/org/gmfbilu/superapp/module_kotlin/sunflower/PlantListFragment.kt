@@ -33,7 +33,7 @@ class PlantListFragment : Fragment() {
         inflater.inflate(R.menu.menu_plant_list, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item?.itemId) {
             R.id.filter_zone -> {
                 updateData()

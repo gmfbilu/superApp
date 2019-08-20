@@ -40,12 +40,14 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.gson.Gson;
 import com.leon.channel.helper.ChannelReaderUtil;
 
 import org.gmfbilu.superapp.lib_base.app.Constant;
 import org.gmfbilu.superapp.lib_base.base.BaseApplication;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -54,6 +56,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
@@ -1120,5 +1124,129 @@ public class AppUtils {
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeResource(res, resId, options);
     }
+
+
+    /**
+     * 将字符串转为List<Object>
+     *
+     * @param json
+     * @param clazz
+     * @param <T>
+     * @return
+     */
+    public static <T> List<T> parseStringToList(String json, Class clazz) {
+        Type type = new ParameterizedTypeImpl(clazz);
+        List<T> list = new Gson().fromJson(json, type);
+        return list;
+    }
+
+    /**
+     * 将Object转为List<Object>
+     *
+     * @param jsonObject
+     * @param clazz
+     * @param <T>
+     * @return
+     */
+    public static <T> List<T> parseObjectToList(Object jsonObject, Class clazz) {
+        if (jsonObject == null) {
+            return null;
+        }
+        Gson gson = new Gson();
+        String string = gson.toJson(jsonObject);
+        if (StringUtils.isEmpty(string)) {
+            return null;
+        }
+        return parseStringToList(string, clazz);
+    }
+
+
+    private static class ParameterizedTypeImpl implements ParameterizedType {
+        Class clazz;
+
+        public ParameterizedTypeImpl(Class clz) {
+            clazz = clz;
+        }
+
+        @Override
+        public Type[] getActualTypeArguments() {
+            return new Type[]{clazz};
+        }
+
+        @Override
+        public Type getRawType() {
+            return List.class;
+        }
+
+        @Override
+        public Type getOwnerType() {
+            return null;
+        }
+    }
+
+    /**
+     * 图片按比例大小压缩方法
+     *
+     * @param image （根据Bitmap图片压缩）
+     * @return
+     */
+    public static Bitmap compressScale(Bitmap image, float disWidth, float disHeight) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        // 判断如果图片大于1M,进行压缩避免在生成图片（BitmapFactory.decodeStream）时溢出
+        if (baos.toByteArray().length / 1024 > 1024) {
+            baos.reset();// 重置baos即清空baos
+            image.compress(Bitmap.CompressFormat.JPEG, 80, baos);// 这里压缩50%，把压缩后的数据存放到baos中
+        }
+        ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());
+        BitmapFactory.Options newOpts = new BitmapFactory.Options();
+        // 开始读入图片，此时把options.inJustDecodeBounds 设回true了
+        newOpts.inJustDecodeBounds = true;
+        Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, newOpts);
+        newOpts.inJustDecodeBounds = false;
+        int w = newOpts.outWidth;
+        int h = newOpts.outHeight;
+        // 现在主流手机比较多是800*480分辨率，所以高和宽我们设置为
+        // float hh = 800f;// 这里设置高度为800f
+        // float ww = 480f;// 这里设置宽度为480f
+        float hh = disWidth;
+        float ww = disHeight;
+        // 缩放比。由于是固定比例缩放，只用高或者宽其中一个数据进行计算即可
+        int be = 1;// be=1表示不缩放
+        if (w > h && w > ww) {// 如果宽度大的话根据宽度固定大小缩放
+            be = (int) (newOpts.outWidth / ww);
+        } else if (w < h && h > hh) { // 如果高度高的话根据高度固定大小缩放
+            be = (int) (newOpts.outHeight / hh);
+        }
+        if (be <= 0) be = 1;
+        newOpts.inSampleSize = be; // 设置缩放比例
+        // newOpts.inPreferredConfig = Config.RGB_565;//降低图片从ARGB888到RGB565
+        // 重新读入图片，注意此时已经把options.inJustDecodeBounds 设回false了
+        isBm = new ByteArrayInputStream(baos.toByteArray());
+        bitmap = BitmapFactory.decodeStream(isBm, null, newOpts);
+        return compressImage(bitmap);// 压缩好比例大小后再进行质量压缩
+        //return bitmap;
+    }
+
+    /**
+     * 质量压缩方法
+     *
+     * @param image
+     * @return
+     */
+    public static Bitmap compressImage(Bitmap image) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);// 质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+        int options = 90;
+        while (baos.toByteArray().length / 1024 > 100) { // 循环判断如果压缩后图片是否大于100kb,大于继续压缩
+            baos.reset(); // 重置baos即清空baos
+            image.compress(Bitmap.CompressFormat.JPEG, options, baos);// 这里压缩options%，把压缩后的数据存放到baos中
+            options -= 10;// 每次都减少10
+        }
+        ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());// 把压缩后的数据baos存放到ByteArrayInputStream中
+        Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);// 把ByteArrayInputStream数据生成图片
+        return bitmap;
+    }
+
 
 }

@@ -27,6 +27,16 @@
                 android:resource="@xml/lib_base_provider_path"/>
         </provider>
 
+        <provider
+            android:name=".thirdCamera.MatisseFileProvider"
+            android:authorities="org.gmfbilu.superapp.module_util.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths_public" />
+        </provider>
+
         <activity android:name=".MainActivity">
 
         </activity>

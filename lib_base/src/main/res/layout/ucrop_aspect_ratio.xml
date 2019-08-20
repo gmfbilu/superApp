@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ucrop_WrapperIconState"
+    tools:ignore="ResourceName">
+
+    <org.gmfbilu.superapp.lib_base.media.ucrop.view.widget.AspectRatioTextView
+        style="@style/ucrop_TextViewCropAspectRatio"/>
+
+</FrameLayout>
