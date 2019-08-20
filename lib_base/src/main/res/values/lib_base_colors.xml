@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <color name="lib_base_colorPrimary">#3F51B5</color>
     <color name="lib_base_colorPrimaryDark">#303F9F</color>
     <color name="lib_base_colorAccent">#FF4081</color>
-
-    <!--uCrop Activity-->
-    <color name="ucrop_color_toolbar" tools:ignore="ResourceName">#FF6E40</color>
-    <color name="ucrop_color_statusbar" tools:ignore="ResourceName">#CC5833</color>
-    <color name="ucrop_color_toolbar_widget" tools:ignore="ResourceName">#fff</color>
-    <color name="ucrop_color_widget" tools:ignore="ResourceName">#000</color>
-    <color name="ucrop_color_widget_active" tools:ignore="ResourceName">#FF6E40</color>
-    <color name="ucrop_color_widget_background" tools:ignore="ResourceName">#fff</color>
-    <color name="ucrop_color_widget_text" tools:ignore="ResourceName">#000</color>
-    <color name="ucrop_color_progress_wheel_line" tools:ignore="ResourceName">#808080</color>
-    <color name="ucrop_color_crop_background" tools:ignore="ResourceName">#000</color>
-
-    <!--Crop View-->
-    <color name="ucrop_color_default_crop_grid" tools:ignore="ResourceName">#80ffffff</color>
-    <color name="ucrop_color_default_crop_frame" tools:ignore="ResourceName">#ffffff</color>
-    <color name="ucrop_color_default_dimmed" tools:ignore="ResourceName">#8c000000</color>
-    <color name="ucrop_color_default_logo" tools:ignore="ResourceName">#4f212121</color>
-    <color name="ucrop_color_grey" tools:ignore="ResourceName">#999999</color>
 </resources>

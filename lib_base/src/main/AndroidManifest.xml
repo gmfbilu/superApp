@@ -1,28 +1,24 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="org.gmfbilu.superapp.lib_base">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="org.gmfbilu.superapp.lib_base">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.WRITE_OWNER_DATA" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WRITE_OWNER_DATA"/>
 
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="true" />
 
     <application
         android:hardwareAccelerated="false"
@@ -30,40 +26,16 @@
         tools:replace="android:label">
         <service android:name=".app.ApplicationIntentService">
             <intent-filter>
-                <action android:name="org.gmfbilu.superapp.lib_base" />
+                <action android:name="org.gmfbilu.superapp.lib_base"/>
             </intent-filter>
         </service>
 
         <meta-data
             android:name="design_width_in_dp"
-            android:value="360" />
+            android:value="360"/>
         <meta-data
             android:name="design_height_in_dp"
-            android:value="640" />
-
-
-        <provider
-            android:name="com.luck.picture.lib.PictureFileProvider"
-            android:authorities="${applicationId}.provider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
-        </provider>
-        <activity
-            android:name=".PictureSelectorActivity"
-            android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".PicturePreviewActivity" />
-        <activity
-            android:name=".PictureVideoPlayActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="sensor" />
-        <activity android:name=".PictureExternalPreviewActivity" />
-        <activity android:name="com.yalantis.ucrop.UCropActivity" />
-        <activity android:name="com.yalantis.ucrop.PictureMultiCuttingActivity" />
-        <activity android:name=".PicturePlayAudioActivity" />
-
+            android:value="640"/>
     </application>
 
 </manifest>
