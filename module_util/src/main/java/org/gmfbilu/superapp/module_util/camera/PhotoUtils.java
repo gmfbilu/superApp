@@ -15,8 +15,13 @@ import android.provider.MediaStore;
 
 import androidx.fragment.app.Fragment;
 
+import org.gmfbilu.superapp.lib_base.utils.LoggerUtil;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
 
 public class PhotoUtils {
@@ -25,6 +30,7 @@ public class PhotoUtils {
     private static final String TAG = "PhotoUtils";
 
     /**
+     * 在onActivityResult()方法就能将imageUri拿到,并设置给ImageView了
      * @param fragment    当前fragment
      * @param imageUri    拍照后照片存储路径
      * @param requestCode 调用系统相机请求码
@@ -35,10 +41,15 @@ public class PhotoUtils {
         intentCamera.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
         //将拍照结果保存至photo_file的Uri中，不保留在相册中
         intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+        intentCamera.putExtra("return-data", false);
+        intentCamera.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+        intentCamera.putExtra("noFaceDetection", true);
         fragment.startActivityForResult(intentCamera, requestCode);
+
     }
 
     /**
+     * 使用隐式意图打开系统相册,在onActivityResult()方法中通过Intent.getData()
      * @param fragment    当前fragment
      * @param requestCode 打开相册的请求码
      */
@@ -64,7 +75,6 @@ public class PhotoUtils {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         }
-        // TODO: 2019/8/20 压缩 
         intent.setDataAndType(orgUri, "image/*");//裁剪的图片uri和图片类型
         //需要加上这两句话 ： uri 权限
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -72,7 +82,7 @@ public class PhotoUtils {
 
         // crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
         intent.putExtra("crop", "true");
-        // 去黑边
+        // 是否保留比例
         intent.putExtra("scale", true);
         intent.putExtra("scaleUpIfNeeded", true);
         // aspectX aspectY 是宽高的比例，根据自己情况修改
@@ -86,7 +96,7 @@ public class PhotoUtils {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, desUri);
         //1-false用uri返回图片
         //2-true直接用bitmap返回图片（此种只适用于小图片，返回图片过大会报错）
-        intent.putExtra("return-data", false);//是否将数据保留在Bitmap中返回
+        intent.putExtra("return-data", false);//在onActivityResult时,直接调用intent.getdata()可得到,这里设置设置为false,即不保存在data中
         intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());//输出格式，一般设为Bitmap格式及图片类型
         //取消人脸识别功能
         intent.putExtra("noFaceDetection", true);
@@ -100,9 +110,13 @@ public class PhotoUtils {
      * @param mContext 上下文对象
      * @return 获取图像的Bitmap
      */
-    public static Bitmap getBitmapFromUri(Uri uri, Context mContext) {
+    public static Bitmap getBitmapFromUri(Uri uri, Context mContext,int w,int h) {
         try {
-            return MediaStore.Images.Media.getBitmap(mContext.getContentResolver(), uri);
+            Bitmap bitmapFormUri = getBitmapFormUri(mContext, uri);
+            Bitmap bitmap1 = compressScale(bitmapFormUri, w, h);
+            LoggerUtil.d(bitmapFormUri.getByteCount());
+            LoggerUtil.d(bitmap1.getByteCount());
+            return bitmap1;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -286,6 +300,48 @@ public class PhotoUtils {
         ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());// 把压缩后的数据baos存放到ByteArrayInputStream中
         Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);// 把ByteArrayInputStream数据生成图片
         return bitmap;
+    }
+
+
+    /**
+     * 通过uri获取图片并进行压缩
+     *
+     * @param uri
+     */
+    public static Bitmap getBitmapFormUri(Context ac, Uri uri) throws FileNotFoundException, IOException {
+        InputStream input = ac.getContentResolver().openInputStream(uri);
+        BitmapFactory.Options onlyBoundsOptions = new BitmapFactory.Options();
+        onlyBoundsOptions.inJustDecodeBounds = true;
+        onlyBoundsOptions.inDither = true;//optional
+        onlyBoundsOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;//optional
+        BitmapFactory.decodeStream(input, null, onlyBoundsOptions);
+        input.close();
+        int originalWidth = onlyBoundsOptions.outWidth;
+        int originalHeight = onlyBoundsOptions.outHeight;
+        if ((originalWidth == -1) || (originalHeight == -1))
+            return null;
+        //图片分辨率以480x800为标准
+        float hh = 800f;//这里设置高度为800f
+        float ww = 480f;//这里设置宽度为480f
+        //缩放比。由于是固定比例缩放，只用高或者宽其中一个数据进行计算即可
+        int be = 1;//be=1表示不缩放
+        if (originalWidth > originalHeight && originalWidth > ww) {//如果宽度大的话根据宽度固定大小缩放
+            be = (int) (originalWidth / ww);
+        } else if (originalWidth < originalHeight && originalHeight > hh) {//如果高度高的话根据宽度固定大小缩放
+            be = (int) (originalHeight / hh);
+        }
+        if (be <= 0)
+            be = 1;
+        //比例压缩
+        BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+        bitmapOptions.inSampleSize = be;//设置缩放比例
+        bitmapOptions.inDither = true;//optional
+        bitmapOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;//optional
+        input = ac.getContentResolver().openInputStream(uri);
+        Bitmap bitmap = BitmapFactory.decodeStream(input, null, bitmapOptions);
+        input.close();
+
+        return compressImage(bitmap);//再进行质量压缩
     }
 
 }

@@ -1,9 +1,11 @@
 package org.gmfbilu.superapp.lib_base.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -11,6 +13,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -25,10 +28,13 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Looper;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -46,14 +52,19 @@ import org.gmfbilu.superapp.lib_base.app.Constant;
 import org.gmfbilu.superapp.lib_base.base.BaseApplication;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
@@ -353,7 +364,7 @@ public class AppUtils {
     }
 
     public static int sp2px(int spVal) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spVal, BaseApplication.mApplicationContext.getResources().getDisplayMetrics());
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, spVal, BaseApplication.mApplicationContext.getResources().getDisplayMetrics());
     }
 
     /**
@@ -1109,7 +1120,7 @@ public class AppUtils {
      * @param reqHeight
      * @return
      */
-    public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId, int reqWidth, int reqHeight) {
+    public static Bitmap decodeBitmapFromResource(Resources res, int resId, int reqWidth, int reqHeight) {
         // 第一次解析将inJustDecodeBounds设置为true，来获取图片大小
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
@@ -1120,5 +1131,323 @@ public class AppUtils {
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeResource(res, resId, options);
     }
+
+    /**
+     * 得到压缩后的图片
+     *
+     * @param file
+     * @param reqWidth
+     * @param reqHeight
+     * @return
+     */
+    public static Bitmap decodeBitmapFromFile(String file, int reqWidth, int reqHeight) {
+        if (StringUtils.isEmpty(file)) {
+            LoggerUtil.d("文件路径有问题");
+            return null;
+        }
+        // 第一次解析将inJustDecodeBounds设置为true，来获取图片大小
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(file, options);
+        // 计算inSampleSize值
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+        // 使用获取到的inSampleSize值再次解析图片
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeFile(file, options);
+    }
+
+    /**
+     * @param path
+     * @return
+     */
+    public static File pathToFile(String path) {
+        if (StringUtils.isEmpty(path)) {
+            LoggerUtil.d("文件路径有问题");
+            return null;
+        }
+        return new File(path);
+    }
+
+    /**
+     * @param file
+     * @return
+     */
+    public static String fileToPath(File file) {
+        if (file == null || !file.exists()) {
+            LoggerUtil.d("文件有问题");
+            return null;
+        }
+        return file.getPath();
+    }
+
+    /**
+     * 1 URI：是java.net的子类
+     * 2 Uri ：是android.net的子类，Uri 不能被实例化
+     *
+     * @param uri
+     * @return
+     */
+    public static File URIToFile(URI uri) {
+        File file = null;   //图片地址
+        try {
+            file = new File(new URI(uri.toString()));
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return file;
+    }
+
+
+    /**
+     * @param file
+     * @return
+     */
+    public static URI fileToURI(File file) {
+        if (file == null || !file.exists()) {
+            LoggerUtil.d("文件有问题");
+            return null;
+        }
+        return file.toURI();
+    }
+
+    /**
+     *
+     * @param path
+     * @return
+     */
+    public static Uri pathToUri(String path) {
+        if (StringUtils.isEmpty(path)) {
+            LoggerUtil.d("文件路径有问题");
+            return null;
+        }
+        return Uri.parse(path);
+    }
+
+
+    /**
+     * @param context 上下文对象
+     * @param uri     当前相册照片的Uri
+     * @return 解析后的Uri对应的String
+     */
+    @SuppressLint("NewApi")
+    public static String uriToPath(final Context context, final Uri uri) {
+
+        final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
+        String pathHead = "file:///";
+        // DocumentProvider
+        if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+            // ExternalStorageProvider
+            if (isExternalStorageDocument(uri)) {
+                final String docId = DocumentsContract.getDocumentId(uri);
+                final String[] split = docId.split(":");
+                final String type = split[0];
+                if ("primary".equalsIgnoreCase(type)) {
+                    return pathHead + Environment.getExternalStorageDirectory() + "/" + split[1];
+                }
+            }
+            // DownloadsProvider
+            else if (isDownloadsDocument(uri)) {
+
+                final String id = DocumentsContract.getDocumentId(uri);
+
+                final Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
+
+                return pathHead + getDataColumn(context, contentUri, null, null);
+            }
+            // MediaProvider
+            else if (isMediaDocument(uri)) {
+                final String docId = DocumentsContract.getDocumentId(uri);
+                final String[] split = docId.split(":");
+                final String type = split[0];
+
+                Uri contentUri = null;
+                if ("image".equals(type)) {
+                    contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                } else if ("video".equals(type)) {
+                    contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                } else if ("audio".equals(type)) {
+                    contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+                }
+
+                final String selection = "_id=?";
+                final String[] selectionArgs = new String[]{split[1]};
+
+                return pathHead + getDataColumn(context, contentUri, selection, selectionArgs);
+            }
+        }
+        // MediaStore (and general)
+        else if ("content".equalsIgnoreCase(uri.getScheme())) {
+            return pathHead + getDataColumn(context, uri, null, null);
+        }
+        // File
+        else if ("file".equalsIgnoreCase(uri.getScheme())) {
+            return pathHead + uri.getPath();
+        }
+        return null;
+    }
+
+    /**
+     * Get the value of the data column for this Uri. This is useful for
+     * MediaStore Uris, and other file-based ContentProviders.
+     *
+     * @param context       The context.
+     * @param uri           The Uri to query.
+     * @param selection     (Optional) Filter used in the query.
+     * @param selectionArgs (Optional) Selection arguments used in the query.
+     * @return The value of the _data column, which is typically a file path.
+     */
+    private static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
+
+        Cursor cursor = null;
+        final String column = "_data";
+        final String[] projection = {column};
+        try {
+            cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                final int column_index = cursor.getColumnIndexOrThrow(column);
+                return cursor.getString(column_index);
+            }
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+        return null;
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is ExternalStorageProvider.
+     */
+    private static boolean isExternalStorageDocument(Uri uri) {
+        return "com.android.externalstorage.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is DownloadsProvider.
+     */
+    private static boolean isDownloadsDocument(Uri uri) {
+        return "com.android.providers.downloads.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is MediaProvider.
+     */
+    private static boolean isMediaDocument(Uri uri) {
+        return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
+
+
+    /**
+     * 图片按比例大小压缩方法
+     *
+     * @param image （根据Bitmap图片压缩）
+     * @return
+     */
+    private static Bitmap compressScale(Bitmap image, float disWidth, float disHeight) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        // 判断如果图片大于1M,进行压缩避免在生成图片（BitmapFactory.decodeStream）时溢出
+        if (baos.toByteArray().length / 1024 > 1024) {
+            baos.reset();// 重置baos即清空baos
+            image.compress(Bitmap.CompressFormat.JPEG, 80, baos);// 这里压缩50%，把压缩后的数据存放到baos中
+        }
+        ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());
+        BitmapFactory.Options newOpts = new BitmapFactory.Options();
+        // 开始读入图片，此时把options.inJustDecodeBounds 设回true了
+        newOpts.inJustDecodeBounds = true;
+        Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, newOpts);
+        newOpts.inJustDecodeBounds = false;
+        int w = newOpts.outWidth;
+        int h = newOpts.outHeight;
+        // 现在主流手机比较多是800*480分辨率，所以高和宽我们设置为
+        // float hh = 800f;// 这里设置高度为800f
+        // float ww = 480f;// 这里设置宽度为480f
+        float hh = disWidth;
+        float ww = disHeight;
+        // 缩放比。由于是固定比例缩放，只用高或者宽其中一个数据进行计算即可
+        int be = 1;// be=1表示不缩放
+        if (w > h && w > ww) {// 如果宽度大的话根据宽度固定大小缩放
+            be = (int) (newOpts.outWidth / ww);
+        } else if (w < h && h > hh) { // 如果高度高的话根据高度固定大小缩放
+            be = (int) (newOpts.outHeight / hh);
+        }
+        if (be <= 0)
+            be = 1;
+        newOpts.inSampleSize = be; // 设置缩放比例
+        // newOpts.inPreferredConfig = Config.RGB_565;//降低图片从ARGB888到RGB565
+        // 重新读入图片，注意此时已经把options.inJustDecodeBounds 设回false了
+        isBm = new ByteArrayInputStream(baos.toByteArray());
+        bitmap = BitmapFactory.decodeStream(isBm, null, newOpts);
+        return compressImage(bitmap);// 压缩好比例大小后再进行质量压缩
+        //return bitmap;
+    }
+
+    /**
+     * 质量压缩方法
+     *
+     * @param image
+     * @return
+     */
+    private static Bitmap compressImage(Bitmap image) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);// 质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+        int options = 90;
+        while (baos.toByteArray().length / 1024 > 100) { // 循环判断如果压缩后图片是否大于100kb,大于继续压缩
+            baos.reset(); // 重置baos即清空baos
+            image.compress(Bitmap.CompressFormat.JPEG, options, baos);// 这里压缩options%，把压缩后的数据存放到baos中
+            options -= 10;// 每次都减少10
+        }
+        ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());// 把压缩后的数据baos存放到ByteArrayInputStream中
+        Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);// 把ByteArrayInputStream数据生成图片
+        return bitmap;
+    }
+
+
+
+    /**
+     * 通过uri获取图片并进行压缩
+     *
+     * @param uri
+     */
+    public static Bitmap getBitmapFormUri(Context ac, Uri uri) throws FileNotFoundException, IOException {
+        InputStream input = ac.getContentResolver().openInputStream(uri);
+        BitmapFactory.Options onlyBoundsOptions = new BitmapFactory.Options();
+        onlyBoundsOptions.inJustDecodeBounds = true;
+        onlyBoundsOptions.inDither = true;//optional
+        onlyBoundsOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;//optional
+        BitmapFactory.decodeStream(input, null, onlyBoundsOptions);
+        input.close();
+        int originalWidth = onlyBoundsOptions.outWidth;
+        int originalHeight = onlyBoundsOptions.outHeight;
+        if ((originalWidth == -1) || (originalHeight == -1))
+            return null;
+        //图片分辨率以480x800为标准
+        float hh = 800f;//这里设置高度为800f
+        float ww = 480f;//这里设置宽度为480f
+        //缩放比。由于是固定比例缩放，只用高或者宽其中一个数据进行计算即可
+        int be = 1;//be=1表示不缩放
+        if (originalWidth > originalHeight && originalWidth > ww) {//如果宽度大的话根据宽度固定大小缩放
+            be = (int) (originalWidth / ww);
+        } else if (originalWidth < originalHeight && originalHeight > hh) {//如果高度高的话根据宽度固定大小缩放
+            be = (int) (originalHeight / hh);
+        }
+        if (be <= 0)
+            be = 1;
+        //比例压缩
+        BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+        bitmapOptions.inSampleSize = be;//设置缩放比例
+        bitmapOptions.inDither = true;//optional
+        bitmapOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;//optional
+        input = ac.getContentResolver().openInputStream(uri);
+        Bitmap bitmap = BitmapFactory.decodeStream(input, null, bitmapOptions);
+        input.close();
+
+        return compressImage(bitmap);//再进行质量压缩
+    }
+
+
+
 
 }

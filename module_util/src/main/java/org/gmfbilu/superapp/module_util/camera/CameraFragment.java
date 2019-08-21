@@ -1,8 +1,10 @@
 package org.gmfbilu.superapp.module_util.camera;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
@@ -14,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 
@@ -68,6 +71,12 @@ public class CameraFragment extends BaseFragment {
     private static final int IV_CAMERA = 0x102;
     private static final int IV_CAMERA_CROP = 0x103; //裁剪图片
     private static final int IV_VIDEO = 0x104;
+    private static final int IV_DIALOG_ALBUM = 0x105;
+    private static final int IV_DIALOG_ALBUM_CROP = 0x106;
+    private static final int IV_DIALOG_CAMERA = 0x107;
+    private static final int IV_DIALOG_CAMERA_CROP = 0x108;
+
+
     //图片路径都在根路径下，方便用户删除
     private SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss", Locale.CHINA);
     private String timeTemp = "/" + format.format(new Date());
@@ -84,6 +93,7 @@ public class CameraFragment extends BaseFragment {
     private ImageView iv_album;
     private ImageView iv_camera;
     private ImageView iv_video;
+    private ImageView iv_dialog;
 
     public static CameraFragment newInstance() {
         Bundle args = new Bundle();
@@ -102,6 +112,7 @@ public class CameraFragment extends BaseFragment {
         view.findViewById(R.id.bt_album).setOnClickListener(this);
         view.findViewById(R.id.bt_camera).setOnClickListener(this);
         view.findViewById(R.id.bt_video).setOnClickListener(this);
+        view.findViewById(R.id.bt_dialog).setOnClickListener(this);
     }
 
     @Override
@@ -118,6 +129,8 @@ public class CameraFragment extends BaseFragment {
             autoObtainCameraPermission(IV_CAMERA);
         } else if (id == R.id.bt_video) {
             autoObtainVideoPermission(IV_VIDEO);
+        } else if (id == R.id.bt_dialog) {
+            showDialog();
         }
     }
 
@@ -152,7 +165,9 @@ public class CameraFragment extends BaseFragment {
                 LoggerUtil.d(imageUri);
                 LoggerUtil.d(imageUri.getPath());
                 //imageUri在请求打开摄像头拍照的时候就已经指定了，如果成功了就直接使用这个uri
-                Bitmap iv_camera_bitmap = PhotoUtils.getBitmapFromUri(imageUri, _mActivity);
+                LoggerUtil.d(iv_camera.getWidth());
+                LoggerUtil.d(iv_camera.getMeasuredWidth());
+                Bitmap iv_camera_bitmap = PhotoUtils.getBitmapFromUri(imageUri, _mActivity, iv_camera.getWidth(), iv_camera.getHeight());
                 if (iv_camera_bitmap != null) {
                     iv_camera.setImageBitmap(iv_camera_bitmap);
                 }
@@ -169,7 +184,9 @@ public class CameraFragment extends BaseFragment {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                         newUri = FileProvider.getUriForFile(_mActivity, AppUtils.getPackageName() + ".fileprovider", new File(newUri.getPath()));
                     }
-                    Bitmap iv_album_bitmap = PhotoUtils.getBitmapFromUri(newUri, _mActivity);
+                    LoggerUtil.d(iv_album.getWidth());
+                    LoggerUtil.d(iv_album.getMeasuredWidth());
+                    Bitmap iv_album_bitmap = PhotoUtils.getBitmapFromUri(newUri, _mActivity, iv_album.getWidth(), iv_album.getHeight());
                     if (iv_album_bitmap != null) {
                         LoggerUtil.d(newUri);// file:////storage/sdcard/DCIM/Camera/IMG_20190820_014108.jpg
                         LoggerUtil.d(newUri.getPath());//  //storage/sdcard/DCIM/Camera/IMG_20190820_014108.jpg
@@ -208,7 +225,39 @@ public class CameraFragment extends BaseFragment {
                 Glide.with(_mActivity).load(videoBitmap).fitCenter().into(iv_video);
                 //上传的时候video以file文件形式上传
                 break;
+
+
+            case IV_DIALOG_ALBUM:
+                PhotoUtils.cropImageUri(this, imageUri, cropImageUri, 1, 1, OUTPUT_X, OUTPUT_Y, IV_DIALOG_ALBUM_CROP);
+                LoggerUtil.d(imageUri);
+                LoggerUtil.d(cropImageUri);
+                break;
+            case IV_DIALOG_ALBUM_CROP:
+                if (AppUtils.hasSdcard()) {
+                    cropImageUri = Uri.fromFile(fileCropUri);
+                    LoggerUtil.d(fileCropUri);
+                    LoggerUtil.d(cropImageUri);
+                    Uri newUri = Uri.parse(PhotoUtils.getPath(_mActivity, data.getData()));
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        newUri = FileProvider.getUriForFile(_mActivity, AppUtils.getPackageName() + ".fileprovider", new File(newUri.getPath()));
+                    }
+                    Bitmap iv_dialog_bitmap = PhotoUtils.getBitmapFromUri(newUri, _mActivity,iv_dialog.getWidth(),iv_dialog.getHeight());
+                    if (iv_dialog_bitmap != null) {
+                        LoggerUtil.d(newUri);
+                        LoggerUtil.d(newUri.getPath());
+                        LoggerUtil.d(iv_dialog_bitmap.getByteCount());
+                        iv_dialog.setImageBitmap(iv_dialog_bitmap);
+                    }
+                } else {
+                    Toast.makeText(_mActivity, "设备没有SD卡！", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case IV_DIALOG_CAMERA:
+                break;
+            case IV_DIALOG_CAMERA_CROP:
+                break;
             default:
+                break;
         }
     }
 
@@ -305,6 +354,28 @@ public class CameraFragment extends BaseFragment {
         } else {
             Toast.makeText(_mActivity, "设备没有SD卡！", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void showDialog() {
+        String[] item = {"相册", "拍照"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(_mActivity);
+        builder.setTitle("请选择");
+        builder.setItems(item, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //从相册选择照片，要裁剪
+                if (which == 0) {
+                    autoObtainGalleryPermission(IV_DIALOG_ALBUM);
+                    //直接拍摄照片，要裁剪
+                } else {
+                    autoObtainCameraPermission(IV_DIALOG_CAMERA);
+                }
+            }
+        });
+        // 取消可以不添加
+        //builder.setNegativeButton("取消",null);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
 }

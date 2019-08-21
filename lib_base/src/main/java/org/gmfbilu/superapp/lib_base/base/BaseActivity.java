@@ -1,6 +1,5 @@
 package org.gmfbilu.superapp.lib_base.base;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
@@ -19,10 +18,7 @@ import me.yokeyword.fragmentation.SupportActivity;
 
 public abstract class BaseActivity extends SupportActivity implements View.OnClickListener {
 
-    /**
-     * 当前Activity的实例。
-     */
-    protected Activity mCurrentActivity;
+
     /**
      * 判断当前Activity是否在前台。
      */
@@ -32,12 +28,11 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Logger.d(getClass().getName() + "---> onCreate");
-        mCurrentActivity = this;
         int layout = setLayout();
         if (layout != 0)
             setContentView(layout);
         findViewById_setOnClickListener(savedInstanceState);
-        activityManager();
+        ActivitiesManager.getInstance().addActivity(this);
         //initPush();
     }
 
@@ -45,9 +40,6 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
 
     public abstract int setLayout();
 
-    private void activityManager() {
-        ActivitiesManager.addActivity(this, getClass());
-    }
 
     private void initPush() {
         try {
@@ -94,8 +86,7 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
 
     @Override
     protected void onDestroy() {
-        ActivitiesManager.removeActivity(this);
-        mCurrentActivity = null;
+        ActivitiesManager.getInstance().removeActivity(this);
         super.onDestroy();
         Logger.d(getClass().getName() + "---> onDestroy");
     }

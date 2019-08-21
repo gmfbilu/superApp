@@ -1,105 +1,113 @@
 package org.gmfbilu.superapp.lib_base.app;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.os.Build;
+import android.app.ActivityManager;
+import android.content.Context;
 
-import java.lang.ref.WeakReference;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.Stack;
 
 public class ActivitiesManager {
 
-    // 当前与用户进行交互的Activity
-    private static WeakReference<Activity> sCurrentActivityWeakRef;
+    private static Stack<Activity> activityStack;
+    private static ActivitiesManager instance;
 
-    /**
-     * 存放activity的列表
-     */
-    public static HashMap<Class<?>, Activity> activities = new LinkedHashMap<>();
-
-    /**
-     * 添加Activity
-     *
-     * @param activity
-     */
-    public static void addActivity(Activity activity, Class<?> clz) {
-        activities.put(clz, activity);
+    private ActivitiesManager() {
     }
 
     /**
-     * 判断一个Activity 是否存在
-     *
-     * @param clz
-     * @return
+     * 单一实例
      */
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static <T extends Activity> boolean isActivityExist(Class<T> clz) {
-        boolean res;
-        Activity activity = getActivity(clz);
-        if (activity == null) {
-            res = false;
-        } else {
-            res = !(activity.isFinishing() || activity.isDestroyed());
+    public synchronized static ActivitiesManager getInstance() {
+        if (instance == null) {
+            instance = new ActivitiesManager();
         }
-
-        return res;
+        return instance;
     }
 
     /**
-     * 获得指定activity实例
-     *
-     * @param clazz Activity 的类对象
-     * @return
+     * 添加Activity到堆栈
      */
-    public static <T extends Activity> T getActivity(Class<T> clazz) {
-        return (T) activities.get(clazz);
+    public void addActivity(Activity activity) {
+        if (activityStack == null) {
+            activityStack = new Stack<>();
+        }
+        activityStack.add(activity);
     }
 
     /**
-     * 移除activity,代替finish
-     *
-     * @param activity
+     * 获取当前Activity（堆栈中最后一个压入的）
      */
-    public static void removeActivity(Activity activity) {
-        if (activities.containsValue(activity)) {
-            activities.remove(activity.getClass());
+    public Activity getCurrentActivity() {
+        Activity activity = activityStack.lastElement();
+        return activity;
+    }
+
+    /**
+     * 结束当前Activity（堆栈中最后一个压入的）
+     */
+    public void finishActivity() {
+        Activity activity = activityStack.lastElement();
+        finishActivity(activity);
+    }
+
+    /**
+     * 结束指定的Activity
+     */
+    public void finishActivity(Activity activity) {
+        if (activity != null) {
+            activityStack.remove(activity);
+            activity.finish();
+            activity = null;
         }
     }
 
     /**
-     * 移除所有的Activity
+     * 移除指定的Activity
      */
-    public static void removeAllActivity() {
-        if (activities != null && activities.size() > 0) {
-            Set<Map.Entry<Class<?>, Activity>> sets = activities.entrySet();
-            for (Map.Entry<Class<?>, Activity> s : sets) {
-                if (!s.getValue().isFinishing()) {
-                    s.getValue().finish();
-                }
+    public void removeActivity(Activity activity) {
+        if (activity != null) {
+            activityStack.remove(activity);
+        }
+    }
+
+    /**
+     * 结束指定类名的Activity
+     */
+    public void finishActivity(Class<?> cls) {
+        for (Activity activity : activityStack) {
+            if (activity.getClass().equals(cls)) {
+                finishActivity(activity);
             }
-            activities.clear();
         }
     }
-
 
     /**
-     * 获取当前与用户交互的Activity,例如弹出dialog，popupwindow
-     *
-     * @return
+     * 结束所有Activity
      */
-    public static Activity getCurrentActivity() {
-        Activity currentActivity = null;
-        if (sCurrentActivityWeakRef != null) {
-            currentActivity = sCurrentActivityWeakRef.get();
+    public void finishAllActivity() {
+        for (int i = 0, size = activityStack.size(); i < size; i++) {
+            if (null != activityStack.get(i)) {
+                activityStack.get(i).finish();
+            }
         }
-        return currentActivity;
+        activityStack.clear();
     }
 
-    public static void setCurrentActivity(Activity activity) {
-        sCurrentActivityWeakRef = new WeakReference<>(activity);
+    /**
+     * 退出应用程序
+     */
+    public void AppExit(Context context) {
+        try {
+            finishAllActivity();
+            ActivityManager activityMgr =
+                    (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+            activityMgr.killBackgroundProcesses(context.getPackageName());
+            System.exit(0);
+        } catch (Exception e) {
+        }
     }
 
+    public boolean isAppExit() {
+        return activityStack == null || activityStack.isEmpty();
+    }
 }

@@ -25,6 +25,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.orhanobut.logger.Logger;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
+import org.gmfbilu.superapp.lib_base.utils.ToastUtil;
 import org.gmfbilu.superapp.lib_base.view.dialog.DialogHelper;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.BaseRecyclerView;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.adapter.RecyclerArrayAdapter;
@@ -66,6 +67,7 @@ public class Switch_CheckBox_ListPreferenceFragment extends BaseFragment {
         view.findViewById(R.id.bt_TimePicker).setOnClickListener(this);
         view.findViewById(R.id.bt_BottomSheetDialog).setOnClickListener(this);
         view.findViewById(R.id.bt_FullscreenDialog).setOnClickListener(this);
+        view.findViewById(R.id.bt_AlertDialog).setOnClickListener(this);
         view.findViewById(R.id.CardView).setOnClickListener(this);
 
     }
@@ -165,7 +167,7 @@ public class Switch_CheckBox_ListPreferenceFragment extends BaseFragment {
                     calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                     String date = DateFormat.getDateInstance(DateFormat.MEDIUM).format(calendar.getTime());
                     //Toast.makeText(_mActivity, date, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(_mActivity, "year="+year+", monthOfYear="+(monthOfYear+1)+", dayOfMonth="+dayOfMonth, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(_mActivity, "year=" + year + ", monthOfYear=" + (monthOfYear + 1) + ", dayOfMonth=" + dayOfMonth, Toast.LENGTH_SHORT).show();
 
                 }
             }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
@@ -198,6 +200,21 @@ public class Switch_CheckBox_ListPreferenceFragment extends BaseFragment {
             fullscreenDialog.setContentView(R.layout.module_view_dialog_fullscreen);
             fullscreenDialog.findViewById(R.id.img_dialog_fullscreen_close).setOnClickListener(v1 -> fullscreenDialog.dismiss());
             fullscreenDialog.show();
+        } else if (id == R.id.bt_AlertDialog) {
+            String[] item = {"游戏", "运动", "电影", "旅游", "看书"};
+            AlertDialog.Builder builder = new AlertDialog.Builder(_mActivity);
+            builder.setTitle("请选择");
+            builder.setItems(item, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    ToastUtil.show("选择了" + item[which]);
+                }
+            });
+            // 取消可以不添加
+            //builder.setNegativeButton("取消",null);
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+
         }
     }
 

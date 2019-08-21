@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
 import com.orhanobut.logger.Logger;
 
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -12,8 +14,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.gmfbilu.superapp.lib_base.app.ActivitiesManager;
-
-import androidx.fragment.app.Fragment;
 
 
 @Aspect
@@ -42,7 +42,7 @@ public class CheckLoginAspect {
             } else if (object instanceof Fragment) {
                 context = ((Fragment) object).getActivity();
             } else {
-                context = ActivitiesManager.getCurrentActivity();
+                context = ActivitiesManager.getInstance().getCurrentActivity();
             }
             Toast.makeText(context, " go  Login", Toast.LENGTH_SHORT).show();
             //  context.startActivity(new Intent(context, LoginActivity.class));
