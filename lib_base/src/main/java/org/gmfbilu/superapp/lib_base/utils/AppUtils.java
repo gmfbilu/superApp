@@ -68,6 +68,7 @@ import java.net.URISyntaxException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -1211,7 +1212,6 @@ public class AppUtils {
     }
 
     /**
-     *
      * @param path
      * @return
      */
@@ -1405,7 +1405,6 @@ public class AppUtils {
     }
 
 
-
     /**
      * 通过uri获取图片并进行压缩
      *
@@ -1448,6 +1447,34 @@ public class AppUtils {
     }
 
 
+    /**
+     * 根据字节大小转换成kb,M,G
+     *
+     * @param byteSize
+     * @return
+     */
+    public static String getSize(int byteSize) {
+        //获取到的size为：1705230
+        int GB = 1024 * 1024 * 1024;//定义GB的计算常量
+        int MB = 1024 * 1024;//定义MB的计算常量
+        int KB = 1024;//定义KB的计算常量
+        DecimalFormat df = new DecimalFormat("0.00");//格式化小数
+        String resultSize = "";
+        if (byteSize / GB >= 1) {
+            //如果当前Byte的值大于等于1GB
+            resultSize = df.format(byteSize / (float) GB) + "GB   ";
+        } else if (byteSize / MB >= 1) {
+            //如果当前Byte的值大于等于1MB
+            resultSize = df.format(byteSize / (float) MB) + "MB   ";
+        } else if (byteSize / KB >= 1) {
+            //如果当前Byte的值大于等于1KB
+            resultSize = df.format(byteSize / (float) KB) + "KB   ";
+        } else {
+            resultSize = byteSize + "B   ";
+        }
+        return resultSize;
+
+    }
 
 
 }

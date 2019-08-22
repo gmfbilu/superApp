@@ -12,9 +12,11 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
+import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 import org.gmfbilu.superapp.lib_base.utils.LoggerUtil;
 
 import java.io.ByteArrayInputStream;
@@ -31,6 +33,7 @@ public class PhotoUtils {
 
     /**
      * 在onActivityResult()方法就能将imageUri拿到,并设置给ImageView了
+     *
      * @param fragment    当前fragment
      * @param imageUri    拍照后照片存储路径
      * @param requestCode 调用系统相机请求码
@@ -50,6 +53,7 @@ public class PhotoUtils {
 
     /**
      * 使用隐式意图打开系统相册,在onActivityResult()方法中通过Intent.getData()
+     *
      * @param fragment    当前fragment
      * @param requestCode 打开相册的请求码
      */
@@ -110,12 +114,11 @@ public class PhotoUtils {
      * @param mContext 上下文对象
      * @return 获取图像的Bitmap
      */
-    public static Bitmap getBitmapFromUri(Uri uri, Context mContext,int w,int h) {
+    public static Bitmap getBitmapFromUri(Uri uri, Context mContext, ImageView imageView) {
         try {
             Bitmap bitmapFormUri = getBitmapFormUri(mContext, uri);
-            Bitmap bitmap1 = compressScale(bitmapFormUri, w, h);
-            LoggerUtil.d(bitmapFormUri.getByteCount());
-            LoggerUtil.d(bitmap1.getByteCount());
+            Bitmap bitmap1 = compressScale(bitmapFormUri, imageView.getWidth(), imageView.getHeight());
+            LoggerUtil.d("首次压缩大小：" + AppUtils.getSize(bitmapFormUri.getByteCount()) + ", 再次压缩大小：" + AppUtils.getSize(bitmap1.getByteCount()));
             return bitmap1;
         } catch (Exception e) {
             e.printStackTrace();

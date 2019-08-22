@@ -1,8 +1,6 @@
 package org.gmfbilu.superapp.lib_base.http;
 
-import android.widget.Toast;
-
-import org.gmfbilu.superapp.lib_base.base.BaseApplication;
+import org.gmfbilu.superapp.lib_base.utils.ToastUtil;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -31,7 +29,7 @@ public abstract class NetObserver<T> implements Observer<T> {
         if (e != null) {
            // Logger.d(e.toString());
             if (e instanceof ApiException) {
-                Toast.makeText(BaseApplication.mApplicationContext, ((ApiException) e).ResponseMessageError, Toast.LENGTH_SHORT).show();
+                ToastUtil.show(((ApiException) e).ResponseMessageError);
             }
         }
         //RxBus.getDefault().post(e);

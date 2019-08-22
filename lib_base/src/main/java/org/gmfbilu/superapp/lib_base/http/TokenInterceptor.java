@@ -1,5 +1,6 @@
 package org.gmfbilu.superapp.lib_base.http;
 
+import org.gmfbilu.superapp.lib_base.utils.LoggerUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -39,7 +40,7 @@ public class TokenInterceptor implements Interceptor {
         }
 
         String bodyString = buffer.clone().readString(charset);
-        com.orhanobut.logger.Logger.d("Singlee body--->" + request.url().toString() + "    " + bodyString);
+        LoggerUtil.d("Singlee body--->" + request.url().toString() + "    " + bodyString);
         try {
             JSONObject jsonObject = new JSONObject(bodyString);
             int errorCode = jsonObject.getInt("code");

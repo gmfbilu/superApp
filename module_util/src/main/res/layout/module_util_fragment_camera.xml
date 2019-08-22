@@ -24,7 +24,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <ImageView
-            android:id="@+id/iv_album"
+            android:id="@+id/iv_getPicture"
             android:layout_width="100dp"
             android:layout_height="75dp"
             android:scaleType="fitXY"
@@ -32,33 +32,15 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/module_util_appBarLayout" />
 
-        <Button
-            android:id="@+id/bt_album"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="系统相册"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_album" />
-
-        <ImageView
-            android:id="@+id/iv_camera"
-            android:layout_width="100dp"
-            android:layout_height="75dp"
-            android:scaleType="fitXY"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bt_album" />
-
 
         <Button
-            android:id="@+id/bt_camera"
+            android:id="@+id/bt_getPicture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="系统相机"
+            android:text="获取图片"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_camera" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_getPicture" />
 
 
         <ImageView
@@ -68,7 +50,7 @@
             android:scaleType="fitXY"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bt_camera" />
+            app:layout_constraintTop_toBottomOf="@+id/bt_getPicture" />
 
 
         <Button
@@ -80,24 +62,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_video" />
 
-        <ImageView
-            android:id="@+id/iv_dialog"
-            android:layout_width="100dp"
-            android:layout_height="75dp"
-            android:scaleType="fitXY"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bt_video" />
 
-
-        <Button
-            android:id="@+id/bt_dialog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="dialog"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_dialog" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

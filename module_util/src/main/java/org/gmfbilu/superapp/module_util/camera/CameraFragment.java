@@ -1,10 +1,8 @@
 package org.gmfbilu.superapp.module_util.camera;
 
 import android.Manifest;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
@@ -66,15 +64,9 @@ import java.util.Locale;
 public class CameraFragment extends BaseFragment {
 
     //========================================================拍照
-    private static final int IV_ALBUM = 0x100;
-    private static final int IV_ALBUM_CROP = 0x101; //裁剪图片
-    private static final int IV_CAMERA = 0x102;
-    private static final int IV_CAMERA_CROP = 0x103; //裁剪图片
-    private static final int IV_VIDEO = 0x104;
-    private static final int IV_DIALOG_ALBUM = 0x105;
-    private static final int IV_DIALOG_ALBUM_CROP = 0x106;
-    private static final int IV_DIALOG_CAMERA = 0x107;
-    private static final int IV_DIALOG_CAMERA_CROP = 0x108;
+    private static final int IV_PICTURE = 0x100;
+    private static final int IV_PICTURE_CROP = 0x101;
+    private static final int IV_VIDEO = 0x102;
 
 
     //图片路径都在根路径下，方便用户删除
@@ -82,18 +74,16 @@ public class CameraFragment extends BaseFragment {
     private String timeTemp = "/" + format.format(new Date());
     private File fileUri = new File(Environment.getExternalStorageDirectory().getPath() + timeTemp + ".jpg"); //图片质量是好几M以上
     private File fileCropUri = new File(Environment.getExternalStorageDirectory().getPath() + timeTemp + "crop.jpg");//图片质量可以压缩到几百K
-    private Uri imageUri;
-    private Uri cropImageUri;
+    private Uri imageUri; //剪裁原图的Uri
+    private Uri cropImageUri; //剪裁后的图片的Uri
     private static final int OUTPUT_X = 480;
     private static final int OUTPUT_Y = 480;
 
 
     private RxPermissions rxPermissions;
     private Toolbar mToolbar;
-    private ImageView iv_album;
-    private ImageView iv_camera;
+    private ImageView iv_getPicture;
     private ImageView iv_video;
-    private ImageView iv_dialog;
 
     public static CameraFragment newInstance() {
         Bundle args = new Bundle();
@@ -106,13 +96,10 @@ public class CameraFragment extends BaseFragment {
     @Override
     public void findViewById_setOnClickListener(View view) {
         mToolbar = view.findViewById(R.id.module_util_toolbar);
-        iv_album = view.findViewById(R.id.iv_album);
-        iv_camera = view.findViewById(R.id.iv_camera);
+        iv_getPicture = view.findViewById(R.id.iv_getPicture);
         iv_video = view.findViewById(R.id.iv_video);
-        view.findViewById(R.id.bt_album).setOnClickListener(this);
-        view.findViewById(R.id.bt_camera).setOnClickListener(this);
         view.findViewById(R.id.bt_video).setOnClickListener(this);
-        view.findViewById(R.id.bt_dialog).setOnClickListener(this);
+        view.findViewById(R.id.bt_getPicture).setOnClickListener(this);
     }
 
     @Override
@@ -123,14 +110,10 @@ public class CameraFragment extends BaseFragment {
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.bt_album) {
-            autoObtainGalleryPermission(IV_ALBUM);
-        } else if (id == R.id.bt_camera) {
-            autoObtainCameraPermission(IV_CAMERA);
+        if (id == R.id.bt_getPicture) {
+            showDialog();
         } else if (id == R.id.bt_video) {
             autoObtainVideoPermission(IV_VIDEO);
-        } else if (id == R.id.bt_dialog) {
-            showDialog();
         }
     }
 
@@ -160,59 +143,19 @@ public class CameraFragment extends BaseFragment {
             return;
         }
         switch (requestCode) {
-            //直接拍照不裁剪
-            case IV_CAMERA:
-                LoggerUtil.d(imageUri);
-                LoggerUtil.d(imageUri.getPath());
-                //imageUri在请求打开摄像头拍照的时候就已经指定了，如果成功了就直接使用这个uri
-                LoggerUtil.d(iv_camera.getWidth());
-                LoggerUtil.d(iv_camera.getMeasuredWidth());
-                Bitmap iv_camera_bitmap = PhotoUtils.getBitmapFromUri(imageUri, _mActivity, iv_camera.getWidth(), iv_camera.getHeight());
-                if (iv_camera_bitmap != null) {
-                    iv_camera.setImageBitmap(iv_camera_bitmap);
-                }
-           /*     进行裁剪然后返回
-                cropImageUri = Uri.fromFile(fileCropUri);
-                PhotoUtils.cropImageUri(this, imageUri, cropImageUri, 1, 1, OUTPUT_X, OUTPUT_Y, IV_CAMERA_CROP);*/
-                break;
-            //从相册选取照片不裁剪
-            //打开系统相册选择照片后，返回结果在Intent数据中的data字段，是一个uri，表示选择的那张照片的位置
-            //打开系统相册选择照片的时候斌没有定uri
-            case IV_ALBUM:
+            case IV_PICTURE:
                 if (AppUtils.hasSdcard()) {
-                    Uri newUri = Uri.parse(PhotoUtils.getPath(_mActivity, data.getData()));
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        newUri = FileProvider.getUriForFile(_mActivity, AppUtils.getPackageName() + ".fileprovider", new File(newUri.getPath()));
-                    }
-                    LoggerUtil.d(iv_album.getWidth());
-                    LoggerUtil.d(iv_album.getMeasuredWidth());
-                    Bitmap iv_album_bitmap = PhotoUtils.getBitmapFromUri(newUri, _mActivity, iv_album.getWidth(), iv_album.getHeight());
-                    if (iv_album_bitmap != null) {
-                        LoggerUtil.d(newUri);// file:////storage/sdcard/DCIM/Camera/IMG_20190820_014108.jpg
-                        LoggerUtil.d(newUri.getPath());//  //storage/sdcard/DCIM/Camera/IMG_20190820_014108.jpg
-                        LoggerUtil.d(data.getData());// content://com.android.providers.media.documents/document/image%3A21
-                        LoggerUtil.d(data.getData().getPath()); //  /document/image:21
-                        iv_album.setImageBitmap(iv_album_bitmap);
-                    }
+                    //调用系统裁剪功能，如果不裁剪直接调用 setImageUri(getImageUri(data),iv_dialog);
+                    PhotoUtils.cropImageUri(this, getImageUri(data), getCropUri(), 1, 1, OUTPUT_X, OUTPUT_Y, IV_PICTURE_CROP);
                 } else {
                     Toast.makeText(_mActivity, "设备没有SD卡！", Toast.LENGTH_SHORT).show();
                 }
+                break;
+            case IV_PICTURE_CROP:
+                setImageUri(getCropUri(), iv_getPicture);
+                break;
 
-                //进行裁剪然后返回
-                //PhotoUtils.cropImageUri(this, imageUri, cropImageUri, 1, 1, OUTPUT_X, OUTPUT_Y, IV_ALBUM_CROP);
-                break;
-            case IV_ALBUM_CROP:
 
-                break;
-            //裁剪返回
-            case IV_CAMERA_CROP:
-             /*   Bitmap bitmap = PhotoUtils.getBitmapFromUri(cropImageUri, _mActivity);
-                if (bitmap != null) {
-                    LoggerUtil.d(cropImageUri);
-                    LoggerUtil.d(cropImageUri.getPath());
-                    iv_camera.setImageBitmap(bitmap);
-                }*/
-                break;
             //拍摄视频返回
             //录制视频后返回的结果在 Intent的data字段中，是一个uri，指向视频所保存的位置
             //uri在请求打开摄像头拍照的时候就已经指定了，如果成功了就直接使用这个uri
@@ -224,37 +167,6 @@ public class CameraFragment extends BaseFragment {
                 Bitmap videoBitmap = ThumbnailUtils.createVideoThumbnail(videoPath, MediaStore.Images.Thumbnails.MINI_KIND);
                 Glide.with(_mActivity).load(videoBitmap).fitCenter().into(iv_video);
                 //上传的时候video以file文件形式上传
-                break;
-
-
-            case IV_DIALOG_ALBUM:
-                PhotoUtils.cropImageUri(this, imageUri, cropImageUri, 1, 1, OUTPUT_X, OUTPUT_Y, IV_DIALOG_ALBUM_CROP);
-                LoggerUtil.d(imageUri);
-                LoggerUtil.d(cropImageUri);
-                break;
-            case IV_DIALOG_ALBUM_CROP:
-                if (AppUtils.hasSdcard()) {
-                    cropImageUri = Uri.fromFile(fileCropUri);
-                    LoggerUtil.d(fileCropUri);
-                    LoggerUtil.d(cropImageUri);
-                    Uri newUri = Uri.parse(PhotoUtils.getPath(_mActivity, data.getData()));
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        newUri = FileProvider.getUriForFile(_mActivity, AppUtils.getPackageName() + ".fileprovider", new File(newUri.getPath()));
-                    }
-                    Bitmap iv_dialog_bitmap = PhotoUtils.getBitmapFromUri(newUri, _mActivity,iv_dialog.getWidth(),iv_dialog.getHeight());
-                    if (iv_dialog_bitmap != null) {
-                        LoggerUtil.d(newUri);
-                        LoggerUtil.d(newUri.getPath());
-                        LoggerUtil.d(iv_dialog_bitmap.getByteCount());
-                        iv_dialog.setImageBitmap(iv_dialog_bitmap);
-                    }
-                } else {
-                    Toast.makeText(_mActivity, "设备没有SD卡！", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case IV_DIALOG_CAMERA:
-                break;
-            case IV_DIALOG_CAMERA_CROP:
                 break;
             default:
                 break;
@@ -345,31 +257,73 @@ public class CameraFragment extends BaseFragment {
      */
     private void openSystemCamera(int who) {
         if (AppUtils.hasSdcard()) {
+            PhotoUtils.takePicture(this, getImageUri(null), who);
+        } else {
+            Toast.makeText(_mActivity, "设备没有SD卡！", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * 根据原图Uri或者裁剪图Uri设置图片
+     *
+     * @param uri
+     * @param imageView
+     */
+    private void setImageUri(Uri uri, ImageView imageView) {
+        Bitmap bitmap = PhotoUtils.getBitmapFromUri(uri, _mActivity, imageView);
+        if (bitmap != null) {
+            imageView.setImageBitmap(bitmap);
+        }
+    }
+
+
+    /**
+     * 根据onActivityResult返回的Intent获取原图的Uri,适用于直接启动系统相册选取照片
+     *
+     * @param data
+     * @return
+     */
+    private Uri getImageUri(Intent data) {
+        if (data == null) {
+            //data为空的话就是从系统相机拍照图片
             imageUri = Uri.fromFile(fileUri);
             //通过FileProvider创建一个content类型的Uri
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 imageUri = FileProvider.getUriForFile(_mActivity, AppUtils.getPackageName() + ".fileprovider", fileUri);
             }
-            PhotoUtils.takePicture(this, imageUri, who);
         } else {
-            Toast.makeText(_mActivity, "设备没有SD卡！", Toast.LENGTH_SHORT).show();
+            //data不为空的话就是从系统相册选取图片
+            imageUri = Uri.parse(PhotoUtils.getPath(_mActivity, data.getData()));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                imageUri = FileProvider.getUriForFile(_mActivity, AppUtils.getPackageName() + ".fileprovider", new File(imageUri.getPath()));
+            }
         }
+        return imageUri;
+    }
+
+
+    /**
+     * 获取剪裁后的图片的Uri
+     *
+     * @return
+     */
+    private Uri getCropUri() {
+        cropImageUri = Uri.fromFile(fileCropUri);
+        LoggerUtil.d(cropImageUri);
+        return cropImageUri;
     }
 
     private void showDialog() {
         String[] item = {"相册", "拍照"};
         AlertDialog.Builder builder = new AlertDialog.Builder(_mActivity);
         builder.setTitle("请选择");
-        builder.setItems(item, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //从相册选择照片，要裁剪
-                if (which == 0) {
-                    autoObtainGalleryPermission(IV_DIALOG_ALBUM);
-                    //直接拍摄照片，要裁剪
-                } else {
-                    autoObtainCameraPermission(IV_DIALOG_CAMERA);
-                }
+        builder.setItems(item, (dialog, which) -> {
+            //从相册选择照片，要裁剪
+            if (which == 0) {
+                autoObtainGalleryPermission(IV_PICTURE);
+                //直接拍摄照片，要裁剪
+            } else {
+                autoObtainCameraPermission(IV_PICTURE);
             }
         });
         // 取消可以不添加
@@ -377,5 +331,6 @@ public class CameraFragment extends BaseFragment {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
+
 
 }
