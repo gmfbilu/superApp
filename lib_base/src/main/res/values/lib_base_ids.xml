@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (C) 2008 ZXing authors
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <item type="id" name="zxing_decode" tools:ignore="ResourceName" />
+  <item type="id" name="zxing_decode_failed" tools:ignore="ResourceName" />
+  <item type="id" name="zxing_decode_succeeded" tools:ignore="ResourceName" />
+  <item type="id" name="zxing_launch_product_query" tools:ignore="ResourceName" />
+  <item type="id" name="zxing_quit" tools:ignore="ResourceName" />
+  <item type="id" name="zxing_restart_preview" tools:ignore="ResourceName" />
+  <item type="id" name="zxing_return_scan_result" tools:ignore="ResourceName" />
+</resources>

@@ -18,6 +18,7 @@ import org.gmfbilu.superapp.module_util.permissions.PermissionsFragment;
 import org.gmfbilu.superapp.module_util.sqLite.SQLiteFragment;
 import org.gmfbilu.superapp.module_util.thirdCamera.ThirdCameraFragment;
 import org.gmfbilu.superapp.module_util.webview.WebViewFragment;
+import org.gmfbilu.superapp.module_util.zxing.ZXingFragment;
 
 
 public class MainFragment extends BaseFragment {
@@ -47,6 +48,7 @@ public class MainFragment extends BaseFragment {
         view.findViewById(R.id.module_util_bt_livedata).setOnClickListener(this);
         view.findViewById(R.id.module_util_bt_room).setOnClickListener(this);
         view.findViewById(R.id.module_util_bt_workManager).setOnClickListener(this);
+        view.findViewById(R.id.module_util_bt_zxing).setOnClickListener(this);
     }
 
     @Override
@@ -88,6 +90,8 @@ public class MainFragment extends BaseFragment {
             start(RoomFragment.newInstance());
         } else if (id == R.id.module_util_bt_workManager) {
 
+        }else if (id==R.id.module_util_bt_zxing){
+            start(ZXingFragment.newInstance());
         }
     }
 }

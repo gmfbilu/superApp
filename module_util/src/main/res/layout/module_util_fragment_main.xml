@@ -148,5 +148,15 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/module_util_bt_room"/>
 
+        <Button
+            android:id="@+id/module_util_bt_zxing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="二维码!"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/module_util_bt_workManager"/>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
