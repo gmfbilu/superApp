@@ -1,20 +1,24 @@
 package org.gmfbilu.superapp.module_view.recyclerView.baseRecyclerViewAdapter.simple;
 
 import android.animation.Animator;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.animation.BaseAnimation;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
+import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 import org.gmfbilu.superapp.lib_base.utils.ToastUtil;
+import org.gmfbilu.superapp.lib_base.view.recyclerView.decoration.DividerDecoration;
 import org.gmfbilu.superapp.module_view.R;
 
 import java.util.ArrayList;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import io.reactivex.Single;
 import io.reactivex.SingleEmitter;
 import io.reactivex.SingleObserver;
@@ -63,6 +67,10 @@ public class BRASimpleFragment extends BaseFragment {
         //((SimpleItemAnimator) Objects.requireNonNull(recyclerView.getItemAnimator())).setSupportsChangeAnimations(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
         mSimpleAdapter = new SimpleAdapter(R.layout.module_view_recyclerview_item_bras_simple, null);
+        //间隔装饰
+        DividerDecoration itemDecoration = new DividerDecoration(Color.GRAY, AppUtils.dp2px(16f), 0, 0);
+        itemDecoration.setDrawLastItem(false);
+        recyclerView.addItemDecoration(itemDecoration);
         //嵌套recycleView的情况下需要使用你使用 adapter. setOnItemClickListener 来设置点击事件,如果使用recycleView.addOnItemTouchListener会累计添加的
         mSimpleAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override

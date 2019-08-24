@@ -14,7 +14,8 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<paths>
+<paths xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ResourceName">
     <external-path
         name="my_images"
         path="Pictures"/>

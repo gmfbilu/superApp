@@ -364,8 +364,9 @@ public class AppUtils {
         return (int) (pxValue / scale + 0.5f);
     }
 
-    public static int sp2px(int spVal) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, spVal, BaseApplication.mApplicationContext.getResources().getDisplayMetrics());
+    public static int sp2px(int spValue) {
+        final float fontScale = BaseApplication.mApplicationContext.getResources().getDisplayMetrics().scaledDensity;
+        return (int) (spValue * fontScale + 0.5f);
     }
 
     /**

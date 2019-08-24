@@ -19,7 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 import org.gmfbilu.superapp.lib_base.R;
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 
-public abstract class BaseDialogFragment extends DialogFragment {
+public abstract class BaseDialogFragment extends DialogFragment  {
     private static final String MARGIN = "margin";
     private static final String WIDTH = "width";
     private static final String HEIGHT = "height";
