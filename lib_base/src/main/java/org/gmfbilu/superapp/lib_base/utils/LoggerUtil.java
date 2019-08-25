@@ -12,6 +12,12 @@ public class LoggerUtil {
         Logger.d(object);
     }
 
+    public static void e(String message) {
+        if (!StringUtils.isEmpty(message)) {
+            Logger.e(message);
+        }
+    }
+
     public static void i(String tag, Object object) {
         Logger.i(tag, object);
     }

@@ -1,4 +1,4 @@
-D:/demo/superApp/module_util/.cxx/cmake/debug/arm64-v8a/CMakeFiles/jniDemo2.dir
-D:/demo/superApp/module_util/.cxx/cmake/debug/arm64-v8a/CMakeFiles/jniDemo.dir
-D:/demo/superApp/module_util/.cxx/cmake/debug/arm64-v8a/CMakeFiles/edit_cache.dir
-D:/demo/superApp/module_util/.cxx/cmake/debug/arm64-v8a/CMakeFiles/rebuild_cache.dir
+/home/gmfbilu/Work/Android/Projects/superApp/module_util/.cxx/cmake/debug/arm64-v8a/CMakeFiles/edit_cache.dir
+/home/gmfbilu/Work/Android/Projects/superApp/module_util/.cxx/cmake/debug/arm64-v8a/CMakeFiles/rebuild_cache.dir
+/home/gmfbilu/Work/Android/Projects/superApp/module_util/.cxx/cmake/debug/arm64-v8a/CMakeFiles/jniDemo2.dir
+/home/gmfbilu/Work/Android/Projects/superApp/module_util/.cxx/cmake/debug/arm64-v8a/CMakeFiles/jniDemo.dir

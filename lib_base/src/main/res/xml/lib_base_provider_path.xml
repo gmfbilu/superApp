@@ -1,23 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
     <files-path>：Context.getFilesDir()——指向内部存储要共享的目录
     <cache-path>：Context.getCacheDir()——指向缓存要共享的目录
     <external-path>：Environment.getExternalStorageDirectory()——指向外部存储要共享的目录
       name为自定义的名字，path为目录，path=""指的是全部目录|path="."即为当前的根目录
 -->
-<resources>
+<paths>
     <!--这里配置的两个外部存储路径是升级SDK下载的文件可能存在的路径，一定要按照上面格式配置，不然可能会出现错误。-->
     <!-- /storage/emulated/0/Download/${applicationId}/.beta/apk-->
     <external-path
         name="beta_external_path"
-        path="Download/"/>
-    <!--/storage/emulated/0/Android/data/${applicationId}/files/apk/-->
+        path="Download/" />
+    <!--storage/emulated/0/Android/data/${applicationId}/files/apk/-->
     <external-path
-        name="beta_external_files_path"
-        path="Android/data/"/>
-    <paths>
-        <external-path
-            name="camera_photos"
-            path=""/>
-    </paths>
-</resources>
+         name="beta_external_files_path"
+         path="Android/data/" />
+     <!--path：需要临时授权访问的路径（.代表所有路径）-->
+    <!--name：就是你给这个访问路径起个名字-->
+    <external-path
+        name="external-path"
+        path="CameraDemo" />
+</paths>

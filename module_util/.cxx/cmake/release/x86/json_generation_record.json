@@ -5,7 +5,51 @@
   },
   {
     "level": "INFO",
-    "message": "JSON \u0027D:\\demo\\superApp\\module_util\\.cxx\\cmake\\release\\x86\\android_gradle_build.json\u0027 was up-to-date"
+    "message": "rebuilding JSON /home/gmfbilu/Work/Android/Projects/superApp/module_util/.cxx/cmake/release/x86/android_gradle_build.json due to:"
+  },
+  {
+    "level": "INFO",
+    "message": "- force flag, will remove stale json folder"
+  },
+  {
+    "level": "INFO",
+    "message": "- command changed from previous, will remove stale json folder"
+  },
+  {
+    "level": "INFO",
+    "message": "- a dependent build file changed"
+  },
+  {
+    "level": "INFO",
+    "message": "  - /home/gmfbilu/Work/Android/Projects/superApp/D:\\demo\\superApp\\module_util\\CMakeLists.txt"
+  },
+  {
+    "level": "INFO",
+    "message": "removing stale contents from \u0027/home/gmfbilu/Work/Android/Projects/superApp/module_util/.cxx/cmake/release/x86\u0027"
+  },
+  {
+    "level": "INFO",
+    "message": "created folder \u0027/home/gmfbilu/Work/Android/Projects/superApp/module_util/.cxx/cmake/release/x86\u0027"
+  },
+  {
+    "level": "INFO",
+    "message": "executing cmake Executable : /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake\narguments : \n-H/home/gmfbilu/Work/Android/Projects/superApp/module_util\n-B/home/gmfbilu/Work/Android/Projects/superApp/module_util/.cxx/cmake/release/x86\n-DANDROID_ABI\u003dx86\n-DANDROID_PLATFORM\u003dandroid-21\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003d/home/gmfbilu/Work/Android/Projects/superApp/module_util/build/intermediates/cmake/release/obj/x86\n-DCMAKE_BUILD_TYPE\u003dRelease\n-DANDROID_NDK\u003d/home/gmfbilu/Work/Android/Sdk/ndk-bundle\n-DCMAKE_CXX_FLAGS\u003d\n-DCMAKE_TOOLCHAIN_FILE\u003d/home/gmfbilu/Work/Android/Sdk/ndk-bundle/build/cmake/android.toolchain.cmake\n-DCMAKE_MAKE_PROGRAM\u003d/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/ninja\n-GAndroid Gradle - Ninja\njvmArgs : \n\n"
+  },
+  {
+    "level": "INFO",
+    "message": "Executable : /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake\narguments : \n-H/home/gmfbilu/Work/Android/Projects/superApp/module_util\n-B/home/gmfbilu/Work/Android/Projects/superApp/module_util/.cxx/cmake/release/x86\n-DANDROID_ABI\u003dx86\n-DANDROID_PLATFORM\u003dandroid-21\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003d/home/gmfbilu/Work/Android/Projects/superApp/module_util/build/intermediates/cmake/release/obj/x86\n-DCMAKE_BUILD_TYPE\u003dRelease\n-DANDROID_NDK\u003d/home/gmfbilu/Work/Android/Sdk/ndk-bundle\n-DCMAKE_CXX_FLAGS\u003d\n-DCMAKE_TOOLCHAIN_FILE\u003d/home/gmfbilu/Work/Android/Sdk/ndk-bundle/build/cmake/android.toolchain.cmake\n-DCMAKE_MAKE_PROGRAM\u003d/home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/ninja\n-GAndroid Gradle - Ninja\njvmArgs : \n\n"
+  },
+  {
+    "level": "INFO",
+    "message": "done executing cmake"
+  },
+  {
+    "level": "INFO",
+    "message": "write build output /home/gmfbilu/Work/Android/Projects/superApp/module_util/.cxx/cmake/release/x86/build_output.txt"
+  },
+  {
+    "level": "INFO",
+    "message": "write command file /home/gmfbilu/Work/Android/Projects/superApp/module_util/.cxx/cmake/release/x86/build_command.txt"
   },
   {
     "level": "INFO",

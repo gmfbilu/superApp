@@ -77,7 +77,7 @@ public final class CaptureActivity extends Activity implements
         // 保持Activity处于唤醒状态
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        setContentView(R.layout.module_lib_base_zxing_capture);
+        setContentView(R.layout.module_lib_base_activity_zxing_capture);
 
         hasSurface = false;
 
@@ -223,7 +223,7 @@ public final class CaptureActivity extends Activity implements
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.app_name));
         builder.setMessage("Sorry, the Android camera encountered a problem. You may need to restart the device.");
-        builder.setPositiveButton(R.string.button_ok, new FinishListener(this));
+        builder.setPositiveButton("OK", new FinishListener(this));
         builder.setOnCancelListener(new FinishListener(this));
         builder.show();
     }

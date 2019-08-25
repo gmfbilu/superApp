@@ -18,7 +18,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 
-import com.bumptech.glide.Glide;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
@@ -83,7 +82,7 @@ public class CameraFragment extends BaseFragment {
     private RxPermissions rxPermissions;
     private Toolbar mToolbar;
     private ImageView iv_getPicture;
-    private ImageView iv_video;
+    //private ImageView iv_video;
 
     public static CameraFragment newInstance() {
         Bundle args = new Bundle();
@@ -97,8 +96,7 @@ public class CameraFragment extends BaseFragment {
     public void findViewById_setOnClickListener(View view) {
         mToolbar = view.findViewById(R.id.module_util_toolbar);
         iv_getPicture = view.findViewById(R.id.iv_getPicture);
-        iv_video = view.findViewById(R.id.iv_video);
-        view.findViewById(R.id.bt_video).setOnClickListener(this);
+       // iv_video = view.findViewById(R.id.iv_video);
         view.findViewById(R.id.bt_getPicture).setOnClickListener(this);
     }
 
@@ -112,8 +110,6 @@ public class CameraFragment extends BaseFragment {
         int id = v.getId();
         if (id == R.id.bt_getPicture) {
             showDialog();
-        } else if (id == R.id.bt_video) {
-            autoObtainVideoPermission(IV_VIDEO);
         }
     }
 
@@ -165,7 +161,7 @@ public class CameraFragment extends BaseFragment {
                 LoggerUtil.d(uri); //file:///storage/emulated/0/Android/data/org.gmfbilu.superapp.module_util/files/Pictures/20190820135637.mp4
                 LoggerUtil.d(videoPath);///storage/emulated/0/Android/data/org.gmfbilu.superapp.module_util/files/Pictures/20190820135637.mp4
                 Bitmap videoBitmap = ThumbnailUtils.createVideoThumbnail(videoPath, MediaStore.Images.Thumbnails.MINI_KIND);
-                Glide.with(_mActivity).load(videoBitmap).fitCenter().into(iv_video);
+                //Glide.with(_mActivity).load(videoBitmap).fitCenter().into(iv_video);
                 //上传的时候video以file文件形式上传
                 break;
             default:
@@ -205,7 +201,7 @@ public class CameraFragment extends BaseFragment {
                         if (granted) {
                             PhotoUtils.openPic(CameraFragment.this, who);
                         } else {
-                            Toast.makeText(_mActivity, "请允许打操作SDCard！！", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(_mActivity, "没有读写权限，请去设置中心打开相关权限", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -223,7 +219,7 @@ public class CameraFragment extends BaseFragment {
                         if (granted) {
                             takeVideo(who);
                         } else {
-                            Toast.makeText(_mActivity, "权限拒绝，请去设置中心打开相关权限", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(_mActivity, "没有拍照、读写权限，请去设置中心打开相关权限", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -293,6 +289,7 @@ public class CameraFragment extends BaseFragment {
             }
         } else {
             //data不为空的话就是从系统相册选取图片
+            //IllegalArgumentException: Failed to resolve canonical path for /storage/emulated/0/Tencent/QQfile_recv/]TI)���`C[XIR~B{{L(6[$CJ.png
             imageUri = Uri.parse(PhotoUtils.getPath(_mActivity, data.getData()));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 imageUri = FileProvider.getUriForFile(_mActivity, AppUtils.getPackageName() + ".fileprovider", new File(imageUri.getPath()));

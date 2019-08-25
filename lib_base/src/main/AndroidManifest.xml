@@ -21,12 +21,25 @@
     <uses-permission android:name="android.permission.WRITE_OWNER_DATA" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
 
     <application
         android:hardwareAccelerated="false"
         android:label="@string/lib_base_app_name"
         tools:replace="android:label">
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="org.gmfbilu.superapp.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/lib_base_provider_path" />
+        </provider>
+
+
         <service android:name=".app.ApplicationIntentService">
             <intent-filter>
                 <action android:name="org.gmfbilu.superapp.lib_base" />
@@ -44,6 +57,12 @@
             android:name=".utils.zxing.android.CaptureActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".utils.camera.camera1.CameraActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".utils.camera.camera2.Camera2Activity"
+            android:launchMode="singleTask" />
     </application>
 
 </manifest>
