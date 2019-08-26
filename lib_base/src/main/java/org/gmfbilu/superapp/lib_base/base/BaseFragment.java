@@ -7,10 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.orhanobut.logger.Logger;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.orhanobut.logger.Logger;
+
 import me.yokeyword.fragmentation.SupportFragment;
 
 /**
@@ -79,26 +80,26 @@ public abstract class BaseFragment extends SupportFragment implements View.OnCli
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Logger.d(getClass().getName() + "---> onAttach Context");
+        //Logger.d(getClass().getName() + "---> onAttach Context");
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        Logger.d(getClass().getName() + "---> onAttach Activity");
+       // Logger.d(getClass().getName() + "---> onAttach Activity");
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Logger.d(getClass().getName() + "---> onCreate");
+       // Logger.d(getClass().getName() + "---> onCreate");
         initVariable();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Logger.d(getClass().getName() + "---> onViewCreated");
+        //Logger.d(getClass().getName() + "---> onViewCreated");
         //如果setUserVisibleHint()在rootView创建前调用时，那么
         //就等到rootView创建完后才回调onFragmentVisibleChange(true)
         //保证onFragmentVisibleChange()的回调发生在rootView创建完成之后，以便支持ui操作
@@ -118,50 +119,50 @@ public abstract class BaseFragment extends SupportFragment implements View.OnCli
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Logger.d(getClass().getName() + "---> onActivityCreated");
+       // Logger.d(getClass().getName() + "---> onActivityCreated");
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Logger.d(getClass().getName() + "---> onStart");
+       // Logger.d(getClass().getName() + "---> onStart");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Logger.d(getClass().getName() + "---> onResume");
+       // Logger.d(getClass().getName() + "---> onResume");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        Logger.d(getClass().getName() + "---> onPause");
+       // Logger.d(getClass().getName() + "---> onPause");
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        Logger.d(getClass().getName() + "---> onStop");
+        //Logger.d(getClass().getName() + "---> onStop");
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Logger.d(getClass().getName() + "---> onDestroyView");
+       // Logger.d(getClass().getName() + "---> onDestroyView");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Logger.d(getClass().getName() + "---> onDestroy");
+        //Logger.d(getClass().getName() + "---> onDestroy");
         initVariable();
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        Logger.d(getClass().getName() + "---> onDetach");
+        //Logger.d(getClass().getName() + "---> onDetach");
     }
 
     /**

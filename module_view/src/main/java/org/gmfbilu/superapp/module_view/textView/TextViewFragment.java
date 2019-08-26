@@ -1,6 +1,7 @@
 package org.gmfbilu.superapp.module_view.textView;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.SpannableString;
@@ -11,6 +12,8 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
+import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.TextView;
 
@@ -21,7 +24,7 @@ import org.gmfbilu.superapp.module_view.R;
 
 public class TextViewFragment extends BaseFragment {
 
-    private TextView tv1, tv2, tv3;
+    private TextView tv1, tv2, tv3, tv4;
 
     public static TextViewFragment newInstance() {
         Bundle args = new Bundle();
@@ -35,6 +38,7 @@ public class TextViewFragment extends BaseFragment {
         tv1 = view.findViewById(R.id.tv1);
         tv2 = view.findViewById(R.id.tv2);
         tv3 = view.findViewById(R.id.tv3);
+        tv4 = view.findViewById(R.id.tv4);
     }
 
     @Override
@@ -53,6 +57,7 @@ public class TextViewFragment extends BaseFragment {
         setTV1();
         setTV2();
         setTV3();
+        setTV4();
     }
 
     /**
@@ -117,7 +122,7 @@ public class TextViewFragment extends BaseFragment {
 
             @Override
             public void updateDrawState(TextPaint paint) {
-               // paint.setColor(Color.parseColor("#3072F6"));
+                // paint.setColor(Color.parseColor("#3072F6"));
             }
         };
         spannableBuilder.setSpan(clickableSpanTwo, 14, str.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -126,5 +131,40 @@ public class TextViewFragment extends BaseFragment {
         tv3.setText(spannableBuilder);
         // 去掉点击后文字的背景色
         // tv3.setHighlightColor(Color.parseColor("#00000000"));
+    }
+
+    private void setTV4() {
+        String str = new String("您当前帐户流水超过等值10000CNY,为了保障您和他人的资产安全，根据国际反洗钱金融行动特别工作组(FATF)相关规定，您需要先前往KYC认证才能进行合规交易。");
+        SpannableStringBuilder spannableBuilder = new SpannableStringBuilder(str);
+        ForegroundColorSpan colorSpan1 = new ForegroundColorSpan(Color.parseColor("#999999"));
+        spannableBuilder.setSpan(colorSpan1, 0, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        ForegroundColorSpan colorSpan2 = new ForegroundColorSpan(Color.parseColor("#333333"));
+        spannableBuilder.setSpan(colorSpan2, 11, 19, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        ForegroundColorSpan colorSpan3 = new ForegroundColorSpan(Color.parseColor("#999999"));
+        spannableBuilder.setSpan(colorSpan3, 19, 36, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        ForegroundColorSpan colorSpan4 = new ForegroundColorSpan(Color.parseColor("#333333"));
+        spannableBuilder.setSpan(colorSpan4, 36, 56, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ForegroundColorSpan colorSpan5 = new ForegroundColorSpan(Color.parseColor("#999999"));
+        spannableBuilder.setSpan(colorSpan5, 56, 60, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ForegroundColorSpan colorSpan6 = new ForegroundColorSpan(Color.parseColor("#333333"));
+        spannableBuilder.setSpan(colorSpan6, 61, str.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        StyleSpan styleSpan1 = new StyleSpan(Typeface.BOLD);
+        spannableBuilder.setSpan(styleSpan1, 11, 19, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        StyleSpan styleSpan2 = new StyleSpan(Typeface.BOLD);
+        spannableBuilder.setSpan(styleSpan2, 36, 56, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        StyleSpan styleSpan3 = new StyleSpan(Typeface.BOLD);
+        spannableBuilder.setSpan(styleSpan3, 61, str.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        UnderlineSpan underlineSpan = new UnderlineSpan();
+        spannableBuilder.setSpan(underlineSpan, 61, str.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        tv4.setText(spannableBuilder);
+
     }
 }
