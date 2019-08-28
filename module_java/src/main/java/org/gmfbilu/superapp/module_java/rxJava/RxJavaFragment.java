@@ -4,9 +4,14 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+
 import com.orhanobut.logger.Logger;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
+import org.gmfbilu.superapp.lib_base.utils.rxbus.RxBus;
+import org.gmfbilu.superapp.lib_base.utils.rxbus.eventbean.MsgEvent;
 import org.gmfbilu.superapp.module_java.R;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -17,8 +22,6 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Completable;
 import io.reactivex.CompletableEmitter;
@@ -62,6 +65,7 @@ public class RxJavaFragment extends BaseFragment {
     private Toolbar mToolbar;
     private final CompositeDisposable disposables = new CompositeDisposable();
 
+
     public static RxJavaFragment newInstance() {
         Bundle args = new Bundle();
         RxJavaFragment fragment = new RxJavaFragment();
@@ -73,6 +77,7 @@ public class RxJavaFragment extends BaseFragment {
     @Override
     public void findViewById_setOnClickListener(View view) {
         mToolbar = view.findViewById(R.id.module_java_toolbar);
+        view.findViewById(R.id.bt_rxbus).setOnClickListener(this);
     }
 
     @Override
@@ -82,7 +87,10 @@ public class RxJavaFragment extends BaseFragment {
 
     @Override
     public void onClick(View v) {
-
+        int id = v.getId();
+        if (id == R.id.bt_rxbus) {
+            rxBus();
+        }
     }
 
     /**
@@ -132,6 +140,16 @@ public class RxJavaFragment extends BaseFragment {
         rxJavaOperators21();
         rxJavaOperators22();
     }
+
+
+    /**
+     * rxBus发送事件，订阅事件在MainFragment
+     */
+    private void rxBus(){
+        RxBus.getInstance().post(new MsgEvent("Java"));
+    }
+
+
 
     private void helloRxJava() {
         //create 操作符应该是最常见的操作符了，主要用于产生一个 Obserable 被观察者对象,为了方便认知，统一把被观察者 Observable 称为发射器（上游事件），观察者 Observer 称为接收器（下游事件）
@@ -1005,7 +1023,7 @@ public class RxJavaFragment extends BaseFragment {
                 });
     }
 
-    private void rxJavaOperators22(){
+    private void rxJavaOperators22() {
         //reduce就是一次用一个方法处理一个值，可以有一个seed作为初始值
         Observable.create(new ObservableOnSubscribe<String>() {
             @Override
@@ -1018,7 +1036,7 @@ public class RxJavaFragment extends BaseFragment {
         }).reduce(new BiFunction<String, String, String>() {
             @Override
             public String apply(String s, String s2) {
-                Logger.d(s+"-------"+s2);
+                Logger.d(s + "-------" + s2);
                 return "messi";
             }
         }).subscribe(new MaybeObserver<String>() {
@@ -1112,6 +1130,8 @@ public class RxJavaFragment extends BaseFragment {
     public void onDetach() {
         super.onDetach();
         //取消订阅后既不走onComplete又不走onError
-        disposables.clear();
+        if (disposables!=null && !disposables.isDisposed()){
+            disposables.dispose();
+        }
     }
 }

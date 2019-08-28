@@ -8,13 +8,13 @@ import android.graphics.Path;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 
+import androidx.annotation.Nullable;
+
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 import org.gmfbilu.superapp.lib_base.utils.StringUtils;
 import org.gmfbilu.superapp.module_view.customViews.baseView.BaseView;
 
 import java.util.List;
-
-import androidx.annotation.Nullable;
 
 
 public class StepViewOne extends BaseView {
@@ -66,7 +66,7 @@ public class StepViewOne extends BaseView {
         mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 
         mTextPaint = new TextPaint();
-        mTextPaint.setTextSize(AppUtils.sp2px(12));
+        mTextPaint.setTextSize(AppUtils.sp2pxPaint(12));
         mTextPaint.setAntiAlias(true);
         mTextPaint.setTextAlign(Paint.Align.CENTER);
 
@@ -74,7 +74,7 @@ public class StepViewOne extends BaseView {
         mPathPaint.setColor(Color.parseColor("#35CBD1"));
         mPathPaint.setAntiAlias(true);
         mPathPaint.setStyle(Paint.Style.FILL);
-        mPathPaint.setStrokeWidth(AppUtils.sp2px(1));
+        mPathPaint.setStrokeWidth(AppUtils.sp2pxPaint(1));
     }
 
     @Override

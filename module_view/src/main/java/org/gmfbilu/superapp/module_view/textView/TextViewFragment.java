@@ -14,6 +14,7 @@ import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.text.style.UnderlineSpan;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,7 +25,7 @@ import org.gmfbilu.superapp.module_view.R;
 
 public class TextViewFragment extends BaseFragment {
 
-    private TextView tv1, tv2, tv3, tv4;
+    private TextView tv1, tv2, tv3, tv4,tv5,tv5_2;
 
     public static TextViewFragment newInstance() {
         Bundle args = new Bundle();
@@ -39,6 +40,8 @@ public class TextViewFragment extends BaseFragment {
         tv2 = view.findViewById(R.id.tv2);
         tv3 = view.findViewById(R.id.tv3);
         tv4 = view.findViewById(R.id.tv4);
+        tv5 = view.findViewById(R.id.tv5);
+        tv5_2 = view.findViewById(R.id.tv5_2);
     }
 
     @Override
@@ -58,6 +61,7 @@ public class TextViewFragment extends BaseFragment {
         setTV2();
         setTV3();
         setTV4();
+        setTV5();
     }
 
     /**
@@ -106,8 +110,8 @@ public class TextViewFragment extends BaseFragment {
         String str = new String("获取更多帮助，请拨打客服电话400-888-8888");
         SpannableStringBuilder spannableBuilder = new SpannableStringBuilder(str);
         // 设置字体大小
-        AbsoluteSizeSpan sizeSpan = new AbsoluteSizeSpan(AppUtils.sp2px(14), false);
-        AbsoluteSizeSpan sizeSpan2 = new AbsoluteSizeSpan(AppUtils.sp2px(24), false);
+        AbsoluteSizeSpan sizeSpan = new AbsoluteSizeSpan(AppUtils.sp2pxPaint(14), false);
+        AbsoluteSizeSpan sizeSpan2 = new AbsoluteSizeSpan(AppUtils.sp2pxPaint(24), false);
         spannableBuilder.setSpan(sizeSpan, 0, 14, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannableBuilder.setSpan(sizeSpan2, 14, str.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         // 单独设置字体颜色
@@ -166,5 +170,11 @@ public class TextViewFragment extends BaseFragment {
 
         tv4.setText(spannableBuilder);
 
+    }
+
+
+    private void setTV5(){
+        tv5.setTextSize(TypedValue.COMPLEX_UNIT_PX,AppUtils.sp2pxTextView(R.dimen.sp25));
+        tv5_2.setTextSize(TypedValue.COMPLEX_UNIT_PX,AppUtils.sp2pxTextView(R.dimen.sp15));
     }
 }

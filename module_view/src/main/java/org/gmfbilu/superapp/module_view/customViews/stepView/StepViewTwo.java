@@ -7,12 +7,12 @@ import android.graphics.Paint;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 
+import androidx.annotation.Nullable;
+
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 import org.gmfbilu.superapp.module_view.customViews.baseView.BaseView;
 
 import java.util.ArrayList;
-
-import androidx.annotation.Nullable;
 
 public class StepViewTwo extends BaseView {
 
@@ -61,7 +61,7 @@ public class StepViewTwo extends BaseView {
         mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 
         mTextPaint = new TextPaint();
-        mTextPaint.setTextSize(AppUtils.sp2px(12));
+        mTextPaint.setTextSize(AppUtils.sp2pxPaint(12));
         mTextPaint.setAntiAlias(true);
     }
 
@@ -122,7 +122,7 @@ public class StepViewTwo extends BaseView {
             canvas.drawText(location, Xtext, Ytext, mTextPaint);
 
             mTextPaint.setColor(stepViewTwoBean.highlight ? Color.parseColor("#35CBD1") : Color.parseColor("#9B9B9B"));
-            mTextPaint.setTextSize(AppUtils.sp2px(11));
+            mTextPaint.setTextSize(AppUtils.sp2pxPaint(11));
             String time = stepViewTwoBean.time;
             int stringHeight1 = AppUtils.getStringHeight(time, mTextPaint);
             canvas.drawText(time, Xtext, Ytext + stringHeight1 + AppUtils.dp2px(10), mTextPaint);

@@ -19,7 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 import org.gmfbilu.superapp.lib_base.R;
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 
-public abstract class BaseDialogFragment extends DialogFragment  {
+public abstract class BaseDialogFragment extends DialogFragment {
     private static final String MARGIN = "margin";
     private static final String WIDTH = "width";
     private static final String HEIGHT = "height";
@@ -29,6 +29,8 @@ public abstract class BaseDialogFragment extends DialogFragment  {
     private static final String THEME = "theme";
     private static final String ANIM = "anim_style";
     private static final String LAYOUT = "layout_id";
+    private static final String FULLSCREEN = "full_Screen";
+    private static final String SHOWTOP = "show_Top";
 
     private int margin;//左右边距
     private int width;//宽度
@@ -37,6 +39,7 @@ public abstract class BaseDialogFragment extends DialogFragment  {
     private boolean showBottom;//是否底部显示
     private boolean outCancel = true;//是否点击外部取消
     private boolean fullScreen = false;//是否全屏
+    private boolean showTop = false;//是否顶部展示
     @StyleRes
     protected int theme = R.style.lib_base_BaseDialogFragmentStyle; // dialog主题
     @StyleRes
@@ -67,6 +70,8 @@ public abstract class BaseDialogFragment extends DialogFragment  {
             theme = savedInstanceState.getInt(THEME);
             animStyle = savedInstanceState.getInt(ANIM);
             layoutId = savedInstanceState.getInt(LAYOUT);
+            fullScreen = savedInstanceState.getBoolean(FULLSCREEN);
+            showTop = savedInstanceState.getBoolean(SHOWTOP);
         }
     }
 
@@ -103,6 +108,8 @@ public abstract class BaseDialogFragment extends DialogFragment  {
         outState.putInt(THEME, theme);
         outState.putInt(ANIM, animStyle);
         outState.putInt(LAYOUT, layoutId);
+        outState.putBoolean(FULLSCREEN, fullScreen);
+        outState.putBoolean(SHOWTOP, showTop);
     }
 
     private void initParams() {
@@ -116,6 +123,13 @@ public abstract class BaseDialogFragment extends DialogFragment  {
                 lp.gravity = Gravity.BOTTOM;
                 if (animStyle == 0) {
                     animStyle = R.style.lib_base_BaseDialogFragment_DefaultAnimation;
+                }
+            }
+            //是否在顶部显示
+            if (showTop) {
+                lp.gravity = Gravity.TOP;
+                if (animStyle == 0) {
+                    //animStyle = R.style.lib_base_BaseDialogFragment_DefaultAnimation;
                 }
             }
             if (fullScreen) {
@@ -167,6 +181,9 @@ public abstract class BaseDialogFragment extends DialogFragment  {
 
     public BaseDialogFragment setShowBottom(boolean showBottom) {
         this.showBottom = showBottom;
+        if (showBottom) {
+            this.showTop = false;
+        }
         return this;
     }
 
@@ -182,6 +199,14 @@ public abstract class BaseDialogFragment extends DialogFragment  {
 
     public BaseDialogFragment setFullScreen(boolean isFullScreen) {
         this.fullScreen = isFullScreen;
+        return this;
+    }
+
+    public BaseDialogFragment setShowTop(boolean showTop) {
+        this.showTop = showTop;
+        if (showTop) {
+            this.showBottom = false;
+        }
         return this;
     }
 

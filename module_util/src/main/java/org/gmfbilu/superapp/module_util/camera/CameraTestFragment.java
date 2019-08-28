@@ -9,7 +9,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,9 +29,6 @@ import org.gmfbilu.superapp.lib_base.utils.camera.util.FileUtil;
 import org.gmfbilu.superapp.module_util.R;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 
 /**
@@ -78,6 +74,7 @@ public class CameraTestFragment extends BaseFragment {
     private Uri imgUri;//剪裁原图的Uri
     private File imageFile;//剪裁原图的File
     private File imageCropFile;//剪裁后的图片的File
+    private File videoFile;
 
     private RxPermissions rxPermissions;
     private Toolbar mToolbar;
@@ -157,8 +154,12 @@ public class CameraTestFragment extends BaseFragment {
                     String path = uri.getPath();
                     vv_video.setVideoURI(uri);
                     vv_video.start();
-                    LoggerUtil.d("视频uri:" + uri);
-                    LoggerUtil.d("视频path:" + path);
+                    LoggerUtil.d("视频uri:" + uri + "\n" + "视频path:" + path);
+                    //:file:///storage/emulated/0/Android/data/org.gmfbilu.superapp.module_util/files/Pictures/20190827094205.mp4
+                    //:/storage/emulated/0/Android/data/org.gmfbilu.superapp.module_util/files/Pictures/20190827094205.mp4
+                    LoggerUtil.d(videoFile.getAbsolutePath());//: /storage/emulated/0/CameraDemo/video/VIDEO_20190827_100324.mp4
+                    //上传视频使用videoFile.getAbsolutePath()，上传之前要压缩视频
+
                 }
             } else {
                 LoggerUtil.e("错误码:" + resultCode);
@@ -301,27 +302,6 @@ public class CameraTestFragment extends BaseFragment {
 
 
     /**
-     * 录像，7.0以下
-     */
-    private void takeVideo() {
-        // 激活系统的照相机进行录像
-        Intent intent = new Intent();
-        intent.setAction("android.media.action.VIDEO_CAPTURE");
-        intent.addCategory("android.intent.category.DEFAULT");
-        // 保存录像到指定的路径
-        //获取与应用相关联的路径
-        String videoPath = _mActivity.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss", Locale.CHINA);
-        String timeTemp = "/" + format.format(new Date()) + ".mp4";
-        File file = new File(videoPath, timeTemp);
-        Uri uri = Uri.fromFile(file);
-        //LoggerUtil.d(uri);//file:///storage/emulated/0/Android/data/org.gmfbilu.superapp.module_util/files/Pictures/20190820135637.mp4
-        //LoggerUtil.d(uri.getPath());///storage/emulated/0/Android/data/org.gmfbilu.superapp.module_util/files/Pictures/20190820135637.mp4
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-        startActivityForResult(intent, REQUEST_CODE_VIDEO);
-    }
-
-    /**
      * 录视频
      */
     private void autoObtainVideoPermission() {
@@ -331,7 +311,8 @@ public class CameraTestFragment extends BaseFragment {
                     @Override
                     public void onNext(Boolean granted) {
                         if (granted) {
-                            File videoFile = FileUtil.createVideoFile();
+                            videoFile = FileUtil.createVideoFile();//:/storage/emulated/0/CameraDemo/video/VIDEO_20190827_094205.mp4
+                            LoggerUtil.d(videoFile.getAbsolutePath());
                             if (videoFile != null) {
                                 Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -339,13 +320,10 @@ public class CameraTestFragment extends BaseFragment {
                                     Uri videoUri = FileProvider.getUriForFile(_mActivity, AUTHORITY, videoFile);//: content://org.gmfbilu.superapp.fileProvider/external-path/capture/IMG_20190826_000350.jpg
                                     intent.putExtra(MediaStore.EXTRA_OUTPUT, videoUri);
                                 } else {
-                                    String videoPath = _mActivity.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
-                                    SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss", Locale.CHINA);
-                                    String timeTemp = "/" + format.format(new Date()) + ".mp4";
-                                    File file = new File(videoPath, timeTemp);
-                                    Uri uri = Uri.fromFile(file);
-                                    intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+                                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(videoFile));
                                 }
+                                intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 60);//限制时间
+                                intent.putExtra(MediaStore.EXTRA_SIZE_LIMIT, 10 * 1024 * 1024L);//限制录制大小(10M=10 * 1024 * 1024L)
                                 ComponentName componentName = intent.resolveActivity(_mActivity.getPackageManager());
                                 if (componentName != null) {
                                     startActivityForResult(intent, REQUEST_CODE_VIDEO);

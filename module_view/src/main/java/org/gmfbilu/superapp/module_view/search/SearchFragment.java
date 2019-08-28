@@ -12,8 +12,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
+import org.gmfbilu.superapp.lib_base.utils.LoggerUtil;
 import org.gmfbilu.superapp.lib_base.utils.StringUtils;
 import org.gmfbilu.superapp.lib_base.view.flowLayout.FlowLayout;
 import org.gmfbilu.superapp.lib_base.view.flowLayout.TagAdapter;
@@ -25,13 +33,6 @@ import org.gmfbilu.superapp.module_view.R;
 import org.gmfbilu.superapp.module_view.search.viewholder.SearchHotViewHolder;
 
 import java.util.ArrayList;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatEditText;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 public class SearchFragment extends BaseFragment {
 
@@ -234,6 +235,8 @@ public class SearchFragment extends BaseFragment {
     }
 
     private void setIndexSelected(int index) {
+        //第一次进入的是index为0，什么都不做
+        //第一次进入的是index为1,lastIndex为0，mFragments[lastIndex].isAdded()为false，什么都不做
         if (index == lastIndex) {
             return;
         }
@@ -246,6 +249,11 @@ public class SearchFragment extends BaseFragment {
         animator.start();
         FragmentManager fragmentManager = _mActivity.getSupportFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
+        if (!mFragments[lastIndex].isAdded()) {
+            lastIndex = index;
+            LoggerUtil.d(lastIndex);
+            return;
+        }
         ft.hide(mFragments[lastIndex]);
         if (!mFragments[index].isAdded()) {
             ft.add(R.id.fl_content, mFragments[index]).show(mFragments[index]);
@@ -254,6 +262,7 @@ public class SearchFragment extends BaseFragment {
         }
         ft.commit();
         lastIndex = index;
+        LoggerUtil.d(lastIndex);
     }
 
     private void search() {

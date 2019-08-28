@@ -5,11 +5,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-
-import org.gmfbilu.superapp.lib_base.utils.AppUtils;
-import org.gmfbilu.superapp.module_view.customViews.baseView.BaseView;
+import android.util.TypedValue;
 
 import androidx.annotation.Nullable;
+
+import org.gmfbilu.superapp.lib_base.utils.AppUtils;
+import org.gmfbilu.superapp.module_view.R;
+import org.gmfbilu.superapp.module_view.customViews.baseView.BaseView;
 
 public class CanvasViewTestOne extends BaseView {
 
@@ -78,13 +80,13 @@ public class CanvasViewTestOne extends BaseView {
         for (int i = 0; i < 12; i++) {
             if (i == 0 || i == 3 || i == 6 || i == 9) {
                 keduPaint.setStrokeWidth(6);
-                keduPaint.setTextSize(AppUtils.sp2px(15));
+                keduPaint.setTextSize(AppUtils.sp2pxPaint(15));
                 canvas.drawLine(circleLocation[0], pointerLengthBig, circleLocation[0], 0, keduPaint);
                 String degree = String.valueOf(i);
                 canvas.drawText(degree, circleLocation[0] - AppUtils.getStringWidth(degree, keduPaint) / 2, pointerLengthBig + AppUtils.getStringHeight(degree, keduPaint) + gap, keduPaint);
             } else {
                 keduPaint.setStrokeWidth(3);
-                keduPaint.setTextSize(AppUtils.sp2px(13));
+                keduPaint.setTextSize(AppUtils.sp2pxPaint(13));
                 canvas.drawLine(circleLocation[0], pointerLengthSmall, circleLocation[0], 0, keduPaint);
                 String degree = String.valueOf(i);
                 canvas.drawText(degree, circleLocation[0] - AppUtils.getStringWidth(degree, keduPaint) / 2, pointerLengthSmall + AppUtils.getStringHeight(degree, keduPaint) + gap, keduPaint);

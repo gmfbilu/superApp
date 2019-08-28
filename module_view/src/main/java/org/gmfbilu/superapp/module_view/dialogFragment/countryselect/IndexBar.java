@@ -39,7 +39,7 @@ public class IndexBar extends LinearLayout {
     }
 
     private void init(AttributeSet attrs) {
-        float indexTextSize = AppUtils.sp2px(12);
+        float indexTextSize = AppUtils.sp2pxPaint(12);
         int indexTextColor = Color.parseColor("#D9D9D9");
         setOrientation(VERTICAL);
         for (String index : INDEXES) {

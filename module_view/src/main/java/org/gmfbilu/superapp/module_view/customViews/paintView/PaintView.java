@@ -10,10 +10,10 @@ import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 
+import androidx.annotation.Nullable;
+
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 import org.gmfbilu.superapp.module_view.customViews.baseView.BaseView;
-
-import androidx.annotation.Nullable;
 
 public class PaintView extends BaseView {
 
@@ -50,7 +50,7 @@ public class PaintView extends BaseView {
         mTextPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
         //通过Paint的API来设置抗锯齿效果
         mTextPaint.setAntiAlias(true);
-        mTextPaint.setTextSize(AppUtils.sp2px(16));
+        mTextPaint.setTextSize(AppUtils.sp2pxPaint(16));
         mTextPaint.setColor(Color.BLACK);
     }
 

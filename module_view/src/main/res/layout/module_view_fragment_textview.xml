@@ -37,4 +37,32 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv3"/>
 
+    <TextView
+        android:id="@+id/tv5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="一号字体,25sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv4"/>
+
+
+    <TextView
+        android:id="@+id/tv5_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="二号字体,15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv5"/>
+
+    <TextView
+        android:id="@+id/tv5_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="xml中设置15sp"
+        android:textSize="@dimen/sp15"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv5_2"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -45,6 +45,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import androidx.annotation.DimenRes;
+
 import com.google.android.material.tabs.TabLayout;
 import com.leon.channel.helper.ChannelReaderUtil;
 
@@ -364,10 +366,29 @@ public class AppUtils {
         return (int) (pxValue / scale + 0.5f);
     }
 
-    public static int sp2px(int spValue) {
+
+    /**
+     * 在Paint中设置字体大小
+     * 还有在Paint和SpannableStringBuilder的AbsoluteSizeSpan中设置字体大小是不是有什么区别?
+     * @param spValue
+     * @return
+     */
+    public static int sp2pxPaint(int spValue) {
         final float fontScale = BaseApplication.mApplicationContext.getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
     }
+
+
+    /**
+     * 在TextView中设置字体大小
+     * setTextSize(TypedValue.COMPLEX_UNIT_PX,AppUtils.sp2pxTextView(R.dimen.sp25));
+     * @param id
+     * @return
+     */
+    public static int sp2pxTextView(@DimenRes int id) {
+        return BaseApplication.mApplicationContext.getResources().getDimensionPixelSize(id);
+    }
+
 
     /**
      * 获取手机屏幕的宽度

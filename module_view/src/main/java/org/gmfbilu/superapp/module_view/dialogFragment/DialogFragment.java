@@ -1,6 +1,7 @@
 package org.gmfbilu.superapp.module_view.dialogFragment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
+import org.gmfbilu.superapp.lib_base.utils.LoggerUtil;
 import org.gmfbilu.superapp.lib_base.view.dialogFragment.BaseDialog;
 import org.gmfbilu.superapp.lib_base.view.dialogFragment.BaseDialogFragment;
 import org.gmfbilu.superapp.lib_base.view.dialogFragment.DialogFragmentViewConvertListener;
@@ -21,6 +23,9 @@ import org.gmfbilu.superapp.module_view.dialogFragment.countryselect.CountrySele
  * Google官方建议使用DialogFragment代替Dialog
  */
 public class DialogFragment extends BaseFragment {
+
+
+    private int checked = 0;
 
 
     public static DialogFragment newInstance() {
@@ -40,6 +45,7 @@ public class DialogFragment extends BaseFragment {
         view.findViewById(R.id.bt_dialog_loading).setOnClickListener(this);
         view.findViewById(R.id.bt_dialog_pop).setOnClickListener(this);
         view.findViewById(R.id.bt_dialog_country_select).setOnClickListener(this);
+        view.findViewById(R.id.bt_dialog_filter).setOnClickListener(this);
 
     }
 
@@ -142,6 +148,119 @@ public class DialogFragment extends BaseFragment {
         } else if (id == R.id.bt_dialog_country_select) {
             CountrySelectDialogFragment.newInstance()
                     .setFullScreen(true)
+                    .show(_mActivity.getSupportFragmentManager());
+        } else if (id == R.id.bt_dialog_filter) {
+            BaseDialog.init()
+                    .setLayoutId(R.layout.module_view_dialogfragment_filter) //设置dialog布局文件
+                    .setConvertListener(new DialogFragmentViewConvertListener() { //进行相关View操作的回调
+                        @Override
+                        public void convertView(DialogFragmentViewHolder holder, final BaseDialogFragment dialog) {
+                            TextView tv_all = holder.getView(R.id.tv_all);
+                            TextView tv_day = holder.getView(R.id.tv_day);
+                            TextView tv_week = holder.getView(R.id.tv_week);
+                            TextView tv_month = holder.getView(R.id.tv_month);
+                            TextView tv_year = holder.getView(R.id.tv_year);
+                            tv_all.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    checked = 0;
+                                    tv_all.setBackgroundResource(R.drawable.shape_dialogfragment_filter_checked);
+                                    tv_all.setTextColor(Color.parseColor("#3185FD"));
+                                    tv_day.setBackgroundResource(R.drawable.shape_dialogfragment_filter_unchecked);
+                                    tv_day.setTextColor(Color.parseColor("#CCCCCC"));
+                                    tv_week.setBackgroundResource(R.drawable.shape_dialogfragment_filter_unchecked);
+                                    tv_week.setTextColor(Color.parseColor("#CCCCCC"));
+                                    tv_month.setBackgroundResource(R.drawable.shape_dialogfragment_filter_unchecked);
+                                    tv_month.setTextColor(Color.parseColor("#CCCCCC"));
+                                    tv_year.setBackgroundResource(R.drawable.shape_dialogfragment_filter_unchecked);
+                                    tv_year.setTextColor(Color.parseColor("#CCCCCC"));
+
+                                }
+                            });
+                            tv_day.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    checked = 1;
+                                    tv_all.setBackgroundResource(R.drawable.shape_dialogfragment_filter_unchecked);
+                                    tv_all.setTextColor(Color.parseColor("#CCCCCC"));
+                                    tv_day.setBackgroundResource(R.drawable.shape_dialogfragment_filter_checked);
+                                    tv_day.setTextColor(Color.parseColor("#3185FD"));
+                                    tv_week.setBackgroundResource(R.drawable.shape_dialogfragment_filter_unchecked);
+                                    tv_week.setTextColor(Color.parseColor("#CCCCCC"));
+                                    tv_month.setBackgroundResource(R.drawable.shape_dialogfragment_filter_unchecked);
+                                    tv_month.setTextColor(Color.parseColor("#CCCCCC"));
+                                    tv_year.setBackgroundResource(R.drawable.shape_dialogfragment_filter_unchecked);
+                                    tv_year.setTextColor(Color.parseColor("#CCCCCC"));
+                                }
+                            });
+                            tv_week.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    checked = 2;
+                                    tv_all.setBackgroundResource(R.drawable.shape_dialogfragment_filter_unchecked);
+                                    tv_all.setTextColor(Color.parseColor("#CCCCCC"));
+                                    tv_day.setBackgroundResource(R.drawable.shape_dialogfragment_filter_unchecked);
+                                    tv_day.setTextColor(Color.parseColor("#CCCCCC"));
+                                    tv_week.setBackgroundResource(R.drawable.shape_dialogfragment_filter_checked);
+                                    tv_week.setTextColor(Color.parseColor("#3185FD"));
+                                    tv_month.setBackgroundResource(R.drawable.shape_dialogfragment_filter_unchecked);
+                                    tv_month.setTextColor(Color.parseColor("#CCCCCC"));
+                                    tv_year.setBackgroundResource(R.drawable.shape_dialogfragment_filter_unchecked);
+                                    tv_year.setTextColor(Color.parseColor("#CCCCCC"));
+                                }
+                            });
+                            tv_month.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    checked = 3;
+                                    tv_all.setBackgroundResource(R.drawable.shape_dialogfragment_filter_unchecked);
+                                    tv_all.setTextColor(Color.parseColor("#CCCCCC"));
+                                    tv_day.setBackgroundResource(R.drawable.shape_dialogfragment_filter_unchecked);
+                                    tv_day.setTextColor(Color.parseColor("#CCCCCC"));
+                                    tv_week.setBackgroundResource(R.drawable.shape_dialogfragment_filter_unchecked);
+                                    tv_week.setTextColor(Color.parseColor("#CCCCCC"));
+                                    tv_month.setBackgroundResource(R.drawable.shape_dialogfragment_filter_checked);
+                                    tv_month.setTextColor(Color.parseColor("#3185FD"));
+                                    tv_year.setBackgroundResource(R.drawable.shape_dialogfragment_filter_unchecked);
+                                    tv_year.setTextColor(Color.parseColor("#CCCCCC"));
+                                }
+                            });
+                            tv_year.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    checked = 4;
+                                    tv_all.setBackgroundResource(R.drawable.shape_dialogfragment_filter_unchecked);
+                                    tv_all.setTextColor(Color.parseColor("#CCCCCC"));
+                                    tv_day.setBackgroundResource(R.drawable.shape_dialogfragment_filter_unchecked);
+                                    tv_day.setTextColor(Color.parseColor("#CCCCCC"));
+                                    tv_week.setBackgroundResource(R.drawable.shape_dialogfragment_filter_unchecked);
+                                    tv_week.setTextColor(Color.parseColor("#CCCCCC"));
+                                    tv_month.setBackgroundResource(R.drawable.shape_dialogfragment_filter_unchecked);
+                                    tv_month.setTextColor(Color.parseColor("#CCCCCC"));
+                                    tv_year.setBackgroundResource(R.drawable.shape_dialogfragment_filter_checked);
+                                    tv_year.setTextColor(Color.parseColor("#3185FD"));
+                                }
+                            });
+                            holder.getView(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            holder.getView(R.id.tv_sure).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    LoggerUtil.d(checked);
+                                    dialog.dismiss();
+
+                                }
+                            });
+
+                        }
+
+                    })
+                    .setDimAmount(0.8f)
+                    .setShowTop(true)
                     .show(_mActivity.getSupportFragmentManager());
         }
     }

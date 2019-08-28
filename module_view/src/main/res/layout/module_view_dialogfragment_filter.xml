@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <TextView
+        android:id="@+id/TextViewOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="18dp"
+        android:text="筛选"
+        android:textColor="#333333"
+        android:textSize="17sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/TextViewTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:text="时间"
+        android:textColor="#333333"
+        android:textSize="13sp"
+        app:layout_constraintLeft_toLeftOf="@+id/TextViewOne"
+        app:layout_constraintTop_toBottomOf="@+id/TextViewOne" />
+
+    <TextView
+        android:id="@+id/tv_all"
+        android:layout_width="61dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="@dimen/sp_14"
+        android:background="@drawable/shape_dialogfragment_filter_checked"
+        android:gravity="center"
+        android:text="全部"
+        android:textColor="#3185FD"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@+id/TextViewOne"
+        app:layout_constraintTop_toBottomOf="@+id/TextViewTwo" />
+
+    <TextView
+        android:id="@+id/tv_day"
+        android:layout_width="61dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="11dp"
+        android:background="@drawable/shape_dialogfragment_filter_unchecked"
+        android:gravity="center"
+        android:text="近7天"
+        android:textColor="#CCCCCC"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_all"
+        app:layout_constraintLeft_toRightOf="@+id/tv_all"
+        app:layout_constraintTop_toTopOf="@+id/tv_all" />
+
+    <TextView
+        android:id="@+id/tv_week"
+        android:layout_width="61dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="11dp"
+        android:background="@drawable/shape_dialogfragment_filter_unchecked"
+        android:gravity="center"
+        android:text="近1周"
+        android:textColor="#CCCCCC"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_all"
+        app:layout_constraintLeft_toRightOf="@+id/tv_day"
+        app:layout_constraintTop_toTopOf="@+id/tv_all" />
+
+
+    <TextView
+        android:id="@+id/tv_month"
+        android:layout_width="61dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="11dp"
+        android:background="@drawable/shape_dialogfragment_filter_unchecked"
+        android:gravity="center"
+        android:text="近1月"
+        android:textColor="#CCCCCC"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_all"
+        app:layout_constraintLeft_toRightOf="@+id/tv_week"
+        app:layout_constraintTop_toTopOf="@+id/tv_all" />
+
+
+    <TextView
+        android:id="@+id/tv_year"
+        android:layout_width="61dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="11dp"
+        android:background="@drawable/shape_dialogfragment_filter_unchecked"
+        android:gravity="center"
+        android:text="近1年"
+        android:textColor="#CCCCCC"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_all"
+        app:layout_constraintLeft_toRightOf="@+id/tv_month"
+        app:layout_constraintTop_toTopOf="@+id/tv_all" />
+
+    <View
+        android:id="@+id/ViewOne"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginRight="16dp"
+        android:background="#333333"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_all" />
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:text="取消"
+        android:textColor="#666666"
+        android:textSize="@dimen/sp_14"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/ViewTwo"
+        app:layout_constraintTop_toBottomOf="@+id/ViewOne" />
+
+    <View
+        android:id="@+id/ViewTwo"
+        android:layout_width="0.5dp"
+        android:layout_height="30dp"
+        android:background="#333333"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_cancel"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_cancel" />
+
+    <TextView
+        android:id="@+id/tv_sure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:text="确定"
+        android:textColor="#3185FD"
+        android:textSize="@dimen/sp_14"
+        app:layout_constraintLeft_toRightOf="@+id/ViewTwo"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ViewOne" />
+</androidx.constraintlayout.widget.ConstraintLayout>
