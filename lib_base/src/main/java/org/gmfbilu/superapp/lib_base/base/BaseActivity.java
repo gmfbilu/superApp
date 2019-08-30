@@ -32,7 +32,7 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
         if (layout != 0)
             setContentView(layout);
         findViewById_setOnClickListener(savedInstanceState);
-        ActivitiesManager.getInstance().addActivity(this);
+        ActivitiesManager.addActivity(this,getClass());
         //initPush();
     }
 
@@ -86,7 +86,7 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
 
     @Override
     protected void onDestroy() {
-        ActivitiesManager.getInstance().removeActivity(this);
+        ActivitiesManager.removeActivity(this);
         super.onDestroy();
        // Logger.d(getClass().getName() + "---> onDestroy");
     }

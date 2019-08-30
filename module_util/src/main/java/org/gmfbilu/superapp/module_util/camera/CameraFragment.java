@@ -24,6 +24,7 @@ import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.lib_base.http.NetObserver;
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 import org.gmfbilu.superapp.lib_base.utils.LoggerUtil;
+import org.gmfbilu.superapp.lib_base.utils.camera.util.PhotoUtils;
 import org.gmfbilu.superapp.module_util.R;
 
 import java.io.File;

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffffff">
+
+    <ImageView
+        android:id="@+id/ImageViewOne"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="25dp"
+        android:src="@mipmap/lib_base_ic_launcher"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="注意事项"
+        android:textColor="#333333"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ImageViewOne"
+        app:layout_constraintLeft_toRightOf="@+id/ImageViewOne"
+        app:layout_constraintTop_toTopOf="@+id/ImageViewOne" />
+
+    <TextView
+        android:id="@+id/TextViewOne"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:lineSpacingExtra="5dp"
+        android:text="1、视频最大支持100M，时长45秒以内，分辨率超过360P。"
+        android:textColor="#333333"
+        android:layout_marginRight="25dp"
+        android:textSize="13sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/ImageViewOne"
+        app:layout_constraintTop_toBottomOf="@+id/ImageViewOne" />
+
+    <TextView
+        android:id="@+id/TextViewTwo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="25dp"
+        android:lineSpacingExtra="5dp"
+        android:text="2、视频格式支持 .MP4 /.WMV /.OGG /.MOV。"
+        android:textColor="#333333"
+        android:textSize="13sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/ImageViewOne"
+        app:layout_constraintTop_toBottomOf="@+id/TextViewOne" />
+
+    <View
+        android:id="@+id/ViewOne"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="25dp"
+        android:background="#EEEEEE"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextViewTwo" />
+
+    <TextView
+        android:id="@+id/tv_know"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:text="知道了"
+        android:textColor="#3185FD"
+        android:gravity="center"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ViewOne" />
+</androidx.constraintlayout.widget.ConstraintLayout>

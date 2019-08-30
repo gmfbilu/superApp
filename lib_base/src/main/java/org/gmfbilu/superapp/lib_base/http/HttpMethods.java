@@ -2,6 +2,9 @@ package org.gmfbilu.superapp.lib_base.http;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
+
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
 import com.uber.autodispose.AutoDispose;
@@ -9,10 +12,12 @@ import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
 import org.gmfbilu.superapp.lib_base.app.Constant;
 import org.gmfbilu.superapp.lib_base.base.BaseApplication;
+import org.gmfbilu.superapp.lib_base.bean.request.FileReq;
 import org.gmfbilu.superapp.lib_base.bean.request.GetDictionaryDatReq;
 import org.gmfbilu.superapp.lib_base.bean.request.GetProductsByTypeReq;
 import org.gmfbilu.superapp.lib_base.bean.request.LoginReq;
 import org.gmfbilu.superapp.lib_base.bean.response.AddJJMergeRes;
+import org.gmfbilu.superapp.lib_base.bean.response.FileRes;
 import org.gmfbilu.superapp.lib_base.bean.response.GetDictionaryDatRes;
 import org.gmfbilu.superapp.lib_base.bean.response.GetProductsByTypeRes;
 import org.gmfbilu.superapp.lib_base.bean.response.GetSaleManListRes;
@@ -24,8 +29,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.LifecycleOwner;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -33,6 +36,7 @@ import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.Cache;
 import okhttp3.Interceptor;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -164,6 +168,7 @@ public class HttpMethods {
     }
 
 
+
     /**
      * 单个请求
      *
@@ -196,6 +201,22 @@ public class HttpMethods {
                     return addJJMergeRes;
                 });
         toSubscribe(zip, netObserver, lifecycleOwner);
+    }
+
+    /**
+     * 上传文件并且有进度回调
+     *
+     * @param fileReq
+     */
+    public void uploadFile(FileUploadObserver<HttpResult<FileRes>> fileUploadObserver, FileReq fileReq, LifecycleOwner lifecycleOwner) {
+        UploadFileRequestBody uploadFileRequestBody = new UploadFileRequestBody(fileReq.file, fileUploadObserver);
+        MultipartBody.Part part = MultipartBody.Part.createFormData("file", fileReq.file.getName(), uploadFileRequestBody);
+        Observable<HttpResult<FileRes>> httpResultObservable = mApiService.uploadFile(part);
+        httpResultObservable
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(lifecycleOwner)))
+                .subscribe(fileUploadObserver);
     }
 
 }

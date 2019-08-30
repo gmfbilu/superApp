@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
+import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 import org.gmfbilu.superapp.lib_base.utils.LoggerUtil;
 import org.gmfbilu.superapp.lib_base.view.dialogFragment.BaseDialog;
 import org.gmfbilu.superapp.lib_base.view.dialogFragment.BaseDialogFragment;
@@ -46,6 +47,7 @@ public class DialogFragment extends BaseFragment {
         view.findViewById(R.id.bt_dialog_pop).setOnClickListener(this);
         view.findViewById(R.id.bt_dialog_country_select).setOnClickListener(this);
         view.findViewById(R.id.bt_dialog_filter).setOnClickListener(this);
+        view.findViewById(R.id.bt_dialog_tip).setOnClickListener(this);
 
     }
 
@@ -261,6 +263,23 @@ public class DialogFragment extends BaseFragment {
                     })
                     .setDimAmount(0.8f)
                     .setShowTop(true)
+                    .show(_mActivity.getSupportFragmentManager());
+        } else if (id == R.id.bt_dialog_tip) {
+            BaseDialog.init()
+                    .setLayoutId(R.layout.module_view_dialogfragment_tip)
+                    .setConvertListener(new DialogFragmentViewConvertListener() {
+                        @Override
+                        protected void convertView(DialogFragmentViewHolder holder, BaseDialogFragment dialog) {
+                            holder.getView(R.id.tv_know).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    dialog.dismiss();
+                                }
+                            });
+                        }
+                    })
+                    .setMargin(AppUtils.dp2px(20))
+                    .setDimAmount(0.5f)
                     .show(_mActivity.getSupportFragmentManager());
         }
     }

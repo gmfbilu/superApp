@@ -16,8 +16,11 @@ public interface Constant {
     //========================================================================
     String CODE_RESPONSE_SUCCEED = "200";
     int DEFAULT_TIMEOUT = 30;
-    String BASE_URL = "http://114.55.27.208:8765/";
-    String URL_CONNECTED_MOBILE = "Api/";
+    //String BASE_URL = "http://114.55.27.208:8765/";
+    String BASE_URL = "http://192.168.1.224:8002";
+    //String URL_CONNECTED_MOBILE = "Api/";
+    String URL_CONNECTED_MOBILE = "api/";
+    //登录
     String URL_LOGIN = "User/UserLogin";
     //新增进件-获取产品类型
     String URL_GETDICTIONARYDAT = "Dictionary/GetDictionaryData";
@@ -25,4 +28,6 @@ public interface Constant {
     String URL_GETPRODUCTSBYTYPE = "Product/GetProductsByType";
     //新增进件-获取业务员
     String URL_GETSALEMANLIST = "user/GetSaleManList";
+    //上传文件
+    String URL_UPLOADFILE="file/upload";
 }

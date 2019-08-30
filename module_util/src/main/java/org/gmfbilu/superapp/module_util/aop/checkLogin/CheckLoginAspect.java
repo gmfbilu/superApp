@@ -42,7 +42,7 @@ public class CheckLoginAspect {
             } else if (object instanceof Fragment) {
                 context = ((Fragment) object).getActivity();
             } else {
-                context = ActivitiesManager.getInstance().getCurrentActivity();
+                context = ActivitiesManager.getCurrentActivity();
             }
             Toast.makeText(context, " go  Login", Toast.LENGTH_SHORT).show();
             //  context.startActivity(new Intent(context, LoginActivity.class));

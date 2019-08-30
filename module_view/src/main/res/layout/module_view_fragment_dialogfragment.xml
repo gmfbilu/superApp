@@ -79,5 +79,15 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_dialog_country_select" />
 
+    <Button
+        android:id="@+id/bt_dialog_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="提示"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_dialog_filter" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
