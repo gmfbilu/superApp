@@ -58,7 +58,7 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
-            android:name=".utils.camera.camera1.CameraActivity"
+            android:name=".utils.camera.camera1.Camera1Activity"
             android:launchMode="singleTask" />
         <activity
             android:name=".utils.camera.camera2.Camera2Activity"

@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import okio.Okio;
 
 
-public class CameraActivity extends BaseActivity {
+public class Camera1Activity extends BaseActivity {
 
     private SurfaceView surfaceView;
     private FaceView faceView;
@@ -33,12 +33,12 @@ public class CameraActivity extends BaseActivity {
     private ImageView ivExchange;
     private ImageView btnStop;
 
-    private static final String TYPE_TAG = "type";
-    private static final int TYPE_CAPTURE = 0;
-    private static final int TYPE_RECORD = 1;
+    public static final String TYPE_TAG = "type";
+    public static final int TYPE_CAPTURE = 0;
+    public static final int TYPE_RECORD = 1;
 
     private boolean lock = false; //控制MediaRecorderHelper的初始化
-    private CameraHelper mCameraHelper;
+    private Camera1Helper mCamera1Helper;
     private MediaRecorderHelper mMediaRecorderHelper;
 
     @Override
@@ -57,7 +57,7 @@ public class CameraActivity extends BaseActivity {
 
     @Override
     public int setLayout() {
-        return R.layout.module_lib_base_activity_camera;
+        return R.layout.module_lib_base_activity_camera1;
     }
 
 
@@ -65,9 +65,9 @@ public class CameraActivity extends BaseActivity {
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.btnTakePic) {
-            mCameraHelper.takePic();
+            mCamera1Helper.takePic();
         } else if (id == R.id.ivExchange) {
-            mCameraHelper.exchangeCamera();
+            mCamera1Helper.exchangeCamera();
         } else if (id == R.id.btnStart) {
             ivExchange.setClickable(false);
             btnStart.setVisibility(View.GONE);
@@ -89,14 +89,14 @@ public class CameraActivity extends BaseActivity {
     public void onEnterAnimationComplete() {
         super.onEnterAnimationComplete();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        mCameraHelper = new CameraHelper(this, surfaceView);
-        mCameraHelper.addCallBack(new CameraHelper.CallBack() {
+        mCamera1Helper = new Camera1Helper(this, surfaceView);
+        mCamera1Helper.addCallBack(new Camera1Helper.CallBack() {
             @Override
             public void onPreviewFrame(byte[] data) {
                 if (!lock) {
-                    Camera camera = mCameraHelper.getCamera();
+                    Camera camera = mCamera1Helper.getCamera();
                     if (camera != null) {
-                        new MediaRecorderHelper(CameraActivity.this, camera, mCameraHelper.mDisplayOrientation, mCameraHelper.mSurfaceHolder.getSurface());
+                        new MediaRecorderHelper(Camera1Activity.this, camera, mCamera1Helper.mDisplayOrientation, mCamera1Helper.mSurfaceHolder.getSurface());
                         lock = true;
                     }
                 }
@@ -129,8 +129,8 @@ public class CameraActivity extends BaseActivity {
                     File picFile = FileUtil.createCameraFile("camera1");
                     if (picFile != null && data != null) {
                         Bitmap rawBitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-                        Bitmap resultBitmap = (mCameraHelper.mCameraFacing == Camera.CameraInfo.CAMERA_FACING_FRONT) ? BitmapUtils.mirror(BitmapUtils.rotate(rawBitmap, 270f)) : BitmapUtils.rotate(rawBitmap, 90f);
-                        if (mCameraHelper.mCameraFacing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+                        Bitmap resultBitmap = (mCamera1Helper.mCameraFacing == Camera.CameraInfo.CAMERA_FACING_FRONT) ? BitmapUtils.mirror(BitmapUtils.rotate(rawBitmap, 270f)) : BitmapUtils.rotate(rawBitmap, 90f);
+                        if (mCamera1Helper.mCameraFacing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
                             BitmapUtils.mirror(BitmapUtils.rotate(rawBitmap, 270f));
                         } else {
                             BitmapUtils.rotate(rawBitmap, 90f);
@@ -159,7 +159,7 @@ public class CameraActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        mCameraHelper.releaseCamera();
+        mCamera1Helper.releaseCamera();
         if (mMediaRecorderHelper != null) {
             if (mMediaRecorderHelper.isRunning) {
                 mMediaRecorderHelper.stopRecord();

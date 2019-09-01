@@ -7,7 +7,8 @@ import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_util.aidl.AidlFragment;
 import org.gmfbilu.superapp.module_util.aop.AOPFragment;
 import org.gmfbilu.superapp.module_util.bluetooth.BlueToothFragment;
-import org.gmfbilu.superapp.module_util.camera.CameraTestFragment;
+import org.gmfbilu.superapp.module_util.camera.CameraFragment;
+import org.gmfbilu.superapp.module_util.capture.CaptureFragment;
 import org.gmfbilu.superapp.module_util.cartoon.CartoonFragment;
 import org.gmfbilu.superapp.module_util.glide.GlideFragment;
 import org.gmfbilu.superapp.module_util.hook.HookFragment;
@@ -33,6 +34,7 @@ public class MainFragment extends BaseFragment {
     @Override
     public void findViewById_setOnClickListener(View view) {
         view.findViewById(R.id.module_util_bt_permissions).setOnClickListener(this);
+        view.findViewById(R.id.module_util_bt_capture).setOnClickListener(this);
         view.findViewById(R.id.module_util_bt_camera).setOnClickListener(this);
         view.findViewById(R.id.module_util_bt_jni).setOnClickListener(this);
         view.findViewById(R.id.module_util_bt_aidl).setOnClickListener(this);
@@ -60,9 +62,11 @@ public class MainFragment extends BaseFragment {
         int id = v.getId();
         if (id == R.id.module_util_bt_permissions) {
             start(PermissionsFragment.newInstance());
+        } else if (id == R.id.module_util_bt_capture) {
+            start(CaptureFragment.newInstance());
         } else if (id == R.id.module_util_bt_camera) {
-            start(CameraTestFragment.newInstance());
-        }  else if (id == R.id.module_util_bt_jni) {
+            start(CameraFragment.newInstance());
+        } else if (id == R.id.module_util_bt_jni) {
             start(JniFragment.newInstance());
         } else if (id == R.id.module_util_bt_aidl) {
             start(AidlFragment.newInstance());
@@ -86,7 +90,7 @@ public class MainFragment extends BaseFragment {
             start(RoomFragment.newInstance());
         } else if (id == R.id.module_util_bt_workManager) {
 
-        }else if (id==R.id.module_util_bt_zxing){
+        } else if (id == R.id.module_util_bt_zxing) {
             start(ZXingFragment.newInstance());
         }
     }

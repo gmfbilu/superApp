@@ -1,89 +1,73 @@
 package org.gmfbilu.superapp.module_util.camera;
 
-import android.Manifest;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.media.ThumbnailUtils;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.FileProvider;
-
-import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
-import org.gmfbilu.superapp.lib_base.http.NetObserver;
-import org.gmfbilu.superapp.lib_base.utils.AppUtils;
-import org.gmfbilu.superapp.lib_base.utils.LoggerUtil;
-import org.gmfbilu.superapp.lib_base.utils.camera.util.PhotoUtils;
+import org.gmfbilu.superapp.lib_base.utils.camera.camera1.Camera1Activity;
 import org.gmfbilu.superapp.module_util.R;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 /**
- * 在7.0以上系统中，Android不再允许在app中把file://Uri暴露给其他app
- * 在Android6.0之后引入运行时权限，如果接收file://Uri的app没有申请READ_EXTERNAL_STORAGE权限，在读取文件时会引发崩溃
- * 官方给出的解决方案是使用FileProvider
- * <provider
- * android:name="android.support.v4.content.FileProvider" //name:provider的类名,若使用默认的v4的FileProvide
- * android:authorities="com.cs.camerademo.fileProvider"//android:authorities 一个签名认证，可以自定义，但在获取uri的时候需要保持一致
- * android:exported="false"
- * android:grantUriPermissions="true">//grantUriPermissions:使用FileProvider的使用需要我们给流出的URI赋予临时访问权限（READ和WRITE），该设置是允许我们行使该项权力
- * <meta-data //meta-data: 配置的是我们可以访问的文件的路径配置信息，需要使用xml文件进行配置，FileProvider会通过解析xml文件获取配置项
- * android:name="android.support.FILE_PROVIDER_PATHS" //其中name为固定写法：android.support.FILE_PROVIDER_PATHS
- * android:resource="@xml/file_paths" /> //resource为配置路径信息的配置项目
- * </provider>
- * <p>
- * <?xml version="1.0" encoding="utf-8"?>
- * <paths> //这个xml文件最外层是一对<paths>标签，标签内部是一个或多个表示路径的item.，写法是 <对应的path name="起个名字" path="对应的path目录下的某个文件夹" >
- * //external-path 表示 Environment.getExternalStorageDirectory()目录，name 是我们给它起的名字叫"external-path"，path 表示Environment.getExternalStorageDirectory()目录下的CameraDemo文件夹
- * <external-path name="external-path" path="CameraDemo" />
- * </paths>
- * //<files-path name="name" path="path" >  Context.getFilesDir()
- * //<cache-path name="name" path="path">  Context.getCacheDir()
- * //<external-path name="name" path="path">  Environment.getExternalStorageDirectory()
- * //<external-files-path name="name" path="path">  Context.getExternalFilesDir(null)
- * //<external-cache-path name="name" path="path">  Context.getExternalCacheDir()
- * //如果需要使用FileProvider获取某个目录下的文件的uri，按照上表中的对应关系在xml文件中声明就可以了.在清单文件中注册FileProvider的时候， android:resource="@xml/file_paths" 对应的就是我们刚刚创建的这个xml文件
- * <p>
- * Uri.parse需要有协议，如file://等，用Uri.parse(url)，url就要加"file://"开头
- * Uri.parse("file://" + new File(path).toString()) 和 Uri.fromFile(new File(path))是等价的
+ *
+ * https://github.com/smashinggit/Study
+ * 进行Camra开发主要用到了以下两个类:
+ * 1.Camera
+ * 2.SurfaceView (当然也可以是TextureView)
+ * SurfaceView继承自View，其中有两个成员变量，一个是Surface对象，一个是SuraceHolder对象
+ * SurfaceView把Surface显示在屏幕上
+ * SurfaceView通过SuraceHolder告诉我们Surface的状态（创建、变化、销毁）
+ *
+ * Camera类中的内部类
+ * CameraInfo
+ * CameraInfo类用来描述相机信息，通过Camera类中getCameraInfo(int cameraId, CameraInfo cameraInfo)方法获得，主要包括以下两个成员变量：
+ * facing 代表相机的方向，它的值只能是CAMERA_FACING_BACK（后置摄像头） 或者CAMERA_FACING_FRONT（前置摄像头）
+ * CAMERA_FACING_BACK 和 CAMERA_FACING_FRONT 是CameraInfo类中的静态变量
+ * orientation是相机采集图片的角度。这个值是相机所采集的图片需要顺时针旋转至自然方向的角度值。它必须是0，90,180或270中的一个
+ * 相机图像数据都是来自于相机硬件的图像传感器（Image Sensor），这个Sensor被固定到手机之后是有一个默认的取景方向，且不会改变
+ * 相机在预览的时候是有一个预览方向的，可以通过setDisplayOrientation()设置
+ * 相机所采集的照片也是有一个方向的(就是上面刚刚提到的orientation)，这个方向与预览时的方向互不相干
+ * 屏幕坐标： 在Android系统中，屏幕的左上角是坐标系统的原点（0,0）坐标。原点向右延伸是X轴正方向，原点向下延伸是Y轴正方向
+ * 自然方向：每个设备都有一个自然方向，手机和平板的自然方向不同。手机的自然方向是portrait（竖屏），平板的自然方向是landscape（横屏）
+ * 图像传感器（Image Sensor）方向：手机相机的图像数据都是来自于摄像头硬件的图像传感器，这个传感器在被固定到手机上后有一个默认的取景方向
+ * 相机的预览方向：将图像传感器捕获的图像，显示在屏幕上的方向。在默认情况下，与图像传感器方向一致。在相机API中可以通过setDisplayOrientation()设置相机预览方向。在默认情况下，这个值为0，与图像传感器方向一致
+ * 绝大部分安卓手机中图像传感器方向是横向的，且不能改变，所以orientation是90或是270，也就是说，当点击拍照后保存图片的时候，需要对图片做旋转处理，使其为"自然方向"。 （可能存在一些特殊的定制或是能外接摄像头的安卓机，他们的orientation会是0或者180）
+ * 通过setDisplayOrientation方法设置预览方向，使预览画面为"自然方向"。前置摄像头在进行角度旋转之前，图像会进行一个水平的镜像翻转，所以用户在看预览图像的时候就像照镜子一样
+ * 图片大小，里面包含两个变量：width和height（图片的宽和高）
+ * Parameters是相机服务设置，不同的相机可能是不相同的。比如相机所支持的图片大小，对焦模式等等
+ * getSupportedPreviewSizes()获得相机支持的预览图片大小，返回值是一个List<Size>数组
+ * setPreviewSize(int width, int height)设置相机预览图片的大小
+ * getSupportedPreviewFormats()获得相机支持的图片预览格式，所有的相机都支持ImageFormat.NV21,更多的图片格式可以自行百度或是查看ImageFormat类
+ * setPreviewFormat(int pixel_format)设置预览图片的格式
+ * getSupportedPictureSizes()获得相机支持的采集的图片大小(即拍照后保存的图片的大小)
+ * setPictureSize(int width, int height)设置保存的图片的大小
+ * getSupportedPictureFormats()获得相机支持的图片格式
+ * setPictureFormat(int pixel_format)设置保存的图片的格式
+ * getSupportedFocusModes()获得相机支持的对焦模式
+ * setFocusMode(String value)设置相机的对焦模式
+ * getMaxNumDetectedFaces()返回当前相机所支持的最大的人脸检测个数
+ * PreviewCallback是一个抽象接口,void onPreviewFrame(byte[] data, Camera camera)通过onPreviewFrame方法来获取到相机预览的数据，第一个参数data，就是相机预览到的原始数据.这些预览到的原始数据是非常有用的，比如我们可以保存下来当做一张照片，还有很多第三方的人脸检测及静默活体检测的sdk，都需要我们把相机预览的数据实时地传递过去。
+ * Face类用来描述通过Camera的人脸检测功能检测到的人脸信息
+ * rect 是一个Rect对象，它所表示的就是检测到的人脸的区域
+ * score检测到的人脸的可信度，范围是1 到100
+ * leftEye,leftEye 是一个Point对象，表示检测到的左眼的位置坐标
+ * mouth,mouth是一个Point对象，表示检测到的嘴的位置坐标
+ * leftEye ，rightEye和mouth这3个人脸中关键点，并不是所有相机都支持的，如果相机不支持的话，这3个的值为null
+ * FaceDetectionListener,这是一个抽象接口，当开始人脸检测时开始回调,onFaceDetection(Face[] faces, Camera camera)一参数代表检测到的人脸，是一个Face数组(画面内可能存在多张人脸)
+ *
+ * Camera类中的方法
+ * getNumberOfCameras()返回当前设备上可用的摄像头个数
+ * open()使用当前设备上第一个后置摄像头创建一个Camera对象。如果当前设备没有后置摄像头，则返回值为null
+ * open(int cameraId)使用传入id所表示的摄像头创建一个Camera对象，如果id所表示的摄像头已经被打开，则会抛出异常,设备上每一个物理摄像都是有一个id的，id从0开始，到getNumberOfCameras() - 1 结束
+ * 例如，一般的手机上都有前后两个摄像头，那么后置摄像头id就是0，前置摄像头id就是1
+ * getCameraInfo(int cameraId, CameraInfo cameraInfo)返回指定id所表示的摄像头的信息
+ *
+ * Camera负责采集数据和各种操作，SurfaceView负责把Camera采集到的数据实时地显示在屏幕上
+ * 在关闭页面 或者 打开其他摄像头之前，一定要先调用release()方法释放当前相机资源
+ *
  */
 public class CameraFragment extends BaseFragment {
 
-    //========================================================拍照
-    private static final int IV_PICTURE = 0x100;
-    private static final int IV_PICTURE_CROP = 0x101;
-    private static final int IV_VIDEO = 0x102;
-
-
-    //图片路径都在根路径下，方便用户删除
-    private SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss", Locale.CHINA);
-    private String timeTemp = "/" + format.format(new Date());
-    private File fileUri = new File(Environment.getExternalStorageDirectory().getPath() + timeTemp + ".jpg"); //图片质量是好几M以上
-    private File fileCropUri = new File(Environment.getExternalStorageDirectory().getPath() + timeTemp + "crop.jpg");//图片质量可以压缩到几百K
-    private Uri imageUri; //剪裁原图的Uri
-    private Uri cropImageUri; //剪裁后的图片的Uri
-    private static final int OUTPUT_X = 480;
-    private static final int OUTPUT_Y = 480;
-
-
-    private RxPermissions rxPermissions;
-    private Toolbar mToolbar;
-    private ImageView iv_getPicture;
-    //private ImageView iv_video;
 
     public static CameraFragment newInstance() {
         Bundle args = new Bundle();
@@ -92,13 +76,10 @@ public class CameraFragment extends BaseFragment {
         return fragment;
     }
 
-
     @Override
     public void findViewById_setOnClickListener(View view) {
-        mToolbar = view.findViewById(R.id.module_util_toolbar);
-        iv_getPicture = view.findViewById(R.id.iv_getPicture);
-       // iv_video = view.findViewById(R.id.iv_video);
-        view.findViewById(R.id.bt_getPicture).setOnClickListener(this);
+        view.findViewById(R.id.btCamera).setOnClickListener(this);
+        view.findViewById(R.id.btCameraRecord).setOnClickListener(this);
     }
 
     @Override
@@ -107,227 +88,23 @@ public class CameraFragment extends BaseFragment {
     }
 
     @Override
+    public void onEnterAnimationEnd(Bundle savedInstanceState) {
+        super.onEnterAnimationEnd(savedInstanceState);
+
+    }
+
+    @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.bt_getPicture) {
-            showDialog();
+        if (id == R.id.btCamera) {
+            Intent intent = new Intent(_mActivity, Camera1Activity.class);
+            intent.putExtra(Camera1Activity.TYPE_TAG, Camera1Activity.TYPE_CAPTURE);
+            startActivity(intent);
+        } else if (id == R.id.btCameraRecord) {
+            Intent intent = new Intent(_mActivity, Camera1Activity.class);
+            intent.putExtra(Camera1Activity.TYPE_TAG, Camera1Activity.TYPE_RECORD);
+            startActivity(intent);
         }
-    }
-
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mToolbar.setNavigationIcon(R.mipmap.lib_base_ic_arrow_back_white_24dp);
-        mToolbar.setNavigationOnClickListener(v -> _mActivity.onBackPressed());
-        mToolbar.setTitle("Camera");
-        rxPermissions = new RxPermissions(_mActivity);
-    }
-
-
-    /**
-     * 从相册选择照片后不裁剪后返回的有uri，视频也是。但是相册的uri需要转换，而视频不需要？
-     * 直接拍照后没有uri,为什么
-     *
-     * @param requestCode
-     * @param resultCode
-     * @param data
-     */
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode != RESULT_OK) {
-            return;
-        }
-        switch (requestCode) {
-            case IV_PICTURE:
-                if (AppUtils.hasSdcard()) {
-                    //调用系统裁剪功能，如果不裁剪直接调用 setImageUri(getImageUri(data),iv_dialog);
-                    PhotoUtils.cropImageUri(this, getImageUri(data), getCropUri(), 1, 1, OUTPUT_X, OUTPUT_Y, IV_PICTURE_CROP);
-                } else {
-                    Toast.makeText(_mActivity, "设备没有SD卡！", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case IV_PICTURE_CROP:
-                setImageUri(getCropUri(), iv_getPicture);
-                break;
-
-
-            //拍摄视频返回
-            //录制视频后返回的结果在 Intent的data字段中，是一个uri，指向视频所保存的位置
-            //uri在请求打开摄像头拍照的时候就已经指定了，如果成功了就直接使用这个uri
-            case IV_VIDEO:
-                Uri uri = data.getData();
-                String videoPath = uri.getPath();
-                LoggerUtil.d(uri); //file:///storage/emulated/0/Android/data/org.gmfbilu.superapp.module_util/files/Pictures/20190820135637.mp4
-                LoggerUtil.d(videoPath);///storage/emulated/0/Android/data/org.gmfbilu.superapp.module_util/files/Pictures/20190820135637.mp4
-                Bitmap videoBitmap = ThumbnailUtils.createVideoThumbnail(videoPath, MediaStore.Images.Thumbnails.MINI_KIND);
-                //Glide.with(_mActivity).load(videoBitmap).fitCenter().into(iv_video);
-                //上传的时候video以file文件形式上传
-                break;
-            default:
-                break;
-        }
-    }
-
-
-    /**
-     * 打开系统相机拍照
-     */
-    private void autoObtainCameraPermission(int who) {
-        rxPermissions
-                .request(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
-                .subscribe(new NetObserver<Boolean>() {
-                    @Override
-                    public void onNext(Boolean granted) {
-                        if (granted) {
-                            openSystemCamera(who);
-                        } else {
-                            Toast.makeText(_mActivity, "权限拒绝，请去设置中心打开相关权限", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-
-    }
-
-    /**
-     * 打开系统相册
-     */
-    private void autoObtainGalleryPermission(int who) {
-        rxPermissions
-                .request(Manifest.permission.READ_EXTERNAL_STORAGE)
-                .subscribe(new NetObserver<Boolean>() {
-                    @Override
-                    public void onNext(Boolean granted) {
-                        if (granted) {
-                            PhotoUtils.openPic(CameraFragment.this, who);
-                        } else {
-                            Toast.makeText(_mActivity, "没有读写权限，请去设置中心打开相关权限", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
-
-    /**
-     * 拍摄视频
-     */
-    private void autoObtainVideoPermission(int who) {
-        rxPermissions
-                .request(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .subscribe(new NetObserver<Boolean>() {
-                    @Override
-                    public void onNext(Boolean granted) {
-                        if (granted) {
-                            takeVideo(who);
-                        } else {
-                            Toast.makeText(_mActivity, "没有拍照、读写权限，请去设置中心打开相关权限", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
-
-
-    /**
-     * 录像
-     */
-    private void takeVideo(int who) {
-        // 激活系统的照相机进行录像
-        Intent intent = new Intent();
-        intent.setAction("android.media.action.VIDEO_CAPTURE");
-        intent.addCategory("android.intent.category.DEFAULT");
-        // 保存录像到指定的路径
-        //获取与应用相关联的路径
-        String videoPath = _mActivity.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss", Locale.CHINA);
-        String timeTemp = "/" + format.format(new Date()) + ".mp4";
-        File file = new File(videoPath, timeTemp);
-        Uri uri = Uri.fromFile(file);
-        LoggerUtil.d(uri);//file:///storage/emulated/0/Android/data/org.gmfbilu.superapp.module_util/files/Pictures/20190820135637.mp4
-        LoggerUtil.d(uri.getPath());///storage/emulated/0/Android/data/org.gmfbilu.superapp.module_util/files/Pictures/20190820135637.mp4
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-        startActivityForResult(intent, who);
-    }
-
-
-    /**
-     * 打开系统相机
-     */
-    private void openSystemCamera(int who) {
-        if (AppUtils.hasSdcard()) {
-            PhotoUtils.takePicture(this, getImageUri(null), who);
-        } else {
-            Toast.makeText(_mActivity, "设备没有SD卡！", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    /**
-     * 根据原图Uri或者裁剪图Uri设置图片
-     *
-     * @param uri
-     * @param imageView
-     */
-    private void setImageUri(Uri uri, ImageView imageView) {
-        Bitmap bitmap = PhotoUtils.getBitmapFromUri(uri, _mActivity, imageView);
-        if (bitmap != null) {
-            imageView.setImageBitmap(bitmap);
-        }
-    }
-
-
-    /**
-     * 根据onActivityResult返回的Intent获取原图的Uri,适用于直接启动系统相册选取照片
-     *
-     * @param data
-     * @return
-     */
-    private Uri getImageUri(Intent data) {
-        if (data == null) {
-            //data为空的话就是从系统相机拍照图片
-            imageUri = Uri.fromFile(fileUri);
-            //通过FileProvider创建一个content类型的Uri
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                imageUri = FileProvider.getUriForFile(_mActivity, AppUtils.getPackageName() + ".fileprovider", fileUri);
-            }
-        } else {
-            //data不为空的话就是从系统相册选取图片
-            //IllegalArgumentException: Failed to resolve canonical path for /storage/emulated/0/Tencent/QQfile_recv/]TI)���`C[XIR~B{{L(6[$CJ.png
-            imageUri = Uri.parse(PhotoUtils.getPath(_mActivity, data.getData()));
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                imageUri = FileProvider.getUriForFile(_mActivity, AppUtils.getPackageName() + ".fileprovider", new File(imageUri.getPath()));
-            }
-        }
-        return imageUri;
-    }
-
-
-    /**
-     * 获取剪裁后的图片的Uri
-     *
-     * @return
-     */
-    private Uri getCropUri() {
-        cropImageUri = Uri.fromFile(fileCropUri);
-        LoggerUtil.d(cropImageUri);
-        return cropImageUri;
-    }
-
-    private void showDialog() {
-        String[] item = {"相册", "拍照"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(_mActivity);
-        builder.setTitle("请选择");
-        builder.setItems(item, (dialog, which) -> {
-            //从相册选择照片，要裁剪
-            if (which == 0) {
-                autoObtainGalleryPermission(IV_PICTURE);
-                //直接拍摄照片，要裁剪
-            } else {
-                autoObtainCameraPermission(IV_PICTURE);
-            }
-        });
-        // 取消可以不添加
-        //builder.setNegativeButton("取消",null);
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
     }
 
 

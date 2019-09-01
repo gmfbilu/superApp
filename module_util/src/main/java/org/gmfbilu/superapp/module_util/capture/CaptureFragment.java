@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_util.camera;
+package org.gmfbilu.superapp.module_util.capture;
 
 import android.Manifest;
 import android.app.Activity;
@@ -61,7 +61,7 @@ import java.io.File;
  * Uri.parse("file://" + new File(path).toString()) 和 Uri.fromFile(new File(path))是等价的
  */
 
-public class CameraTestFragment extends BaseFragment {
+public class CaptureFragment extends BaseFragment {
 
     private static final String AUTHORITY = "org.gmfbilu.superapp.fileprovider";
     private static final int REQUEST_CODE_CROP = 0x0010;//裁剪
@@ -81,9 +81,9 @@ public class CameraTestFragment extends BaseFragment {
     private ImageView iv_getPicture;
     private android.widget.VideoView vv_video;
 
-    public static CameraTestFragment newInstance() {
+    public static CaptureFragment newInstance() {
         Bundle args = new Bundle();
-        CameraTestFragment fragment = new CameraTestFragment();
+        CaptureFragment fragment = new CaptureFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -98,7 +98,7 @@ public class CameraTestFragment extends BaseFragment {
 
     @Override
     public int setLayout() {
-        return R.layout.module_util_fragment_camera;
+        return R.layout.module_util_fragment_capture;
     }
 
     @Override

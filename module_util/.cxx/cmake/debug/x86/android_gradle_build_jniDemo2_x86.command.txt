@@ -1,7 +1,7 @@
-Executable : D:\09_setup\AndroidSDK\cmake\3.6.4111459\bin\cmake.exe
+Executable : /home/gmfbilu/Work/Android/Sdk/cmake/3.6.4111459/bin/cmake
 arguments : 
 --build
-D:\demo\superApp\module_util\.cxx\cmake\debug\x86
+/home/gmfbilu/Work/Android/Projects/superApp/module_util/.cxx/cmake/debug/x86
 --target
 jniDemo2
 jvmArgs : 

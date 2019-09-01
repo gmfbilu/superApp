@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CameraHelper implements Camera.PreviewCallback {
+public class Camera1Helper implements Camera.PreviewCallback {
 
     //Camera对象
     private Camera mCamera;
@@ -38,7 +38,7 @@ public class CameraHelper implements Camera.PreviewCallback {
     //保存图片的高
     private int picHeight = 3840;
 
-    public CameraHelper(Activity activity, SurfaceView surfaceView) {
+    public Camera1Helper(Activity activity, SurfaceView surfaceView) {
         this.mActivity = activity;
         this.mSurfaceView = surfaceView;
         mSurfaceHolder = mSurfaceView.getHolder();

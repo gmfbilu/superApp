@@ -101,7 +101,7 @@ public class BitmapUtils {
     }
 
 
-    interface SavePicInterface {
+    public interface SavePicInterface {
         void onSuccess(String savedPath, String time);
 
         void onFailed(String message);
