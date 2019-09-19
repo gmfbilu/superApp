@@ -29,9 +29,9 @@ public class SelctionSort {
             }
             //如果小就交换位置
             if (array[i] > array[minIndex]) {
-                int tem = array[i];
-                array[i] = array[minIndex];
-                array[minIndex] = tem;
+                array[i] = array[i] + array[minIndex];
+                array[minIndex] = array[i] - array[minIndex];
+                array[i] = array[i] - array[minIndex];
             }
         }
         for (int i = 0; i < array.length; i++) {

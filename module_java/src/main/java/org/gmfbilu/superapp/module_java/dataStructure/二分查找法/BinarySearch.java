@@ -25,21 +25,21 @@ public class BinarySearch {
      * 查找条件：顺序存储，而且是从小到大排列好顺序
      */
     private int binarySearch(int[] arr, int key) {
-        int left = 0;
-        int right = arr.length - 1;
-        int index = (left + right) / 2;
-        int middle = arr[index];
-        while (key != middle) {
-            if (key < middle) {
-                right = index - 1;
+        int leftIndex = 0;
+        int rightIndex = arr.length - 1;
+        int index = (leftIndex + rightIndex) / 2;
+        int middleKey = arr[index];
+        while (key != middleKey) {
+            if (key < middleKey) {
+                rightIndex = index - 1;
             } else {
-                left = index + 1;
+                leftIndex = index + 1;
             }
-            index = (left + right) / 2;
-            middle = arr[index];
+            index = (leftIndex + rightIndex) / 2;
+            middleKey = arr[index];
             //这判断 == 就可以了，因为不会出现left > right
-            if (left == right) {
-                if (key != middle) {
+            if (leftIndex == rightIndex) {
+                if (key != middleKey) {
                     index = -1;
                 }
                 break;

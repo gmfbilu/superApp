@@ -10,11 +10,11 @@ package org.gmfbilu.superapp.module_java.dataStructure.排序;
  */
 public class InsertionSort {
 
-    public static void insert_sort(int array[], int lenth) {
+    public static void insert_sort(int array[]) {
 
         int temp;
 
-        for (int i = 0; i < lenth - 1; i++) {
+        for (int i = 0; i < array.length - 1; i++) {
             for (int j = i + 1; j > 0; j--) {
                 if (array[j] < array[j - 1]) {
                     temp = array[j - 1];
