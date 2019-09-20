@@ -21,6 +21,8 @@ public class Kuai {
         n = 1;
     }
 
+
+
     /**
      * 方法代码块
      */

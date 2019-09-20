@@ -18,7 +18,7 @@ import org.gmfbilu.superapp.module_kotlin.databinding.ModuleKotlinActivityGarden
 class GardenActivity : AppCompatActivity() {
 
     /**
-     *  lateinit var只能用来修饰类属性，不能用来修饰局部变量，并且只能用来修饰对象，不能用来修饰基本类型。就是让编译期在检查时不要因为属性变量未被初始化而报错
+     *  lateinit var只能用来修饰成员变量，不能修饰局部变量，并且只能用来修饰对象，不能用来修饰基本类型。就是让编译期在检查时不要因为属性变量未被初始化而报错
      */
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var appBarConfiguration: AppBarConfiguration

@@ -3,7 +3,7 @@ package org.gmfbilu.superapp.module_kotlin.kotlin.helloWorld.代码块
 class Kuai1 {
 
     /**
-     * 构造代码块
+     * 构造代码块，每次调用次构造方法之前调用
      */
     var number = 0
 
