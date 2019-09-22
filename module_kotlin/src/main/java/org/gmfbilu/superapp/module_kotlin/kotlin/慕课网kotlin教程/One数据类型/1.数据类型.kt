@@ -7,7 +7,7 @@ fun main(args: Array<String>) {
 }
 
 
-//===========================================================================================================数据类型
+//=========================================================数据类型
 //val是运行时常量，类似Java中的final，在编译期不可知道具体的值，不可能变。后面可以省略数据类型，叫类型推导
 //const val是编译期常量，在编译期可知道具体的值
 //var是变量
@@ -35,7 +35,7 @@ val range_exclusive: IntRange = 0 until 1024 //(0,1024]
 const val myName = "batman" //等价于Java中的public final String myName="batman"
 
 
-//==================================================================================================================数组
+//========================================================================数组
 val bookList: IntArray = intArrayOf(0, 2, 8, 1)
 val nameList: CharArray = charArrayOf('1', '2')
 val cityList: Array<String> = arrayOf("香港", "拉萨")
@@ -69,7 +69,7 @@ fun getSingle(array: Array<妹子>) {
 }
 
 
-//==============================================================================================================类
+//=========================================================类
 //类，直接指定构造方法。kotlin中的所有类是Any类的子类
 class 妹子(val 性格: String, val 声音: String) {
     //相当于java中的构造代码块
@@ -91,7 +91,7 @@ open class 人(val 性格: String, val 声音: String) {
 class 帅哥(性格: String, 声音: String) : 人(性格, 声音)
 
 
-//======================================================================================================================函数
+//================================================================函数
 //kotlin中的Unit相当于Java中的void，可以省略
 fun method1(): Unit {
 
@@ -120,16 +120,72 @@ fun getName(): String {
 
 //这种返回值可能为null，println(getNameS()?.length) 直接返回null， println(getNameS()!!.length)就和Java一样报空指针异常
 fun getNameS(): String? {
+    val sb = StringBuffer()
+    val stringBuffer: StringBuffer = sb.add("")
     return null
 }
 
+//扩展方法就是对一个类添加额外的方法，而不用写在类里面，this代表那个类。使用的时候直接使用类实例访问
+fun StringBuffer.add(str: String): StringBuffer = this.append(str)
 
-//=================================================================================================================================lambda表达式
+
+fun sayHello(str: String) = print("say $str")
+
+fun total(a: Int, b: Int): Int = a + b
+
+
+//=============================================================lambda表达式
 //lambda表达式就是匿名函数
 // 写法：有参数：{参数列表-> 函数体，最后一行是返回值}。无参数：{函数体，最后一行是返回值}
 //lambda表达式的类型:()->Unit表示无参，返回值为Unit.(Int)->Int表示传入一个整数，返回一个整数。(String,(String)->String)->Boolean表示传入一个String和lambda表达式，返回一个String
 //lambda表达式的调用：用()调用，等价于invoke()
 //lambda表达式的简化：函数参数调用时最后一个lambda可以移出去；函数参数只有一个lambda时，调用时小括号可以省略；lambda参数只有一个参数可默认为it;
 val sum = { a: Int, b: Int -> a + b } //使用： sum(1,1)或 sum()或sum都可以，sum(1,1)等价于sum.invoke(1,1)
+val sum1 = fun(a: Int, b: Int): Int {
+    return a + b
+}
+
+fun sum2(a: Int, b: Int): Int = a + b
+//上面三種函數寫法是等價的
 val printhello = { print("say") } //使用：printhello()或printhello
+
+
+//=============================================================表达式
+//when类似Java中的switch，when有返回值更强大
+fun whenMethod(str: String): Int {
+    return when (str) {
+        "1" -> 1
+        "2" -> 2
+        else -> 3
+    }
+}
+
+
+//===================================================================集合比遍历
+fun main1(args: Array<String>) {
+    //遍历
+    args.map {
+        print(it)
+    }
+
+    val list = ArrayList<String>()
+    val map = HashMap<String, String>()
+    for (i in 1..10) {
+        list.add(i.toString())
+        map.put("key = " + i, "value = " + i)
+    }
+    //迭代遍历
+    for (value in list) {
+        println(value)
+    }
+    //迭代遍历，带有index
+    for ((index, value) in list.withIndex()) {
+        println("index = $index  value = $value")
+    }
+    //迭代遍历，带有index
+    for ((key, value) in map){
+        println("key = $key  value = $value")
+    }
+
+}
 

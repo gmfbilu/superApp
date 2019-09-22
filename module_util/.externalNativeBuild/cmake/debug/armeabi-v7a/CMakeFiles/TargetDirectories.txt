@@ -1,4 +1,0 @@
-D:/demo/superApp/module_util/.externalNativeBuild/cmake/debug/armeabi-v7a/CMakeFiles/jniDemo2.dir
-D:/demo/superApp/module_util/.externalNativeBuild/cmake/debug/armeabi-v7a/CMakeFiles/jniDemo.dir
-D:/demo/superApp/module_util/.externalNativeBuild/cmake/debug/armeabi-v7a/CMakeFiles/edit_cache.dir
-D:/demo/superApp/module_util/.externalNativeBuild/cmake/debug/armeabi-v7a/CMakeFiles/rebuild_cache.dir

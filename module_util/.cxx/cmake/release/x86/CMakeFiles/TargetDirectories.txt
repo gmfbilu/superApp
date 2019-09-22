@@ -1,4 +1,0 @@
-C:/WorkPlace/Android/Demo/superApp/module_util/.cxx/cmake/release/x86/CMakeFiles/jniDemo2.dir
-C:/WorkPlace/Android/Demo/superApp/module_util/.cxx/cmake/release/x86/CMakeFiles/jniDemo.dir
-C:/WorkPlace/Android/Demo/superApp/module_util/.cxx/cmake/release/x86/CMakeFiles/edit_cache.dir
-C:/WorkPlace/Android/Demo/superApp/module_util/.cxx/cmake/release/x86/CMakeFiles/rebuild_cache.dir
