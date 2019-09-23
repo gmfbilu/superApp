@@ -116,4 +116,7 @@ dependencies {
 
     //google二维码
     implementation files('lib/core-3.1.0.jar')
+
+    //MVP框架
+    api "com.hannesdorfmann.mosby3:mvp:${mosby3_mvp_version}"
 }

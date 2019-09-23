@@ -2,6 +2,8 @@ package org.gmfbilu.superapp.lib_base.base;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.orhanobut.logger.Logger;
 import com.umeng.message.PushAgent;
@@ -32,7 +34,7 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
         if (layout != 0)
             setContentView(layout);
         findViewById_setOnClickListener(savedInstanceState);
-        ActivitiesManager.addActivity(this,getClass());
+        ActivitiesManager.addActivity(this, getClass());
         //initPush();
     }
 
@@ -53,20 +55,20 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
     @Override
     protected void onStart() {
         super.onStart();
-       // Logger.d(getClass().getName() + "---> onStart");
+        // Logger.d(getClass().getName() + "---> onStart");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-       // Logger.d(getClass().getName() + "---> onRestart");
+        // Logger.d(getClass().getName() + "---> onRestart");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         isActivityActive = true;
-       // Logger.d(getClass().getName() + "---> onResume");
+        // Logger.d(getClass().getName() + "---> onResume");
     }
 
 
@@ -74,20 +76,28 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
     protected void onPause() {
         super.onPause();
         isActivityActive = false;
-       // Logger.d(getClass().getName() + "---> onPause");
+        // Logger.d(getClass().getName() + "---> onPause");
     }
 
 
     @Override
     protected void onStop() {
         super.onStop();
-       // Logger.d(getClass().getName() + "---> onStop");
+        // Logger.d(getClass().getName() + "---> onStop");
     }
 
     @Override
     protected void onDestroy() {
         ActivitiesManager.removeActivity(this);
         super.onDestroy();
-       // Logger.d(getClass().getName() + "---> onDestroy");
+        // Logger.d(getClass().getName() + "---> onDestroy");
+    }
+
+    /**
+     * 配置全屏，一定要在setContentView之前调用
+     */
+    private void setFullScreen() {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 }

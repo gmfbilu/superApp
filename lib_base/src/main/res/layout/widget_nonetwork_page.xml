@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:visibility="gone"
+    tools:ignore="ResourceName">
+
+    <ImageView
+        android:id="@+id/no_network_img"
+        android:layout_width="130dp"
+        android:layout_height="70dp"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/content_empty_message" />
+
+    <TextView
+        android:id="@+id/no_network_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="网络连接错误，请检查网络稍后重试!"
+        android:textColor="@color/number_heavy"
+        android:textSize="11sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/no_network_reload_btn"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@mipmap/getmoney_ticket_realize"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="重新连接"
+            android:textColor="#ffffff"
+            android:textSize="11dp" />
+
+        <TextView
+            android:id="@+id/no_network_setting_btn"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:background="@mipmap/getmoney_ticket_realize"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="网络设置"
+            android:textColor="#ffffff"
+            android:textSize="11dp" />
+    </LinearLayout>
+
+</LinearLayout>

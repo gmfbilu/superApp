@@ -4,6 +4,7 @@ package org.gmfbilu.superapp.module_kotlin.kotlin.慕课网kotlin教程.One数�
 fun main(args: Array<String>) {
     println(helloTrump)
     println("$countries+$cities=${countries + cities}")
+    method3(0)
 }
 
 
@@ -13,6 +14,7 @@ fun main(args: Array<String>) {
 //var是变量
 //boolean类型
 val isMe: Boolean = true
+//自动推断出 Boolean类型
 val isWeek = true
 //Number类型，kotlin里面的Int类型是Java里面的int类型和Integer类型的合体。kotlin不区分装箱类型和非装箱类型
 val countries: Int = 221
@@ -98,13 +100,16 @@ fun method1(): Unit {
 }
 
 
-//返回值为String
-fun method2(): String {
-    return ""
+//返回值为String，当某个变量的值可以为 null 的时候，必须在声明处的类型后添加 ? 来标识该引用可为空
+fun method2(obj:Any): Int? {
+    if (obj is String){
+        return obj.length
+    }
+    return null
 }
 
-//有参数
-fun method3(a: Int, b: Int) {
+//有参数,函数的参数可以有默认参数。调用的时候有默认参数的可以不写，method3(2)和method3(1,2)都可以
+fun method3(a: Int, b: Int=0) {
 
 }
 
@@ -125,13 +130,13 @@ fun getNameS(): String? {
     return null
 }
 
-//扩展方法就是对一个类添加额外的方法，而不用写在类里面，this代表那个类。使用的时候直接使用类实例访问
-fun StringBuffer.add(str: String): StringBuffer = this.append(str)
-
+//将表达式作为函数体、返回值类型自动推断的函数
+fun sum(a: Int, b: Int) = a + b
 
 fun sayHello(str: String) = print("say $str")
 
-fun total(a: Int, b: Int): Int = a + b
+//扩展方法就是对一个类添加额外的方法，而不用写在类里面，this代表那个类。使用的时候直接使用类实例访问
+fun StringBuffer.add(str: String): StringBuffer = this.append(str)
 
 
 //=============================================================lambda表达式
@@ -151,6 +156,17 @@ val printhello = { print("say") } //使用：printhello()或printhello
 
 
 //=============================================================表达式
+//条件表达式
+fun maxOf(a: Int, b: Int): Int {
+    if (a > b) {
+        return a
+    } else {
+        return b
+    }
+}
+
+fun maxOf1(a: Int, b: Int) = if (a > b) a else b
+
 //when类似Java中的switch，when有返回值更强大
 fun whenMethod(str: String): Int {
     return when (str) {
@@ -161,7 +177,7 @@ fun whenMethod(str: String): Int {
 }
 
 
-//===================================================================集合比遍历
+//===============================================================集合遍历
 fun main1(args: Array<String>) {
     //遍历
     args.map {
@@ -183,7 +199,7 @@ fun main1(args: Array<String>) {
         println("index = $index  value = $value")
     }
     //迭代遍历，带有index
-    for ((key, value) in map){
+    for ((key, value) in map) {
         println("key = $key  value = $value")
     }
 

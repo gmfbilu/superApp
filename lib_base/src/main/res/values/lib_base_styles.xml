@@ -34,4 +34,19 @@
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
+    <!--加载提示框-->
+    <style name="CustomProgressDialog" parent="@style/CustomDialog" tools:ignore="ResourceName">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="CustomDialog" parent="@android:style/Theme.Dialog" tools:ignore="ResourceName">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+
+
 </resources>

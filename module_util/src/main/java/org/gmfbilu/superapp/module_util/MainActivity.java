@@ -3,14 +3,16 @@ package org.gmfbilu.superapp.module_util;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
 
 import org.gmfbilu.superapp.lib_base.app.ARouterPath;
-import org.gmfbilu.superapp.lib_base.base.BaseActivity;
+import org.gmfbilu.superapp.lib_base.base.mvp.BaseMVPActivity;
 
 
 @Route(path = ARouterPath.MODULE_UTIL)
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseMVPActivity<MainView,MainPresenterImpl> implements MainView {
 
     @Override
     public void findViewById_setOnClickListener(Bundle savedInstanceState) {
@@ -28,4 +30,24 @@ public class MainActivity extends BaseActivity {
     public void onClick(View v) {
     }
 
+    @Override
+    public void getData() {
+
+    }
+
+    @NonNull
+    @Override
+    public MainPresenterImpl createPresenter() {
+        return new MainPresenterImpl(this);
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
 }

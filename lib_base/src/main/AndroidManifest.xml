@@ -27,7 +27,9 @@
     <application
         android:hardwareAccelerated="false"
         android:label="@string/lib_base_app_name"
-        tools:replace="android:label">
+        android:networkSecurityConfig="@xml/network_security_config"
+        tools:replace="android:label"
+        tools:targetApi="n">
 
         <!--<provider
             android:name="androidx.core.content.FileProvider"

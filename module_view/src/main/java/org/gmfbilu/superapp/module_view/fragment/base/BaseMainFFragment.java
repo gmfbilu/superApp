@@ -1,8 +1,7 @@
 package org.gmfbilu.superapp.module_view.fragment.base;
 
-import android.widget.Toast;
-
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
+import org.gmfbilu.superapp.lib_base.utils.ToastUtil;
 
 
 /**
@@ -25,7 +24,7 @@ public abstract class BaseMainFFragment extends BaseFragment {
             _mActivity.finish();
         } else {
             TOUCH_TIME = System.currentTimeMillis();
-            Toast.makeText(_mActivity, "再按一次退出", Toast.LENGTH_SHORT).show();
+            ToastUtil.show("再按一次退出");
         }
         return true;
     }

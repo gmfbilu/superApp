@@ -3,6 +3,8 @@
     <color name="lib_base_colorPrimary">#3F51B5</color>
     <color name="lib_base_colorPrimaryDark">#303F9F</color>
     <color name="lib_base_colorAccent">#FF4081</color>
+    <color name="colorTransparent" tools:ignore="ResourceName">#00000000</color>
+    <color name="colorBlack" tools:ignore="ResourceName">#000000</color>
 
     <!--Zxing相关-->
     <color name="contents_text" tools:ignore="ResourceName">#ff000000</color>
@@ -16,4 +18,11 @@
     <color name="transparent" tools:ignore="ResourceName">#00000000</color>
     <color name="viewfinder_laser" tools:ignore="ResourceName">#ffcc0000</color> <!-- Android standard ICS color -->
     <color name="viewfinder_mask" tools:ignore="ResourceName">#60000000</color>
+
+    <!--LoadingLayout-->
+    <color name="base_text_color_light" tools:ignore="ResourceName">#909090</color>
+    <color name="base_loading_background" tools:ignore="ResourceName">#f7f7f7</color>
+    <color name="loading_gray" tools:ignore="ResourceName">#898989</color>
+    <color name="loading_background" tools:ignore="ResourceName">#f2f2f2</color>
+
 </resources>
