@@ -25,7 +25,7 @@ import org.gmfbilu.superapp.module_view.R;
 
 public class TextViewFragment extends BaseFragment {
 
-    private TextView tv1, tv2, tv3, tv4,tv5,tv5_2;
+    private TextView tv1, tv2, tv3, tv4, tv5, tv5_2;
 
     public static TextViewFragment newInstance() {
         Bundle args = new Bundle();
@@ -107,7 +107,7 @@ public class TextViewFragment extends BaseFragment {
      * ClickableSpan：设置点击事件监听，需要重写 onClick 方法.如果需要同时改变字体的颜色，以及做一些其它改变（如上面的各个分项），还可以重写 updateDrawState 方法
      */
     private void setTV3() {
-        String str = new String("获取更多帮助，请拨打客服电话400-888-8888");
+        String str = "获取更多帮助，请拨打客服电话400-888-8888";
         SpannableStringBuilder spannableBuilder = new SpannableStringBuilder(str);
         // 设置字体大小
         AbsoluteSizeSpan sizeSpan = new AbsoluteSizeSpan(AppUtils.sp2pxPaint(14), false);
@@ -173,8 +173,8 @@ public class TextViewFragment extends BaseFragment {
     }
 
 
-    private void setTV5(){
-        tv5.setTextSize(TypedValue.COMPLEX_UNIT_PX,AppUtils.sp2pxTextView(R.dimen.sp25));
-        tv5_2.setTextSize(TypedValue.COMPLEX_UNIT_PX,AppUtils.sp2pxTextView(R.dimen.sp15));
+    private void setTV5() {
+        tv5.setTextSize(TypedValue.COMPLEX_UNIT_PX, AppUtils.sp2pxTextView(R.dimen.sp25));
+        tv5_2.setTextSize(TypedValue.COMPLEX_UNIT_PX, AppUtils.sp2pxTextView(R.dimen.sp15));
     }
 }

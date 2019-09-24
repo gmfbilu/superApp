@@ -5,6 +5,9 @@ import org.gmfbilu.superapp.lib_base.utils.ToastUtil;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
+/**
+ * onComplete和onError是互斥的
+ */
 public abstract class NetObserver<T> implements Observer<T> {
 
     @Override
@@ -19,7 +22,7 @@ public abstract class NetObserver<T> implements Observer<T> {
 
     @Override
     public void onComplete() {
-       // Logger.d("onComplete");
+        // Logger.d("onComplete");
     }
 
     // TODO: 2017/2/27  doing more
@@ -27,7 +30,7 @@ public abstract class NetObserver<T> implements Observer<T> {
     public void onError(Throwable e) {
         HttpMethods.clearSingleton();
         if (e != null) {
-           // Logger.d(e.toString());
+            // Logger.d(e.toString());
             if (e instanceof ApiException) {
                 ToastUtil.show(((ApiException) e).ResponseMessageError);
             }

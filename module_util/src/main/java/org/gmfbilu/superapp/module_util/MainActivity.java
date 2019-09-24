@@ -30,10 +30,6 @@ public class MainActivity extends BaseMVPActivity<MainView,MainPresenterImpl> im
     public void onClick(View v) {
     }
 
-    @Override
-    public void getData() {
-
-    }
 
     @NonNull
     @Override
@@ -48,6 +44,11 @@ public class MainActivity extends BaseMVPActivity<MainView,MainPresenterImpl> im
 
     @Override
     public void hideLoading() {
+
+    }
+
+    @Override
+    public void getData() {
 
     }
 }

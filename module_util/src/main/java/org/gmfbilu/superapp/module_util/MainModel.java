@@ -9,7 +9,7 @@ public class MainModel extends BaseModel<MainPresenterImpl> {
         super(iPresenter);
     }
 
-/*    public void signInM(SignInReq signInReq) {
+/**   public void signInM(SignInReq signInReq) {
         mPresenter.showLoadingP();
         Subscriber<SignUpRes> succeedSubscribe = new Subscriber<SignUpRes>() {
 

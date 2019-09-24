@@ -18,8 +18,18 @@ public class MainPresenterImpl implements MainPresenter {
     }
 
     @Override
+    public void detachView(boolean retainInstance) {
+
+    }
+
+    @Override
     public void detachView() {
         this.mView = null;
+    }
+
+    @Override
+    public void destroy() {
+
     }
 
     @Override

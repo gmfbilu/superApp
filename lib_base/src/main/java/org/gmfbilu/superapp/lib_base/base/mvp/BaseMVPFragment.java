@@ -1,40 +1,129 @@
 package org.gmfbilu.superapp.lib_base.base.mvp;
 
-import android.content.Intent;
+import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
-import org.gmfbilu.superapp.lib_base.base.LazyLoadFragment;
+
+import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 import org.gmfbilu.superapp.lib_base.view.LoadingLayout;
 
-public abstract class BaseMVPFragment<V extends BaseView, P extends BasePresenter<V>> extends LazyLoadFragment implements BaseDelegate<V, P> {
+public abstract class BaseMVPFragment<V extends BaseView, P extends BasePresenter<V>>
+        extends BaseFragment implements BaseView, DelegateCallBack<V, P> {
 
-    private boolean isOnCreate;
+    protected FragmentMvpDelegate<V, P> mvpDelegate;
     protected P mPresenter;
     private LoadingLayout mLoadingLayout;
+
     /**
      * 请求成功后，刷新或者第二次请求的时候出现失败的情况
      */
     private boolean isRequestSucceed;
 
 
-    @Override
-    public void lazyLoad() {
-        if (!isOnCreate) {
-            mPresenter = createPresenter();
-            onCreate();
+    @NonNull
+    protected FragmentMvpDelegate<V, P> getMvpDelegate() {
+        if (mvpDelegate == null) {
+            mvpDelegate = new FragmentMvpDelegateImpl<>(this, this, true, true);
+        }
+
+        return mvpDelegate;
+    }
+
+    @NonNull @Override public P getPresenter() {
+        return mPresenter;
+    }
+
+    @Override public void setPresenter(@NonNull P presenter) {
+        this.mPresenter = presenter;
+    }
+
+    @NonNull @Override public V getMvpView() {
+        return (V) this;
+    }
+
+    @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getMvpDelegate().onViewCreated(view, savedInstanceState);
+    }
+
+    @Override public void onDestroyView() {
+        super.onDestroyView();
+        getMvpDelegate().onDestroyView();
+    }
+
+    @Override public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getMvpDelegate().onCreate(savedInstanceState);
+    }
+
+    @Override public void onDestroy() {
+        super.onDestroy();
+        getMvpDelegate().onDestroy();
+        if (mPresenter != null) {
+            mPresenter.detachView();
+            mPresenter = null;
         }
     }
 
-    protected abstract void onCreate();
-
-    @NonNull
-    @Override
-    public P getPresenter() {
-        return mPresenter;
+    @Override public void onPause() {
+        super.onPause();
+        getMvpDelegate().onPause();
     }
+
+    @Override public void onResume() {
+        super.onResume();
+        getMvpDelegate().onResume();
+    }
+
+    @Override public void onStart() {
+        super.onStart();
+        getMvpDelegate().onStart();
+    }
+
+    @Override public void onStop() {
+        super.onStop();
+        getMvpDelegate().onStop();
+    }
+
+    @Override public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getMvpDelegate().onActivityCreated(savedInstanceState);
+    }
+
+    @Override public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        getMvpDelegate().onAttach(activity);
+    }
+
+    @Override public void onDetach() {
+        super.onDetach();
+        getMvpDelegate().onDetach();
+    }
+
+    @Override public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        getMvpDelegate().onSaveInstanceState(outState);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public abstract void getData();
 
@@ -87,60 +176,6 @@ public abstract class BaseMVPFragment<V extends BaseView, P extends BasePresente
                 mLoadingLayout.setOnErrorListener(v -> initLoadingLayout(mLoadingLayout));
             }
         }
-    }
-
-    @Override
-    public void stopLoad() {
-        super.stopLoad();
-        isOnCreate = true;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mPresenter != null) {
-            mPresenter.detachView();
-            mPresenter=null;
-        }
-    }
-
-    /**
-     * 通过Class跳转界面
-     **/
-    public void startActivity(Class<?> cls) {
-        startActivity(cls, null);
-    }
-
-    /**
-     * 通过Class跳转界面
-     **/
-    public void startActivityForResult(Class<?> cls, int requestCode) {
-        startActivityForResult(cls, null, requestCode);
-    }
-
-    /**
-     * 含有Bundle通过Class跳转界面
-     **/
-    public void startActivityForResult(Class<?> cls, Bundle bundle,
-                                       int requestCode) {
-        Intent intent = new Intent();
-        intent.setClass(getActivity(), cls);
-        if (bundle != null) {
-            intent.putExtras(bundle);
-        }
-        startActivityForResult(intent, requestCode);
-    }
-
-    /**
-     * 含有Bundle通过Class跳转界面
-     **/
-    public void startActivity(Class<?> cls, Bundle bundle) {
-        Intent intent = new Intent();
-        intent.setClass(getActivity(), cls);
-        if (bundle != null) {
-            intent.putExtras(bundle);
-        }
-        startActivity(intent);
     }
 
 }

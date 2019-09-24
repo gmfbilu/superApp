@@ -5,6 +5,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.lifecycle.LifecycleOwner;
+
 import com.orhanobut.logger.Logger;
 import com.umeng.message.PushAgent;
 
@@ -18,7 +20,7 @@ import me.yokeyword.fragmentation.SupportActivity;
  * 这种baseActivity不适合mvvm
  */
 
-public abstract class BaseActivity extends SupportActivity implements View.OnClickListener {
+public abstract class BaseActivity extends SupportActivity implements View.OnClickListener, LifecycleOwner {
 
 
     /**
@@ -100,4 +102,6 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
+
+
 }

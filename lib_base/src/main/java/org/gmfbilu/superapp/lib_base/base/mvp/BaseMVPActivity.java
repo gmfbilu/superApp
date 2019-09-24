@@ -1,31 +1,97 @@
 package org.gmfbilu.superapp.lib_base.base.mvp;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+
 
 import org.gmfbilu.superapp.lib_base.base.BaseActivity;
 import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 import org.gmfbilu.superapp.lib_base.view.LoadingLayout;
 
 
-public abstract class BaseMVPActivity<V extends BaseView, P extends BasePresenter<V>> extends BaseActivity implements BaseDelegate<V, P> {
+public abstract class BaseMVPActivity<V extends BaseView, P extends BasePresenter<V>>
+        extends BaseActivity implements BaseView, DelegateCallBack<V, P> {
 
 
+    protected ActivityMvpDelegate mvpDelegate;
+    protected boolean retainInstance;
     protected P mPresenter;
     private LoadingLayout mLoadingLayout;
+
+
     /**
      * 请求成功后，刷新或者第二次请求的时候出现失败的情况
      */
     private boolean isRequestSucceed;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
+    @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter = createPresenter();
+        getMvpDelegate().onCreate(savedInstanceState);
     }
 
+    @Override protected void onDestroy() {
+        getMvpDelegate().onDestroy();
+        super.onDestroy();
+        if (mPresenter != null) {
+            mPresenter.detachView();
+            mPresenter = null;
+        }
+    }
+
+    @Override protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        getMvpDelegate().onSaveInstanceState(outState);
+    }
+
+    @Override public void onPause() {
+        super.onPause();
+        getMvpDelegate().onPause();
+    }
+
+    @Override public void onResume() {
+        super.onResume();
+        getMvpDelegate().onResume();
+    }
+
+    @Override protected void onStart() {
+        super.onStart();
+        getMvpDelegate().onStart();
+    }
+
+    @Override protected void onStop() {
+        super.onStop();
+        getMvpDelegate().onStop();
+    }
+
+    @Override protected void onRestart() {
+        super.onRestart();
+        getMvpDelegate().onRestart();
+    }
+
+    @Override public void onContentChanged() {
+        super.onContentChanged();
+        getMvpDelegate().onContentChanged();
+    }
+
+    @Override protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        getMvpDelegate().onPostCreate(savedInstanceState);
+    }
+
+
+    @NonNull
+    public abstract P createPresenter();
+
+
+    @NonNull
+    protected ActivityMvpDelegate<V, P> getMvpDelegate() {
+        if (mvpDelegate == null) {
+            mvpDelegate = new ActivityMvpDelegateImpl(this, this, true);
+        }
+
+        return mvpDelegate;
+    }
 
     @NonNull
     @Override
@@ -33,7 +99,24 @@ public abstract class BaseMVPActivity<V extends BaseView, P extends BasePresente
         return mPresenter;
     }
 
+    @Override
+    public void setPresenter(@NonNull P presenter) {
+        this.mPresenter = presenter;
+    }
+
+    @NonNull
+    @Override
+    public V getMvpView() {
+        return (V) this;
+    }
+
+
+
+
+
+
     public abstract void getData();
+
 
     /**
      * 必须在initViews() setContentView(R.layout.activity_);ButterKnife.bind(this);后调用
@@ -85,55 +168,6 @@ public abstract class BaseMVPActivity<V extends BaseView, P extends BasePresente
                 mLoadingLayout.setOnErrorListener(v -> initLoadingLayout(mLoadingLayout));
             }
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mPresenter != null) {
-            mPresenter.detachView();
-            mPresenter=null;
-        }
-    }
-
-
-    /**
-     * 通过Class跳转界面
-     **/
-    public void startActivity(Class<?> cls) {
-        startActivity(cls, null);
-    }
-
-    /**
-     * 通过Class跳转界面
-     **/
-    public void startActivityForResult(Class<?> cls, int requestCode) {
-        startActivityForResult(cls, null, requestCode);
-    }
-
-    /**
-     * 含有Bundle通过Class跳转界面
-     **/
-    public void startActivityForResult(Class<?> cls, Bundle bundle,
-                                       int requestCode) {
-        Intent intent = new Intent();
-        intent.setClass(this, cls);
-        if (bundle != null) {
-            intent.putExtras(bundle);
-        }
-        startActivityForResult(intent, requestCode);
-    }
-
-    /**
-     * 含有Bundle通过Class跳转界面
-     **/
-    public void startActivity(Class<?> cls, Bundle bundle) {
-        Intent intent = new Intent();
-        intent.setClass(this, cls);
-        if (bundle != null) {
-            intent.putExtras(bundle);
-        }
-        startActivity(intent);
     }
 
 }

@@ -139,7 +139,7 @@ public class HttpMethods {
             String respCode = httpResult.code;
             if (!StringUtils.isEmpty(respCode)) {
                 if (!respCode.equals(Constant.CODE_RESPONSE_SUCCEED)) {
-                    throw new ApiException(respCode, httpResult.code, httpResult.data);
+                    throw new ApiException(respCode, httpResult.message, httpResult.data);
                 } else {
                     return httpResult.data;
                 }
@@ -154,7 +154,9 @@ public class HttpMethods {
                 //unsubscribeOn?
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                //自动管理生命周期
+                //自动管理生命周期，this直就是Activity本身，也可以是Fragment，这个参数对象只有一个要求，就是必须实现LifecycleOwner接口
+                //在v7包中，FragmentActivity和Fragment都实现了这个接口，实现了这个接口的对象都拥有生命周期（Lifecycle）,为什么androidx中没有了？
+                //不仅是AppCompatActiviy（FragmentActivity的子类）和Fragment，只要是实现了LifecycleOwner的类，都可以作为参数传给AutoDispose，用以控制Observable和组件生命周期的绑定
                 .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(lifecycleOwner)))
                 .subscribe(s);
     }
@@ -164,9 +166,28 @@ public class HttpMethods {
         if (Constant.ISSHOWLOG) {
             Logger.d(o);
         }
+        /**
+         * RequestBody的数据格式都要指定Content-Type，常见的有三种：
+         * application/x-www-form-urlencoded 数据是个普通表单
+         * multipart/form-data 数据里有文件
+         * application/json 数据是个json
+         */
         return RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), new Gson().toJson(o));
-    }
 
+
+       /* return new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("username", "username")
+                .addFormDataPart("password", "password")
+                .addFormDataPart("organId", "1002")
+                .build();
+                两种一样
+        return new FormBody.Builder()
+                .add("username", "username")
+                .add("password", "password")
+                .add("organId", "1002")
+                .build();*/
+    }
 
 
     /**

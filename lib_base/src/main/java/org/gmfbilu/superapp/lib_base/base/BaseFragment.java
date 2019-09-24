@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.orhanobut.logger.Logger;
 
@@ -19,7 +20,7 @@ import me.yokeyword.fragmentation.SupportFragment;
  * SupportFragment已经实现懒加载
  */
 
-public abstract class BaseFragment extends SupportFragment implements View.OnClickListener {
+public abstract class BaseFragment extends SupportFragment implements View.OnClickListener, LifecycleOwner {
 
 
     private boolean isFragmentVisible;
