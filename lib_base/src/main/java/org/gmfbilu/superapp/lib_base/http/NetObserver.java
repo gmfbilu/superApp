@@ -2,6 +2,8 @@ package org.gmfbilu.superapp.lib_base.http;
 
 import org.gmfbilu.superapp.lib_base.utils.ToastUtil;
 
+import java.net.ConnectException;
+
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
@@ -33,6 +35,8 @@ public abstract class NetObserver<T> implements Observer<T> {
             // Logger.d(e.toString());
             if (e instanceof ApiException) {
                 ToastUtil.show(((ApiException) e).ResponseMessageError);
+            } else if (e instanceof ConnectException) {
+                ToastUtil.show("无法连接上服务器");
             }
         }
         //RxBus.getDefault().post(e);

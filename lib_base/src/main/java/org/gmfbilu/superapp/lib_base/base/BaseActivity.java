@@ -1,5 +1,6 @@
 package org.gmfbilu.superapp.lib_base.base;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -35,6 +36,7 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
         int layout = setLayout();
         if (layout != 0)
             setContentView(layout);
+        orientation();
         findViewById_setOnClickListener(savedInstanceState);
         ActivitiesManager.addActivity(this, getClass());
         //initPush();
@@ -101,6 +103,10 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
     private void setFullScreen() {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+    private void orientation() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
 

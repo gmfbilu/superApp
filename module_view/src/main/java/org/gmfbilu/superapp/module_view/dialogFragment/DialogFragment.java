@@ -141,6 +141,7 @@ public class DialogFragment extends BaseFragment {
                     .setWidth(100)
                     .setHeight(100)
                     .setDimAmount(0)
+
                     .show(_mActivity.getSupportFragmentManager());
         } else if (id == R.id.bt_dialog_pop) {
             ConfirmDialogFragment.newInstance("1")

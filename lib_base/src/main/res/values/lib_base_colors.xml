@@ -19,10 +19,4 @@
     <color name="viewfinder_laser" tools:ignore="ResourceName">#ffcc0000</color> <!-- Android standard ICS color -->
     <color name="viewfinder_mask" tools:ignore="ResourceName">#60000000</color>
 
-    <!--LoadingLayout-->
-    <color name="base_text_color_light" tools:ignore="ResourceName">#909090</color>
-    <color name="base_loading_background" tools:ignore="ResourceName">#f7f7f7</color>
-    <color name="loading_gray" tools:ignore="ResourceName">#898989</color>
-    <color name="loading_background" tools:ignore="ResourceName">#f2f2f2</color>
-
 </resources>

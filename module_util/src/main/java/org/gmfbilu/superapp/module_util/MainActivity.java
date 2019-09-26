@@ -47,8 +47,4 @@ public class MainActivity extends BaseMVPActivity<MainView,MainPresenterImpl> im
 
     }
 
-    @Override
-    public void getData() {
-
-    }
 }

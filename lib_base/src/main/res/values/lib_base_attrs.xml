@@ -42,8 +42,4 @@
         <attr name="removeDefaultPadding" format="boolean"/>
     </declare-styleable>
 
-    <declare-styleable name="LoadingLayout" tools:ignore="ResourceName">
-        <attr name="isFirstVisible" format="boolean"/>
-    </declare-styleable>
-
 </resources>

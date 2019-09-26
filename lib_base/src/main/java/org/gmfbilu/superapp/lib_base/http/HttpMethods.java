@@ -141,6 +141,7 @@ public class HttpMethods {
                 if (!respCode.equals(Constant.CODE_RESPONSE_SUCCEED)) {
                     throw new ApiException(respCode, httpResult.message, httpResult.data);
                 } else {
+                    //如果data是null就走onError,需要重写map(new Function<HttpResult<Object>, Object>())
                     return httpResult.data;
                 }
             }

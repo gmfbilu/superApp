@@ -2,10 +2,10 @@ package org.gmfbilu.superapp.module_view.fragment.module.secondTab;
 
 import android.view.View;
 
+import androidx.appcompat.widget.Toolbar;
+
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_view.R;
-
-import androidx.appcompat.widget.Toolbar;
 
 public class NewFeatureFragment extends BaseFragment {
 
@@ -19,6 +19,7 @@ public class NewFeatureFragment extends BaseFragment {
     public void findViewById_setOnClickListener(View view) {
         Toolbar toolbar = view.findViewById(R.id.module_view_toolbar);
         toolbar.setNavigationIcon(R.mipmap.lib_base_ic_arrow_back_white_24dp);
+        //onBackPressed()只适合做返回逻辑
         toolbar.setNavigationOnClickListener(v -> _mActivity.onBackPressed());
         toolbar.setTitle("NewFeatures");
         view.findViewById(R.id.module_fragment_bt_start_dont_hide).setOnClickListener(this);
