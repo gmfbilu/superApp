@@ -46,7 +46,6 @@ import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 import org.gmfbilu.superapp.lib_base.base.BaseApplication;
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.lib_base.utils.StringUtils;
-import org.gmfbilu.superapp.lib_base.utils.SystemPictureInfo;
 import org.gmfbilu.superapp.module_view.R;
 
 import java.util.ArrayList;

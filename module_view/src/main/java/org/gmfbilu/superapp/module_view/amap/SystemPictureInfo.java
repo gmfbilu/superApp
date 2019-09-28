@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.lib_base.utils;
+package org.gmfbilu.superapp.module_view.amap;
 
 /**
  * @author Created by zhuNian

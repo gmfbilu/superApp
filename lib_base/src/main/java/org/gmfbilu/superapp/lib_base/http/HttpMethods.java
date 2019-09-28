@@ -1,5 +1,6 @@
 package org.gmfbilu.superapp.lib_base.http;
 
+import android.util.ArrayMap;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -22,11 +23,12 @@ import org.gmfbilu.superapp.lib_base.bean.response.GetDictionaryDatRes;
 import org.gmfbilu.superapp.lib_base.bean.response.GetProductsByTypeRes;
 import org.gmfbilu.superapp.lib_base.bean.response.GetSaleManListRes;
 import org.gmfbilu.superapp.lib_base.bean.response.LoginRes;
-import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 import org.gmfbilu.superapp.lib_base.utils.StringUtils;
 
 import java.io.File;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -35,12 +37,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.Cache;
-import okhttp3.Interceptor;
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.RequestBody;
-import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -51,7 +51,8 @@ public class HttpMethods {
 
     private ApiService mApiService;
     private static HttpMethods INSTANCE;
-
+    private static final Charset UTF8 = Charset.forName("UTF-8");
+    private static final MediaType FORM_CONTENT_TYPE = MediaType.parse("application/x-www-form-urlencoded; charset=utf-8");
 
     public static HttpMethods getInstance() {
         synchronized (HttpMethods.class) {
@@ -70,34 +71,13 @@ public class HttpMethods {
     }
 
 
-    // 云端响应头拦截器，用来配置缓存策略
-    // 设缓存有效期为两天
-    private static final long CACHE_STALE_SEC = 60 * 60 * 24 * 2;
-    // 0秒内直接读缓存
-    private static final long CACHE_AGE_SEC = 0;
-    // 在这里统一配置请求头缓存策略以及响应头缓存策略
-    private Interceptor mRewriteCacheControlInterceptor = chain -> {
-        Request request = chain.request();
-        if (AppUtils.isNetworkConnected()) {
-            // 在有网的情况下CACHE_AGE_SEC秒内读缓存，大于CACHE_AGE_SEC秒后会重新请求数据
-            request = request.newBuilder().removeHeader("Pragma").removeHeader("Cache-Control").header("Cache-Control", "public, max-age=" + CACHE_AGE_SEC).build();
-            Response response = chain.proceed(request);
-            return response.newBuilder().removeHeader("Pragma").removeHeader("Cache-Control").header("Cache-Control", "public, max-age=" + CACHE_AGE_SEC).build();
-        } else {
-            // 无网情况下CACHE_STALE_SEC秒内读取缓存，大于CACHE_STALE_SEC秒缓存无效报504
-            request = request.newBuilder().removeHeader("Pragma").removeHeader("Cache-Control").header("Cache-Control", "public, only-if-cached, max-stale=" + CACHE_STALE_SEC).build();
-            Response response = chain.proceed(request);
-            return response.newBuilder().removeHeader("Pragma").removeHeader("Cache-Control").header("Cache-Control", "public, only-if-cached, max-stale=" + CACHE_STALE_SEC).build();
-        }
-
-    };
-
     private HttpMethods() {
         initSetting();
     }
 
     private void initSetting() {
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+        httpClientBuilder.addNetworkInterceptor(new RewriteCacheControlInterceptor());
         //日志打印
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
@@ -107,10 +87,8 @@ public class HttpMethods {
                 }
             }
         });
-        //打印日志的范围,HEADERS、BODY等
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         httpClientBuilder.addInterceptor(loggingInterceptor);
-        httpClientBuilder.addNetworkInterceptor(mRewriteCacheControlInterceptor);
 
         Cache cache = new Cache(new File(BaseApplication.mApplicationContext.getExternalCacheDir(), "ExampleHttpCache"), 1024 * 1024 * 100);
         httpClientBuilder.cache(cache);
@@ -182,12 +160,32 @@ public class HttpMethods {
                 .addFormDataPart("password", "password")
                 .addFormDataPart("organId", "1002")
                 .build();
-                两种一样
+                两种一样，但是使用FormBody在中文中会有乱码问题，MultipartBody就没有
+                但是如果只是x-www-form-urlencoded就需要使用FormBody
+                FormBody中文乱码只能用map来处理
         return new FormBody.Builder()
                 .add("username", "username")
                 .add("password", "password")
                 .add("organId", "1002")
                 .build();*/
+    }
+
+    // TODO: 9/28/19  FormBody中文下乱码，暂时这样处理
+    private RequestBody getRequestBody(ArrayMap<String, String> arrayMap) {
+        StringBuffer stringBuffer = new StringBuffer();
+        //设置表单参数
+        Iterator<String> it = arrayMap.keySet().iterator();
+        while (it.hasNext()) {
+            String key = it.next();
+            String value = arrayMap.get(key);
+            if (arrayMap.size() == 1) {
+                stringBuffer.append(key + "=" + value);
+            } else {
+                stringBuffer.append(key + "=" + value + "&");
+            }
+            it.remove();
+        }
+        return RequestBody.create(FORM_CONTENT_TYPE, stringBuffer.toString());
     }
 
 
