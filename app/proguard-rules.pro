@@ -1,5 +1,65 @@
-#============================================== app内实体类====================================
+#四大组件、Fragment、自定义控件不需要添加混淆规则，因为这些默认是不会被混淆的，所以网上很多四大组件的混淆规则是没必要添加的
+#含有Keep关键字的含义（移除是指在压缩时(Shrinking)是否会被删除，需要开启压缩）
 
+
+
+#保留该包下的类名不会被混淆，但是该包的子包的类名还是会被混淆
+-keep class pageName.*
+
+#保留该包及其子包的类名不会被混淆
+-keep class pageName.**
+
+#保留类名及其该类的内容不会被混淆（包括变量名，方法名等）
+-keep class pageName.* {*;}
+
+#不保留类名只保留该类的方法名、变量名等不会被混淆
+-keepclassmembers class pageName.*{*;}
+
+#保留所有继承某类的子类不会被混淆（implement同理）
+-keep public class * extends android.app.Activity
+
+#-keepclassmembers class pageName$内部类名 {   //"$"的含义是保留某类的内部类不会被混淆
+#   public *;
+#} 保留该内部类中所有的public方法名、变量名不会被混淆
+
+#-keep class pageName {
+#    public <init>;  //保留所有的public的构造方法不会被混淆
+#}
+
+#-keep class pageName {
+#    public <init>（java.lang.String）; //保留所有的public的构造方法并且参数是String对象，不会被混淆
+#}
+
+#-keep class pageName {   //保留所有的private的方法名不会被混淆
+#    private <methods>;
+#}
+
+
+
+#-keepclasseswithmembernames class * { 本地的native方法（JNI）
+#    native <methods>;
+#}
+
+#-keep class pageName{*;} 反射(该pageName是被反射类的包名)
+
+#-keepattributes Signature JavaBean中的泛型。如果使用了Gson进行解析Json字符串，就需要添加JavaBean的混淆规则，因为Gson使用了反射的原理
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#============================================== app内实体类====================================
+-keep class org.exmaple.request.** { *; } #org.exmaple.request包中所有的类
+-keep class org.exmaple.http.HttpResult{ *; } #org.exmaple.http包中的HttpResult类
 
 
 
@@ -61,9 +121,6 @@
      java.lang.Object writeReplace();
      java.lang.Object readResolve();
 }
--keep class **.R$* {
-  *;
-}
 -keepclassmembers class * {
      void *(**On*Event);
 }
@@ -81,6 +138,36 @@
 
 -keep class **JNI* {*;}
 
+#注解
+-keepattributes *Annotation*
+
+#R文件下面的资源
+-keep class **.R$* {*;}
+
+# 保留枚举类不被混淆
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+#Parcelable序列化和Creator静态成员变量
+-keep class * implements android.os.Parcelable {
+    public static final android.os.Parcelable$Creator *;
+}
+
+#Serializable序列化
+-keepclassmembers class * implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    !static !transient <fields>;
+    !private <fields>;
+    !private <methods>;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
+}
+
 #---------------------------------webview------------------------------------
 -keepclassmembers class fqcn.of.javascript.interface.for.Webview {
     public *;
@@ -93,7 +180,12 @@
      public void *(android.webkit.WebView, jav.lang.String);
 }
 -keep class android.webkit.JavascriptInterface {*;}
-
+#与JS交互
+-keepattributes *Annotation*
+-keepattributes *JavascriptInterface*
+-keepclassmembers class pageName$内部类名 {
+    public *;
+}
 
 
 

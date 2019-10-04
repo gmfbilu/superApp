@@ -1,5 +1,10 @@
 package org.gmfbilu.superapp.lib_base.utils;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+
 /**
  * 字符串相关工具类
  */
@@ -188,5 +193,28 @@ public class StringUtils {
             }
         }
         return new String(chars);
+    }
+
+
+    /**
+     * InputStream String
+     *
+     * @param inputStream
+     * @return
+     */
+    public String inputStreamToString(InputStream inputStream) {
+        String str = "";
+        try {
+            ByteArrayOutputStream result = new ByteArrayOutputStream();
+            byte[] buffer = new byte[inputStream.available()];
+            int length;
+            while ((length = inputStream.read(buffer)) != -1) {
+                result.write(buffer, 0, length);
+            }
+            str = result.toString(StandardCharsets.UTF_8.name());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return str;
     }
 }

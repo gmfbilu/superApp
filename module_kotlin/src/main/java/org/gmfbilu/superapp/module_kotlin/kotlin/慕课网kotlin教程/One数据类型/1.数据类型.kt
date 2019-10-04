@@ -1,207 +1,72 @@
 package org.gmfbilu.superapp.module_kotlin.kotlin.慕课网kotlin教程.One数据类型
 
 
+//kotlin主函数
 fun main(args: Array<String>) {
-    println(helloTrump)
-    println("$countries+$cities=${countries + cities}")
-    method3(0)
 }
 
 
 //=========================================================数据类型
-//val是运行时常量，类似Java中的final，在编译期不可知道具体的值，不可能变。后面可以省略数据类型，叫类型推导
-//const val是编译期常量，在编译期可知道具体的值
-//var是变量
-//boolean类型
-val isMe: Boolean = true
-//自动推断出 Boolean类型
-val isWeek = true
-//Number类型，kotlin里面的Int类型是Java里面的int类型和Integer类型的合体。kotlin不区分装箱类型和非装箱类型
-val countries: Int = 221
-val cities: Double = 0.0
-val suns: Long = 10
-val distances: Float = 0.0f
-val shchools: Short = 100
-val families: Byte = 4
+//kotlin没有基本数据类型。Char，Byte，Boolean，Float，Int，Double，Long。Number类型(Float，Int，Double，Long),kotlin不区分装箱类型和非装箱类型
+//所有以未超出 Int 最大值的整型值初始化的变量都会推断为 Int 类型。如果初始值超过了其最大值，那么推断为 Long 类型。 如需显式指定 Long 型值，请在该值后追加 l 或 L 后缀
+//对于以小数初始化的变量，编译器会推断为 Double 类型。 如需将一个值显式指定为 Float 类型，请添加 f 或 F 后缀
+val cities: Double = 0.0 //运行时常量，在编译期不可知道具体的值，只读,可以通过反射修改。后面可以省略数据类型，叫类型推导。只能为其赋值一次
+var trees: Int = 0 //可读可写
+val isWeek = true //自动推断出 Boolean类型
+val isend get() = isWeek // 只读属性赋值
+val isMe: Boolean? = true //在数据类型后面加上?表示此数据可能为null,不加就是不可能为null。Boolean也是有可能为null的
+const val phone = "iphone" //编译期常量，在编译期可知道具体的值
+var distances = 0.0f// 类型 Float、默认 getter 和 setter
+val families = 4// 类型 Int、默认 getter
 val language: Char = '\n' //换行符
-//字符串，kotlin里面的双等号(==)和Java里面的equals完全等价，kotlin里面的三等号(===)和Java里面的双等号完全等价
-val hello: String = "helloWorld"
-val helloTrump: String = "hello\"trump\""
-//mayNull这个可能为null
-val mayNull: String? = "null"
-//字符串模板,println("$countries+$cities=${countries + cities}")
-//区间
-val range: IntRange = 0..1042 //[0,1024]
-val range_exclusive: IntRange = 0 until 1024 //(0,1024]
-//编译期常量，在编译的时候就可以确定的。 val myName="batman" 也是常量，但是不是编译期常量，可以通过反射修改
-const val myName = "batman" //等价于Java中的public final String myName="batman"
+val helloTrump: String = "hello\"trump\"" //hello"trump"
 
+//可以使用下划线使数字常量更易读
+val oneMillion = 1_000_000
+val creditCardNumber = 1234_5678_9012_3456L
+val socialSecurityNumber = 999_99_9999L
+val hexBytes = 0xFF_EC_DE_5E
+val bytes = 0b11010010_01101001_10010100_10010010
 
-//========================================================================数组
-val bookList: IntArray = intArrayOf(0, 2, 8, 1)
-val nameList: CharArray = charArrayOf('1', '2')
-val cityList: Array<String> = arrayOf("香港", "拉萨")
-val girlList: Array<妹子> = arrayOf(妹子("", ""))
-//循环遍历
-fun getSingle(array: Array<妹子>) {
+//较小的类型不能隐式转换为较大的类型。 这意味着在不进行显式转换的情况下我们不能把 Byte 型值赋给一个 Int 变量
 
-    for (book in bookList) {
-        println(book)
-    }
-
-    bookList.forEach {
-        println(it)
-    }
-
-    //这里的return会结束整个getSingle函数
-    bookList.forEach {
-        if (it.equals("a")) {
-            return
-        }
-        println(it)
-    }
-
-    //这里的return只会结束掉此循环
-    bookList.forEach ForEach@{
-        if (it.equals("a")) {
-            return@ForEach
-        }
-        println(it)
-    }
+fun c() {//交换两个变量
+    var a = 1
+    var b = 2
+    a = b.also { b = a }
 }
 
+/**
+ * 声明一个属性的完整语法是
+ * var <propertyName>[: <PropertyType>] [= <property_initializer>]
+ * [<getter>]
+ * [<setter>]
+ */
+//每次访问该属性时都会调用它get
+val isEmpty: Boolean
+    get() = "".length == 0
 
-//=========================================================类
-//类，直接指定构造方法。kotlin中的所有类是Any类的子类
-class 妹子(val 性格: String, val 声音: String) {
-    //相当于java中的构造代码块
-    init {
-        println("性格+$性格")
-    }
-}
+//定义了一个自定义的 setter，那么每次给属性赋值时都会调用它的set
+var stringRepresentation: String
+    get() = "".toString()
+    set(value) {
 
-//创建对象
-val 我喜欢的妹子: 妹子 = 妹子("甜美", "漂亮")
-
-open class 人(val 性格: String, val 声音: String) {
-    init {
-        println("new了一个${this.javaClass.simpleName},声音+$声音")
-    }
-}
-
-//继承
-class 帅哥(性格: String, 声音: String) : 人(性格, 声音)
-
-
-//================================================================函数
-//kotlin中的Unit相当于Java中的void，可以省略
-fun method1(): Unit {
-
-}
-
-
-//返回值为String，当某个变量的值可以为 null 的时候，必须在声明处的类型后添加 ? 来标识该引用可为空
-fun method2(obj:Any): Int? {
-    if (obj is String){
-        return obj.length
-    }
-    return null
-}
-
-//有参数,函数的参数可以有默认参数。调用的时候有默认参数的可以不写，method3(2)和method3(1,2)都可以
-fun method3(a: Int, b: Int=0) {
-
-}
-
-//匿名函数，使用一个变量接收这个函数的时候是不需要函数名的，使用的时候age(8)
-var age = fun(a: Int): Int {
-    return a
-}
-
-//这种返回值不可能为null
-fun getName(): String {
-    return ""
-}
-
-//这种返回值可能为null，println(getNameS()?.length) 直接返回null， println(getNameS()!!.length)就和Java一样报空指针异常
-fun getNameS(): String? {
-    val sb = StringBuffer()
-    val stringBuffer: StringBuffer = sb.add("")
-    return null
-}
-
-//将表达式作为函数体、返回值类型自动推断的函数
-fun sum(a: Int, b: Int) = a + b
-
-fun sayHello(str: String) = print("say $str")
-
-//扩展方法就是对一个类添加额外的方法，而不用写在类里面，this代表那个类。使用的时候直接使用类实例访问
-fun StringBuffer.add(str: String): StringBuffer = this.append(str)
-
-
-//=============================================================lambda表达式
-//lambda表达式就是匿名函数
-// 写法：有参数：{参数列表-> 函数体，最后一行是返回值}。无参数：{函数体，最后一行是返回值}
-//lambda表达式的类型:()->Unit表示无参，返回值为Unit.(Int)->Int表示传入一个整数，返回一个整数。(String,(String)->String)->Boolean表示传入一个String和lambda表达式，返回一个String
-//lambda表达式的调用：用()调用，等价于invoke()
-//lambda表达式的简化：函数参数调用时最后一个lambda可以移出去；函数参数只有一个lambda时，调用时小括号可以省略；lambda参数只有一个参数可默认为it;
-val sum = { a: Int, b: Int -> a + b } //使用： sum(1,1)或 sum()或sum都可以，sum(1,1)等价于sum.invoke(1,1)
-val sum1 = fun(a: Int, b: Int): Int {
-    return a + b
-}
-
-fun sum2(a: Int, b: Int): Int = a + b
-//上面三種函數寫法是等價的
-val printhello = { print("say") } //使用：printhello()或printhello
-
-
-//=============================================================表达式
-//条件表达式
-fun maxOf(a: Int, b: Int): Int {
-    if (a > b) {
-        return a
-    } else {
-        return b
-    }
-}
-
-fun maxOf1(a: Int, b: Int) = if (a > b) a else b
-
-//when类似Java中的switch，when有返回值更强大
-fun whenMethod(str: String): Int {
-    return when (str) {
-        "1" -> 1
-        "2" -> 2
-        else -> 3
-    }
-}
-
-
-//===============================================================集合遍历
-fun main1(args: Array<String>) {
-    //遍历
-    args.map {
-        print(it)
     }
 
-    val list = ArrayList<String>()
-    val map = HashMap<String, String>()
-    for (i in 1..10) {
-        list.add(i.toString())
-        map.put("key = " + i, "value = " + i)
-    }
-    //迭代遍历
-    for (value in list) {
-        println(value)
-    }
-    //迭代遍历，带有index
-    for ((index, value) in list.withIndex()) {
-        println("index = $index  value = $value")
-    }
-    //迭代遍历，带有index
-    for ((key, value) in map) {
-        println("key = $key  value = $value")
-    }
+//需要改变一个访问器的可见性或者对其注解，但是不需要改变默认的实现， 你可以定义访问器而不定义其实现
+var setterVisibility: String = "abc"
+    private set // 此 setter 是私有的并且有默认实现
 
-}
+var setterWithAnnotation: Any? = null
+//@Inject set // 用 Inject 注解此 setter
+
+
+//扩展属性，由于扩展没有实际的将成员插入类中，因此对扩展属性来说幕后字段是无效的。这就是为什么扩展属性不能有初始化器。他们的行为只能由显式提供的 getters/setters 定义
+val <T> List<T>.lastIndex: Int
+    get() = size - 1
+
+
+
+
+
 
