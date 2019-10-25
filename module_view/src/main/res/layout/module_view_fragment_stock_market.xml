@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    android:orientation="vertical">
+
+    <!--整体分为上下 即title和content 然后title再分左右 content再分左右-->
+
+    <!--上部分 title左右-->
+    <LinearLayout
+        android:id="@+id/titleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="#21212B"
+        android:orientation="horizontal">
+
+        <include layout="@layout/module_view_stockmarket_left" />
+
+        <include layout="@layout/module_view_stockmarket_right" />
+
+    </LinearLayout>
+
+
+    <!--上部分 content左右-->
+    <ScrollView
+        android:id="@+id/contentScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#21212B"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/contentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <org.gmfbilu.superapp.module_view.recyclerView.baseRecyclerViewAdapter.stockMarket.StockMarketRecyclerView
+                android:id="@+id/contentListViewLeft"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:fadingEdge="none"
+                android:overScrollMode="never" />
+
+            <org.gmfbilu.superapp.module_view.recyclerView.baseRecyclerViewAdapter.stockMarket.StockMarketHorizontalScrollView
+                android:id="@+id/rightContentHorscrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:scrollbars="none">
+
+                <org.gmfbilu.superapp.module_view.recyclerView.baseRecyclerViewAdapter.stockMarket.StockMarketRecyclerView
+                    android:id="@+id/contentListViewRight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@null"
+                    android:dividerHeight="0dp"
+                    android:fadingEdge="none"
+                    android:overScrollMode="never" />
+
+
+            </org.gmfbilu.superapp.module_view.recyclerView.baseRecyclerViewAdapter.stockMarket.StockMarketHorizontalScrollView>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.gmfbilu.superapp.module_view.recyclerView.baseRecyclerViewAdapter.stockMarket.StockMarketHorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:overScrollMode="never"
+    android:layout_height="68dp"
+    android:scrollbars="none">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="68dp">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:background="#494B54"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_item1_top"
+            android:layout_width="77dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:gravity="center|end"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tool:text="410.00" />
+
+        <TextView
+            android:id="@+id/tv_item1_bottom"
+            android:layout_width="77dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center|end"
+            android:textColor="#9094A7"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_item1_top"
+            app:layout_constraintRight_toRightOf="@+id/tv_item1_top"
+            app:layout_constraintTop_toBottomOf="@+id/tv_item1_top"
+            tool:text="410.00" />
+
+        <TextView
+            android:id="@+id/tv_item2_top"
+            android:layout_width="77dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center|end"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_item1_top"
+            app:layout_constraintLeft_toRightOf="@+id/tv_item1_top"
+            app:layout_constraintTop_toTopOf="@+id/tv_item1_top"
+            tool:text="68000" />
+
+        <TextView
+            android:id="@+id/tv_item2_bottom"
+            android:layout_width="77dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center|end"
+            android:textColor="#9094A7"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_item2_top"
+            app:layout_constraintRight_toRightOf="@+id/tv_item2_top"
+            app:layout_constraintTop_toBottomOf="@+id/tv_item2_top"
+            tool:text="68000" />
+
+        <TextView
+            android:id="@+id/tv_item3_top"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center|end"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_item1_top"
+            app:layout_constraintLeft_toRightOf="@+id/tv_item2_top"
+            app:layout_constraintTop_toTopOf="@+id/tv_item1_top"
+            tool:text="买入" />
+
+        <TextView
+            android:id="@+id/tv_item3_bottom"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center|end"
+            android:textColor="#9094A7"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_item3_top"
+            app:layout_constraintRight_toRightOf="@+id/tv_item3_top"
+            app:layout_constraintTop_toBottomOf="@+id/tv_item3_top"
+            tool:text="已成" />
+
+
+        <TextView
+            android:id="@+id/tv_item4_top"
+            android:layout_width="77dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center|end"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/tv_item3_top"
+            app:layout_constraintTop_toTopOf="parent"
+            tool:text="20191111" />
+
+        <TextView
+            android:id="@+id/tv_item5_top"
+            android:layout_width="77dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center|end"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_item1_top"
+            app:layout_constraintLeft_toRightOf="@+id/tv_item4_top"
+            app:layout_constraintTop_toTopOf="@+id/tv_item1_top"
+            tool:text="20191111 " />
+
+        <TextView
+            android:id="@+id/tv_item5_bottom"
+            android:layout_width="77dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center|end"
+            android:textColor="#9094A7"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_item5_top"
+            app:layout_constraintRight_toRightOf="@+id/tv_item5_top"
+            app:layout_constraintTop_toBottomOf="@+id/tv_item5_top"
+            tool:text="13:12:10" />
+
+        <TextView
+            android:id="@+id/tv_item6_top"
+            android:layout_width="54dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="15dp"
+            android:gravity="center|end"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/tv_item5_top"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tool:text="- -" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</org.gmfbilu.superapp.module_view.recyclerView.baseRecyclerViewAdapter.stockMarket.StockMarketHorizontalScrollView>

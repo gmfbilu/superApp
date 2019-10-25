@@ -1,9 +1,22 @@
+/**
+ * BuildConfig就是根据build.gradle配置自动生成的
+ */
+
+
 apply plugin: 'com.android.library'
 
 android {
     resourcePrefix "lib_base_"
     compileSdkVersion compileSdk as int
     defaultConfig {
+
+        /**
+         *  读取gradle.properties文件中的applicationId对应的值，如果没有那个值就null
+         *  Properties properties = new Properties()
+         *  properties.load(new FileInputStream("gradle.properties"))
+         *  properties.getProperty("applicationId")
+         */
+
         minSdkVersion minSdk as int
         targetSdkVersion targetSdk as int
         versionCode versionCode
@@ -13,6 +26,8 @@ android {
                 arguments = [moduleName: project.getName()]
             }
         }
+
+        ndk { abiFilters "armeabi" }
     }
 
     lintOptions {
@@ -105,16 +120,21 @@ dependencies {
     //万能适配器
     api "com.github.CymChad:BaseRecyclerViewAdapterHelper:${baseRecyclerViewAdapterHelper_version}"
 
+    //======================================================地图
     //定位
     api "com.amap.api:location:${amap_location_version}"
-
     //搜索
     api "com.amap.api:search:${amap_search_version}"
-
     //高德3D地图
     api "com.amap.api:3dmap:${amap_3dmap_version}"
 
     //google二维码
     implementation files('lib/core-3.1.0.jar')
+
+    //======================================================WebView
+    //JsBridge
+    api "com.github.lzyzsd:jsbridge:${jsbridge_version}"
+    //x5内核的WebView
+    api "com.tencent.tbs.tbssdk:sdk:${x5WebView_version}"
 
 }

@@ -17,7 +17,7 @@ import org.gmfbilu.superapp.module_util.jetpack.room.RoomFragment;
 import org.gmfbilu.superapp.module_util.jni.JniFragment;
 import org.gmfbilu.superapp.module_util.permissions.PermissionsFragment;
 import org.gmfbilu.superapp.module_util.sqLite.SQLiteFragment;
-import org.gmfbilu.superapp.module_util.webview.WebViewFragment;
+import org.gmfbilu.superapp.module_util.webview.x5Webview.WebViewFragment;
 import org.gmfbilu.superapp.module_util.zxing.ZXingFragment;
 
 
@@ -77,7 +77,7 @@ public class MainFragment extends BaseFragment {
         } else if (id == R.id.module_util_bt_animation) {
             start(CartoonFragment.newInstance());
         } else if (id == R.id.module_util_bt_webview) {
-            start(WebViewFragment.newInstance());
+            start(WebViewFragment.newInstance(""));
         } else if (id == R.id.module_util_bt_sqlite) {
             start(SQLiteFragment.newInstance());
         } else if (id == R.id.module_util_bt_bluetooth) {

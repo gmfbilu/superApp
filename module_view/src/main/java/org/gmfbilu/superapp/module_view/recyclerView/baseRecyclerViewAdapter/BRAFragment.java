@@ -7,6 +7,7 @@ import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_view.R;
 import org.gmfbilu.superapp.module_view.recyclerView.baseRecyclerViewAdapter.headerfooter.BRAHeaderFooterFragment;
 import org.gmfbilu.superapp.module_view.recyclerView.baseRecyclerViewAdapter.simple.BRASimpleFragment;
+import org.gmfbilu.superapp.module_view.recyclerView.baseRecyclerViewAdapter.stockMarket.StockMarketFragment;
 
 public class BRAFragment extends BaseFragment {
 
@@ -22,6 +23,7 @@ public class BRAFragment extends BaseFragment {
     public void findViewById_setOnClickListener(View view) {
         view.findViewById(R.id.bt_simple).setOnClickListener(this);
         view.findViewById(R.id.bt_header_footer).setOnClickListener(this);
+        view.findViewById(R.id.bt_stockMarket).setOnClickListener(this);
     }
 
     @Override
@@ -36,6 +38,8 @@ public class BRAFragment extends BaseFragment {
             start(BRASimpleFragment.newInstance());
         }else if (id==R.id.bt_header_footer){
             start(BRAHeaderFooterFragment.newInstance());
+        }else if (id==R.id.bt_stockMarket){
+            start(StockMarketFragment.newInstance());
         }
     }
 

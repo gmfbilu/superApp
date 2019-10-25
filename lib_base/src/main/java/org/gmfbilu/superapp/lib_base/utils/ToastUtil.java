@@ -12,9 +12,11 @@ public class ToastUtil {
     }
 
     public static void show(String message) {
-        if (Looper.getMainLooper() != Looper.myLooper()) {
-            LoggerUtil.d("不能在主线程使用Toast");
+        if (message == null || message.length() == 0) {
             return;
+        }
+        if (Looper.getMainLooper() != Looper.myLooper()) {
+            LoggerUtil.d("在子线程使用Toast");
         }
         Toast.makeText(BaseApplication.mApplicationContext, message, Toast.LENGTH_SHORT).show();
     }

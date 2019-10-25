@@ -11,7 +11,6 @@ import com.orhanobut.logger.Logger;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.lib_base.utils.rxbus.RxBus;
-import org.gmfbilu.superapp.lib_base.utils.rxbus.eventbean.MsgEvent;
 import org.gmfbilu.superapp.module_java.R;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -143,10 +142,10 @@ public class RxJavaFragment extends BaseFragment {
 
 
     /**
-     * rxBus发送事件，订阅事件在MainFragment
+     * 2.rxBus发送事件，订阅事件在MainFragment
      */
     private void rxBus(){
-        RxBus.getInstance().post(new MsgEvent("Java"));
+        RxBus.getDefault().post("MainFragment");
     }
 
 

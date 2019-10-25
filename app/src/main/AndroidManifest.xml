@@ -5,12 +5,12 @@
     <application
         android:name=".SuperApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/lib_base_ic_launcher"
-        android:label="@string/lib_base_app_name"
-        android:roundIcon="@mipmap/lib_base_ic_launcher_round"
+        android:icon="${APPLICATION_ICON}"
+        android:label="${APP_NAME}"
         android:supportsRtl="true"
         android:theme="@style/lib_base_AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
+        android:roundIcon="${APPLICATION_ICON}"
         tools:replace="android:theme,android:label,android:icon,android:roundIcon">
 
         <activity android:name=".MainActivity">
@@ -20,13 +20,13 @@
                 <!--category（类别）：用来表现动作的类别-->
                 <category android:name="android.intent.category.LAUNCHER"/>
                 <!--data（数据）：表示与动作要操纵的数据-->
-                <data android:scheme="http"/>
+               <!-- <data android:scheme="http"/>-->
             </intent-filter>
         </activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="org.gmfbilu.superapp.fileProvider"
+            android:authorities="${APPLICATION_ID}.fileProvider"
             android:exported="false"
             android:grantUriPermissions="true"
             tools:replace="android:authorities">

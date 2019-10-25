@@ -7,6 +7,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 
 import org.gmfbilu.superapp.lib_base.app.ARouterPath;
 import org.gmfbilu.superapp.lib_base.base.BaseActivity;
+import org.gmfbilu.superapp.lib_base.utils.ToastUtil;
 
 
 public class MainActivity extends BaseActivity {
@@ -18,6 +19,7 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.module_util).setOnClickListener(this);
         findViewById(R.id.module_java).setOnClickListener(this);
         findViewById(R.id.module_kotlin).setOnClickListener(this);
+        ToastUtil.show(BuildConfig.appName);
     }
 
     @Override

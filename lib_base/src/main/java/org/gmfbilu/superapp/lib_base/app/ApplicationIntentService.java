@@ -10,18 +10,20 @@ import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 import com.squareup.leakcanary.LeakCanary;
+import com.tencent.smtt.sdk.QbSdk;
 
 import org.gmfbilu.superapp.lib_base.BuildConfig;
 import org.gmfbilu.superapp.lib_base.base.BaseApplication;
-
-import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
+import org.gmfbilu.superapp.lib_base.utils.LoggerUtil;
 
 /**
  * 我们多次启动IntentService，但IntentService的实例只有一个，这跟传统的Service是一样的，最终IntentService会去调用onHandleIntent执行异步任务
@@ -82,6 +84,7 @@ public class ApplicationIntentService extends IntentService {
         initLocalCrashReport();
         initARouter();
         initLeakCanary();
+        initX5();
         Log.d(Constant.LOG_NAME, "ApplicationIntentService ---> onHandleIntent");
     }
 
@@ -122,6 +125,23 @@ public class ApplicationIntentService extends IntentService {
             return;
         }
         LeakCanary.install(getApplication());
+    }
+
+    private void initX5() {
+        QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
+
+            @Override
+            public void onViewInitFinished(boolean arg0) {
+                //x5內核初始化完成的回调，为true表示x5内核加载成功，否则表示x5内核加载失败，会自动切换到系统内核。
+                LoggerUtil.d(arg0 ? "x5内核加载成功" : "x5内核加载失败");
+            }
+
+            @Override
+            public void onCoreInitFinished() {
+            }
+        };
+        //x5内核初始化接口
+        QbSdk.initX5Environment(getApplicationContext(), cb);
     }
 
 

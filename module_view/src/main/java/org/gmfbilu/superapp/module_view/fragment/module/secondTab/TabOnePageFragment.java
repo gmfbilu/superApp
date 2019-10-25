@@ -13,7 +13,7 @@ import org.greenrobot.eventbus.Subscribe;
  * Created by gmfbilu on 18-3-11.
  */
 
-public class TabOnePageFragment extends BaseFragment implements View.OnClickListener {
+public class TabOnePageFragment extends BaseFragment{
 
     public static TabOnePageFragment newInstance() {
         Bundle args = new Bundle();

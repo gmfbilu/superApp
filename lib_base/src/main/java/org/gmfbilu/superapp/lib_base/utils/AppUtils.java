@@ -7,6 +7,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
@@ -42,6 +43,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.DimenRes;
@@ -58,6 +60,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -70,6 +73,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -87,18 +91,15 @@ public class AppUtils {
     /**
      * 判断WIFI是否可用
      *
-     * @param context
      * @return
      */
-    public static boolean isWifiConnected(Context context) {
-        if (context != null) {
-            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo mWiFiNetworkInfo = mConnectivityManager
-                    .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-            if (mWiFiNetworkInfo != null) {
-                return mWiFiNetworkInfo.isAvailable();
-            }
+    public static boolean isWifiConnected() {
+        ConnectivityManager mConnectivityManager = (ConnectivityManager) BaseApplication.mApplicationContext
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mWiFiNetworkInfo = mConnectivityManager
+                .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if (mWiFiNetworkInfo != null) {
+            return mWiFiNetworkInfo.isAvailable();
         }
         return false;
     }
@@ -107,18 +108,15 @@ public class AppUtils {
     /**
      * 判断MOBILE网络是否可用
      *
-     * @param context
      * @return
      */
-    public static boolean isMobileConnected(Context context) {
-        if (context != null) {
-            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo mMobileNetworkInfo = mConnectivityManager
-                    .getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-            if (mMobileNetworkInfo != null) {
-                return mMobileNetworkInfo.isAvailable();
-            }
+    public static boolean isMobileConnected() {
+        ConnectivityManager mConnectivityManager = (ConnectivityManager) BaseApplication.mApplicationContext
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mMobileNetworkInfo = mConnectivityManager
+                .getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if (mMobileNetworkInfo != null) {
+            return mMobileNetworkInfo.isAvailable();
         }
         return false;
     }
@@ -127,17 +125,14 @@ public class AppUtils {
     /**
      * 获取当前网络连接的类型信息
      *
-     * @param context
      * @return
      */
-    public static int getConnectedType(Context context) {
-        if (context != null) {
-            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
-            if (mNetworkInfo != null && mNetworkInfo.isAvailable()) {
-                return mNetworkInfo.getType();
-            }
+    public static int getConnectedType() {
+        ConnectivityManager mConnectivityManager = (ConnectivityManager) BaseApplication.mApplicationContext
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+        if (mNetworkInfo != null && mNetworkInfo.isAvailable()) {
+            return mNetworkInfo.getType();
         }
         return -1;
     }
@@ -191,12 +186,11 @@ public class AppUtils {
     /**
      * 从资源图片中获取Bitmap
      *
-     * @param context
      * @param resId
      * @return
      */
-    public static Bitmap getBitmapFromResource(Context context, int resId) {
-        Resources resources = context.getResources();
+    public static Bitmap getBitmapFromResource(int resId) {
+        Resources resources = BaseApplication.mApplicationContext.getResources();
         return BitmapFactory.decodeResource(resources, resId);
     }
 
@@ -500,12 +494,11 @@ public class AppUtils {
     /**
      * 将Bitmap转为Drawable
      *
-     * @param context
      * @param bitmap
      * @return
      */
-    public static Drawable bitmapToDrawable(Context context, Bitmap bitmap) {
-        return new BitmapDrawable(context.getResources(), bitmap);
+    public static Drawable bitmapToDrawable(Bitmap bitmap) {
+        return new BitmapDrawable(BaseApplication.mApplicationContext.getResources(), bitmap);
     }
 
 
@@ -538,12 +531,11 @@ public class AppUtils {
     /**
      * 从资源图片中获取Drawable
      *
-     * @param context
      * @param resId
      * @return
      */
-    public static Drawable getDrawableFromResource(Context context, int resId) {
-        return context.getResources().getDrawable(resId);
+    public static Drawable getDrawableFromResource(int resId) {
+        return BaseApplication.mApplicationContext.getResources().getDrawable(resId);
     }
 
 
@@ -555,7 +547,7 @@ public class AppUtils {
      * @param h
      * @return
      */
-    public static Drawable zoomDrawable(Context context, Drawable drawable, int w, int h) {
+    public static Drawable zoomDrawable(Drawable drawable, int w, int h) {
         int width = drawable.getIntrinsicWidth();
         int height = drawable.getIntrinsicHeight();
         // drawable转换成bitmap
@@ -569,7 +561,7 @@ public class AppUtils {
         matrix.postScale(sx, sy);
         // 建立新的bitmap，其内容是对原bitmap的缩放后的图
         Bitmap newbmp = Bitmap.createBitmap(oldbmp, 0, 0, width, height, matrix, true);
-        return new BitmapDrawable(context.getResources(), newbmp);
+        return new BitmapDrawable(BaseApplication.mApplicationContext.getResources(), newbmp);
     }
 
 
@@ -902,6 +894,39 @@ public class AppUtils {
         return format.format(date);
     }
 
+    /**
+     * 当前时间的前一个星期
+     * @return
+     */
+    public static String getCurrentTime7DayBefore() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DAY_OF_MONTH, -6);
+        return format.format(c.getTime());
+    }
+
+    /**
+     * 当前时间的前一个月
+     * @return
+     */
+    public static String getCurrentTime1MonthBefore() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd",Locale.CHINA);
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.MONTH, -1);
+        return format.format(c.getTime());
+    }
+
+    /**
+     * 当前时间的前一个年
+     * @return
+     */
+    public static String getCurrentTime1YearBefore() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd",Locale.CHINA);
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.YEAR, -1);
+        return format.format(c.getTime());
+    }
+
 
     /**
      * 判断当天是否是双休日
@@ -1217,17 +1242,16 @@ public class AppUtils {
 
 
     /**
-     * @param context 上下文对象
-     * @param uri     当前相册照片的Uri
+     * @param uri 当前相册照片的Uri
      * @return 解析后的Uri对应的String
      */
     @SuppressLint("NewApi")
-    public static String uriToPath(final Context context, final Uri uri) {
+    public static String uriToPath(final Uri uri) {
 
         final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
         String pathHead = "file:///";
         // DocumentProvider
-        if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+        if (isKitKat && DocumentsContract.isDocumentUri(BaseApplication.mApplicationContext, uri)) {
             // ExternalStorageProvider
             if (isExternalStorageDocument(uri)) {
                 final String docId = DocumentsContract.getDocumentId(uri);
@@ -1244,7 +1268,7 @@ public class AppUtils {
 
                 final Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
 
-                return pathHead + getDataColumn(context, contentUri, null, null);
+                return pathHead + getDataColumn(contentUri, null, null);
             }
             // MediaProvider
             else if (isMediaDocument(uri)) {
@@ -1264,12 +1288,12 @@ public class AppUtils {
                 final String selection = "_id=?";
                 final String[] selectionArgs = new String[]{split[1]};
 
-                return pathHead + getDataColumn(context, contentUri, selection, selectionArgs);
+                return pathHead + getDataColumn(contentUri, selection, selectionArgs);
             }
         }
         // MediaStore (and general)
         else if ("content".equalsIgnoreCase(uri.getScheme())) {
-            return pathHead + getDataColumn(context, uri, null, null);
+            return pathHead + getDataColumn(uri, null, null);
         }
         // File
         else if ("file".equalsIgnoreCase(uri.getScheme())) {
@@ -1282,19 +1306,18 @@ public class AppUtils {
      * Get the value of the data column for this Uri. This is useful for
      * MediaStore Uris, and other file-based ContentProviders.
      *
-     * @param context       The context.
      * @param uri           The Uri to query.
      * @param selection     (Optional) Filter used in the query.
      * @param selectionArgs (Optional) Selection arguments used in the query.
      * @return The value of the _data column, which is typically a file path.
      */
-    private static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
+    private static String getDataColumn(Uri uri, String selection, String[] selectionArgs) {
 
         Cursor cursor = null;
         final String column = "_data";
         final String[] projection = {column};
         try {
-            cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
+            cursor = BaseApplication.mApplicationContext.getContentResolver().query(uri, projection, selection, selectionArgs, null);
             if (cursor != null && cursor.moveToFirst()) {
                 final int column_index = cursor.getColumnIndexOrThrow(column);
                 return cursor.getString(column_index);
@@ -1402,8 +1425,8 @@ public class AppUtils {
      *
      * @param uri
      */
-    public static Bitmap getBitmapFormUri(Context ac, Uri uri) throws FileNotFoundException, IOException {
-        InputStream input = ac.getContentResolver().openInputStream(uri);
+    public static Bitmap getBitmapFormUri(Uri uri) throws FileNotFoundException, IOException {
+        InputStream input = BaseApplication.mApplicationContext.getContentResolver().openInputStream(uri);
         BitmapFactory.Options onlyBoundsOptions = new BitmapFactory.Options();
         onlyBoundsOptions.inJustDecodeBounds = true;
         onlyBoundsOptions.inDither = true;//optional
@@ -1431,7 +1454,7 @@ public class AppUtils {
         bitmapOptions.inSampleSize = be;//设置缩放比例
         bitmapOptions.inDither = true;//optional
         bitmapOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;//optional
-        input = ac.getContentResolver().openInputStream(uri);
+        input = BaseApplication.mApplicationContext.getContentResolver().openInputStream(uri);
         Bitmap bitmap = BitmapFactory.decodeStream(input, null, bitmapOptions);
         input.close();
 
@@ -1559,6 +1582,74 @@ public class AppUtils {
 
         }
         return matches;
+    }
+
+
+    /**
+     * 将字符串格式的double(含有字符,.)解析成double
+     *
+     * @param dotString
+     * @return
+     */
+    public static double parseDotStringToDouble(String dotString) {
+        double dot = 0d;
+        if (!StringUtils.isEmpty(dotString)) {
+            try {
+                dot = new DecimalFormat().parse(dotString).doubleValue();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return dot;
+    }
+
+    /**
+     * 复制字符串到剪切板
+     */
+    public static void copyText(String text) {
+        //获取剪贴板管理器：
+        ClipboardManager cm = (ClipboardManager) BaseApplication.mApplicationContext.getSystemService(Context.CLIPBOARD_SERVICE);
+        // 创建普通字符型ClipData
+        ClipData mClipData = ClipData.newPlainText("Label", text);
+        // 将ClipData内容放到系统剪贴板里。
+        cm.setPrimaryClip(mClipData);
+    }
+
+
+    /**
+     * 将ImageView中的图片保存到本地相册
+     * 路径是SD卡下picture文件夹
+     * 保存的图片名称是saveToLocal.png
+     *
+     * @param imageView
+     * @param activity
+     */
+    public static void saveImageViewToAlbum(ImageView imageView, Activity activity) {
+        //将ImageView中的图片转换成Bitmap
+        imageView.buildDrawingCache();
+        Bitmap drawingCache = imageView.getDrawingCache();
+        //将Bitmap 转换成二进制，写入本地
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        drawingCache.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/picture");
+        if (!dir.isFile()) {
+            dir.mkdir();
+        }
+        File file = new File(dir, "saveToLocal" + ".png");
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(byteArray, 0, byteArray.length);
+            fos.flush();
+            //用广播通知相册进行更新相册
+            Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            Uri uri = Uri.fromFile(file);
+            intent.setData(uri);
+            activity.sendBroadcast(intent);
+            ToastUtil.show("相册更新成功");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -30,12 +30,7 @@ android {
 
     signingConfigs {
         debug {
-            keyAlias DEBUG_KEYALIAS
-            keyPassword DEBUG_KEYPASSWORD
-            storeFile file(DEBUG_KEYFILE)
-            storePassword DEBUG_KEYPASSWORD
-            v1SigningEnabled true
-            v2SigningEnabled true
+
         }
         release {
             keyAlias RELASE_KEYALIAS
@@ -50,7 +45,7 @@ android {
 
     compileSdkVersion compileSdk as int
     defaultConfig {
-        applicationId applicationId
+        applicationId properties.getProperty("applicationId")
         minSdkVersion minSdk as int
         targetSdkVersion targetSdk as int
         versionCode versionCodeP
@@ -67,6 +62,10 @@ android {
         }
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [APP_NAME        : getAppNamePropertiesValue(),
+                                APPLICATION_ID  : getApplicationIDPropertiesValue(),
+                                APPLICATION_ICON: getApplicationIconPropertiesValue()]
     }
 
     compileOptions {
@@ -78,7 +77,7 @@ android {
         jumboMode = true
     }
 
-    lintOptions{
+    lintOptions {
         checkReleaseBuilds false
         abortOnError false
     }
@@ -92,6 +91,13 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
+            //获取gradle.properties文件中的相应字段对应的值，会在BuildConfig中生成
+            buildConfigField "String", "CHINESE_NEMA", "\"${getChineseValue()}\""
+            buildConfigField "String", "appName", "\"${getAppNamePropertiesValue()}\""
+            buildConfigField "String", "versionName", "\"${versionName}\""
+            buildConfigField "String", "versionCode", "\"${versionCode}\""
+            buildConfigField "String", "applicationId", "\"${applicationId}\""
+
         }
         release {
             buildConfigField "boolean", "LOG_DEBUG", "false"
@@ -100,6 +106,11 @@ android {
             shrinkResources true
             minifyEnabled true
             signingConfig signingConfigs.release
+            buildConfigField "String", "CHINESE_NEMA", "\"${getChineseValue()}\""
+            buildConfigField "String", "appName", "\"${getAppNamePropertiesValue()}\""
+            buildConfigField "String", "versionName", "\"${versionName}\""
+            buildConfigField "String", "versionCode", "\"${versionCode}\""
+            buildConfigField "String", "applicationId", "\"${applicationId}\""
         }
     }
 
@@ -111,9 +122,33 @@ android {
            }
        }*/
 
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                outputFileName = properties.getProperty("applicationId") + "_" + versionNameP +"_"+ releaseTime() + ".apk"
+            }
+        }
+    }
+
 }
 
+//获取gradle.properties文件中的CHINESE_NEMA字段对应的值，如果是中文的话就不会乱码
+def getChineseValue() {
+    return new String(CHINESE_NEMA.getBytes("iso8859-1"), "UTF-8")
+}
+def getAppNamePropertiesValue() {
+    return new String(appName.getBytes("iso8859-1"), "UTF-8")
+}
 
+def getApplicationIDPropertiesValue() {
+    return new String(applicationId.getBytes("iso8859-1"), "UTF-8")
+}
+
+def getApplicationIconPropertiesValue() {
+    return new String(APPLICATION_ICON.getBytes("iso8859-1"), "UTF-8")
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

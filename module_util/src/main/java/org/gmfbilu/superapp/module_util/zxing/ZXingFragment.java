@@ -5,13 +5,16 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.lib_base.http.NetObserver;
+import org.gmfbilu.superapp.lib_base.utils.LoggerUtil;
 import org.gmfbilu.superapp.lib_base.utils.ToastUtil;
+import org.gmfbilu.superapp.lib_base.utils.ZXingUtils;
 import org.gmfbilu.superapp.lib_base.utils.zxing.android.CaptureActivity;
 import org.gmfbilu.superapp.module_util.R;
 
@@ -21,6 +24,8 @@ public class ZXingFragment extends BaseFragment {
     private static final String DECODED_BITMAP_KEY = "codedBitmap";
     private static final int REQUEST_CODE_SCAN = 0x0000;
     private RxPermissions rxPermissions;
+
+    private ImageView iv_generate;
 
     public static ZXingFragment newInstance() {
         Bundle args = new Bundle();
@@ -33,6 +38,8 @@ public class ZXingFragment extends BaseFragment {
     @Override
     public void findViewById_setOnClickListener(View view) {
         view.findViewById(R.id.bt_scan).setOnClickListener(this);
+        view.findViewById(R.id.bt_generate).setOnClickListener(this);
+        iv_generate = view.findViewById(R.id.iv_generate);
     }
 
     @Override
@@ -45,6 +52,10 @@ public class ZXingFragment extends BaseFragment {
         int id = view.getId();
         if (id == R.id.bt_scan) {
             requestCameraPermissions();
+        } else if (id == R.id.bt_generate) {
+            Bitmap qrImage = ZXingUtils.createQRImage("世界和平", 300, 300);
+            LoggerUtil.d(iv_generate.getWidth());
+            iv_generate.setImageBitmap(qrImage);
         }
     }
 
