@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -18,6 +19,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
@@ -65,7 +69,8 @@ public class CaptureFragment extends BaseFragment {
 
     private static final String AUTHORITY = "org.gmfbilu.superapp.fileprovider";
     private static final int REQUEST_CODE_CROP = 0x0010;//裁剪
-    private static final int REQUEST_CODE_ALBUM = 0x0011;//从相册选择照片
+    private static final int REQUEST_CODE_ALBUM_CROP = 0x0011;//从相册选择照片+裁剪
+    private static final int REQUEST_CODE_ALBUM = 0x0016;//从相册选择照片+不裁剪
     private static final int REQUEST_CODE_CAPTURE = 0x0012;//拍照
     private static final int REQUEST_CODE_CAPTURE_SMALL = 0x0013;//拍照缩略图
     private static final int REQUEST_CODE_CAPTURE_RAW = 0x0014;//拍照原始图
@@ -125,30 +130,46 @@ public class CaptureFragment extends BaseFragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == REQUEST_CODE_CROP) {
+                //裁剪
                 if (imageCropFile != null) {
                     LoggerUtil.d(imageCropFile);
                     LoggerUtil.d(imageCropFile.getAbsolutePath());
                     iv_getPicture.setImageBitmap(BitmapFactory.decodeFile(imageCropFile.getAbsolutePath()));
                 }
             } else if (requestCode == REQUEST_CODE_ALBUM) {
+                //从相册选取照片+不裁剪
+                if (data != null) {
+                    Uri uri = data.getData();
+                    String filePathByUri = FileUtil.getFilePathByUri(_mActivity, uri);
+                    if (!TextUtils.isEmpty(filePathByUri)) {
+                        RequestOptions requestOptions1 = new RequestOptions().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE);
+                        Glide.with(this).load(filePathByUri).apply(requestOptions1).into(iv_getPicture);
+                    }
+                }
+            }else if (requestCode == REQUEST_CODE_ALBUM_CROP) {
+                //从相册选取照片+裁剪
                 if (data != null) {
                     //相册裁剪imageFile为null
                     gotoCrop(data.getData());
                 }
             } else if (requestCode == REQUEST_CODE_CAPTURE) {
+                //拍照
                 //拍照后裁剪imageFile不为null
                 Uri sourceUri = FileProvider.getUriForFile(_mActivity, AUTHORITY, imageFile); //通过FileProvider创建一个content类型的Uri
                 gotoCrop(sourceUri);
             } else if (requestCode == REQUEST_CODE_CAPTURE_SMALL) {
+                //拍照缩略图
                 if (data != null) {
                     Bitmap bitmap = (Bitmap) data.getExtras().get("data");
                     iv_getPicture.setImageBitmap(bitmap);
                 }
             } else if (requestCode == REQUEST_CODE_CAPTURE_RAW) {
+                //拍照原始图
                 if (imageFile != null) {
                     new DecodeImgTask(iv_getPicture).execute(imageFile.getAbsolutePath());
                 }
             } else if (requestCode == REQUEST_CODE_VIDEO) {
+                //录视频
                 if (data != null) {
                     Uri uri = data.getData();
                     String path = uri.getPath();
@@ -169,20 +190,23 @@ public class CaptureFragment extends BaseFragment {
 
 
     private void showDialog() {
-        String[] item = {"相册+裁剪", "拍照+裁剪", "拍照(返回原图)", "拍照(返回缩略图)", "录视频"};
+        String[] item = {"相册+不裁剪","相册+裁剪", "拍照+裁剪", "拍照(返回原图)", "拍照(返回缩略图)", "录视频"};
         AlertDialog.Builder builder = new AlertDialog.Builder(_mActivity);
         builder.setTitle("请选择");
         builder.setItems(item, (dialog, which) -> {
             if (which == 0) {
-                autoObtainGalleryCropPermission();
+                autoObtainGalleryCropPermission(REQUEST_CODE_ALBUM);
             } else if (which == 1) {
-                autoObtainCaptureCropPermission();
+                autoObtainGalleryCropPermission(REQUEST_CODE_ALBUM_CROP);
             } else if (which == 2) {
-                autoObtainCaptureRowPermission();
+                autoObtainCaptureCropPermission();
             } else if (which == 3) {
-                autoObtainCaptureSmallPermission();
+                autoObtainCaptureRowPermission();
             } else if (which == 4) {
+                autoObtainCaptureSmallPermission();
+            } else if (which == 5) {
                 autoObtainVideoPermission();
+
             }
         });
         // 取消可以不添加
@@ -195,7 +219,7 @@ public class CaptureFragment extends BaseFragment {
     /**
      * 打开系统相册
      */
-    private void autoObtainGalleryCropPermission() {
+    private void autoObtainGalleryCropPermission(int action) {
         rxPermissions
                 .request(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe(new NetObserver<Boolean>() {
@@ -203,7 +227,7 @@ public class CaptureFragment extends BaseFragment {
                     public void onNext(Boolean granted) {
                         if (granted) {
                             Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                            startActivityForResult(intent, REQUEST_CODE_ALBUM);
+                            startActivityForResult(intent, action);
                         } else {
                             ToastUtil.show("没有读取照片权限，请去设置中心打开相关权限");
                         }

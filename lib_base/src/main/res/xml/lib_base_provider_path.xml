@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-    <files-path>：Context.getFilesDir()——指向内部存储要共享的目录
-    <cache-path>：Context.getCacheDir()——指向缓存要共享的目录
+    <files-path>：Context.getFilesDir()——指向内部存储要共享的目录，/data/data//files目录
+    <cache-path>：Context.getCacheDir()——指向缓存要共享的目录，/data/data//cache目录
     <external-path>：Environment.getExternalStorageDirectory()——指向外部存储要共享的目录
       name为自定义的名字，path为目录，path=""指的是全部目录|path="."即为当前的根目录
 -->
 <paths>
+    <!--每个子元素都拥有 name 和 path 两个属性-->
+    <!--path 属性用于指定当前子元素所代表目录下需要共享的子目录名称。注意：path 属性值不能使用具体的独立文件名，只能是目录名，path只能添加一个路径，如果需要共享多个则指定多个即可-->
+    <!--name 属性用于给 path 属性所指定的子目录名称取一个别名。后续生成 content:// URI 时，会使用这个别名代替真实目录名。这样做的目的，很显然是为了提高安全性-->
     <!--这里配置的两个外部存储路径是升级SDK下载的文件可能存在的路径，一定要按照上面格式配置，不然可能会出现错误。-->
     <!-- /storage/emulated/0/Download/${applicationId}/.beta/apk-->
     <external-path

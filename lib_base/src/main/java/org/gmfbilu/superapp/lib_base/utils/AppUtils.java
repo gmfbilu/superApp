@@ -1647,6 +1647,9 @@ public class AppUtils {
             intent.setData(uri);
             activity.sendBroadcast(intent);
             ToastUtil.show("相册更新成功");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            ToastUtil.show("读取文件相关权限之前被拒绝，无法存储照片");
         } catch (IOException e) {
             e.printStackTrace();
         }

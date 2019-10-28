@@ -32,15 +32,28 @@
         tools:replace="android:label"
         tools:targetApi="n">
 
-        <!--<provider
+        <!--
+            name的写法是固定的，不过如果你打算作为lib提供给别人可能要考虑冲突，可以继承这个类，然后不实现，以作区分
+            grantUriPermissions：申明为true，其他应用才能获取临时共享权限。如不需要让第三方应用访问就是false
+
+            指定共享目录：
+            xml文件是唯一设置分享的目录 ，不能用代码设置
+             1.<files-path>        getFilesDir()  /data/data//files目录
+             2.<cache-path>        getCacheDir()  /data/data//cache目录
+             3.<external-path>     Environment.getExternalStorageDirectory()
+
+             
+        -->
+        <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="org.gmfbilu.superapp.fileprovider"
             android:exported="false"
+            tools:replace="android:authorities"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/lib_base_provider_path" />
-        </provider>-->
+        </provider>
 
 
         <service android:name=".app.ApplicationIntentService">
