@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.doubleDatePicker;
+package org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.datePicker;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -263,9 +263,6 @@ public class DoubleDatePicker {
         //配置默认显示时间
         tv_beginTime.setText(scrollChoiceYear.getCurrentSelection() + "-" + scrollChoiceMonth.getCurrentSelection() + "-" + scrollChoiceDay.getCurrentSelection());
         tv_endTime.setText(scrollChoiceYear.getCurrentSelection() + "-" + scrollChoiceMonth.getCurrentSelection() + "-" + scrollChoiceDay.getCurrentSelection());
-
-
-
     }
 
 

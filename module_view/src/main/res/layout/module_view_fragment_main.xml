@@ -94,15 +94,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/module_view_bt_shape"/>
 
 
-            <Button
-                android:id="@+id/module_view_bt_surfaceview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SurfaceView!"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_textview"/>
-
 
             <Button
                 android:id="@+id/module_view_bt_search"
@@ -111,7 +102,7 @@
                 android:text="搜索!"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_surfaceview"/>
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_textview"/>
 
             <Button
                 android:id="@+id/module_view_bt_generalview"
@@ -132,13 +123,33 @@
                 app:layout_constraintTop_toBottomOf="@+id/module_view_bt_generalview"/>
 
             <Button
+                android:id="@+id/module_view_bt_banner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bannar!"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_amap"/>
+
+            <Button
                 android:id="@+id/module_view_bt_head"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="头部布局!"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_amap"/>
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_banner"/>
+
+
+            <Button
+                android:id="@+id/module_view_bt_surfaceview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SurfaceView!"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_head"/>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

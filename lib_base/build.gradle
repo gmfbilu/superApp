@@ -137,4 +137,7 @@ dependencies {
     //x5内核的WebView
     api "com.tencent.tbs.tbssdk:sdk:${x5WebView_version}"
 
+    //轮播图Banner
+    api "com.github.pinguo-zhouwei:MZBannerView:${MZBannerView_version}"
+
 }

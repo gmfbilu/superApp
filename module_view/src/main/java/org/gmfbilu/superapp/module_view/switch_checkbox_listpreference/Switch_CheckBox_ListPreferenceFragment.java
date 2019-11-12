@@ -13,13 +13,6 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.orhanobut.logger.Logger;
 
@@ -29,7 +22,8 @@ import org.gmfbilu.superapp.lib_base.view.dialog.DialogHelper;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.BaseRecyclerView;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.adapter.RecyclerArrayAdapter;
 import org.gmfbilu.superapp.module_view.R;
-import org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.doubleDatePicker.DoubleDatePicker;
+import org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.datePicker.DoubleDatePicker;
+import org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.datePicker.SingleDataPicker;
 import org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.locationLinkage.WheelView;
 import org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.search.SearchAdapter;
 
@@ -38,6 +32,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class Switch_CheckBox_ListPreferenceFragment extends BaseFragment {
 
@@ -60,6 +61,7 @@ public class Switch_CheckBox_ListPreferenceFragment extends BaseFragment {
         view.findViewById(R.id.bt_progress).setOnClickListener(this);
         view.findViewById(R.id.bt_progress2).setOnClickListener(this);
         view.findViewById(R.id.bt_DatePicker).setOnClickListener(this);
+        view.findViewById(R.id.bt_singleDatePicker).setOnClickListener(this);
         view.findViewById(R.id.bt_doubleDatePicker).setOnClickListener(this);
         view.findViewById(R.id.bt_locationLinkage).setOnClickListener(this);
         view.findViewById(R.id.bt_search).setOnClickListener(this);
@@ -171,6 +173,16 @@ public class Switch_CheckBox_ListPreferenceFragment extends BaseFragment {
                 }
             }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
             datePickerDialog.show();
+        } else if (id == R.id.bt_singleDatePicker) {
+            SingleDataPicker singleDataPicker = new SingleDataPicker(_mActivity);
+            singleDataPicker.show();
+            singleDataPicker.addOnDataSelectedListener(new SingleDataPicker.onDataSelectedListener() {
+                @Override
+                public void onDataSelected(String time) {
+                    ToastUtil.show(time);
+                }
+            });
+
         } else if (id == R.id.bt_doubleDatePicker) {
             DoubleDatePicker doubleDatePicker = new DoubleDatePicker(_mActivity, true);
             doubleDatePicker.show();

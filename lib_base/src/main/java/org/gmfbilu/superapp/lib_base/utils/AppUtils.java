@@ -46,8 +46,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import androidx.annotation.DimenRes;
-
 import com.google.android.material.tabs.TabLayout;
 import com.leon.channel.helper.ChannelReaderUtil;
 
@@ -80,6 +78,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+
+import androidx.annotation.DimenRes;
 
 public class AppUtils {
 
@@ -896,6 +896,7 @@ public class AppUtils {
 
     /**
      * 当前时间的前一个星期
+     *
      * @return
      */
     public static String getCurrentTime7DayBefore() {
@@ -907,10 +908,11 @@ public class AppUtils {
 
     /**
      * 当前时间的前一个月
+     *
      * @return
      */
     public static String getCurrentTime1MonthBefore() {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd",Locale.CHINA);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
         Calendar c = Calendar.getInstance();
         c.add(Calendar.MONTH, -1);
         return format.format(c.getTime());
@@ -918,10 +920,11 @@ public class AppUtils {
 
     /**
      * 当前时间的前一个年
+     *
      * @return
      */
     public static String getCurrentTime1YearBefore() {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd",Locale.CHINA);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
         Calendar c = Calendar.getInstance();
         c.add(Calendar.YEAR, -1);
         return format.format(c.getTime());
@@ -1654,5 +1657,23 @@ public class AppUtils {
             e.printStackTrace();
         }
     }
+
+
+    /**
+     * 对后台传过来的形如1571799129000的时间进行格式化
+     *
+     * @param rawTime
+     * @return
+     */
+    public static String formatHouTaitime(long rawTime) {
+        String time = "";
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
+            time = simpleDateFormat.format(rawTime);
+        } catch (Exception e) {
+        }
+        return time;
+    }
+
 
 }

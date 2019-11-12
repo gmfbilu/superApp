@@ -202,6 +202,20 @@
 
 
         <Button
+            android:id="@+id/bt_singleDatePicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/lib_base_colorAccent"
+            android:padding="20dp"
+            android:text="单日期选择"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_DatePicker"/>
+
+
+        <Button
             android:id="@+id/bt_doubleDatePicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -212,7 +226,7 @@
             android:textSize="14sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bt_DatePicker"/>
+            app:layout_constraintTop_toBottomOf="@+id/bt_singleDatePicker"/>
 
         <Button
             android:id="@+id/bt_locationLinkage"

@@ -10,8 +10,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.appcompat.app.ActionBar;
-
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
@@ -20,6 +18,8 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
 import java.util.Hashtable;
+
+import androidx.appcompat.app.ActionBar;
 
 public class ZXingUtils {
 
@@ -170,4 +170,7 @@ public class ZXingUtils {
         cv.restore();
         return newBitmap;
     }
+
+
+
 }

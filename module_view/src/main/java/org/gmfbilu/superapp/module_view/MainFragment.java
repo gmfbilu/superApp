@@ -6,6 +6,7 @@ import android.view.View;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_view.amap.AmapFragment;
+import org.gmfbilu.superapp.module_view.banner.BannerFragment;
 import org.gmfbilu.superapp.module_view.constraintlayout.ConstraintLayoutFragment;
 import org.gmfbilu.superapp.module_view.customViews.CustomViewsFragment;
 import org.gmfbilu.superapp.module_view.dialogFragment.DialogFragment;
@@ -46,11 +47,12 @@ public class MainFragment extends BaseFragment {
         view.findViewById(R.id.module_view_bt_recyclerview).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_shape).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_textview).setOnClickListener(this);
-        view.findViewById(R.id.module_view_bt_surfaceview).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_search).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_generalview).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_amap).setOnClickListener(this);
+        view.findViewById(R.id.module_view_bt_banner).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_head).setOnClickListener(this);
+        view.findViewById(R.id.module_view_bt_surfaceview).setOnClickListener(this);
     }
 
     @Override
@@ -78,16 +80,18 @@ public class MainFragment extends BaseFragment {
             start(ShapeFragment.newInstance());
         } else if (id == R.id.module_view_bt_textview) {
             start(TextViewFragment.newInstance());
-        } else if (id == R.id.module_view_bt_surfaceview) {
-            start(SurfaceViewFragment.newInstance());
         } else if (id == R.id.module_view_bt_search) {
             start(SearchFragment.newInstance());
         } else if (id == R.id.module_view_bt_generalview) {
             start(CustomViewsFragment.newInstance());
         } else if (id == R.id.module_view_bt_amap) {
             start(AmapFragment.newInstance());
+        } else if (id == R.id.module_view_bt_banner) {
+            start(BannerFragment.newInstance());
         } else if (id == R.id.module_view_bt_head) {
             start(TopBarFragment.newInstance());
+        } else if (id == R.id.module_view_bt_surfaceview) {
+            start(SurfaceViewFragment.newInstance());
         }
     }
 }

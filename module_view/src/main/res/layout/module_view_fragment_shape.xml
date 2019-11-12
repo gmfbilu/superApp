@@ -232,6 +232,29 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/TextViewSixteen"/>
 
+        <TextView
+            android:id="@+id/TextViewEighteen"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_circle_solid_fill"
+            android:gravity="center"
+            android:text="圆+内部填充"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewSeventeen"/>
+
+        <TextView
+            android:id="@+id/TextViewNineteen"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_circle_fill"
+            android:gravity="center"
+            android:text="圆+内部无填充"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewEighteen"/>
 
         <TextView
             android:layout_width="300dp"
@@ -242,7 +265,9 @@
             android:text="haha"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextViewSeventeen"/>
+            app:layout_constraintTop_toBottomOf="@+id/TextViewNineteen"/>
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

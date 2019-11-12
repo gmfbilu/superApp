@@ -1,4 +1,4 @@
-package org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.doubleDatePicker;
+package org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.datePicker;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

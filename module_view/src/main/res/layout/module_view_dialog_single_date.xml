@@ -1,43 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fitsSystemWindows="true"
     android:background="#ffffff"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv_beginTime"
+        android:id="@+id/tv_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/TextViewOne"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <TextView
-        android:id="@+id/TextViewOne"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="至"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_beginTime"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_beginTime"/>
-
-    <TextView
-        android:id="@+id/tv_endTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_beginTime"
-        app:layout_constraintLeft_toRightOf="@+id/TextViewOne"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_beginTime"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tool:text="2019.10.30" />
 
 
     <View
@@ -48,7 +28,7 @@
         android:background="#e5e5e5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_beginTime"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv_time" />
 
     <org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.datePicker.ScrollChoice
         android:id="@+id/ScrollChoiceYear"
@@ -64,7 +44,7 @@
         app:scroll_item_align="center"
         app:scroll_item_text_size="17sp"
         app:scroll_selected_item_background="#FFF8F1"
-        app:scroll_selected_item_text_color="#3F51B5"/>
+        app:scroll_selected_item_text_color="#3F51B5" />
 
     <org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.datePicker.ScrollChoice
         android:id="@+id/ScrollChoiceMonth"
@@ -81,7 +61,7 @@
         app:scroll_item_align="center"
         app:scroll_item_text_size="17sp"
         app:scroll_selected_item_background="#FFF8F1"
-        app:scroll_selected_item_text_color="#3F51B5"/>
+        app:scroll_selected_item_text_color="#3F51B5" />
 
     <org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.datePicker.ScrollChoice
         android:id="@+id/ScrollChoiceDay"
@@ -99,7 +79,7 @@
         app:scroll_item_align="center"
         app:scroll_item_text_size="17sp"
         app:scroll_selected_item_background="#FFF8F1"
-        app:scroll_selected_item_text_color="#3F51B5"/>
+        app:scroll_selected_item_text_color="#3F51B5" />
 
 
     <View
@@ -109,7 +89,7 @@
         android:background="#e5e5e5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ScrollChoiceYear"/>
+        app:layout_constraintTop_toBottomOf="@+id/ScrollChoiceYear" />
 
     <TextView
         android:id="@+id/tv_cancel"
@@ -119,7 +99,7 @@
         android:text="取消"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/ViewTwo"
-        app:layout_constraintTop_toBottomOf="@+id/ViewOne"/>
+        app:layout_constraintTop_toBottomOf="@+id/ViewOne" />
 
     <View
         android:id="@+id/ViewTwo"
@@ -129,7 +109,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/tv_cancel"
         app:layout_constraintRight_toLeftOf="@+id/tv_sure"
-        app:layout_constraintTop_toBottomOf="@+id/ViewOne"/>
+        app:layout_constraintTop_toBottomOf="@+id/ViewOne" />
 
 
     <TextView
@@ -141,6 +121,6 @@
         android:textColor="#FFA52C"
         app:layout_constraintLeft_toRightOf="@+id/ViewTwo"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ViewOne"/>
+        app:layout_constraintTop_toBottomOf="@+id/ViewOne" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
