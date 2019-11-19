@@ -12,7 +12,6 @@ import org.gmfbilu.superapp.module_view.R;
 public class TopBarFragment extends BaseFragment {
 
 
-
     public static TopBarFragment newInstance() {
         Bundle args = new Bundle();
         TopBarFragment fragment = new TopBarFragment();

@@ -1,26 +1,26 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="org.gmfbilu.superapp">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="org.gmfbilu.superapp">
 
     <application
-        android:name=".SuperApplication"
-        android:allowBackup="true"
+        android:name=".SophixStubApplication"
+        android:allowBackup="false"
         android:icon="${APPLICATION_ICON}"
         android:label="${APP_NAME}"
+        android:roundIcon="${APPLICATION_ICON}"
         android:supportsRtl="true"
         android:theme="@style/lib_base_AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
-        android:roundIcon="${APPLICATION_ICON}"
-        tools:replace="android:theme,android:label,android:icon,android:roundIcon">
+        tools:replace="android:theme,android:label,android:icon,android:roundIcon,android:allowBackup">
 
         <activity android:name=".MainActivity">
             <intent-filter>
                 <!--action（动作）：用来表现意图的行动-->
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
                 <!--category（类别）：用来表现动作的类别-->
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
                 <!--data（数据）：表示与动作要操纵的数据-->
-               <!-- <data android:scheme="http"/>-->
+                <!-- <data android:scheme="http"/>-->
             </intent-filter>
         </activity>
 
@@ -32,8 +32,19 @@
             tools:replace="android:authorities">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/lib_base_provider_path"/>
+                android:resource="@xml/lib_base_provider_path" />
         </provider>
+
+        <!--Sophix热修复，IDSECRET/APPSECRET将被用于计量计费-->
+        <meta-data
+            android:name="com.taobao.android.hotfix.IDSECRET"
+            android:value="${hotfix_IDSECRET}" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.APPSECRET"
+            android:value="${hotfix_APPSECRET}" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.RSASECRET"
+            android:value="${hotfix_RSASECRET}" />
 
 
     </application>

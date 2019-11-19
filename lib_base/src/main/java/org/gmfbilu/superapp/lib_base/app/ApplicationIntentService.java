@@ -10,9 +10,6 @@ import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
-
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
@@ -24,6 +21,9 @@ import com.tencent.smtt.sdk.QbSdk;
 import org.gmfbilu.superapp.lib_base.BuildConfig;
 import org.gmfbilu.superapp.lib_base.base.BaseApplication;
 import org.gmfbilu.superapp.lib_base.utils.LoggerUtil;
+
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 
 /**
  * 我们多次启动IntentService，但IntentService的实例只有一个，这跟传统的Service是一样的，最终IntentService会去调用onHandleIntent执行异步任务
@@ -84,7 +84,7 @@ public class ApplicationIntentService extends IntentService {
         initLocalCrashReport();
         initARouter();
         initLeakCanary();
-        initX5();
+       // initX5();
         Log.d(Constant.LOG_NAME, "ApplicationIntentService ---> onHandleIntent");
     }
 
@@ -140,8 +140,9 @@ public class ApplicationIntentService extends IntentService {
             public void onCoreInitFinished() {
             }
         };
+        //使用阿里热修复会导致java.lang.ClassNotFoundException: com.tencent.smtt.utils.TbsLog
         //x5内核初始化接口
-        QbSdk.initX5Environment(getApplicationContext(), cb);
+        QbSdk.initX5Environment(BaseApplication.mApplicationContext, cb);
     }
 
 

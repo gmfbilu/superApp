@@ -36,7 +36,10 @@ public class BaseApplication extends Application {
             ApplicationIntentService.start(this);
         }
         Log.d(Constant.LOG_NAME, getClass().getName() + "----" + AppUtils.getProcessName() + "---> start");
+        Log.e("step","BaseApplication");
     }
+
+
 
     /**
      * 模拟器上app退出会回调这个方法

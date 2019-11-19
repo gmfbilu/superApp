@@ -65,7 +65,11 @@ android {
 
         manifestPlaceholders = [APP_NAME        : getAppNamePropertiesValue(),
                                 APPLICATION_ID  : getApplicationIDPropertiesValue(),
-                                APPLICATION_ICON: getApplicationIconPropertiesValue()]
+                                APPLICATION_ICON: getApplicationIconPropertiesValue(),
+                                hotfix_IDSECRET : getHotfixIdsecretValue(),
+                                hotfix_APPSECRET: getHotfixAppsecretValue(),
+                                hotfix_RSASECRET: getHotfixRsasecretValue()
+        ]
     }
 
     compileOptions {
@@ -97,6 +101,9 @@ android {
             buildConfigField "String", "versionName", "\"${versionName}\""
             buildConfigField "String", "versionCode", "\"${versionCode}\""
             buildConfigField "String", "applicationId", "\"${applicationId}\""
+            buildConfigField "String", "hotfix_IDSECRET", "\"${hotfix_IDSECRET}\""
+            buildConfigField "String", "hotfix_APPSECRET", "\"${hotfix_APPSECRET}\""
+            buildConfigField "String", "hotfix_RSASECRET", "\"${hotfix_RSASECRET}\""
 
         }
         release {
@@ -111,6 +118,9 @@ android {
             buildConfigField "String", "versionName", "\"${versionName}\""
             buildConfigField "String", "versionCode", "\"${versionCode}\""
             buildConfigField "String", "applicationId", "\"${applicationId}\""
+            buildConfigField "String", "hotfix_IDSECRET", "\"${hotfix_IDSECRET}\""
+            buildConfigField "String", "hotfix_APPSECRET", "\"${hotfix_APPSECRET}\""
+            buildConfigField "String", "hotfix_RSASECRET", "\"${hotfix_RSASECRET}\""
         }
     }
 
@@ -127,10 +137,11 @@ android {
         variant.outputs.all { output ->
             def outputFile = output.outputFile
             if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                outputFileName = properties.getProperty("applicationId") + "_" + versionNameP +"_"+ releaseTime() + ".apk"
+                outputFileName = properties.getProperty("applicationId") + "_" + versionNameP + "_" + releaseTime() + ".apk"
             }
         }
     }
+
 
 }
 
@@ -138,6 +149,7 @@ android {
 def getChineseValue() {
     return new String(CHINESE_NEMA.getBytes("iso8859-1"), "UTF-8")
 }
+
 def getAppNamePropertiesValue() {
     return new String(appName.getBytes("iso8859-1"), "UTF-8")
 }
@@ -148,6 +160,24 @@ def getApplicationIDPropertiesValue() {
 
 def getApplicationIconPropertiesValue() {
     return new String(APPLICATION_ICON.getBytes("iso8859-1"), "UTF-8")
+}
+
+def getHotfixIdsecretValue() {
+    return new String(hotfix_IDSECRET.getBytes("iso8859-1"), "UTF-8")
+}
+
+def getHotfixAppsecretValue() {
+    return new String(hotfix_APPSECRET.getBytes("iso8859-1"), "UTF-8")
+}
+
+def getHotfixRsasecretValue() {
+    return new String(hotfix_RSASECRET.getBytes("iso8859-1"), "UTF-8")
+}
+
+repositories {
+    maven {
+        url "http://maven.aliyun.com/nexus/content/repositories/releases"
+    }
 }
 
 dependencies {
@@ -164,5 +194,9 @@ dependencies {
         implementation project(':module_util')
         implementation project(':module_java')
         implementation project(':module_kotlin')
+    }
+    //友盟分享里面也有alicloud-android-utils，所以在此要排除掉
+    implementation("com.aliyun.ams:alicloud-android-hotfix:${hotfix_version}"){
+        exclude(module:'alicloud-android-utils')
     }
 }

@@ -29,8 +29,8 @@ public class SuperApplication extends BaseApplication {
         /**
          * 并不是所有的第三方库都可以放在IntentService中
          */
-        initPush();
-
+       // initPush();
+        Log.e("step","SuperApplication");
     }
 
     private void initPush() {
