@@ -9,6 +9,8 @@ import com.taobao.sophix.SophixEntry;
 import com.taobao.sophix.SophixManager;
 import com.taobao.sophix.listener.PatchLoadStatusListener;
 
+import org.gmfbilu.superapp.lib_base.utils.ToastUtil;
+
 import androidx.annotation.Keep;
 import androidx.multidex.MultiDex;
 
@@ -51,6 +53,7 @@ public class SophixStubApplication extends SophixApplication {
                     .versionName;
         } catch (Exception e) {
         }
+        Log.e(TAG, appVersion);
         final SophixManager instance = SophixManager.getInstance();
         instance.setContext(this)
                 .setAppVersion(appVersion)
@@ -75,6 +78,7 @@ public class SophixStubApplication extends SophixApplication {
                             // 表明新补丁生效需要重启. 开发者可提示用户或者强制重启;
                             // 建议: 用户可以监听进入后台事件, 然后应用自杀
                             Log.e(TAG, "表明新补丁生效需要重启. 开发者可提示用户或者强制重启");
+                            ToastUtil.show("补丁生效需要重启");
                         } else if (code == PatchStatus.CODE_LOAD_FAIL) {
                             // 内部引擎异常, 推荐此时清空本地补丁, 防止失败补丁重复加载
                             // SophixManager.getInstance().cleanPatches();

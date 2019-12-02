@@ -48,5 +48,9 @@
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
     </style>
 
+    <declare-styleable name="SwitchButton" tools:ignore="ResourceName">
+        <attr name="buttonColor" format="color" />
+    </declare-styleable>
+
 
 </resources>

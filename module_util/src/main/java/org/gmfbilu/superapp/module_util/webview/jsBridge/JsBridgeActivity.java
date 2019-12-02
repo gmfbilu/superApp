@@ -204,8 +204,6 @@ public class JsBridgeActivity extends BaseActivity {
                 bridgeWebView.goBack();
             }
             return true;
-        } else {
-            onBackPressedSupport();
         }
         return super.onKeyDown(keyCode, event);
     }

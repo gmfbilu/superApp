@@ -7,12 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.orhanobut.logger.Logger;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LifecycleOwner;
-
-import com.orhanobut.logger.Logger;
-
 import me.yokeyword.fragmentation.SupportFragment;
 
 /**
@@ -33,6 +32,13 @@ public abstract class BaseFragment extends SupportFragment implements View.OnCli
     //如果Fragment从可见->不可见，那么setUserVisibleHint()也会被调用，传入isVisibleToUser = false
     //总结：setUserVisibleHint()除了Fragment的可见状态发生变化时会被回调外，在new Fragment()时也会被回调
     //如果我们需要在 Fragment 可见与不可见时干点事，用这个的话就会有多余的回调了，那么就需要重新封装一个
+
+    /**
+     * 这个方法调用实际在FragmentPagerAdapter中。那么当你是FragmentTabHost+Fragment的结构的时候，你会发现这个方法压根不会被调用
+     * 在未使用Viewpager，而是自己通过FragmentTransaction 对Fragment进行add hide show操作，setUserVisibleHint()方法没有被调用。原因是hide()和show()方法调用时，Fragment不走任何的生命周期
+     * 使用情况：多用于ViewPager控制fragment显隐时触发此方法
+     * @param isVisibleToUser
+     */
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
@@ -53,6 +59,16 @@ public abstract class BaseFragment extends SupportFragment implements View.OnCli
             isFragmentVisible = false;
             onFragmentVisibleChange(false);
         }
+    }
+
+    /**
+     * 在FragmentTabHost+Fragment的结构的时候，当你跳转到另一个Activity再次返回的时候你会发现这方法并没有走，因为当前Fragment并没有改变show或者hide，故不会走
+     * 使用情况：你自己去管理Fragment，而不是用viewpager管理的时候
+     * @param hidden
+     */
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
     }
 
 

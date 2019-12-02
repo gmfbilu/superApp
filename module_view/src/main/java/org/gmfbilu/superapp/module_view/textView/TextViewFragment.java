@@ -25,7 +25,7 @@ import org.gmfbilu.superapp.module_view.R;
 
 public class TextViewFragment extends BaseFragment {
 
-    private TextView tv1, tv2, tv3, tv4, tv5, tv5_2;
+    private TextView tv1, tv2, tv3, tv4, tv5, tv5_2, tv6;
 
     public static TextViewFragment newInstance() {
         Bundle args = new Bundle();
@@ -42,6 +42,7 @@ public class TextViewFragment extends BaseFragment {
         tv4 = view.findViewById(R.id.tv4);
         tv5 = view.findViewById(R.id.tv5);
         tv5_2 = view.findViewById(R.id.tv5_2);
+        tv6 = view.findViewById(R.id.tv6);
     }
 
     @Override
@@ -51,6 +52,7 @@ public class TextViewFragment extends BaseFragment {
 
     @Override
     public void onClick(View v) {
+        int id = v.getId();
 
     }
 
@@ -62,6 +64,7 @@ public class TextViewFragment extends BaseFragment {
         setTV3();
         setTV4();
         setTV5();
+        setTV6();
     }
 
     /**
@@ -176,5 +179,15 @@ public class TextViewFragment extends BaseFragment {
     private void setTV5() {
         tv5.setTextSize(TypedValue.COMPLEX_UNIT_PX, AppUtils.sp2pxTextView(R.dimen.sp25));
         tv5_2.setTextSize(TypedValue.COMPLEX_UNIT_PX, AppUtils.sp2pxTextView(R.dimen.sp15));
+    }
+
+    private void setTV6() {
+        String str = "1倍\n2000";
+        SpannableStringBuilder spannableBuilder = new SpannableStringBuilder(str);
+        AbsoluteSizeSpan sizeSpan = new AbsoluteSizeSpan(AppUtils.sp2pxPaint(16), false);
+        AbsoluteSizeSpan sizeSpan2 = new AbsoluteSizeSpan(AppUtils.sp2pxPaint(11), false);
+        spannableBuilder.setSpan(sizeSpan, 0, 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableBuilder.setSpan(sizeSpan2, 2, str.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        tv6.setText(spannableBuilder);
     }
 }

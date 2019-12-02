@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -18,7 +17,7 @@
             android:id="@+id/module_googlelibrary_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/android:actionBarSize"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
@@ -27,7 +26,8 @@
         android:layout_height="wrap_content"
         android:background="@color/lib_base_colorAccent"
         android:text="Guideline!"
-        app:layout_constraintTop_toBottomOf="@+id/module_googlelibrary_appBarLayout"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/module_googlelibrary_appBarLayout" />
 
     <TextView
         android:id="@+id/module_googlelibrary_tv_baseline"
@@ -35,7 +35,8 @@
         android:layout_height="wrap_content"
         android:background="@color/lib_base_colorPrimary"
         android:text="Baseline!"
-        app:layout_constraintTop_toBottomOf="@+id/module_googlelibrary_tv_guideline"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/module_googlelibrary_tv_guideline" />
 
 
     <TextView
@@ -47,7 +48,7 @@
         app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_googlelibrary_tv_baseline"/>
+        app:layout_constraintTop_toBottomOf="@+id/module_googlelibrary_tv_baseline" />
 
     <TextView
         android:id="@+id/module_googlelibrary_tv_dimenRadio"
@@ -56,7 +57,8 @@
         android:background="@color/lib_base_colorPrimary"
         android:text="dimenRadio!"
         app:layout_constraintDimensionRatio="3:2"
-        app:layout_constraintTop_toBottomOf="@+id/module_googlelibrary_tv_bias"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/module_googlelibrary_tv_bias" />
 
     <TextView
         android:id="@+id/module_googlelibrary_tv_percent"
@@ -65,8 +67,9 @@
         android:background="@color/lib_base_colorAccent"
         android:text="PercentDimension!"
         app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/module_googlelibrary_tv_dimenRadio"
-        app:layout_constraintWidth_percent="0.5"/>
+        app:layout_constraintWidth_percent="0.5" />
 
     <TextView
         android:id="@+id/module_googlelibrary_tv_barrierText1"
@@ -74,7 +77,8 @@
         android:layout_height="wrap_content"
         android:background="@color/lib_base_colorPrimary"
         android:text="Barrier,Barrier,Barrier!"
-        app:layout_constraintTop_toBottomOf="@+id/module_googlelibrary_tv_percent"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/module_googlelibrary_tv_percent" />
 
     <TextView
         android:id="@+id/module_googlelibrary_tv_barrierText2"
@@ -82,7 +86,8 @@
         android:layout_height="wrap_content"
         android:background="@color/lib_base_colorAccent"
         android:text="Barrier,Barrier,Barrier,Barrier!"
-        app:layout_constraintTop_toBottomOf="@+id/module_googlelibrary_tv_barrierText1"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/module_googlelibrary_tv_barrierText1" />
 
     <!--不管text1 和 text2有多长，或者哪个更长，它们的end属性都不会越过Barrier,而text3因为约束在Barrier的后面，所以也就保证了text3总是在text1 和 text2后面-->
     <androidx.constraintlayout.widget.Barrier
@@ -90,7 +95,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="end"
-        app:constraint_referenced_ids="module_googlelibrary_tv_barrierText1,module_googlelibrary_tv_barrierText2"/>
+        app:constraint_referenced_ids="module_googlelibrary_tv_barrierText1,module_googlelibrary_tv_barrierText2" />
 
     <TextView
         android:id="@+id/module_googlelibrary_tv_barrierText3"
@@ -100,7 +105,7 @@
         android:background="@color/lib_base_colorPrimary"
         android:text="Note: ConstraintLayout is available as a support library that you can use on Android systems starting with API level 9 (Gingerbread). As such, we are planning on enriching its API and capabilities over time. This documentation will reflect those changes!"
         app:layout_constraintLeft_toRightOf="@+id/module_googlelibrary_barrier"
-        app:layout_constraintTop_toBottomOf="@+id/module_googlelibrary_tv_percent"/>
+        app:layout_constraintTop_toBottomOf="@+id/module_googlelibrary_tv_percent" />
 
     <TextView
         android:id="@+id/module_googlelibrary_tv_groupText1"
@@ -108,7 +113,7 @@
         android:layout_height="wrap_content"
         android:background="@color/lib_base_colorAccent"
         android:text="group!"
-        app:layout_constraintTop_toBottomOf="@+id/module_googlelibrary_tv_barrierText3"/>
+        app:layout_constraintTop_toBottomOf="@+id/module_googlelibrary_tv_barrierText3" />
 
     <TextView
         android:id="@+id/module_googlelibrary_tv_groupText2"
@@ -116,12 +121,12 @@
         android:layout_height="wrap_content"
         android:background="@color/lib_base_colorPrimary"
         android:text="group!"
-        app:layout_constraintTop_toBottomOf="@+id/module_googlelibrary_tv_groupText1"/>
+        app:layout_constraintTop_toBottomOf="@+id/module_googlelibrary_tv_groupText1" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/module_googlelibrary_group"
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="module_googlelibrary_tv_groupText1,module_googlelibrary_tv_groupText2"/>
+        android:visibility="gone"
+        app:constraint_referenced_ids="module_googlelibrary_tv_groupText1,module_googlelibrary_tv_groupText2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

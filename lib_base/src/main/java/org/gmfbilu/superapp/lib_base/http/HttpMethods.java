@@ -3,9 +3,6 @@ package org.gmfbilu.superapp.lib_base.http;
 import android.util.ArrayMap;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.LifecycleOwner;
-
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
 import com.uber.autodispose.AutoDispose;
@@ -31,6 +28,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;

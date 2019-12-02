@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv2"
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv1"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv1" />
 
     <TextView
         android:id="@+id/tv3"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv2"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv2" />
 
     <TextView
         android:id="@+id/tv4"
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv3"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv3" />
 
     <TextView
         android:id="@+id/tv5"
@@ -44,7 +44,7 @@
         android:text="一号字体,25sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv4"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv4" />
 
 
     <TextView
@@ -54,7 +54,7 @@
         android:text="二号字体,15sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv5"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv5" />
 
     <TextView
         android:id="@+id/tv5_3"
@@ -64,5 +64,21 @@
         android:textSize="@dimen/sp15"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv5_2"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv5_2" />
+
+    <TextView
+        android:id="@+id/tv6"
+        android:layout_width="108dp"
+        android:layout_height="44dp"
+        android:background="@drawable/text_bg"
+        android:gravity="center"
+        android:singleLine="false"
+        android:textColor="@drawable/text_color"
+        android:textSize="@dimen/sp15"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv5_3"
+        tool:text="点击颜色变化" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

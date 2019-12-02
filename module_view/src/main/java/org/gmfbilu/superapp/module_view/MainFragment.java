@@ -53,6 +53,8 @@ public class MainFragment extends BaseFragment {
         view.findViewById(R.id.module_view_bt_banner).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_head).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_surfaceview).setOnClickListener(this);
+        //ToastUtil.show("有bug啦");
+        //ToastUtil.show("bug修复啦");
     }
 
     @Override

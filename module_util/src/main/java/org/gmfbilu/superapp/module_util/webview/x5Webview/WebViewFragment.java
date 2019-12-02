@@ -7,15 +7,16 @@ import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.widget.ProgressBar;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
-
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.lib_base.utils.LoggerUtil;
 import org.gmfbilu.superapp.module_util.R;
 import org.gmfbilu.superapp.module_util.webview.jsBridge.JsBridgeActivity;
+import org.gmfbilu.superapp.module_util.webview.normalWebView.NormalWebViewFragment;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 
 
 public class WebViewFragment extends BaseFragment {
@@ -40,6 +41,7 @@ public class WebViewFragment extends BaseFragment {
         mToolbar = view.findViewById(R.id.module_util_toolbar);
         mWebView = view.findViewById(R.id.webview);
         mProgressBar = view.findViewById(R.id.progressBar);
+        view.findViewById(R.id.bt_normalWebView).setOnClickListener(this);
         view.findViewById(R.id.bt_JsBridge).setOnClickListener(this);
     }
 
@@ -53,6 +55,8 @@ public class WebViewFragment extends BaseFragment {
         int id = v.getId();
         if (id == R.id.bt_JsBridge) {
             startActivity(new Intent(_mActivity, JsBridgeActivity.class));
+        }else if (id==R.id.bt_normalWebView){
+            start(NormalWebViewFragment.newInstance());
         }
     }
 
@@ -77,7 +81,7 @@ public class WebViewFragment extends BaseFragment {
     @Override
     public void onEnterAnimationEnd(Bundle savedInstanceState) {
         super.onEnterAnimationEnd(savedInstanceState);
-        setDefaultWebSettings();
+        //setDefaultWebSettings();
     }
 
     private void setDefaultWebSettings() {

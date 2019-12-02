@@ -22,13 +22,22 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt_normalWebView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="normalWebView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/module_util_appBarLayout" />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/bt_JsBridge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="JsBridge"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/module_util_appBarLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_normalWebView" />
 
     <org.gmfbilu.superapp.module_util.webview.x5Webview.X5WebView
         android:id="@+id/webview"
