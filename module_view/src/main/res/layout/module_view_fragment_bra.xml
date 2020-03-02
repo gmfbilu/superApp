@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -12,7 +11,7 @@
         android:text="simple"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/bt_header_footer"
@@ -21,7 +20,7 @@
         android:text="header,footer"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_simple"/>
+        app:layout_constraintTop_toBottomOf="@+id/bt_simple" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/bt_stockMarket"
@@ -30,5 +29,33 @@
         android:text="stockMarket"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_header_footer"/>
+        app:layout_constraintTop_toBottomOf="@+id/bt_header_footer" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt_MultipleItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="多布局"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_stockMarket" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt_Section"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="分组布局"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_MultipleItem" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt_StickSection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stick分组布局"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_Section" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -42,6 +42,7 @@ import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -1109,7 +1110,8 @@ public class AppUtils {
         cm.setPrimaryClip(mClipData);
     }
 
-    /* * 可以根据传入的宽和高，计算出合适的inSampleSize值
+    /*
+    * 可以根据传入的宽和高，计算出合适的inSampleSize值
      *
      * @param options
      * @param reqWidth
@@ -1673,6 +1675,31 @@ public class AppUtils {
         } catch (Exception e) {
         }
         return time;
+    }
+
+
+
+    /**
+     * 打开软键盘
+     *
+     * @param mEditText
+     * @param mContext
+     */
+    public static void openKeybord(EditText mEditText, Context mContext) {
+        InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm == null) return;
+        imm.showSoftInput(mEditText, InputMethodManager.RESULT_SHOWN);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,InputMethodManager.HIDE_IMPLICIT_ONLY);
+    }
+
+
+    /**
+     * 关闭软键盘
+     */
+    public static void closeKeybord(EditText mEditText, Context mContext) {
+        InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm == null) return;
+        imm.hideSoftInputFromWindow(mEditText.getWindowToken(), 0);
     }
 
 

@@ -1,0 +1,59 @@
+if (isModule.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file("gradle.properties").newDataInputStream())
+String versionNameP = properties.getProperty("versionName")
+int versionCodeP = Integer.parseInt(properties.getProperty("versionCode"))
+
+android {
+    compileSdkVersion compileSdk as int
+    defaultConfig {
+        minSdkVersion minSdk as int
+        targetSdkVersion targetSdk as int
+        versionCode versionCodeP
+        versionName versionNameP
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main {
+            if (isModule.toBoolean()) {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                //集成开发模式下排除debug文件夹中的所有Java文件
+                java {
+                    exclude 'debug/**'
+                }
+            }
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':lib_base')
+    testImplementation "junit:junit:${junit_lib_version}"
+    androidTestImplementation "androidx.test:runner:${androidx_test_runner_version}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${androidx_test_espresso_version}"
+    annotationProcessor "com.alibaba:arouter-compiler:${arouter_compiler_version}"
+
+}

@@ -194,6 +194,7 @@ dependencies {
         implementation project(':module_util')
         implementation project(':module_java')
         implementation project(':module_kotlin')
+        implementation project(':neteasycloudcourse')
     }
     //友盟分享里面也有alicloud-android-utils，所以在此要排除掉
     implementation("com.aliyun.ams:alicloud-android-hotfix:${hotfix_version}"){

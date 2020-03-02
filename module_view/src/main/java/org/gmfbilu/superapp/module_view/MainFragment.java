@@ -12,6 +12,7 @@ import org.gmfbilu.superapp.module_view.customViews.CustomViewsFragment;
 import org.gmfbilu.superapp.module_view.dialogFragment.DialogFragment;
 import org.gmfbilu.superapp.module_view.dynamicLayout.DynamicLayoutFragment;
 import org.gmfbilu.superapp.module_view.fragment.module.FragmentActivity;
+import org.gmfbilu.superapp.module_view.kLine.KLineFragment;
 import org.gmfbilu.superapp.module_view.recyclerView.RecyclerViewFragment;
 import org.gmfbilu.superapp.module_view.search.SearchFragment;
 import org.gmfbilu.superapp.module_view.shape.ShapeFragment;
@@ -53,8 +54,7 @@ public class MainFragment extends BaseFragment {
         view.findViewById(R.id.module_view_bt_banner).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_head).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_surfaceview).setOnClickListener(this);
-        //ToastUtil.show("有bug啦");
-        //ToastUtil.show("bug修复啦");
+        view.findViewById(R.id.module_view_bt_kline).setOnClickListener(this);
     }
 
     @Override
@@ -94,6 +94,8 @@ public class MainFragment extends BaseFragment {
             start(TopBarFragment.newInstance());
         } else if (id == R.id.module_view_bt_surfaceview) {
             start(SurfaceViewFragment.newInstance());
+        }else if (id==R.id.module_view_bt_kline){
+            start(KLineFragment.newInstance());
         }
     }
 }

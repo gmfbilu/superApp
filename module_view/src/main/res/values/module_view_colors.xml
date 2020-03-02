@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="module_view_tab_unselected">#c9c9c9</color>
+
+    <color name="tifezh_chart_red" tools:ignore="ResourceName">#DF3536</color>
+    <color name="tifezh_chart_green" tools:ignore="ResourceName">#35DF7E</color>
+
+    <color name="tifezh_chart_ma5" tools:ignore="ResourceName">#18CCF6</color>
+    <color name="tifezh_chart_ma10" tools:ignore="ResourceName">#FE5EDF</color>
+    <color name="tifezh_chart_ma20" tools:ignore="ResourceName">#E7A520</color>
+    <color name="tifezh_chart_white" tools:ignore="ResourceName">#fff</color>
+
+    <color name="tifezh_chart_background" tools:ignore="ResourceName">#202326</color>
+    <color name="tifezh_chart_grid_line" tools:ignore="ResourceName">#353941</color>
+    <color name="tifezh_chart_text" tools:ignore="ResourceName">#B1B2B6</color>
+    <color name="tifezh_chart_selector" tools:ignore="ResourceName">#c830343C</color>
+    <color name="tifezh_chart_tab_background" tools:ignore="ResourceName">#30343C</color>
+    <color name="tifezh_chart_tab_indicator" tools:ignore="ResourceName">#FF6601</color>
 </resources>

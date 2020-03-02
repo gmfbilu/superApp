@@ -1,6 +1,7 @@
-include ':app',
+include ':app', ':MPChartLib',
         ':lib_base',
         ':module_util',
         ':module_view',
         ':module_java',
-        ':module_kotlin'
+        ':module_kotlin',
+        ':neteasycloudcourse'

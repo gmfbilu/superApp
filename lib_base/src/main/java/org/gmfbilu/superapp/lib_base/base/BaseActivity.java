@@ -6,13 +6,12 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import androidx.lifecycle.LifecycleOwner;
-
 import com.orhanobut.logger.Logger;
 import com.umeng.message.PushAgent;
 
 import org.gmfbilu.superapp.lib_base.app.ActivitiesManager;
 
+import androidx.lifecycle.LifecycleOwner;
 import me.yokeyword.fragmentation.SupportActivity;
 
 /**
@@ -105,7 +104,10 @@ public abstract class BaseActivity extends SupportActivity implements View.OnCli
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
-    private void orientation() {
+    /**
+     * 默认竖屏
+     */
+    protected void orientation() {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 

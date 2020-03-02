@@ -114,7 +114,7 @@ public abstract class BaseView extends View {
      * @param widthMeasureSpec
      * @param heightMeasureSpec
      */
-/*    @Override
+    @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);   //获取宽的模式
@@ -139,6 +139,6 @@ public abstract class BaseView extends View {
         }
         //保存测量宽度和测量高度
         setMeasuredDimension(width, height);
-    }*/
+    }
 
 }

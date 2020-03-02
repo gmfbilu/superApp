@@ -7,7 +7,6 @@ import com.alibaba.android.arouter.launcher.ARouter;
 
 import org.gmfbilu.superapp.lib_base.app.ARouterPath;
 import org.gmfbilu.superapp.lib_base.base.BaseActivity;
-import org.gmfbilu.superapp.lib_base.utils.ToastUtil;
 
 
 public class MainActivity extends BaseActivity {
@@ -19,7 +18,7 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.module_util).setOnClickListener(this);
         findViewById(R.id.module_java).setOnClickListener(this);
         findViewById(R.id.module_kotlin).setOnClickListener(this);
-        ToastUtil.show(BuildConfig.appName);
+        findViewById(R.id.module_netEasyCloudCourse).setOnClickListener(this);
     }
 
     @Override
@@ -45,7 +44,11 @@ public class MainActivity extends BaseActivity {
         } else if (id == R.id.module_java) {
             ARouter.getInstance().build(ARouterPath.MODULE_JAVA).navigation();
         } else if (id == R.id.module_kotlin) {
+            //跳转直接报错There is no route match the path [/xxx/xxx], in group [xxx][ ]，不管是kotlin页面跳java页面还是java 跳java页面。都报这个错
+            //apply plugin: 'kotlin-kapt' 把这一句注释掉就好了，不过目前项目还是使用的java的ARouter，暂时还没有导入kotlin的ARouter。因为ARouter使用Kotlin，之前的java页面都要改
             ARouter.getInstance().build(ARouterPath.MODULE_KOTLIN).navigation();
+        } else if (id == R.id.module_netEasyCloudCourse) {
+            ARouter.getInstance().build(ARouterPath.MODULE_NetEasyCloudCourse).navigation();
         }
     }
 

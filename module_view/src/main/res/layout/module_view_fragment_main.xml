@@ -151,6 +151,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/module_view_bt_head"/>
 
 
+
+            <Button
+                android:id="@+id/module_view_bt_kline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="K线图!"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_surfaceview"/>
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

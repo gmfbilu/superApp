@@ -1,9 +1,14 @@
 package org.gmfbilu.superapp.module_view.shape;
 
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
+import org.gmfbilu.superapp.lib_base.utils.AppUtils;
+import org.gmfbilu.superapp.lib_base.utils.LoggerUtil;
 import org.gmfbilu.superapp.module_view.R;
 
 
@@ -81,7 +86,18 @@ import org.gmfbilu.superapp.module_view.R;
  *   radial --> 径向渐变（由指定的中心点开始向外渐变，指定半径）
  *   xml 实现只支持三个颜色，startColor，CenterColor，endColor
  */
+
+
+/**
+ * GradientDrawable在Android中便是shape标签的代码实现，利用GradientDrawable也可以创建出各种形状
+ */
 public class ShapeFragment extends BaseFragment {
+
+    private TextView tv_GradientDrawable1;
+    private TextView tv_GradientDrawable2;
+    private TextView tv_GradientDrawable3;
+
+    private int tv_GradientDrawable3ClickTimes = 0;
 
     public static ShapeFragment newInstance() {
         Bundle args = new Bundle();
@@ -93,7 +109,12 @@ public class ShapeFragment extends BaseFragment {
 
     @Override
     public void findViewById_setOnClickListener(View view) {
-
+        tv_GradientDrawable1 = view.findViewById(R.id.tv_GradientDrawable1);
+        tv_GradientDrawable2 = view.findViewById(R.id.tv_GradientDrawable2);
+        tv_GradientDrawable3 = view.findViewById(R.id.tv_GradientDrawable3);
+        tv_GradientDrawable1.setOnClickListener(this);
+        tv_GradientDrawable2.setOnClickListener(this);
+        tv_GradientDrawable3.setOnClickListener(this);
     }
 
     @Override
@@ -103,6 +124,43 @@ public class ShapeFragment extends BaseFragment {
 
     @Override
     public void onClick(View v) {
-
+        int id = v.getId();
+        if (id == R.id.tv_GradientDrawable1) {
+            //什么都不指定默认为矩形
+            GradientDrawable background = new GradientDrawable();
+            background.setColor(Color.YELLOW);
+            tv_GradientDrawable1.setBackground(background);
+        } else if (id == R.id.tv_GradientDrawable2) {
+            GradientDrawable background = (GradientDrawable) tv_GradientDrawable2.getBackground();//获取对应的shape实例
+            background.setColor(Color.RED);//设置为绿色
+            tv_GradientDrawable2.setBackground(background);
+        } else if (id == R.id.tv_GradientDrawable3) {
+            GradientDrawable background = new GradientDrawable();
+            background.setColor(Color.BLUE);
+            //设置形状,这里一共可以设置四种形状：GradientDrawable.RECTANGLE:矩形;GradientDrawable.OVAL:椭圆形;GradientDrawable.LINE:一条线;GradientDrawable.RING:环形
+            //一条线和环形画不出来？ 具体形状和控件大小有关，控件时正方形那么OVAL就是圆形
+            int type = tv_GradientDrawable3ClickTimes % 4;
+            LoggerUtil.d("tv_GradientDrawable3ClickTimes=" + tv_GradientDrawable3ClickTimes + ", type=" + type);
+            switch (type) {
+                case 0:
+                    background.setShape(GradientDrawable.RECTANGLE);
+                    break;
+                case 1:
+                    background.setShape(GradientDrawable.OVAL);
+                    break;
+                case 2:
+                    background.setShape(GradientDrawable.LINE);
+                    break;
+                case 3:
+                    background.setShape(GradientDrawable.RING);
+                    break;
+            }
+            //描边
+            background.setStroke(AppUtils.dp2px(2f),Color.RED);
+            //圆角
+            background.setCornerRadius(AppUtils.dp2px(10));
+            tv_GradientDrawable3.setBackground(background);
+            tv_GradientDrawable3ClickTimes = tv_GradientDrawable3ClickTimes + 1;
+        }
     }
 }

@@ -15,4 +15,14 @@
     <dimen name="WheelIndicatorSize" tools:ignore="ResourceName">1.5dp</dimen>
     <dimen name="WheelMargins" tools:ignore="ResourceName">0dp</dimen>
     <dimen name="wheel_spacing" tools:ignore="ResourceName">5dp</dimen>
+
+    <dimen name="tifezh_chart_text_size" tools:ignore="ResourceName">10sp</dimen>
+    <dimen name="tifezh_chart_selector_text_size" tools:ignore="ResourceName">12sp</dimen>
+    <dimen name="tifezh_chart_candle_line_width" tools:ignore="ResourceName">1dp</dimen>
+    <dimen name="tifezh_chart_candle_width" tools:ignore="ResourceName">4dp</dimen>
+    <dimen name="tifezh_chart_line_width" tools:ignore="ResourceName">0.5dp</dimen>
+    <dimen name="tifezh_chart_grid_line_width" tools:ignore="ResourceName">1dp</dimen>
+    <dimen name="tifezh_chart_point_width" tools:ignore="ResourceName">6dp</dimen>
+    <dimen name="tifezh_chart_top_padding" tools:ignore="ResourceName">15dp</dimen>
+    <dimen name="tifezh_chart_bottom_padding" tools:ignore="ResourceName">15dp</dimen>
 </resources>

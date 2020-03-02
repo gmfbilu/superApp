@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="org.gmfbilu.superapp.module_view">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="org.gmfbilu.superapp.module_view">
 
     <application
         android:name="debug.ViewApplication"
@@ -16,19 +16,24 @@
         tools:replace="android:theme,android:label">
         <activity android:name="debug.LauncherActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".fragment.module.FragmentActivity"/>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".fragment.module.FragmentActivity" />
+        <activity
+            android:name=".kLine.MPChart.land.MPChartLandActivity"
+            android:screenOrientation="landscape"
+            tools:ignore="InnerclassSeparator" />
+
         <!--===============================================高德地图 begin========================================-->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="e7aa8d4daa0dbbde4ee41467c0f9c936"/>
+            android:value="e7aa8d4daa0dbbde4ee41467c0f9c936" />
         <!-- 高德地图定位需要的服务 -->
-        <service android:name="com.amap.api.location.APSService"/>
+        <service android:name="com.amap.api.location.APSService" />
         <!--===============================================高德地图 end========================================-->
     </application>
 

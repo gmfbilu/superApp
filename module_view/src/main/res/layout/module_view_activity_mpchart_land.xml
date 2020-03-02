@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="贵州茅台"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_two" />
+
+    <TextView
+        android:id="@+id/tv_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="1172.06"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_one"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:text="高1174.78"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_two"
+        app:layout_constraintTop_toTopOf="@+id/tv_two" />
+
+    <TextView
+        android:id="@+id/tv_four"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:text="开1174.00"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_three"
+        app:layout_constraintTop_toTopOf="@+id/tv_two" />
+
+    <TextView
+        android:id="@+id/tv_five"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:text="量比1.25"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_four"
+        app:layout_constraintTop_toTopOf="@+id/tv_two" />
+
+    <TextView
+        android:id="@+id/tv_six"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="600519"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_one"
+        app:layout_constraintTop_toBottomOf="@+id/tv_two" />
+
+    <TextView
+        android:id="@+id/tv_seven"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2.08"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_two"
+        app:layout_constraintTop_toBottomOf="@+id/tv_two" />
+
+    <TextView
+        android:id="@+id/tv_eight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="0.18%"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_seven"
+        app:layout_constraintTop_toTopOf="@+id/tv_seven" />
+
+    <TextView
+        android:id="@+id/tv_nine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="低1164.00"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_three"
+        app:layout_constraintTop_toTopOf="@+id/tv_seven" />
+
+    <TextView
+        android:id="@+id/tv_ten"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="换0.07%"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_four"
+        app:layout_constraintTop_toTopOf="@+id/tv_seven" />
+
+    <TextView
+        android:id="@+id/tv_eleven"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="金额9.96亿"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_five"
+        app:layout_constraintTop_toTopOf="@+id/tv_seven" />
+
+    <View
+        android:id="@+id/ViewOne"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_seven" />
+
+    <TextView
+        android:id="@+id/tv_twelve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="13:53"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ViewOne" />
+
+    <TextView
+        android:id="@+id/tv_thirteen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="均1147.38"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_twelve"
+        app:layout_constraintTop_toTopOf="@+id/tv_twelve" />
+
+    <TextView
+        android:id="@+id/tv_fourteen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="最新1164.30"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_thirteen"
+        app:layout_constraintTop_toTopOf="@+id/tv_twelve" />
+
+    <TextView
+        android:id="@+id/tv_fifteen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="-11.10"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_fourteen"
+        app:layout_constraintTop_toTopOf="@+id/tv_twelve" />
+
+    <TextView
+        android:id="@+id/tv_sixteen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="-0.96%"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_fifteen"
+        app:layout_constraintTop_toTopOf="@+id/tv_twelve" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab1"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_twelve"
+        app:tabIndicatorColor="@android:color/transparent"
+        app:tabSelectedTextColor="@color/colorAccent" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager1"
+        android:layout_width="120dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/tab2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tab1" />
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab2"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@android:color/transparent"
+        app:tabSelectedTextColor="@color/colorAccent" />
+
+    <org.gmfbilu.superapp.module_view.kLine.MPChart.land.NoTouchScrollViewpager
+        android:id="@+id/viewpager2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/tab2"
+        app:layout_constraintLeft_toLeftOf="@+id/tab2"
+        app:layout_constraintRight_toLeftOf="@+id/viewpager1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_twelve" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

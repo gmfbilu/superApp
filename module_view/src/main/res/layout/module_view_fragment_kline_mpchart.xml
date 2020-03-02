@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_One"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="1171.00"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_Two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="高1174.89"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_One"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_Three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="开1174.00"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_Two"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_Four"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="量比1.25"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_Three"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_Five"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="6dp"
+        android:text="1.02"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_One" />
+
+    <TextView
+        android:id="@+id/tv_Six"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="0.09%"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_Five"
+        app:layout_constraintTop_toTopOf="@+id/tv_Five" />
+
+    <TextView
+        android:id="@+id/tv_Seven"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="低1164.00"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_Two"
+        app:layout_constraintTop_toTopOf="@+id/tv_Five" />
+
+    <TextView
+        android:id="@+id/tv_Eight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="换0.07%"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_Three"
+        app:layout_constraintTop_toTopOf="@+id/tv_Five" />
+
+    <TextView
+        android:id="@+id/tv_Nine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="金额9.95亿"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_Four"
+        app:layout_constraintTop_toTopOf="@+id/tv_Five" />
+
+
+    <TextView
+        android:id="@+id/tv_Ten"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:text="时间10：26"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_Five" />
+
+    <TextView
+        android:id="@+id/tv_Eleven"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="均价:1168.96"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_Ten"
+        app:layout_constraintTop_toTopOf="@+id/tv_Ten" />
+
+    <TextView
+        android:id="@+id/tv_Twelve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="最新:1171.00"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_Eleven"
+        app:layout_constraintTop_toTopOf="@+id/tv_Ten" />
+
+    <TextView
+        android:id="@+id/tv_Thirteen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="涨幅:+0.09%"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_Twelve"
+        app:layout_constraintTop_toTopOf="@+id/tv_Ten" />
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_Ten" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="120dp"
+        android:layout_height="300dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tab" />
+
+
+    <com.example.mpchartlib.stockChart.OneDayChart
+        android:id="@+id/chart"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewpager"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tab"
+        app:layout_constraintTop_toTopOf="@+id/tab" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt_land"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="land"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chart" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

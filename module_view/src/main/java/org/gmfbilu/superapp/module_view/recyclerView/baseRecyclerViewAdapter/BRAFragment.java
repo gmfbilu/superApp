@@ -6,7 +6,10 @@ import android.view.View;
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 import org.gmfbilu.superapp.module_view.R;
 import org.gmfbilu.superapp.module_view.recyclerView.baseRecyclerViewAdapter.headerfooter.BRAHeaderFooterFragment;
+import org.gmfbilu.superapp.module_view.recyclerView.baseRecyclerViewAdapter.multipleItem.BRAMultipleItemFragment;
+import org.gmfbilu.superapp.module_view.recyclerView.baseRecyclerViewAdapter.section.BRASectionFragment;
 import org.gmfbilu.superapp.module_view.recyclerView.baseRecyclerViewAdapter.simple.BRASimpleFragment;
+import org.gmfbilu.superapp.module_view.recyclerView.baseRecyclerViewAdapter.stickSection.BRAStickSectionFragment;
 import org.gmfbilu.superapp.module_view.recyclerView.baseRecyclerViewAdapter.stockMarket.StockMarketFragment;
 
 public class BRAFragment extends BaseFragment {
@@ -24,6 +27,9 @@ public class BRAFragment extends BaseFragment {
         view.findViewById(R.id.bt_simple).setOnClickListener(this);
         view.findViewById(R.id.bt_header_footer).setOnClickListener(this);
         view.findViewById(R.id.bt_stockMarket).setOnClickListener(this);
+        view.findViewById(R.id.bt_MultipleItem).setOnClickListener(this);
+        view.findViewById(R.id.bt_Section).setOnClickListener(this);
+        view.findViewById(R.id.bt_StickSection).setOnClickListener(this);
     }
 
     @Override
@@ -40,6 +46,12 @@ public class BRAFragment extends BaseFragment {
             start(BRAHeaderFooterFragment.newInstance());
         }else if (id==R.id.bt_stockMarket){
             start(StockMarketFragment.newInstance());
+        }else if (id==R.id.bt_MultipleItem){
+            start(BRAMultipleItemFragment.newInstance());
+        }else if (id==R.id.bt_Section){
+            start(BRASectionFragment.newInstance());
+        }else if (id==R.id.bt_StickSection){
+            start(BRAStickSectionFragment.newInstance());
         }
     }
 

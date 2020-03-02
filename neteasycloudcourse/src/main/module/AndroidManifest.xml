@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="org.gmfbilu.neteasycloudcourse">
+
+    <application
+        android:name="debug.NetEasyCloudCourseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/lib_base_ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/lib_base_ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/lib_base_AppTheme"
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:theme,android:label">
+        <activity android:name=".MainActivity">
+
+        </activity>
+
+        <activity android:name="debug.LauncherActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+    </application>
+
+
+</manifest>

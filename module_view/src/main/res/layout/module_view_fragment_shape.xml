@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -17,7 +16,7 @@
             android:background="@drawable/shape_line_solid"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/TextViewOne"
@@ -27,7 +26,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/ViewOne"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/ViewOne"/>
+            app:layout_constraintTop_toTopOf="@+id/ViewOne" />
 
         <View
             android:id="@+id/ViewTwo"
@@ -38,7 +37,7 @@
             android:layerType="software"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ViewOne"/>
+            app:layout_constraintTop_toBottomOf="@+id/ViewOne" />
 
         <TextView
             android:id="@+id/TextViewTwo"
@@ -48,7 +47,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/ViewTwo"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/ViewTwo"/>
+            app:layout_constraintTop_toTopOf="@+id/ViewTwo" />
 
         <TextView
             android:id="@+id/TextViewThree"
@@ -60,7 +59,7 @@
             android:text="矩形实线边框+内部无填充"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ViewTwo"/>
+            app:layout_constraintTop_toBottomOf="@+id/ViewTwo" />
 
         <TextView
             android:id="@+id/TextViewFour"
@@ -72,7 +71,7 @@
             android:text="矩形虚线边框+内部无填充"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextViewThree"/>
+            app:layout_constraintTop_toBottomOf="@+id/TextViewThree" />
 
         <TextView
             android:id="@+id/TextViewFive"
@@ -84,7 +83,7 @@
             android:text="矩形实线边框+内部填充"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextViewFour"/>
+            app:layout_constraintTop_toBottomOf="@+id/TextViewFour" />
 
         <TextView
             android:id="@+id/TextViewSix"
@@ -96,7 +95,7 @@
             android:text="矩形虚线边框+内部填充"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextViewFive"/>
+            app:layout_constraintTop_toBottomOf="@+id/TextViewFive" />
 
 
         <TextView
@@ -109,7 +108,7 @@
             android:text="圆角矩形，只有边框"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextViewSix"/>
+            app:layout_constraintTop_toBottomOf="@+id/TextViewSix" />
 
         <TextView
             android:id="@+id/TextViewEight"
@@ -121,7 +120,7 @@
             android:text="圆角矩形无边框，只有内部填充"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextViewSeven"/>
+            app:layout_constraintTop_toBottomOf="@+id/TextViewSeven" />
 
 
         <TextView
@@ -134,7 +133,7 @@
             android:text=" 圆角矩形-有边框有填充"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextViewEight"/>
+            app:layout_constraintTop_toBottomOf="@+id/TextViewEight" />
 
         <TextView
             android:id="@+id/TextViewTen"
@@ -146,7 +145,7 @@
             android:text=" 圆角矩形-左边圆角为一个半圆弧"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextViewNine"/>
+            app:layout_constraintTop_toBottomOf="@+id/TextViewNine" />
 
         <TextView
             android:id="@+id/TextViewEleven"
@@ -158,7 +157,7 @@
             android:text="圆角矩形-左右两边都是半圆弧"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextViewTen"/>
+            app:layout_constraintTop_toBottomOf="@+id/TextViewTen" />
 
         <TextView
             android:id="@+id/TextViewTwelve"
@@ -170,7 +169,7 @@
             android:text="圆角矩形-左右两边都是半圆弧-带边框"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextViewEleven"/>
+            app:layout_constraintTop_toBottomOf="@+id/TextViewEleven" />
 
         <TextView
             android:id="@+id/TextViewThirteen"
@@ -182,7 +181,7 @@
             android:text="圆角矩形-上下两边半圆弧"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextViewTwelve"/>
+            app:layout_constraintTop_toBottomOf="@+id/TextViewTwelve" />
 
         <TextView
             android:id="@+id/TextViewFourteen"
@@ -194,7 +193,7 @@
             android:text="矩形无边框+内部填充+上面左右圆角"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextViewThirteen"/>
+            app:layout_constraintTop_toBottomOf="@+id/TextViewThirteen" />
 
         <TextView
             android:id="@+id/TextViewFifteen"
@@ -206,7 +205,7 @@
             android:text="矩形无边框+内部填充+底部左右圆角"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextViewFourteen"/>
+            app:layout_constraintTop_toBottomOf="@+id/TextViewFourteen" />
 
         <TextView
             android:id="@+id/TextViewSixteen"
@@ -218,7 +217,7 @@
             android:text="矩形无边框+内部填充"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextViewFifteen"/>
+            app:layout_constraintTop_toBottomOf="@+id/TextViewFifteen" />
 
         <TextView
             android:id="@+id/TextViewSeventeen"
@@ -230,7 +229,7 @@
             android:text="矩形无边框+内部填充+左右半圆"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextViewSixteen"/>
+            app:layout_constraintTop_toBottomOf="@+id/TextViewSixteen" />
 
         <TextView
             android:id="@+id/TextViewEighteen"
@@ -242,7 +241,7 @@
             android:text="圆+内部填充"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextViewSeventeen"/>
+            app:layout_constraintTop_toBottomOf="@+id/TextViewSeventeen" />
 
         <TextView
             android:id="@+id/TextViewNineteen"
@@ -254,19 +253,41 @@
             android:text="圆+内部无填充"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextViewEighteen"/>
+            app:layout_constraintTop_toBottomOf="@+id/TextViewEighteen" />
 
         <TextView
+            android:id="@+id/tv_GradientDrawable1"
             android:layout_width="300dp"
             android:layout_height="80dp"
             android:layout_margin="10dp"
-            android:background="@drawable/shape_rect_rounded_ar"
             android:gravity="center"
-            android:text="haha"
+            android:text="GradientDrawable"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextViewNineteen"/>
+            app:layout_constraintTop_toBottomOf="@+id/TextViewNineteen" />
 
+        <TextView
+            android:id="@+id/tv_GradientDrawable2"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/shape_rect_rounded_top_bottom_arc"
+            android:gravity="center"
+            android:text="GradientDrawable 改变颜色"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_GradientDrawable1" />
+
+        <TextView
+            android:id="@+id/tv_GradientDrawable3"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="GradientDrawable 改变形状颜色"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_GradientDrawable2" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

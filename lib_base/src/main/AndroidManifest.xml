@@ -46,7 +46,7 @@
         -->
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="org.gmfbilu.superapp.fileprovider"
+            android:authorities="org.gmfbilu.superapp.base.fileprovider"
             android:exported="false"
             tools:replace="android:authorities"
             android:grantUriPermissions="true">
