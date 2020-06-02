@@ -1,6 +1,6 @@
 package org.gmfbilu.superapp.module_kotlin.kotlin.helloWorld.创建类
 
-class Person1 {
+ class Person1 {
 
     var name: String? = null
         get() = field

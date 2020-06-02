@@ -83,7 +83,7 @@ dependencies {
     //fragment
     api "me.yokeyword:fragmentationx:${yokeyword_fragmentationx_version}"
 
-    //事件总线
+    //事件总线，在下面的module中还需要添加annotationProcessor
     api "org.greenrobot:eventbus:${greenrobot_eventbus_version}"
 
     //多渠道打包

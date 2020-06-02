@@ -18,6 +18,7 @@ import org.gmfbilu.superapp.module_view.search.SearchFragment;
 import org.gmfbilu.superapp.module_view.shape.ShapeFragment;
 import org.gmfbilu.superapp.module_view.surfaceView.SurfaceViewFragment;
 import org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.Switch_CheckBox_ListPreferenceFragment;
+import org.gmfbilu.superapp.module_view.test.TestActivity;
 import org.gmfbilu.superapp.module_view.textView.TextViewFragment;
 import org.gmfbilu.superapp.module_view.topbar.TopBarFragment;
 
@@ -40,6 +41,7 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void findViewById_setOnClickListener(View view) {
+        view.findViewById(R.id.module_view_bt_test).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_fragment).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_constraintlayout).setOnClickListener(this);
         view.findViewById(R.id.module_view_bt_switch_checkbox_listpreference).setOnClickListener(this);
@@ -66,7 +68,9 @@ public class MainFragment extends BaseFragment {
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.module_view_bt_fragment) {
+        if (id == R.id.module_view_bt_test) {
+            startActivity(new Intent(_mActivity, TestActivity.class));
+        } else if (id == R.id.module_view_bt_fragment) {
             startActivity(new Intent(_mActivity, FragmentActivity.class));
         } else if (id == R.id.module_view_bt_constraintlayout) {
             start(ConstraintLayoutFragment.newInstance());
@@ -94,7 +98,7 @@ public class MainFragment extends BaseFragment {
             start(TopBarFragment.newInstance());
         } else if (id == R.id.module_view_bt_surfaceview) {
             start(SurfaceViewFragment.newInstance());
-        }else if (id==R.id.module_view_bt_kline){
+        } else if (id == R.id.module_view_bt_kline) {
             start(KLineFragment.newInstance());
         }
     }

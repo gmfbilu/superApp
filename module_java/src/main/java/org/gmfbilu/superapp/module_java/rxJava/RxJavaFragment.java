@@ -4,9 +4,6 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
-
 import com.orhanobut.logger.Logger;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
@@ -15,12 +12,15 @@ import org.gmfbilu.superapp.module_java.R;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Completable;
 import io.reactivex.CompletableEmitter;
@@ -51,6 +51,12 @@ import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 /**
  * 从事件流这个角度来说明RxJava的基本工作原理
@@ -77,6 +83,7 @@ public class RxJavaFragment extends BaseFragment {
     public void findViewById_setOnClickListener(View view) {
         mToolbar = view.findViewById(R.id.module_java_toolbar);
         view.findViewById(R.id.bt_rxbus).setOnClickListener(this);
+
     }
 
     @Override
@@ -144,10 +151,9 @@ public class RxJavaFragment extends BaseFragment {
     /**
      * 2.rxBus发送事件，订阅事件在MainFragment
      */
-    private void rxBus(){
+    private void rxBus() {
         RxBus.getDefault().post("MainFragment");
     }
-
 
 
     private void helloRxJava() {
@@ -1129,7 +1135,7 @@ public class RxJavaFragment extends BaseFragment {
     public void onDetach() {
         super.onDetach();
         //取消订阅后既不走onComplete又不走onError
-        if (disposables!=null && !disposables.isDisposed()){
+        if (disposables != null && !disposables.isDisposed()) {
             disposables.dispose();
         }
     }

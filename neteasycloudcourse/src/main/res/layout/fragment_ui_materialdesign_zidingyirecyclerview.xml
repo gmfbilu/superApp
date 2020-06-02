@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:title="ToolBar" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!--layout_behavior是CoordinatorLayout的属性，居于AppBarLayout的下方，并且滑动的时候会触发一系列动作-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <!-- tools:listitem 可以实现预览-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/recyclerview_item_feed" />
+
+        <!--悬浮条 永远悬浮在RecyclerView最上面-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/suspension_Bar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:color/darker_gray">
+
+            <ImageView
+                android:id="@+id/suspension_iv"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="16dp"
+                android:src="@mipmap/ic_launcher_round"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+
+    <!--自定义layout_behavior-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fa"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:layout_behavior="org.gmfbilu.neteasycloudcourse.ui.MaterialDesign.自定义RecyclerView.ScaleBehavior"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

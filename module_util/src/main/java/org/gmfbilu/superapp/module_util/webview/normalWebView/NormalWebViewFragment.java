@@ -4,10 +4,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.webkit.JavascriptInterface;
+import android.webkit.ValueCallback;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
+import org.gmfbilu.superapp.lib_base.utils.LoggerUtil;
+import org.gmfbilu.superapp.lib_base.utils.ToastUtil;
 import org.gmfbilu.superapp.module_util.R;
 
 
@@ -56,7 +60,21 @@ public class NormalWebViewFragment extends BaseFragment {
         } else if (id == R.id.tv_close) {
             _mActivity.onBackPressed();
         } else if (id == R.id.bt_java_js) {
-
+            // 通过Handler发送消息
+            mWebView.post(new Runnable() {
+                @Override
+                public void run() {
+                    // 注意调用的JS方法名要对应上
+                    // 调用test.html的callJS()方法
+                    mWebView.evaluateJavascript("test:callJS()", new ValueCallback<String>() {
+                        @Override
+                        public void onReceiveValue(String value) {
+                            //此处为 js 返回的结果
+                            LoggerUtil.d(value);
+                        }
+                    });
+                }
+            });
         }
     }
 
@@ -65,7 +83,13 @@ public class NormalWebViewFragment extends BaseFragment {
         mWebView.setWebChromeClient(new NormalWebChromeClient(mProgressBar, tv_title));
         //mWebView.loadUrl("https://www.bing.com/?mkt=zh-CN");//http://www.sanabang.com //http://www.sanabang.com/transactionRulesImg
         //mWebView.loadUrl("http://www.sanabang.com");
-        mWebView.loadUrl("http://www.sanabang.com/transactionRulesImg");
+        //mWebView.loadUrl("http://www.sanabang.com/transactionRulesImg");
+        //mWebView.loadUrl("http://www.sanabang.com/invite");
+        //mWebView.addJavascriptInterface(new AndroidtoJs(), "android");//AndroidtoJS类对象映射到js的android对象
+        //mWebView.loadUrl("file:///android_asset/test.html");
+        //mWebView.loadUrl("http://htmlh5.icaikee.com/pages/htmls/strategy/index.html#/chance");
+        mWebView.loadUrl("http://118.126.65.13/invite");
+        mWebView.addJavascriptInterface(new JSApi(), "");
     }
 
 
@@ -101,7 +125,6 @@ public class NormalWebViewFragment extends BaseFragment {
             if (parent != null) {
                 ((ViewGroup) parent).removeView(mWebView);
             }
-
             mWebView.stopLoading();
             // 退出时调用此方法，移除绑定的服务，否则某些特定系统会报错
             mWebView.getSettings().setJavaScriptEnabled(false);
@@ -112,4 +135,31 @@ public class NormalWebViewFragment extends BaseFragment {
     }
 
 
+    public class AndroidtoJs extends Object {
+
+        // 定义JS需要调用的方法
+        // 被JS调用的方法必须加入@JavascriptInterface注解，@JavascriptInterface注解的函数在子线程中
+        //msg为js传递给Java的数据
+        @JavascriptInterface
+        public void hello(String msg) {
+            ToastUtil.show(msg);
+        }
+
+        @JavascriptInterface
+        public String getToken(String msg) {
+            ToastUtil.show(msg);
+            return "it is token";
+        }
+
+    }
+
+
+    public class JSApi extends Object {
+
+        @JavascriptInterface
+        public String getToken(String msg) {
+            ToastUtil.show(msg);
+            return "it is token";
+        }
+    }
 }

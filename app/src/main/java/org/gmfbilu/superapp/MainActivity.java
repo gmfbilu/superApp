@@ -19,6 +19,7 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.module_java).setOnClickListener(this);
         findViewById(R.id.module_kotlin).setOnClickListener(this);
         findViewById(R.id.module_netEasyCloudCourse).setOnClickListener(this);
+
     }
 
     @Override

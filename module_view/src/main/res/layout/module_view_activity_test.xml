@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <org.gmfbilu.superapp.module_view.test.TestConstraintLayout
+        android:id="@+id/TestConstraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="@android:color/holo_blue_dark"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <org.gmfbilu.superapp.module_view.test.TestButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/darker_gray"
+            android:padding="10dp"
+            android:text="Button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <org.gmfbilu.superapp.module_view.test.TestLinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@android:color/holo_orange_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </org.gmfbilu.superapp.module_view.test.TestConstraintLayout>
+
+    <org.gmfbilu.superapp.module_view.test.TestFrameLayout
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="@android:color/holo_green_dark"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TestConstraintLayout">
+
+        <org.gmfbilu.superapp.module_view.test.TestButton
+            android:id="@+id/bt_click"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点我" />
+
+    </org.gmfbilu.superapp.module_view.test.TestFrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

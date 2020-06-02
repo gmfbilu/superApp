@@ -7,14 +7,37 @@
     android:layout_height="match_parent"
     tools:ignore="MissingDefaultResource">
 
+
+
     <Button
-        android:id="@+id/bt_classBeforePrepare01"
+        android:id="@+id/bt_classBeforePrepare01_rxjava"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="班级预备课1 数据库"
+        android:text="班级预备课2 Rxjava"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <Button
+        android:id="@+id/bt_UI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1.高级UI"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_classBeforePrepare01_rxjava"/>
+
+
+    <Button
+        android:id="@+id/bt_jiagoushi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3.架构师"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_UI"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

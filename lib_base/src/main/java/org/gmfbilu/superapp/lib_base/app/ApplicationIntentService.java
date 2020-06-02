@@ -21,6 +21,7 @@ import com.tencent.smtt.sdk.QbSdk;
 import org.gmfbilu.superapp.lib_base.BuildConfig;
 import org.gmfbilu.superapp.lib_base.base.BaseApplication;
 import org.gmfbilu.superapp.lib_base.utils.LoggerUtil;
+import org.greenrobot.eventbus.EventBus;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
@@ -126,6 +127,8 @@ public class ApplicationIntentService extends IntentService {
         }
         LeakCanary.install(getApplication());
     }
+
+
 
     private void initX5() {
         QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {

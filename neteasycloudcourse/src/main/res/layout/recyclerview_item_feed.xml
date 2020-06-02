@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!--悬浮条-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_small"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="16dp"
+            android:src="@mipmap/ic_launcher_round"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

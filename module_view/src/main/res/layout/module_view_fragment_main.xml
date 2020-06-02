@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -17,6 +16,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <Button
+                android:id="@+id/module_view_bt_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Test!"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
 
             <Button
                 android:id="@+id/module_view_bt_fragment"
@@ -25,7 +33,7 @@
                 android:text="Fragment!"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_test" />
 
 
             <Button
@@ -35,7 +43,7 @@
                 android:text="ConstraintLayout!"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_fragment"/>
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_fragment" />
 
 
             <Button
@@ -45,7 +53,7 @@
                 android:text="Switch,Check Box,List Preference!"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_constraintlayout"/>
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_constraintlayout" />
 
             <Button
                 android:id="@+id/module_view_bt_dialogfragment"
@@ -54,7 +62,7 @@
                 android:text="DialogFragment!"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_switch_checkbox_listpreference"/>
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_switch_checkbox_listpreference" />
 
 
             <Button
@@ -64,7 +72,7 @@
                 android:text="Dynamic Layout!"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_dialogfragment"/>
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_dialogfragment" />
 
             <Button
                 android:id="@+id/module_view_bt_recyclerview"
@@ -73,7 +81,7 @@
                 android:text="RecyclerView!"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_dynamicLayout"/>
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_dynamicLayout" />
 
             <Button
                 android:id="@+id/module_view_bt_shape"
@@ -82,7 +90,7 @@
                 android:text="shape!"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_recyclerview"/>
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_recyclerview" />
 
             <Button
                 android:id="@+id/module_view_bt_textview"
@@ -91,8 +99,7 @@
                 android:text="TextView!"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_shape"/>
-
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_shape" />
 
 
             <Button
@@ -102,7 +109,7 @@
                 android:text="搜索!"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_textview"/>
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_textview" />
 
             <Button
                 android:id="@+id/module_view_bt_generalview"
@@ -111,7 +118,7 @@
                 android:text="自定义控件!"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_search"/>
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_search" />
 
             <Button
                 android:id="@+id/module_view_bt_amap"
@@ -120,7 +127,7 @@
                 android:text="高德地图!"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_generalview"/>
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_generalview" />
 
             <Button
                 android:id="@+id/module_view_bt_banner"
@@ -129,7 +136,7 @@
                 android:text="Bannar!"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_amap"/>
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_amap" />
 
             <Button
                 android:id="@+id/module_view_bt_head"
@@ -138,7 +145,7 @@
                 android:text="头部布局!"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_banner"/>
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_banner" />
 
 
             <Button
@@ -148,8 +155,7 @@
                 android:text="SurfaceView!"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_head"/>
-
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_head" />
 
 
             <Button
@@ -159,7 +165,7 @@
                 android:text="K线图!"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_surfaceview"/>
+                app:layout_constraintTop_toBottomOf="@+id/module_view_bt_surfaceview" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

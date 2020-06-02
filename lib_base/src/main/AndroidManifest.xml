@@ -26,6 +26,7 @@
 
 
     <application
+        android:usesCleartextTraffic="true"
         android:hardwareAccelerated="false"
         android:label="@string/lib_base_app_name"
         android:networkSecurityConfig="@xml/network_security_config"

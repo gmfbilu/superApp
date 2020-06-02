@@ -18,7 +18,9 @@ android {
         versionName versionNameP
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ moduleName : project.getName() ]
+                //moduleName是Arouter,eventBusIndex是eventbus
+                arguments = [moduleName: project.getName(),
+                             eventBusIndex:'org.gmfbilu.neteasycloudcourse.MyEventBusIndex']
             }
         }
     }
@@ -55,5 +57,6 @@ dependencies {
     androidTestImplementation "androidx.test:runner:${androidx_test_runner_version}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${androidx_test_espresso_version}"
     annotationProcessor "com.alibaba:arouter-compiler:${arouter_compiler_version}"
+    annotationProcessor "org.greenrobot:eventbus-annotation-processor:${greenrobot_eventbus_version}"
 
 }

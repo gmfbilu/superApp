@@ -10,3 +10,4 @@ class Methods {
         this.append(str)
     }
 }
+

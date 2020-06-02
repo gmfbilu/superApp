@@ -64,8 +64,8 @@
         android:layout_marginTop="10dp"
         android:text="Java调用js"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ConstraintLayoutOne" />
+
 
 
     <org.gmfbilu.superapp.module_util.webview.normalWebView.NormalWebView

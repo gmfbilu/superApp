@@ -1,5 +1,6 @@
 package org.gmfbilu.superapp.lib_base.view.dialogFragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -8,6 +9,9 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
+import org.gmfbilu.superapp.lib_base.R;
+import org.gmfbilu.superapp.lib_base.utils.AppUtils;
+
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,9 +19,6 @@ import androidx.annotation.StyleRes;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import org.gmfbilu.superapp.lib_base.R;
-import org.gmfbilu.superapp.lib_base.utils.AppUtils;
 
 public abstract class BaseDialogFragment extends DialogFragment {
     private static final String MARGIN = "margin";
@@ -218,6 +219,21 @@ public abstract class BaseDialogFragment extends DialogFragment {
         ft.add(this, String.valueOf(System.currentTimeMillis()));
         ft.commitAllowingStateLoss();
         return this;
+    }
+
+    private DialogInterface.OnDismissListener mOnClickListener;
+
+    public BaseDialogFragment setOnDismissListener(DialogInterface.OnDismissListener listener) {
+        this.mOnClickListener = listener;
+        return this;
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        if (mOnClickListener != null) {
+            mOnClickListener.onDismiss(dialog);
+        }
     }
 
 }

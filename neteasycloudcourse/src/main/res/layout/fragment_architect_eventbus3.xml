@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bt_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="post事件"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_info" />
+
+    <Button
+        android:id="@+id/bt_postSticky"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="postSticky事件"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_post" />
+
+
+    <Button
+        android:id="@+id/bt_postObject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="传递不同数据"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_postSticky" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

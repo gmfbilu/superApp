@@ -41,4 +41,15 @@
     <style name="module_view_tab_appearance">
         <item name="android:textSize">16sp</item>
     </style>
+
+
+    <style name="RadioButton" tools:ignore="ResourceName">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:textColor">@color/rg_text</item>
+        <item name="android:layout_weight">1</item>
+    </style>
 </resources>

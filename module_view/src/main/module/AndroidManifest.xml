@@ -27,6 +27,7 @@
             android:name=".kLine.MPChart.land.MPChartLandActivity"
             android:screenOrientation="landscape"
             tools:ignore="InnerclassSeparator" />
+        <activity android:name=".test.TestActivity"/>
 
         <!--===============================================高德地图 begin========================================-->
         <meta-data

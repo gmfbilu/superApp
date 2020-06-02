@@ -3,6 +3,9 @@ package org.gmfbilu.neteasycloudcourse;
 import android.os.Bundle;
 import android.view.View;
 
+import org.gmfbilu.neteasycloudcourse.ui.UIFragment;
+import org.gmfbilu.neteasycloudcourse.架构师.ArchitectFragment;
+import org.gmfbilu.neteasycloudcourse.预热课.rxjava02.RxJavaFragment;
 import org.gmfbilu.superapp.lib_base.base.BaseFragment;
 
 /**
@@ -24,7 +27,9 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void findViewById_setOnClickListener(View view) {
-        view.findViewById(R.id.bt_classBeforePrepare01).setOnClickListener(this);
+        view.findViewById(R.id.bt_classBeforePrepare01_rxjava).setOnClickListener(this);
+        view.findViewById(R.id.bt_UI).setOnClickListener(this);
+        view.findViewById(R.id.bt_jiagoushi).setOnClickListener(this);
     }
 
     @Override
@@ -36,8 +41,12 @@ public class MainFragment extends BaseFragment {
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.bt_classBeforePrepare01) {
-
+         if (id==R.id.bt_classBeforePrepare01_rxjava){
+            start(RxJavaFragment.newInstance());
+        }else if (id==R.id.bt_UI){
+            start(UIFragment.newInstance());
+        }else if (id==R.id.bt_jiagoushi){
+            start(ArchitectFragment.newInstance());
         }
     }
 

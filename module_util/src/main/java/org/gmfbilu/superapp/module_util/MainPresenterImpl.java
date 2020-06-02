@@ -22,6 +22,7 @@ public class MainPresenterImpl implements MainPresenter {
 
     }
 
+    // activity销毁的时候接触绑定
     @Override
     public void detachView() {
         this.mView = null;

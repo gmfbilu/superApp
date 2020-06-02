@@ -3,12 +3,12 @@ package org.gmfbilu.superapp.module_util;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.NonNull;
-
 import com.alibaba.android.arouter.facade.annotation.Route;
 
 import org.gmfbilu.superapp.lib_base.app.ARouterPath;
 import org.gmfbilu.superapp.lib_base.base.mvp.BaseMVPActivity;
+
+import androidx.annotation.NonNull;
 
 
 @Route(path = ARouterPath.MODULE_UTIL)
@@ -30,6 +30,12 @@ public class MainActivity extends BaseMVPActivity<MainView,MainPresenterImpl> im
     public void onClick(View v) {
     }
 
+
+    // TODO: 2020/3/29 有bug,跳转后返回会多次调用 
+    @Override
+    public void onEnterAnimationComplete() {
+        super.onEnterAnimationComplete();
+    }
 
     @NonNull
     @Override

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+
+    // JS代码
+    <script>
+// Android需要调用的方法
+   function callJS(){
+      alert("Android调用了JS的callJS方法");
+   }
+
+   function callAndroid(){
+        // 由于对象映射，所以调用android对象等于调用Android映射的对象
+            android.hello("js调用了android中的hello方法");
+         }
+
+          function getToken(token){
+            android.getToken("give me token");
+            alert(token);
+         }
+
+    </script>
+</head>
+<body>
+<h1>我的第一个标题</h1>
+<p>我的第一个段落。</p>
+//点击按钮则调用callAndroid函数
+<button type="button" id="button1" onclick="callAndroid()" >点击我</button>
+<button type="button" id="button2" onclick="getToken()" >点击我</button>
+</body>
+</html>
