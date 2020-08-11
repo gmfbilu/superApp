@@ -26,42 +26,6 @@
         </com.google.android.material.appbar.AppBarLayout>
 
 
-        <RadioGroup
-            android:id="@+id/rg"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:background="@color/colorAccent"
-            android:orientation="horizontal"
-            android:padding="1dp"
-            android:weightSum="2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/module_googlelibrary_appBarLayout">
-
-            <RadioButton
-                android:id="@+id/rb1"
-                style="@style/RadioButton"
-                android:checked="true"
-                android:drawableBottom="@drawable/radiobutton_drawable"
-                android:text="按钮一" />
-            <!--android:drawableBottom="@drawable/radiobutton_drawable"-->
-
-            <RadioButton
-                android:id="@+id/rb2"
-                style="@style/RadioButton"
-                android:drawableBottom="@drawable/radiobutton_drawable"
-                android:text="按钮二" />
-
-        </RadioGroup>
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/vp_rg"
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rg" />
 
         <org.gmfbilu.superapp.lib_base.view.SwitchButton
             android:id="@+id/sb"
@@ -69,7 +33,7 @@
             android:layout_height="31dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vp_rg" />
+            app:layout_constraintTop_toBottomOf="@+id/module_googlelibrary_appBarLayout" />
 
         <Switch
             android:id="@+id/Switch"

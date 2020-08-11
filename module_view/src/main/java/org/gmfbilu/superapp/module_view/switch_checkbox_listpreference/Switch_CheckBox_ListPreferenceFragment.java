@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.DatePicker;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -23,9 +22,6 @@ import org.gmfbilu.superapp.lib_base.view.dialog.DialogHelper;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.BaseRecyclerView;
 import org.gmfbilu.superapp.lib_base.view.recyclerView.adapter.RecyclerArrayAdapter;
 import org.gmfbilu.superapp.module_view.R;
-import org.gmfbilu.superapp.module_view.kLine.KLineFragment;
-import org.gmfbilu.superapp.module_view.kLine.MPChart.SimpleFragmentPagerAdapter;
-import org.gmfbilu.superapp.module_view.shape.ShapeFragment;
 import org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.datePicker.DoubleDatePicker;
 import org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.datePicker.SingleDataPicker;
 import org.gmfbilu.superapp.module_view.switch_checkbox_listpreference.locationLinkage.WheelView;
@@ -42,9 +38,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.viewpager.widget.ViewPager;
 
 /**
  * 卡片式布局,继承自framelayout
@@ -62,8 +56,6 @@ public class Switch_CheckBox_ListPreferenceFragment extends BaseFragment {
 
     private Toolbar toolbar;
 
-    private RadioGroup rg;
-    private ViewPager vp_rg;
 
 
     public static Switch_CheckBox_ListPreferenceFragment newInstance() {
@@ -91,9 +83,6 @@ public class Switch_CheckBox_ListPreferenceFragment extends BaseFragment {
         view.findViewById(R.id.bt_FullscreenDialog).setOnClickListener(this);
         view.findViewById(R.id.bt_AlertDialog).setOnClickListener(this);
         view.findViewById(R.id.CardView).setOnClickListener(this);
-        rg = view.findViewById(R.id.rg);
-        vp_rg = view.findViewById(R.id.vp_rg);
-        radioGroup();
     }
 
     @Override
@@ -493,46 +482,5 @@ public class Switch_CheckBox_ListPreferenceFragment extends BaseFragment {
         return 0;
     }
 
-
-    private void radioGroup() {
-        Fragment[] items = {ShapeFragment.newInstance(), KLineFragment.newInstance()};
-        vp_rg.setAdapter(new SimpleFragmentPagerAdapter(_mActivity.getSupportFragmentManager(), items));
-        vp_rg.setCurrentItem(0, false);
-        vp_rg.setOffscreenPageLimit(items.length);
-        rg.check(R.id.rb1);
-        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.rb1) {
-                    vp_rg.setCurrentItem(0);
-                } else if (checkedId == R.id.rb2) {
-                    vp_rg.setCurrentItem(1);
-                }
-            }
-        });
-        vp_rg.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                switch (position) {
-                    case 0:
-                        rg.check(R.id.rb1);
-                        break;
-                    case 1:
-                        rg.check(R.id.rb2);
-                        break;
-                }
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-    }
 
 }
